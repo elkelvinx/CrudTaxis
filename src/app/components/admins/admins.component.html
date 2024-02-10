@@ -1,0 +1,235 @@
+<!Doctype HTML>
+
+<main>
+    <div style="max-width: 900px; text-align: center; margin:0 auto;">
+        <h1>Admins</h1>
+        <p>
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam sapiente
+            cumque dicta animi explicabo sequi. Ex amet et, dolor eligendi commodi
+            consectetur quo voluptatibus, cum nemo porro veniam at blanditiis? <br>
+            admins works!
+        </p>
+    </div>
+    <br />
+    <div class="tabla-data">
+        <table class="table table-danger table-striped table-hover table-bordered" style="width: fit-content;">
+            <thead>
+                <tr >
+                    
+                    <th scope="col">Id</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Apellido Materno</th>
+                    <th scope="col">Apellido Paterno</th>
+                    <th scope="col">Telefono</th>
+                    <th scope="col">Cumpleaños</th>
+                </tr>
+            </thead>
+            <tbody>         
+                <tr *ngFor="let Admin of listAdmin">
+                
+                    <td>{{Admin.id}}</td>
+                    <td>{{Admin.name}}</td>
+                    <td>{{Admin.lm1}}</td>
+                    <td>{{Admin.lm2}}</td>
+                    <td>{{Admin.phone}}</td>
+                    <td>{{Admin.birthDate}}</td>
+                </tr>
+                
+            </tbody>
+        </table>
+   </div>
+    <div class="cointainer p-4">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card" id="div-CardPrincipal">
+                    <div class="card-body bg-danger">
+                        <h1 class="h4">Datos</h1>
+                        <!--Formulario Principal-->
+
+                        <form id="task-form">
+                            <label for="task-name">Identificador:</label>
+                            <!--nombre de el valor a crear-->
+                            <button type="button" class="btn btn-success" data-style="buscarBtn"
+                                (click)="searchAdmin()">Search</button><br>
+
+                            <input class="form-control mb-3" type="text" placeholder="1"  data-style="idPrincipal"
+                                style="width: 100px;" 
+                                [(ngModel)]="Admin.id" [ngModelOptions]="{standalone: true}" />
+
+
+                            <label for="task-name">Nombres:</label>
+                            <!--nombre de el valor a crear-->
+                            <input class="form-control mb-3" type="text" placeholder="Rocio" id="task-name"
+                                [(ngModel)]="Admin.name" [ngModelOptions]="{standalone: true}" />
+                                <!--a-->
+                            <label for="task-lastname1">Apellido Paterno:</label>
+                            <input class="form-control mb-3" type="text" placeholder="Alvarez" id="task-lastname1"
+                                [(ngModel)]="Admin.lm1" [ngModelOptions]="{standalone: true}" />
+
+                            <label for="task-lastname2">Apellido Materno:</label>
+                            <input class="form-control mb-3" type="text" placeholder="Sanchez" id="task-lastname2"
+                                [(ngModel)]="Admin.lm2" [ngModelOptions]="{standalone: true}" />
+
+                            <label for="task-password">Correo Electronico:</label>
+                            <input class="form-control mb-3" placeholder="...@gmai.com" type="text" name="password"
+                                id="task-password" [(ngModel)]="Admin.mail" [ngModelOptions]="{standalone: true}" />
+
+                            <label for="task-phone">telefono:</label>
+                            <input class="form-control mb-3" placeholder="668199211" type="text" name="phone"
+                                id="task-phone" [(ngModel)]="Admin.phone" [ngModelOptions]="{standalone: true}" />
+
+                            <label for="task-street1">Colonia:</label>
+                            <input class="form-control mb-3" type="text" readonly placeholder="Vive en la colonia"
+                            data-style="inputStreetName" [(ngModel)]="Admin.settlementS" [ngModelOptions]="{standalone: true}" />
+
+                            <input class="form-control mb-3" type="text" data-style="stid" [(ngModel)]="Admin.settlement"
+                                [ngModelOptions]="{standalone: true}" />
+
+
+                            <label for="task-street1">Calle 1:</label>
+                            
+                            <input class="form-control mb-3" type="text" readonly placeholder="Vive en" data-style="inputStreetName"
+                                [(ngModel)]="Admin.street1" [ngModelOptions]="{standalone: true}" />
+
+                            <input class="form-control mb-3" type="text" data-style="stid" [(ngModel)]="Admin.st1"
+                                [ngModelOptions]="{standalone: true}" />
+
+                            <label for="task-street1">Calle 2:</label>
+                            <input class="form-control mb-3" type="text" readonly placeholder="Entre la calle"
+                            data-style="inputStreetName" [(ngModel)]="Admin.street2" [ngModelOptions]="{standalone: true}" />
+
+                            <input class="form-control mb-3" type="text" data-style="stid" [(ngModel)]="Admin.st2"
+                                [ngModelOptions]="{standalone: true}" />
+
+                            <label for="task-street1">Calle 3:</label>
+                            <input class="form-control mb-3" type="text" readonly placeholder="Y la calle" data-style="inputStreetName"
+                                [(ngModel)]="Admin.street3" [ngModelOptions]="{standalone: true}" />
+
+                            <input class="form-control mb-3" type="text" data-style="stid" [(ngModel)]="Admin.st3"
+                                [ngModelOptions]="{standalone: true}" />
+
+                            <label for="task-numberHouse">Numero exterior:</label>
+                            <input class="form-control mb-3" type="text" name="numberHouse" placeholder="2089"
+                                id="task-numberHouse" [(ngModel)]="Admin.extNumber"
+                                [ngModelOptions]="{standalone: true}" />
+
+                            <!--FECHAS-->
+                            <label for="task-birth">Fecha nacimiento:</label>
+                            <input class="form-control mb-3" type="date" name="birth2" id="task-birth" placeholder="2023-06-15" required
+                                pattern="\d{4}-\d{2}-\d{2}" [(ngModel)]="Admin.birthDate"
+                                [ngModelOptions]="{standalone: true}" />
+
+                            <label for="task-numberHouse">Fecha de ingreso:</label>
+                            <input class="form-control mb-3" type="text" placeholder="15-08-2024" readonly
+                                [(ngModel)]="Admin.lastModDate" [ngModelOptions]="{standalone: true}" />        
+                            <!--fecha de modificacion SE OBTIENE AUTOMATICO-->
+
+
+
+                            <label for=" " style="text-align: left; color: black">Ultima modificacion SE HACE
+                                AUTOMATICO:</label><br />
+                            <!--AQUI ESTAN LOS BOTONES-->
+
+                            <button type="button" class="btn btn-success"
+                                style="border-radius: 10px; border-style: groove; margin: 1px;"
+                                (click)="grabar()">Save</button>
+                            <button type="button" class="btn btn-success"
+                                style="border-radius: 10px; border-style: groove; margin: 1px;"
+                                (click)="eliminar()">Delete</button>
+                            <button type="button" class="btn btn-success"
+                                style="border-radius: 10px; border-style: groove; margin: 1px;"
+                                (click)="actualizar()">Update</button>
+                            <br>
+                            <button class="btn btn-warning" id="btn-task-Clear"
+                                style="border-radius: 10px; border-style: groove; margin: 1px;">
+                                Clear
+                            </button>
+                            <button href="javascript:abrir()" type="button" class="btn btn-secondary"
+                                id="btn-task-Contatacto"
+                                style="border-radius: 10px; border-style: groove; margin: 1px;">
+                                Info Contacto</button><br />
+
+
+                        </form>
+                        <!--TERMINA EL FORMULARIO PRINCIPAL-->
+                    </div>
+                </div>
+            </div>
+            <!--esto es para poder traer datos de firestore y mostrarlos-->
+            <div class="col-md-6" id="tasks-Container"></div>
+        </div>
+    </div>
+
+    <!--se especifica el uso de el JAVASCRIPT de la logica-->
+    <script type="module" src="./index.js"></script>
+
+    <div class="ventana" id="ventana">
+        <div id="close">
+            <i class="fa-solid fa-circle-xmark" id="btnCerrar"></i>
+        </div>
+        <form action="" id="contact">
+            <label for="contact-name">Nombres</label>
+            <input type="text" id="contact-name" />
+            <label for="contact-lastname1">Apellido Paterno</label>
+            <input type="text" id="contact-lastname1" />
+            <label for="contact-lastname2">Apellido Materno</label>
+            <input type="text" id="contact-lastname2" />
+            <label for="contact-phone">Numero de telefono</label>
+            <input type="text" id="contact-phone" />
+            <label for="contact-phone">Relacion del Contacto</label>
+            <input type="text" id="contact-relation" />
+            <br />
+
+            <div class="contact-dropdowns">
+                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                    aria-expanded="false" id="contact-street1">
+                    Calle
+                </button>
+                <ul class="dropdown-menu">
+                    <li>cerritos</li>
+                    <li>Niños Heroes</li>
+                    <li>Rosales</li>
+                </ul>
+                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                    aria-expanded="false" id="contact-street2">
+                    entre Calle 1
+                </button>
+                <ul class="dropdown-menu">
+                    <li>cerritos</li>
+                    <li>Niños Heroes</li>
+                    <li>Rosales</li>
+                </ul>
+                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                    aria-expanded="false" id="contact-street3">
+                    y la Calle 2
+                </button>
+                <ul class="dropdown-menu">
+                    <li>cerritos</li>
+                    <li>Niños Heroes</li>
+                    <li>Rosales</li>
+                </ul>
+                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                    aria-expanded="false" id="contact-settlement">
+                    colonia
+                </button>
+                <ul class="dropdown-menu">
+                    <li>cerritos</li>
+                    <li>Niños Heroes</li>
+                    <li>Rosales</li>
+                </ul>
+            </div>
+            <div>
+                <button class="btn btn-success" id="contact-btn-save">
+                    Save
+                </button>
+                <button class="btn btn-warning" id="contact-btn-Clear">
+                    Clear
+                </button>
+            </div>
+
+        </form>
+    </div>
+
+    
+  
+</main>

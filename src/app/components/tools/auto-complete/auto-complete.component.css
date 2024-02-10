@@ -1,0 +1,24 @@
+.example-form {
+    min-width: 60px;
+    max-width: 400px;
+    width: 80%;
+  }
+  
+  .example-full-width {
+    width: 50%;
+    height: 60%;
+  }
+
+  /*  */
+  .name{
+    position: fixed;
+    width: 500px!important;
+    background-color: #940e0e59!important;
+  }
+  .name-moved{
+    position: absolute;
+    width: 500px!important;
+    background-color: #940e0e59!important;
+  }
+
+  

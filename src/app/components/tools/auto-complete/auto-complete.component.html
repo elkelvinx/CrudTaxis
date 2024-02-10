@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<!-- Control value: {{ myControl.value || "empty" }}-->
+
+<form class="example-form">
+  <mat-form-field class="example-full-width {{ className || defaultClass }}">
+    <mat-label>{{ text }}</mat-label>
+    <input
+      type="text"
+      placeholder="{{ myControl.value || 'Pick One' }}"
+      aria-label="Number"
+      matInput
+      [formControl]="myControl"
+      [matAutocomplete]="auto"
+      [value]="info"
+      (ngModelChange)="ChangeName()"
+      class="{{ className || defaultClass }}"
+    />
+    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+      @for (option of filteredOptions | async; track option) {
+      <mat-option [value]="option">{{ option }}</mat-option>
+      }
+    </mat-autocomplete>
+  </mat-form-field>
+</form>

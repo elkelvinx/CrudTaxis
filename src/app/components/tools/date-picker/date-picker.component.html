@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<!-- {{ actualDate }} -->
+<mat-form-field class="example-full-width" style="width: 240px">
+  <mat-label>{{ text }} </mat-label>
+  <input
+    matInput
+    [matDatepicker]="picker"
+    (dateChange)="ChangeDate($event)"
+    style="width: 500px"
+    [value]="actualDate"
+    [disabled]="isDisabled"
+  />
+  <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker [dateClass]="dateClass" #picker></mat-datepicker>
+</mat-form-field>

@@ -1,0 +1,53 @@
+.linkS{
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform:capitalize;
+    margin-left: 10px;
+    margin-right: 10px;
+    transition: all 0.3s ease;
+
+}
+.div-Info{
+    background-color: aquamarine;
+}
+@media (max-width: 497px){
+    #header{
+        min-height: 130px;
+        overflow:hidden;
+    }
+
+    #menu,
+    #menu ul{
+        line-height: 50px;
+    }
+
+    #menu ul li{
+        margin-left: 7px;
+        margin-right: 7px;
+    }
+
+    #slider{
+        height: 180px;
+    }
+
+    #slider h1{
+        font-size: 19px;
+        padding-top: 30px;
+    }
+
+    #slider .btn-white{
+        margin-top: 20px;
+    }
+
+    #slider.slider-small{
+        height: 100px;
+    }
+
+    #slider.slider-small h1{
+       padding-top: 35px;
+    }
+}
+.slider2{
+    margin-left: 60%;
+}

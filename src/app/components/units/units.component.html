@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+
+<div class="divPrincipal">
+  <mat-card class="principal-card">
+    <mat-card class="example-card">
+      <mat-card-header class="header-card">
+        <mat-card-subtitle>Unidades automovilisticas</mat-card-subtitle>
+        <!-- <mat-card-subtitle>Formulario</mat-card-subtitle> <br /> -->
+      </mat-card-header>
+      <mat-card-content>
+        <form id="task-form">
+          <div class="container">
+            <div class="renglon1"></div>
+            <div class="renglon1"></div>
+            <div class="renglon1"></div>
+            <div class="renglon1"></div>
+            <app-auto-complete
+              className="prueba3"
+              [text]="'Numero economico'"
+              [info]="units.ecoNumber"
+              (data)="units.ecoNumber = $event"
+              #inputname
+            ></app-auto-complete>
+            <app-auto-complete
+              className="prueba4"
+              [text]="'Marca de la unidad'"
+              [info]="units.brandName"
+              (data)="units.brandName = $event"
+              #inputname
+            ></app-auto-complete>
+            <app-auto-complete
+              className="prueba4"
+              [text]="'Modelo de la unidad'"
+              [info]="units.modelName"
+              (data)="units.modelName = $event"
+              #inputname
+            ></app-auto-complete>
+            <app-auto-complete
+              className="prueba5"
+              [text]="'año de la unidad'"
+              [info]="units.yearModel"
+              (data)="units.yearModel = $event"
+              #inputname
+            ></app-auto-complete>
+            <app-auto-complete
+              className="prueba5"
+              [text]="'color de la unidad'"
+              [info]="units.color"
+              (data)="units.color = $event"
+              #inputname
+            ></app-auto-complete>
+            <app-auto-complete
+              className="prueba5"
+              [text]="'Serie de la unidad'"
+              [info]="units.serie"
+              (data)="units.serie = $event"
+              #inputname
+            ></app-auto-complete>
+            <app-auto-complete
+              className="prueba5"
+              [text]="'placas'"
+              [info]="units.plate"
+              (data)="units.plate = $event"
+              #inputname
+            ></app-auto-complete>
+            <app-auto-complete
+              className="prueba5"
+              [text]="'clave del Motor'"
+              [info]="units.motor"
+              (data)="units.motor = $event"
+              #inputname
+            ></app-auto-complete>
+
+            <app-auto-complete
+              className="street4"
+              [text]="'administrador'"
+              [info]="units.adminName"
+              (data)="units.adminName = $event"
+              #inputname
+            ></app-auto-complete>
+
+            <app-datepicker-date
+              [isDisabled]="false"
+              [actualDate]="units.expInsurance"
+              [text]="'Vencimiento de seguro'"
+            ></app-datepicker-date>
+            <br />
+            <app-datepicker-date
+              [actualDate]="units.registerDate"
+              [text]="'Fecha de registro'"
+            ></app-datepicker-date>
+            <br />
+            <app-datepicker-date
+              [actualDate]="units.lastModDate"
+              [text]="'Ultima modificacion'"
+            ></app-datepicker-date>
+          </div>
+          <br />
+        </form>
+        <mat-divider></mat-divider>
+      </mat-card-content>
+      <div style="align-items: center">
+        <mat-card-actions align="start">
+          <!--este llevara un (click)-->
+          <button mat-button color="primary" class="text-button-green">
+            Guardar
+          </button>
+          <button mat-button color="primary" class="text-button-green">
+            Actualizar
+          </button>
+        </mat-card-actions>
+        <mat-card-actions align="end" class="buttons-actionDelete">
+          <button mat-button color="primary" class="text-button-red">
+            Eliminar</button
+          ><br />
+          <br />
+        </mat-card-actions>
+      </div>
+    </mat-card>
+
+    <mat-card class="table-card">
+      <div class="tabla-dataPRUEBA">
+        <table
+          class="table table-danger table-striped table-hover table-bordered"
+          style="width: fit-content"
+        >
+          <!-- <table class="tabla-data" style="width: fit-content"> -->
+          <thead>
+            <tr>
+              <th scope="col">Id se borra</th>
+              <th scope="col">ecoNumber</th>
+              <th scope="col">Marca</th>
+              <th scope="col">Modelo</th>
+              <th scope="row">Otras</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let units of listUnits; let i = index">
+              <td>{{ units.id }}</td>
+              <td>
+                {{ units.ecoNumber + " " }}
+                <!--{{ units. + " " }}{{ units.lm2 }}-->
+              </td>
+              <td>{{ units.brandName }}</td>
+              <td>{{ units.modelName }}</td>
+              <td>
+                <!-- <button type="button" class="btn btn-primary">Editar</button> -->
+                <button
+                  mat-raised-button
+                  color="primary"
+                  class="text"
+                  style="height: 35px !important"
+                  (click)="consultarUnit(units.id)"
+                >
+                  Editar
+                </button>
+                <app-yes-no-dialog
+                  [text]="'Desea borrar la unidad?'"
+                  [name]="units.ecoNumber"
+                ></app-yes-no-dialog>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </mat-card>
+  </mat-card>
+</div>

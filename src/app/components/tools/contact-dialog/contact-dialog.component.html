@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<div class="cardPrincipal" style="background-color: --backCards; width: 550px">
+  <h1 mat-dialog-title>Contacto Extra del Conductor</h1>
+  <div mat-dialog-content>
+    Aqui va todo el contenido del dialogo
+    <app-auto-complete
+      style="width: 7px !important"
+      className="names"
+      [text]="'Nombres'"
+      #inputname
+    ></app-auto-complete>
+    <app-auto-complete
+      className="relation"
+      [text]="'Relacion'"
+      #inputname
+    ></app-auto-complete>
+    <app-auto-complete
+      className="lastname1"
+      [text]="'Apellido Paterno '"
+      #inputname
+    ></app-auto-complete>
+    <app-auto-complete
+      class="lastname2"
+      [text]="'Apellido Materno '"
+    ></app-auto-complete>
+    <app-auto-complete
+      className="settlement"
+      [arrays]="settlement"
+      [text]="'Colonia'"
+    ></app-auto-complete>
+
+    <app-auto-complete
+      className="phone"
+      [text]="'Telefono'"
+    ></app-auto-complete>
+    <app-auto-complete
+      className="street1"
+      [arrays]="streets"
+      [text]="'Calle 1'"
+    ></app-auto-complete>
+    <app-auto-complete
+      className="street2"
+      [arrays]="streets"
+      [text]="'Calle 2'"
+    ></app-auto-complete>
+    <app-auto-complete
+      className="street3"
+      [arrays]="streets"
+      [text]="'Calle 3'"
+    ></app-auto-complete>
+  </div>
+
+  <div mat-dialog-actions>
+    <div style="margin-left: 1%">
+      <button
+        mat-button
+        mat-dialog-close
+        color="primary"
+        class="text-button-red"
+      >
+        Cerrar</button
+      ><br />
+    </div>
+    <div style="margin-left: 53%">
+      <button mat-button color="primary" class="text-button-green">
+        Guardar
+      </button>
+    </div>
+  </div>
+</div>

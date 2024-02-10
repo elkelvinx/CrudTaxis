@@ -1,0 +1,56 @@
+@use '@angular/material' as mat;
+@use 'sass:map';
+
+@include mat.core();
+
+
+//**************************Light Theme*****************************//
+$green-palette: mat.$pink-palette;
+
+$green-palette: map.merge($green-palette, (400: #167319));
+
+$my-primary: mat.define-palette($green-palette, 400);
+$my-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+$my-warn: mat.define-palette(mat.$blue-palette, 900);
+
+$my-background: #f5f5f5; // Color de fondo para el tema claro
+$my-card: #ffffff; // Color de las tarjetas para el tema claro
+
+$my-theme: mat.define-light-theme((
+ color: (
+   primary: $my-primary,
+   accent: $my-accent,
+    warn: $my-warn,
+ ),
+ typography: mat.define-typography-config(),
+ density: 0,
+));
+$my-primary: mat.define-palette($green-palette, 400);
+$my-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+$my-warn: mat.define-palette(mat.$blue-palette, 900);
+
+@include mat.all-component-themes($my-theme);
+
+
+//**************************Dark Theme*****************************//
+$my-dark-background: #ea0000; // Color de fondo para el tema oscuro
+$my-dark-card: #424242; // Color de las tarjetas para el tema oscuro
+
+$my-dark-theme: mat.define-dark-theme((
+ color: (
+   primary: $my-primary,
+   accent: $my-accent,
+   warn: $my-warn,
+   background: $my-dark-background,
+   card: $my-dark-card,
+ ),
+ typography: mat.define-typography-config(),
+ density: 0,
+));
+
+@include mat.all-component-colors($my-dark-theme);
+//**************************Global colors*****************************//
+:root{
+  --backCards: #2a2d28;
+  --cards: $my-dark-background,400;
+}

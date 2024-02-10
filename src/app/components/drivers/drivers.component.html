@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+
+<main>
+  <div style="max-width: 900px; text-align: center; margin: 0 auto">
+    <!--<h1>Choferes</h1>-->
+  </div>
+  <hr />
+
+  <div class="cointainer p-3">
+    <div class="Buscador">
+      <div class="col-md-6">
+        <div class="card" id="div-CardPrincipal">
+          <div class="card-body bg-danger">
+            <h1 class="h4">Insertar Datos de Choferes</h1>
+            <!--Formulario Principal-->
+            <!--<mat-label>{{ Driver.name }}</mat-label></!-->
+            <form id="task-form">
+              <app-auto-complete
+                [text]="'Nombres'"
+                [info]="Driver.name"
+                (data)="Driver.name = $event"
+                #inputname
+              ></app-auto-complete>
+
+              <app-auto-complete
+                [text]="'Apellido Paterno'"
+                [info]="Driver.lm1"
+                (data)="Driver.lm1 = $event"
+                #inputname
+              ></app-auto-complete>
+              <app-auto-complete
+                [text]="'Apellido Materno'"
+                [info]="Driver.lm2"
+                (data)="Driver.lm2 = $event"
+                #inputname
+              ></app-auto-complete>
+              <app-auto-complete
+                [text]="'Contraseña'"
+                [info]="Driver.password"
+                (data)="Driver.password = $event"
+                #inputname
+              ></app-auto-complete>
+
+              <app-auto-complete
+                [text]="'Telefono'"
+                [info]="Driver.phone"
+                (data)="Driver.phone = $event"
+                #inputname
+              ></app-auto-complete>
+
+              <app-auto-complete
+                [text]="'Colonia'"
+                [info]="Driver.settlementS"
+                [arrays]="settlementName"
+                (data)="guardarDireccion($event)"
+                *ngIf="isLoadedSt"
+              ></app-auto-complete>
+
+              <app-auto-complete
+                [text]="'Calle 1'"
+                [info]="Driver.street1"
+                [arrays]="streetName"
+                (data)="guardarStreet($event, 1)"
+                *ngIf="isLoadedSt"
+              ></app-auto-complete>
+
+              <app-auto-complete
+                [text]="'Entre la calle'"
+                [info]="Driver.street2"
+                [arrays]="streetName"
+                (data)="guardarStreet($event, 2)"
+                *ngIf="isLoadedSt"
+              ></app-auto-complete>
+
+              <app-auto-complete
+                [text]="'y la Calle'"
+                [info]="Driver.street3"
+                [arrays]="streetName"
+                (data)="guardarStreet($event, 3)"
+                *ngIf="isLoadedSt"
+              ></app-auto-complete>
+
+              <app-auto-complete
+                [text]="'administrador'"
+                [info]="Driver.adminName"
+                [arrays]="adminsName"
+                (data)="guardarAdmin($event)"
+                *ngIf="isLoaded2"
+              ></app-auto-complete>
+
+              <app-auto-complete
+                [text]="'Numero de la casa'"
+                [info]="Driver.extNumber"
+                (data)="Driver.extNumber = $event"
+              ></app-auto-complete>
+
+              <app-datepicker-date
+                [isDisabled]="false"
+                [actualDate]="Driver.birth"
+                [text]="'Fecha de nacimiento'"
+              ></app-datepicker-date>
+              <br />
+              <app-datepicker-date
+                [isDisabled]="false"
+                [actualDate]="Driver.licenseEx"
+                [text]="'Vencimiento de licencia'"
+              ></app-datepicker-date>
+              <br />
+              <app-datepicker-date
+                [isDisabled]="true"
+                [actualDate]="Driver.hireDate"
+                [text]="'Fecha de ingreso'"
+              ></app-datepicker-date>
+              <br />
+              <app-datepicker-date
+                [isDisabled]="true"
+                [actualDate]="Driver.lastModD"
+                [text]="'Fecha de ultima modificacion'"
+              ></app-datepicker-date>
+              <br />
+              <app-contact-dialog
+                [arraySt]="streetName"
+                [arrayCol]="settlementName"
+              ></app-contact-dialog>
+              <br />
+              <!--fecha de modificacion SE OBTIENE AUTOMATICO-->
+
+              <label for="task-numberHouse">status:</label>
+              <input
+                class="form-control mb-3"
+                type="text"
+                name="status"
+                placeholder="1"
+                id="task-status"
+                [(ngModel)]="Driver.status"
+                [ngModelOptions]="{ standalone: true }"
+              />
+              <label style="color: black">Pago de ingreso</label><br />
+              <label for=" " style="text-align: left; color: black"
+                >Ultima modificacion SE HACE AUTOMATICO:</label
+              ><br />
+
+              <!--DE AQUI ES EXTRA-->
+
+              <button
+                type="button"
+                class="btn btn-success"
+                style="border-radius: 10px; border-style: groove; margin: 1px"
+                (click)="grabar()"
+              >
+                Save
+              </button>
+              <button
+                type="button"
+                class="btn btn-success"
+                style="border-radius: 10px; border-style: groove; margin: 1px"
+                (click)="eliminar()"
+              >
+                Delete
+              </button>
+              <button
+                type="button"
+                class="btn btn-success"
+                style="border-radius: 10px; border-style: groove; margin: 1px"
+                (click)="actualizar()"
+              >
+                Update
+              </button>
+              <br />
+            </form>
+            <!--TERMINA EL FORMULARIO PRINCIPAL-->
+          </div>
+        </div>
+      </div>
+      <!--esto es para poder traer datos de firestore y mostrarlos-->
+
+      <div class="tabla-dataPRUEBA">
+        <table
+          class="table table-danger table-striped table-hover table-bordered"
+          style="width: fit-content"
+        >
+          <thead>
+            <tr>
+              <th scope="col">Id se borra</th>
+              <th scope="col">Nombre</th>
+              <th scope="col">Telefono</th>
+              <th scope="col">Cumpleaños</th>
+              <th scope="row">Otras</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let Driver of listDriver">
+              <td>{{ Driver.id }}</td>
+              <td>
+                {{ Driver.name + " " }} {{ Driver.lm1 + " " }}{{ Driver.lm2 }}
+              </td>
+              <td>{{ Driver.phone }}</td>
+              <td>{{ Driver.birth }}</td>
+              <td>
+                <!--***************-->
+                <button
+                  mat-raised-button
+                  color="primary"
+                  class="text"
+                  style="height: 35px !important"
+                  (click)="consultarDriver(Driver.id)"
+                >
+                  Editar
+                </button>
+                <app-yes-no-dialog
+                  [text]="'Desea borrar el registro de'"
+                  [name]="Driver.name + ' ' + Driver.lm1 + '?'"
+                ></app-yes-no-dialog>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</main>
