@@ -1,7 +1,16 @@
 <!DOCTYPE html>
+<!--
+  en este caso nosotros tendremos varios divs 
+  principal, sera el que abarcara todo el card
+  title, sera el que abarcara el titulo del card
+  buttons, sera el que abarcara los botones de guardar, actualizar y eliminar
+  content, sera el que abarcara el formulario  
+        content-1_2_3..., contendra los inputs organizados
+-->
 
-<div class="divPrincipal">
-  <mat-card class="principal-card">
+<mat-card class="principal-card">
+  <!--este es el bueno el de 100%-->
+  <div class="divPrincipal" style="background-color: red">
     <mat-card class="example-card">
       <mat-card-header class="header-card">
         <mat-card-subtitle>Unidades automovilisticas</mat-card-subtitle>
@@ -117,52 +126,53 @@
         </mat-card-actions>
       </div>
     </mat-card>
+  </div>
 
-    <mat-card class="table-card">
-      <div class="tabla-dataPRUEBA">
-        <table
-          class="table table-danger table-striped table-hover table-bordered"
-          style="width: fit-content"
-        >
-          <!-- <table class="tabla-data" style="width: fit-content"> -->
-          <thead>
-            <tr>
-              <th scope="col">Id se borra</th>
-              <th scope="col">ecoNumber</th>
-              <th scope="col">Marca</th>
-              <th scope="col">Modelo</th>
-              <th scope="row">Otras</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let units of listUnits; let i = index">
-              <td>{{ units.id }}</td>
-              <td>
-                {{ units.ecoNumber + " " }}
-                <!--{{ units. + " " }}{{ units.lm2 }}-->
-              </td>
-              <td>{{ units.brandName }}</td>
-              <td>{{ units.modelName }}</td>
-              <td>
-                <!-- <button type="button" class="btn btn-primary">Editar</button> -->
-                <button
-                  mat-raised-button
-                  color="primary"
-                  class="text"
-                  style="height: 35px !important"
-                  (click)="consultarUnit(units.id)"
-                >
-                  Editar
-                </button>
-                <app-yes-no-dialog
-                  [text]="'Desea borrar la unidad?'"
-                  [name]="units.ecoNumber"
-                ></app-yes-no-dialog>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </mat-card>
+  <!--aqui empieza la tabla-->
+  <mat-card class="table-card">
+    <div class="tabla-dataPRUEBA">
+      <table
+        class="table table-danger table-striped table-hover table-bordered"
+        style="width: fit-content"
+      >
+        <!-- <table class="tabla-data" style="width: fit-content"> -->
+        <thead>
+          <tr>
+            <th scope="col">Id se borra</th>
+            <th scope="col">ecoNumber</th>
+            <th scope="col">Marca</th>
+            <th scope="col">Modelo</th>
+            <th scope="row">Otras</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let units of listUnits; let i = index">
+            <td>{{ units.id }}</td>
+            <td>
+              {{ units.ecoNumber + " " }}
+              <!--{{ units. + " " }}{{ units.lm2 }}-->
+            </td>
+            <td>{{ units.brandName }}</td>
+            <td>{{ units.modelName }}</td>
+            <td>
+              <!-- <button type="button" class="btn btn-primary">Editar</button> -->
+              <button
+                mat-raised-button
+                color="primary"
+                class="text"
+                style="height: 35px !important"
+                (click)="consultarUnit(units.id)"
+              >
+                Editar
+              </button>
+              <app-yes-no-dialog
+                [text]="'Desea borrar la unidad?'"
+                [name]="units.ecoNumber"
+              ></app-yes-no-dialog>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </mat-card>
-</div>
+</mat-card>
