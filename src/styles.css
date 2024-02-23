@@ -230,7 +230,7 @@ button {
   --mat-outlined-button-state-layer-color: #f70909bd;
   --mat-outlined-button-ripple-color: rgb(255, 0, 0) !important;
   --mat-text-button-state-layer-color: #ff0000 !important;
-  text-shadow: -2px 3px 4px #000;
+  text-shadow: -5px 8px 17px #000;
   color: #fc2900 !important;
 }
 
@@ -239,7 +239,7 @@ button {
   --mdc-outlined-button-outline-color: rgba(0, 255, 81, 0) !important;
   --mat-outlined-button-state-layer-color: #09f711bd;
   --mat-outlined-button-ripple-color: rgb(4 243 12);
-  text-shadow: -2px 3px 5 px #000;
+  text-shadow: -2px 3px 5px #000;
   color: #0db813 !important;
 }
 /* 
@@ -394,8 +394,21 @@ button {
   margin-left: 1px;
   margin: -5px;
 }
-.cardPrincipal {
-  background-color: var(--backCards) !important;
 
-  width: 550px !important;
+.eco .mat-mdc-text-field-wrapper,
+.eco .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+  /* background-color: #ee191959 !important; */
+  background-color: #dc0a0a59 !important;
+  flex: 0 0 70%;
+  /* width: 100% !important; */
+  /* width: 180px !important; */
+}
+
+.brand .mat-mdc-text-field-wrapper,
+.brand .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+  /* background-color: #ee191959 !important; */
+  background-color: #dc0a0a59 !important;
+  flex: 0 0 30%;
+  /* width: 40%; */
+  /* width: 180px !important; */
 }
