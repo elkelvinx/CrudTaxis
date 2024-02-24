@@ -3,10 +3,7 @@ import { UnitsService } from '../../services/services-units.service';
 import { AppComponent } from '../../app.component';
 import { unit } from '../../models/unit';
 import { Unit2 } from '../../models/unit';
-import { MatProgressBarModule } from '@angular/material/progress-bar';
-import { MatButtonModule } from '@angular/material/button';
-import { MatDividerModule } from '@angular/material/divider';
-import { MatCardModule } from '@angular/material/card';
+
 import { AppService } from '../../services/services-app.service';
 @Component({
   selector: 'app-units',
@@ -16,11 +13,18 @@ import { AppService } from '../../services/services-app.service';
 export class UnitsComponent implements OnInit {
   units = new Unit2();
   listUnits: Unit2[] = [];
-  public settlements: any[] = [];
-  public streets: any[] = [];
 
-  public settlementName: any[] = [];
-  public streetName: any[] = [];
+  public admins: any[] = [];
+  public brands: any[] = [];
+  public models: any[] = [];
+
+  public adminsName: any[] = [];
+  public brandsName: any[] = [];
+  public modelsName: any[] = [];
+
+  public loadAd: boolean = false;
+  public loadBr: boolean = false;
+  public loadMd: boolean = false;
 
   constructor(
     private serviceUnit: UnitsService,
@@ -30,36 +34,28 @@ export class UnitsComponent implements OnInit {
 
   ngOnInit() {
     this.consultarUnits();
-    this.consultarStreetName();
   }
   public consultarUnits() {
     this.serviceUnit.consularUnits().subscribe(
       (data: any) => {
         this.listUnits = data;
-        console.log(this.listUnits);
       },
       error => {
         console.log(error);
       }
     )
+    this.consultarAdminName();
+    this.consultarBrandName();
+    this.consultarModelName();
+
   }
   searchDriver() {
     this.consultarUnit(this.units.id);
   }
   consultarUnit(idUnit: any) {
-    // this.isLoadedSt = true;
     this.serviceUnit.consularUnit(idUnit).subscribe(
       (data: any) => {
         this.units = data;
-        //console.log(this.units.ecoNumber + " " + this.units.id + " " + this.units.registerDate);
-        debugger
-        //cosas para dar formato a las fechas
-        // this.units.expInsurance = this.AppComponent.formatBirth(this.units.expInsurance);
-        // this.units.lastModDate = this.AppComponent.formatLicense(this.units.lastModDate);
-        //Actualiza los valores de los dropdowns       
-        // this.consultarSettleName();
-        // this.consultarStreetName();
-        // this.consultarAdminName();
       },
       error => {
         console.log(error);
@@ -79,46 +75,63 @@ export class UnitsComponent implements OnInit {
   //   )
   //   debugger;
   // }
-
-
-
-
-
-  consultarStreetName() {
-    this.servicioApp.consultarStreetName('n').subscribe(
+  consultarAdminName() {
+    this.servicioApp.consultarAdminsName().subscribe(
       (data: any[]) => {
-        this.streets = data;
-        this.streetName = this.streets.map(streets => streets.name);
-        // if (this.Driver.street1 == null) {
-        //   this.isLoadedSt = true;
-        // }
-        // else {
-        //   console.log('PEDRO PICAPIEDRA')
-        // }
+        this.admins = data;
+        this.adminsName = this.admins.map(admins => admins.name);
+        //cambio del flag para que se muestre el html
+        if (this.units.adminName !== null)
+          this.loadAd = true;
       },
       error => {
         console.log(error);
       }
     )
-
   }
-  consultarSettleName() {
-    this.servicioApp.consultarSettlementName('n').subscribe(
+  consultarBrandName() {
+    this.servicioApp.consultarBrandsName().subscribe(
       (data: any[]) => {
-        this.settlements = data;
-        this.settlementName = this.settlements.map(settlement => settlement.name);
-        // //cambio del flag para que se muestre el html
-        // if (this.Driver.settlementS == null) {
-        //   this.isLoadedSt = false;
-        // }
-        // else {
-        //   //aqui deberia hacer algo jasjasjs
-        // }
+        this.brands = data;
+        this.brandsName = this.brands.map(brands => brands.name);
+        //cambio del flag para que se muestre el html
+        if (this.units.brandName !== null)
+          this.loadBr = true;
       },
       error => {
         console.log(error);
       }
     )
-
+  }
+  consultarModelName() {
+    this.servicioApp.consultarModelsName().subscribe(
+      (data: any[]) => {
+        this.models = data;
+        debugger
+        this.modelsName = this.models.map(models => models.name);
+        console.log(this.adminsName)
+        //cambio del flag para que se muestre el html
+        if (this.units.modelName !== null)
+          this.loadMd = true;
+      },
+      error => {
+        console.log(error);
+      }
+    )
+  }
+  public changeSelection(event: Event, type: string) {
+    let idFinal: number = 0;
+    switch (type) {
+      case 'admin':
+        idFinal = this.AppComponent.changeAutocomplete(event, this.admins);
+        break;
+      case 'brand':
+        idFinal = this.AppComponent.changeAutocomplete(event, this.brands);
+        break;
+      case 'model':
+        idFinal = this.AppComponent.changeAutocomplete(event, this.models);
+        break;
+    }
+    console.log("El valor es " + idFinal);
   }
 }

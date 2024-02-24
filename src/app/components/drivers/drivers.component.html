@@ -21,7 +21,6 @@
                 (data)="Driver.name = $event"
                 #inputname
               ></app-auto-complete>
-
               <app-auto-complete
                 [text]="'Apellido Paterno'"
                 [info]="Driver.lm1"
@@ -81,6 +80,7 @@
               ></app-auto-complete>
 
               <app-auto-complete
+                className="brand"
                 [text]="'administrador'"
                 [info]="Driver.adminName"
                 [arrays]="adminsName"
@@ -124,7 +124,7 @@
               ></app-contact-dialog>
               <br />
               <!--fecha de modificacion SE OBTIENE AUTOMATICO-->
-
+              <!-- 
               <label for="task-numberHouse">status:</label>
               <input
                 class="form-control mb-3"
@@ -134,7 +134,7 @@
                 id="task-status"
                 [(ngModel)]="Driver.status"
                 [ngModelOptions]="{ standalone: true }"
-              />
+              /> -->
               <label style="color: black">Pago de ingreso</label><br />
               <label for=" " style="text-align: left; color: black"
                 >Ultima modificacion SE HACE AUTOMATICO:</label
