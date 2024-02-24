@@ -13,6 +13,7 @@ import { HomeComponent } from './components/structure/home/home.component';
 import { ErrorComponent } from './components/structure/error/error.component';
 import { FooterComponent } from './components/structure/footer/footer.component';
 import { YesNoDialogComponent } from './components/tools/yes-no-dialog/yes-no-dialog.component';
+import { TableComponent } from './components/tools/table/table.component';
 
 import { DatePipe } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -35,7 +36,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatCardModule } from '@angular/material/card';
 import { ContactDialogComponent } from './components/tools/contact-dialog/contact-dialog.component';
 import { CommonModule } from '@angular/common';
-import { common } from '@mui/material/colors';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -72,6 +73,7 @@ import { common } from '@mui/material/colors';
     AutoCompleteComponent,
     YesNoDialogComponent,
     DatepickerDateClass,
+    TableComponent,
     MatDatepickerModule,
     CommonModule,
   ],

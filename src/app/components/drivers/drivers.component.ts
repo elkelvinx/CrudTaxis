@@ -37,10 +37,10 @@ export class DriversComponent implements OnInit {
 
   ngOnInit(): void {
     // this.fechaNacimiento = new Date();
-    this.isLoadedSt = false;
     this.consultarDriver(0);
     this.consultarDrivers();
-    console.log(this.isLoadedSt);
+    console.log(this.isLoaded2)
+    console.log(this.isLoadedSt)
   }
   ngAfterViewInit() {
     //this.consultarSettleName();
@@ -89,7 +89,6 @@ export class DriversComponent implements OnInit {
         this.admins = data;
         this.adminsName = this.admins.map(admins => admins.name);
         if (this.Driver.idAdmin !== null) {
-          //muestra los admins   console.log(this.adminsName + ' ADMIN JASJAJSJ')
           this.isLoaded2 = true;
         }
         else {

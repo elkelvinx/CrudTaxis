@@ -39,6 +39,8 @@ export class AppService {
       }
     );
   }
+
+
   public consultarSettlementName(id: string): Observable<any[]> {
     //se crean las variables para poder recibir la info del servidor
     let controller = "Settlement";
@@ -75,6 +77,49 @@ export class AppService {
     let params = new HttpParams().set("val", id);
     let Headers = new HttpHeaders().set("Accept", "aplication/json");
     //esta la URL de la api, ademas que su headers y el tipo de respuesta
+    return this.Http.get<any[]>(
+      `${this.urlApi}${encodeURIComponent(controller)}`,
+      {
+        headers: Headers,
+        params: params,
+        responseType: 'json'
+      }
+    );
+  }
+  // esto es para units
+  public consultarAdminsName(): Observable<any[]> {
+    let id: number = 3;
+    let controller = "DataArray";
+    let params = new HttpParams().set("val", id);
+    let Headers = new HttpHeaders().set("Accept", "aplication/json");
+    return this.Http.get<any[]>(
+      `${this.urlApi}${encodeURIComponent(controller)}`,
+      {
+        headers: Headers,
+        params: params,
+        responseType: 'json'
+      }
+    );
+  }
+  public consultarModelsName(): Observable<any[]> {
+    let id: number = 2;
+    let controller = "DataArray";
+    let params = new HttpParams().set("val", id);
+    let Headers = new HttpHeaders().set("Accept", "aplication/json");
+    return this.Http.get<any[]>(
+      `${this.urlApi}${encodeURIComponent(controller)}`,
+      {
+        headers: Headers,
+        params: params,
+        responseType: 'json'
+      }
+    );
+  }
+  public consultarBrandsName(): Observable<any[]> {
+    let id: number = 1;
+    let controller = "DataArray";
+    let params = new HttpParams().set("val", id);
+    let Headers = new HttpHeaders().set("Accept", "aplication/json");
     return this.Http.get<any[]>(
       `${this.urlApi}${encodeURIComponent(controller)}`,
       {

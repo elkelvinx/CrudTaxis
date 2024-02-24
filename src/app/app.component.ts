@@ -82,4 +82,15 @@ export class AppComponent implements OnInit {
     }
     return fechaString;
   }
+  public changeAutocomplete(event: Event, array: any[]) {
+    let idFinal: number = 0;
+    for (let i = 0; i < array.length; i++) {
+      if (array[i].name == event) {
+        idFinal = array[i].id;
+        // debugger;
+        break;
+      }
+    }
+    return idFinal;
+  }
 }

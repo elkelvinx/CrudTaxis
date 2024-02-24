@@ -21,7 +21,6 @@
                 (data)="Driver.name = $event"
                 #inputname
               ></app-auto-complete>
-
               <app-auto-complete
                 [text]="'Apellido Paterno'"
                 [info]="Driver.lm1"
@@ -81,6 +80,7 @@
               ></app-auto-complete>
 
               <app-auto-complete
+                className="brand"
                 [text]="'administrador'"
                 [info]="Driver.adminName"
                 [arrays]="adminsName"
