@@ -3,14 +3,18 @@ import { UnitsService } from '../../services/services-units.service';
 import { AppComponent } from '../../app.component';
 import { unit } from '../../models/unit';
 import { Unit2 } from '../../models/unit';
+import { TableConfig } from '../tools/table/models/table-config';
 
 import { AppService } from '../../services/services-app.service';
+import { TableColumn } from '../tools/table/models/table-column';
 @Component({
   selector: 'app-units',
   templateUrl: './units.component.html',
   styleUrl: './units.component.scss'
 })
 export class UnitsComponent implements OnInit {
+  tableColumns: TableColumn[] = [];
+
   units = new Unit2();
   listUnits: Unit2[] = [];
 
@@ -25,6 +29,14 @@ export class UnitsComponent implements OnInit {
   public loadAd: boolean = false;
   public loadBr: boolean = false;
   public loadMd: boolean = false;
+  public loadT: boolean = false;
+
+  tableConfig: TableConfig = {
+    isSelectable: true,
+    isPaginable: true,
+    showActions: true,
+    showFilter: true,
+  };
 
   constructor(
     private serviceUnit: UnitsService,
@@ -34,11 +46,29 @@ export class UnitsComponent implements OnInit {
 
   ngOnInit() {
     this.consultarUnits();
+    this.consultarUnit(1);
+    this.setTableColumns();
+
+  }
+  public setTableColumns() {
+    this.tableColumns = [
+      { label: 'Numero Economico', def: 'ecoNumber', dataKey: 'ecoNumber' },
+      { label: 'administrador', def: 'adminName', dataKey: 'adminName' },
+      { label: 'año del modelo', def: 'yearModel', dataKey: 'yearModel' },
+      { label: 'serie', def: 'serie', dataKey: 'serie' },
+      { label: 'Vencimiento del seguro', def: 'expInsurance', dataKey: 'expInsurance' },
+      { label: 'color del carro', def: 'color', dataKey: 'color' },
+      { label: 'Modelo', def: 'modelName', dataKey: 'modelName' },
+      { label: 'Marca', def: 'brandName', dataKey: 'brandName' },
+
+    ]
   }
   public consultarUnits() {
     this.serviceUnit.consularUnits().subscribe(
       (data: any) => {
         this.listUnits = data;
+        // console.log(this.units + " este")
+        this.loadT = true;
       },
       error => {
         console.log(error);
@@ -48,6 +78,7 @@ export class UnitsComponent implements OnInit {
     this.consultarBrandName();
     this.consultarModelName();
 
+
   }
   searchDriver() {
     this.consultarUnit(this.units.id);
@@ -56,6 +87,7 @@ export class UnitsComponent implements OnInit {
     this.serviceUnit.consularUnit(idUnit).subscribe(
       (data: any) => {
         this.units = data;
+
       },
       error => {
         console.log(error);
@@ -80,7 +112,6 @@ export class UnitsComponent implements OnInit {
       (data: any[]) => {
         this.admins = data;
         this.adminsName = this.admins.map(admins => admins.name);
-        //cambio del flag para que se muestre el html
         if (this.units.adminName !== null)
           this.loadAd = true;
       },
@@ -107,10 +138,7 @@ export class UnitsComponent implements OnInit {
     this.servicioApp.consultarModelsName().subscribe(
       (data: any[]) => {
         this.models = data;
-        debugger
         this.modelsName = this.models.map(models => models.name);
-        console.log(this.adminsName)
-        //cambio del flag para que se muestre el html
         if (this.units.modelName !== null)
           this.loadMd = true;
       },

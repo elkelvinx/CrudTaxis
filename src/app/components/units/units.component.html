@@ -8,22 +8,26 @@
     flex-direction: row;
     flex-wrap: wrap;
     align-content: center;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: stretch;
     border-radius: 15px;
+    height: 810px;
     width: 99%;
+    margin-top: -5px;
   "
 >
   <div
     class="CardSerch"
     style="
-      width: 40%;
+      width: 42%;
       height: 800px;
       background-color: var(--backCards);
       border-radius: 20px;
       display: flex;
       flex-direction: column;
       flex-wrap: nowrap;
+      padding-left: 0.5%;
+      padding-right: 0.5%;
     "
   >
     <div
@@ -235,7 +239,7 @@
     "
   >
     <div class="tabla-dataPRUEBA">
-      <table
+      <!-- <table
         class="table table-danger table-striped table-hover table-bordered"
         style="width: fit-content; margin-left: 1%; border-radius: 12px"
       >
@@ -273,11 +277,12 @@
             </td>
           </tr>
         </tbody>
-      </table>
-      <!-- <app-table
+      </table> -->
+      <app-table
         [data]="listUnits"
-        [columns]="['id', 'ecoNumber', 'Marca', 'Modelo']"
-      ></app-table> -->
+        [columns]="tableColumns"
+        *ngIf="loadT"
+      ></app-table>
     </div>
   </div>
 </div>

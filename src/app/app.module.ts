@@ -36,6 +36,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatCardModule } from '@angular/material/card';
 import { ContactDialogComponent } from './components/tools/contact-dialog/contact-dialog.component';
 import { CommonModule } from '@angular/common';
+import { TableModule } from './components/tools/table/table.module';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,8 @@ import { CommonModule } from '@angular/common';
     FooterComponent,
     UnitsComponent,
     ContactDialogComponent,
+
+
 
 
 
@@ -73,9 +76,9 @@ import { CommonModule } from '@angular/common';
     AutoCompleteComponent,
     YesNoDialogComponent,
     DatepickerDateClass,
-    TableComponent,
     MatDatepickerModule,
     CommonModule,
+    TableModule
   ],
   // entryComponents: [YesNoDialogComponent ],
   providers: [DatePipe],
