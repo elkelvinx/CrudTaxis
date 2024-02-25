@@ -32,7 +32,7 @@ export class UnitsComponent implements OnInit {
   public loadT: boolean = false;
 
   tableConfig: TableConfig = {
-    isSelectable: true,
+    isSelectable: false,
     isPaginable: true,
     showActions: true,
     showFilter: true,
@@ -60,7 +60,7 @@ export class UnitsComponent implements OnInit {
       { label: 'color del carro', def: 'color', dataKey: 'color' },
       { label: 'Modelo', def: 'modelName', dataKey: 'modelName' },
       { label: 'Marca', def: 'brandName', dataKey: 'brandName' },
-
+      { label: 'actions', def: 'actions', dataKey: 'actions' },
     ]
   }
   public consultarUnits() {

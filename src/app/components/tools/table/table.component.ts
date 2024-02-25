@@ -84,6 +84,7 @@ export class TableComponent implements OnInit, AfterViewInit {
     }
 
     if (this.tableConfig.showActions) {
+      debugger
       this.tableDisplayColumns.push('actions');
     }
   }
