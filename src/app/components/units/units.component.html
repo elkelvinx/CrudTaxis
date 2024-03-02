@@ -46,7 +46,7 @@
     >
       Unidades automovilisticas
       <!-- add_task note_add search-->
-      <mat-icon (click)="consultarUnit(1)" class="button-search"
+      <mat-icon (click)="consultarUnit(0)" class="button-search"
         >add_circle_outline</mat-icon
       >
     </div>
@@ -163,6 +163,20 @@
           *ngIf="loadAd"
           style="width: 97%"
         ></app-auto-complete>
+      </div>
+      <div
+        class="renglon2"
+        style="
+          display: flex;
+          flex-direction: row;
+          gap: 10px;
+          align-items: center;
+          justify-content: flex-start;
+          margin-left: 1%;
+          width: 100%;
+          flex-wrap: wrap;
+        "
+      >
         <app-auto-complete
           className="brand"
           [text]="'clave del Motor'"
@@ -177,6 +191,8 @@
           [text]="'Vencimiento de seguro'"
           style="width: 39%"
         ></app-datepicker-date>
+      </div>
+      <div class="renglon1">
         <app-datepicker-date
           [actualDate]="units.registerDate"
           [text]="'Fecha de registro'"
@@ -195,14 +211,14 @@
       style="
         align-self: flex-end;
         width: 100%;
-        height: 100px;
+        height: 60px;
         margin-top: auto;
         margin-bottom: 2%;
       "
     >
       <br />
       <mat-divider
-        style="margin-left: 3%; width: 94%; margin-top: -3%"
+        style="margin-left: 1%; width: 98%; margin-top: -3%"
       ></mat-divider>
       <mat-card-actions
         align="start"
@@ -213,6 +229,7 @@
           justify-content: flex-start;
           align-items: center;
           margin-top: 5px;
+          margin-left: 4%;
         "
       >
         <button

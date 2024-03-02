@@ -61,8 +61,8 @@
         >
         <app-yes-no-dialog
           (click)="onDelete(row)"
-          [text]="'Desea borrar el registro de'"
-          [name]="'?'"
+          [text]="'Desea borrar el registro de la unidad'"
+          [name]="row.ecoNumber + '?'"
           [IconButton]="true"
         ></app-yes-no-dialog>
       </div>

@@ -230,7 +230,7 @@ button {
   --mat-outlined-button-state-layer-color: #f70909bd;
   --mat-outlined-button-ripple-color: rgb(255, 0, 0) !important;
   --mat-text-button-state-layer-color: #ff0000 !important;
-  text-shadow: -5px 8px 17px #000;
+  text-shadow: -2px 3px 8px #000;
   color: #fc2900 !important;
 }
 
@@ -407,7 +407,7 @@ button {
 .brand .mat-mdc-text-field-wrapper,
 .brand .mdc-text-field--filled:not(.mdc-text-field--disabled) {
   /* background-color: #ee191959 !important; */
-  background-color: #dc0a0a59 !important;
+  /* background-color: #dc0a0a59 !important; */
   flex: 0 0 30%;
   /* width: 40%; */
   /* width: 180px !important; */

@@ -108,10 +108,11 @@ export class UnitsComponent implements OnInit {
     this.serviceUnit.consularUnit(idUnit).subscribe(
       (data: any) => {
         this.units = data;
-        if (this.units.id !== 0) {
+        if (this.units.id !== 0)
           this.ActSave = false;
-
-          console.log(this.ActSave);
+        else {
+          this.units.expInsurance = this.units.lastModDate = this.units.registerDate = new Date();
+          this.ActSave = true;
         }
       },
       error => {

@@ -30,7 +30,7 @@ import { CustomDateAdapter, CUSTOM_DATE_FORMATS } from '../../../models/Dates';
 
 export class DatepickerDateClass {
   @Input() text: string = '';
-  @Input() actualDate: Date;
+  @Input() actualDate: Date = new Date();
   @Input() isDisabled: boolean = true;
   @Output() data = new EventEmitter<any>();
   dateF: any;
