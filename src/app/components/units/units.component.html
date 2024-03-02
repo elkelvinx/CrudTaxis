@@ -45,7 +45,6 @@
       "
     >
       Unidades automovilisticas
-      <!-- add_task note_add search-->
       <mat-icon (click)="consultarUnit(0)" class="button-search"
         >add_circle_outline</mat-icon
       >
@@ -79,7 +78,17 @@
           [arrays]="brandsName"
           (data)="changeSelection($event, 'brand')"
           *ngIf="loadBr"
-          style="width: 73%"
+          style="width: 30.2%"
+          #inputname
+        ></app-auto-complete>
+        <app-auto-complete
+          className="brand"
+          [text]="'Modelo de la unidad'"
+          [info]="units.modelName"
+          [arrays]="modelsName"
+          (data)="changeSelection($event, 'model')"
+          *ngIf="loadMd"
+          style="width: 41.2%"
           #inputname
         ></app-auto-complete>
       </div>
@@ -97,7 +106,7 @@
           [text]="'color de la unidad'"
           [info]="units.color"
           (data)="units.color = $event"
-          style="width: 33%"
+          style="width: 30%"
           #inputname
         ></app-auto-complete>
         <app-auto-complete
@@ -105,7 +114,7 @@
           [text]="'placas'"
           [info]="units.plate"
           (data)="units.plate = $event"
-          style="width: 38.5%"
+          style="width: 41.5%"
           #inputname
         ></app-auto-complete>
       </div>
@@ -128,16 +137,14 @@
           [info]="units.serie"
           (data)="units.serie = $event"
           #inputname
-          style="width: 57.5%"
+          style="width: 54.5%"
         ></app-auto-complete>
         <app-auto-complete
           className="brand"
-          [text]="'Modelo de la unidad'"
-          [info]="units.modelName"
-          [arrays]="modelsName"
-          (data)="changeSelection($event, 'model')"
-          *ngIf="loadMd"
-          style="width: 38.2%"
+          [text]="'clave del Motor'"
+          [info]="units.motor"
+          (data)="units.motor = $event"
+          style="width: 41.2%"
           #inputname
         ></app-auto-complete>
       </div>
@@ -177,19 +184,11 @@
           flex-wrap: wrap;
         "
       >
-        <app-auto-complete
-          className="brand"
-          [text]="'clave del Motor'"
-          [info]="units.motor"
-          (data)="units.motor = $event"
-          style="width: 56.45%"
-          #inputname
-        ></app-auto-complete>
         <app-datepicker-date
           [isDisabled]="false"
           [actualDate]="units.expInsurance"
           [text]="'Vencimiento de seguro'"
-          style="width: 39%"
+          style="width: 97%"
         ></app-datepicker-date>
       </div>
       <div class="renglon1">
@@ -251,10 +250,7 @@
         >
           Actualizar
         </button>
-        <!-- 
-        <button mat-button color="primary" class="text-button-red">
-          Eliminar</button
-        ><br /> -->
+
         <br />
       </mat-card-actions>
       <mat-card-actions align="end" class="buttons-actionDelete">
