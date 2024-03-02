@@ -37,6 +37,8 @@ import { MatCardModule } from '@angular/material/card';
 import { ContactDialogComponent } from './components/tools/contact-dialog/contact-dialog.component';
 import { CommonModule } from '@angular/common';
 import { TableModule } from './components/tools/table/table.module';
+import { MatIconModule } from '@angular/material/icon';
+import { AccordionComponent } from './components/tools/accordion/accordion.component';
 
 @NgModule({
   declarations: [
@@ -50,9 +52,6 @@ import { TableModule } from './components/tools/table/table.module';
     FooterComponent,
     UnitsComponent,
     ContactDialogComponent,
-
-
-
 
 
   ],
@@ -78,7 +77,9 @@ import { TableModule } from './components/tools/table/table.module';
     DatepickerDateClass,
     MatDatepickerModule,
     CommonModule,
-    TableModule
+    TableModule,
+    MatIconModule,
+
   ],
   // entryComponents: [YesNoDialogComponent ],
   providers: [DatePipe],

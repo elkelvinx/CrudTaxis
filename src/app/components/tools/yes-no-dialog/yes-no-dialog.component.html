@@ -1,8 +1,17 @@
 <!DOCTYPE html>
-<button
-  mat-raised-button
-  class="buttonP"
-  (click)="openDialog('300ms', '300ms', text, name)"
->
-  Delete
-</button>
+<div *ngIf="IconButton == false">
+  <button
+    mat-raised-button
+    class="buttonP"
+    (click)="openDialog('300ms', '300ms', text, name)"
+  >
+    Delete
+  </button>
+</div>
+<div *ngIf="IconButton == true">
+  <mat-icon
+    style="transform: scale(1.2)"
+    (click)="openDialog('300ms', '300ms', text, name)"
+    >delete_outline</mat-icon
+  >
+</div>

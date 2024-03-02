@@ -11,18 +11,21 @@ import { MatButtonModule } from '@angular/material/button';
 import { Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CommonModule } from '@angular/common';
+import { MatIconModule } from '@angular/material/icon';
+
 
 @Component({
   selector: 'app-yes-no-dialog',
   templateUrl: './yes-no-dialog.component.html',
   styleUrl: './yes-no-dialog.component.css',
   standalone: true,
-  imports: [MatButtonModule],
+  imports: [MatButtonModule, MatIconModule, CommonModule],
 })
 export class YesNoDialogComponent {
   //pregunta que hara el dialog
   @Input() text: string = '';
   @Input() name: any;
+  @Input() IconButton: boolean = true;
   //bool que devolvemos al padre
   @Output() data = new EventEmitter<any>();
 

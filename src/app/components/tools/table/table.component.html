@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<mat-form-field>
-  <mat-label>Filter</mat-label>
+<mat-form-field class="input-filtro" *ngIf="tableConfig?.showFilter">
+  <mat-label>Buscar</mat-label>
   <input
     matInput
     (keyup)="applyFilter($event)"
@@ -8,15 +8,67 @@
     #input
   />
 </mat-form-field>
-<ng-container matColumnDef="action">
-  <th mat-header-cell *matHeaderCellDef>Acciones</th>
-  <td mat-cell *matCellDef="let row">
-    <button>Edit</button>
-    <button>Delete</button>
-  </td>
-</ng-container>
+<!-- <button
+  mat-button
+  class="text-button-green mdc-button mat-mdc-button mat-primary mat-mdc-button-base"
+  style="height: 35px !important"
+>
+  Reportes
+</button>
+<button
+  mat-stroked-button
+  color="primary"
+  class="text-button-green mdc-button mat-mdc-button mat-primary mat-mdc-button-base"
+>
+  Expandir
+</button> -->
 
 <table mat-table #table [dataSource]="dataSource">
+  <!-- Checkbox Column -->
+  <ng-container matColumnDef="select">
+    <th mat-header-cell *matHeaderCellDef>
+      <mat-checkbox
+        (change)="$event ? toggleAllRows() : null"
+        [checked]="selection.hasValue() && isAllSelected()"
+        [indeterminate]="selection.hasValue() && !isAllSelected()"
+        [aria-label]="checkboxLabel()"
+      >
+      </mat-checkbox>
+    </th>
+    <td mat-cell *matCellDef="let row">
+      <mat-checkbox
+        (click)="$event.stopPropagation()"
+        (change)="$event ? selection.toggle(row) : null; onSelect()"
+        [checked]="selection.isSelected(row)"
+        [aria-label]="checkboxLabel(row)"
+      >
+      </mat-checkbox>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef>Acciones</th>
+    <td mat-cell *matCellDef="let row">
+      <div
+        style="
+          display: flex;
+          justify-content: space-between;
+          align-items: flex-start;
+        "
+      >
+        <mat-icon style="transform: scale(1.2)" (click)="onEdit(row)"
+          >edit</mat-icon
+        >
+        <app-yes-no-dialog
+          (click)="onDelete(row)"
+          [text]="'Desea borrar el registro de'"
+          [name]="'?'"
+          [IconButton]="true"
+        ></app-yes-no-dialog>
+      </div>
+    </td>
+  </ng-container>
+
   <ng-container *ngFor="let column of tableColumns" [matColumnDef]="column.def">
     <th mat-header-cell *matHeaderCellDef>{{ column.label }}</th>
     <td mat-cell *matCellDef="let row">{{ row | columnValue : column }}</td>
@@ -31,3 +83,12 @@
     </td>
   </tr>
 </table>
+
+<!-- <ng-container *ngIf="tableConfig?.isPaginable">
+  <mat-paginator
+    [pageSizeOptions]="[5, 10, 20]"
+    showFirstLastButtons
+    aria-label="Select page of periodic elements"
+  >
+  </mat-paginator>
+</ng-container> -->

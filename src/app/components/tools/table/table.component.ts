@@ -5,25 +5,8 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { TABLE_ACTION } from './enums/action.enum';
 import { TableAction } from './models/table-actions'
 import { TableConfig } from './models/table-config';
-//se crean variables para mostrar en la tabla
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
-const ELEMENT_DATA: PeriodicElement[] = [
-  { position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H' },
-  { position: 2, name: 'Helium', weight: 4.0026, symbol: 'He' },
-  { position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li' },
-  { position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be' },
-  { position: 5, name: 'Boron', weight: 10.811, symbol: 'B' },
-  { position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C' },
-  { position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N' },
-  { position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O' },
-  { position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F' },
-  { position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne' },
-];
+import { SelectionModel } from '@angular/cdk/collections';
+
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
@@ -33,49 +16,41 @@ export class TableComponent implements OnInit, AfterViewInit {
   dataSource: MatTableDataSource<Array<any>> = new MatTableDataSource();
   tableDisplayColumns: string[] = [];
   tableColumns: TableColumn[] = [];
-
-  //quizas 
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-  currentFilterValue: string = '';
+  selection = new SelectionModel<any>(true, []);
   tableConfig: TableConfig | undefined;
+  currentFilterValue: string = '';
 
-  //devolver valores
-  @Output() action: EventEmitter<TableAction> = new EventEmitter();
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   @Input() set data(data: Array<any>) {
     this.dataSource = new MatTableDataSource(data);
     this.dataSource.paginator = this.paginator;
   }
 
-
   @Input() set columns(columns: TableColumn[]) {
     this.tableColumns = columns;
     this.tableDisplayColumns = this.tableColumns.map((col) => col.def);
   }
-  onEdit(row: any) {
-    this.action.emit({ action: TABLE_ACTION.EDIT, row });
+
+  @Input() set config(config: TableConfig) {
+    this.setConfig(config);
   }
 
-  onDelete(row: any) {
-    this.action.emit({ action: TABLE_ACTION.DELETE, row });
-  }
+  @Output() select: EventEmitter<any> = new EventEmitter();
+  @Output() action: EventEmitter<TableAction> = new EventEmitter();
+
+  constructor() { }
+
+  ngOnInit(): void { }
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
   }
-  ngOnInit() {
 
+  onSelect() {
+    this.select.emit(this.selection.selected);
   }
 
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-    console.log(this.dataSource.filterPredicate)
-    this.currentFilterValue = filterValue;
-
-  }
-  //esto es del boton editar y borrar
   setConfig(config: TableConfig) {
     this.tableConfig = config;
 
@@ -84,11 +59,50 @@ export class TableComponent implements OnInit, AfterViewInit {
     }
 
     if (this.tableConfig.showActions) {
-      debugger
       this.tableDisplayColumns.push('actions');
     }
   }
-  @Input() set config(config: TableConfig) {
-    this.setConfig(config);
+
+  /** Whether the number of selected elements matches the total number of rows. */
+  isAllSelected() {
+    const numSelected = this.selection.selected.length;
+    const numRows = this.dataSource.data.length;
+    return numSelected === numRows;
+  }
+
+  /** Selects all rows if they are not all selected; otherwise clear selection. */
+  toggleAllRows() {
+    if (this.isAllSelected()) {
+      this.selection.clear();
+      this.onSelect();
+      return;
+    }
+
+    this.selection.select(...this.dataSource.data);
+    this.onSelect();
+  }
+
+  /** The label for the checkbox on the passed row */
+  checkboxLabel(row?: any): string {
+    if (!row) {
+      return `${this.isAllSelected() ? 'deselect' : 'select'} all`;
+    }
+    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.position + 1
+      }`;
+  }
+
+  onEdit(row: any) {
+    this.action.emit({ action: TABLE_ACTION.EDIT, row });
+  }
+
+  onDelete(row: any) {
+    debugger
+    this.action.emit({ action: TABLE_ACTION.DELETE, row });
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+    this.currentFilterValue = filterValue;
   }
 }

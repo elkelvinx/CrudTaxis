@@ -35,13 +35,20 @@
       style="
         color: rgba(255, 255, 255, 0.7);
         font-family: Roboto, sans-serif;
-        letter-spacing: 1px;
-        padding-left: 7%;
+        letter-spacing: 2px;
+        padding-left: 4%;
+        padding-right: 3%;
         padding-top: 3%;
         padding-bottom: 2%;
+        display: flex;
+        justify-content: space-between;
       "
     >
       Unidades automovilisticas
+      <!-- add_task note_add search-->
+      <mat-icon (click)="consultarUnit(1)" class="button-search"
+        >add_circle_outline</mat-icon
+      >
     </div>
     <div class="bodyCard" style="width: 100%; height: 20px; height: 100%">
       <div
@@ -205,27 +212,45 @@
           flex-wrap: wrap;
           justify-content: flex-start;
           align-items: center;
+          margin-top: 5px;
         "
       >
-        <button mat-button color="primary" class="text-button-green">
+        <button
+          mat-button
+          (click)="grabar()"
+          *ngIf="ActSave"
+          color="primary"
+          class="text-button-green"
+        >
           Guardar
         </button>
 
-        <button mat-button color="primary" class="text-button-green">
+        <button
+          mat-button
+          color="primary"
+          (click)="actualizar()"
+          *ngIf="!ActSave"
+          class="text-button-green"
+        >
           Actualizar
         </button>
-
+        <!-- 
         <button mat-button color="primary" class="text-button-red">
+          Eliminar</button
+        ><br /> -->
+        <br />
+      </mat-card-actions>
+      <mat-card-actions align="end" class="buttons-actionDelete">
+        <button
+          mat-button
+          color="primary"
+          class="text-button-red"
+          style="position: absolute; margin-top: -37px; margin-left: 30%"
+        >
           Eliminar</button
         ><br />
         <br />
       </mat-card-actions>
-      <!-- <mat-card-actions align="end" class="buttons-actionDelete">
-        <button mat-button color="primary" class="text-button-red">
-          Eliminar</button
-        ><br />
-        <br />
-      </mat-card-actions> -->
     </div>
   </div>
   <div
@@ -239,49 +264,12 @@
     "
   >
     <div class="tabla-dataPRUEBA">
-      <!-- <table
-        class="table table-danger table-striped table-hover table-bordered"
-        style="width: fit-content; margin-left: 1%; border-radius: 12px"
-      >
-        <thead>
-          <tr>
-            <th scope="col">Id se borra</th>
-            <th scope="col">ecoNumber</th>
-            <th scope="col">Marca</th>
-            <th scope="col">Modelo</th>
-            <th scope="row">Otras</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let units of listUnits; let i = index">
-            <td>{{ units.id }}</td>
-            <td>
-              {{ units.ecoNumber + " " }}
-            </td>
-            <td>{{ units.brandName }}</td>
-            <td>{{ units.modelName }}</td>
-            <td>
-              <button
-                mat-raised-button
-                color="primary"
-                class="text"
-                style="height: 35px !important"
-                (click)="consultarUnit(units.id)"
-              >
-                Editar
-              </button>
-              <app-yes-no-dialog
-                [text]="'Desea borrar la unidad?'"
-                [name]="units.ecoNumber"
-              ></app-yes-no-dialog>
-            </td>
-          </tr>
-        </tbody>
-      </table> -->
       <app-table
         [data]="listUnits"
         [columns]="tableColumns"
         [config]="tableConfig"
+        (select)="onSelect($event)"
+        (action)="onTableAction($event)"
         *ngIf="loadT"
       ></app-table>
     </div>
