@@ -21,6 +21,7 @@ export class unit {
 export class Unit2 {
     id: number = 0;
     ecoNumber: number = 0;
+    idBrand: number = 0;
     model: number = 0;
     yearModel: number = 0;
     color: string = "";

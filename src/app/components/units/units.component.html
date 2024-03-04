@@ -75,21 +75,24 @@
           className="brand"
           [text]="'Marca de la unidad'"
           [info]="units.brandName"
+          [brand]="brands"
           [arrays]="brandsName"
+          [typeinput]="1"
           (data)="changeSelection($event, 'brand')"
           *ngIf="loadBr"
           style="width: 30.2%"
-          #inputname
         ></app-auto-complete>
+        <!-- [arrays]="modelsName"  -->
         <app-auto-complete
           className="brand"
           [text]="'Modelo de la unidad'"
           [info]="units.modelName"
-          [arrays]="modelsName"
+          [models]="modelsName"
+          [brandSelected]="units.idBrand"
+          [typeinput]="2"
           (data)="changeSelection($event, 'model')"
           *ngIf="loadMd"
           style="width: 41.2%"
-          #inputname
         ></app-auto-complete>
       </div>
       <div class="renglon1">
@@ -101,6 +104,7 @@
           style="width: 23%"
           #inputname
         ></app-auto-complete>
+
         <app-auto-complete
           className="brand"
           [text]="'color de la unidad'"
@@ -227,16 +231,23 @@
           flex-wrap: wrap;
           justify-content: flex-start;
           align-items: center;
-          margin-top: 5px;
+          margin-top: 9px;
           margin-left: 4%;
         "
       >
+        <button mat-button color="primary" class="text-button-red">
+          Eliminar
+        </button>
+        <br />
+      </mat-card-actions>
+      <mat-card-actions align="end" class="buttons-actionDelete">
         <button
           mat-button
           (click)="grabar()"
           *ngIf="ActSave"
           color="primary"
           class="text-button-green"
+          style="position: absolute; margin-top: -36px; margin-left: 30%"
         >
           Guardar
         </button>
@@ -247,21 +258,11 @@
           (click)="actualizar()"
           *ngIf="!ActSave"
           class="text-button-green"
+          style="position: absolute; margin-top: -36px; margin-left: 30%"
         >
           Actualizar
         </button>
-
         <br />
-      </mat-card-actions>
-      <mat-card-actions align="end" class="buttons-actionDelete">
-        <button
-          mat-button
-          color="primary"
-          class="text-button-red"
-          style="position: absolute; margin-top: -37px; margin-left: 30%"
-        >
-          Eliminar</button
-        ><br />
         <br />
       </mat-card-actions>
     </div>

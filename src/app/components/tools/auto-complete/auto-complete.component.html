@@ -3,7 +3,7 @@
 
 <!-- <h5 style="color: red; font-size: 15px">{{ info }}</h5> -->
 <form class="example-form">
-  <mat-form-field class="example-full-width {{ className || defaultClass }}">
+  <mat-form-field class="example-full-width {{ className }}">
     <mat-label>{{ text }}</mat-label>
     <input
       type="text"
@@ -13,8 +13,8 @@
       [formControl]="myControl"
       [matAutocomplete]="auto"
       [value]="info"
-      (ngModelChange)="ChangeName()"
-      class="{{ className || defaultClass }}"
+      (ngModelChange)="brandModified ? changeBrand() : changeName()"
+      class="{{ className }}"
     />
     <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
       @for (option of filteredOptions | async; track option) {

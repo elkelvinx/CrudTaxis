@@ -25,7 +25,9 @@ export class UnitsComponent implements OnInit {
 
   public adminsName: any[] = [];
   public brandsName: any[] = [];
-  public modelsName: any[] = [];
+  public modelsName: { id: any; idBrand: any; name: any }[] = [];// En tu componente.ts
+
+
 
   public loadAd: boolean = false;
   public loadBr: boolean = false;
@@ -196,7 +198,11 @@ export class UnitsComponent implements OnInit {
     this.servicioApp.consultarModelsName().subscribe(
       (data: any[]) => {
         this.models = data;
-        this.modelsName = this.models.map(models => models.name);
+        this.modelsName = this.models.map(models => ({
+          id: models.id,
+          name: models.name,
+          idBrand: models.idBrand
+        }));
         if (this.units.modelName !== null)
           this.loadMd = true;
       },
