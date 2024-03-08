@@ -1,70 +1,201 @@
 <!DOCTYPE html>
-<div class="cardPrincipal" style="background-color: --backCards; width: 550px">
-  <h1 mat-dialog-title>Contacto Extra del Conductor</h1>
-  <div mat-dialog-content>
-    Aqui va todo el contenido del dialogo
-    <app-auto-complete
-      style="width: 7px !important"
-      className="names"
-      [text]="'Nombres'"
-      #inputname
-    ></app-auto-complete>
-    <app-auto-complete
-      className="relation"
-      [text]="'Relacion'"
-      #inputname
-    ></app-auto-complete>
-    <app-auto-complete
-      className="lastname1"
-      [text]="'Apellido Paterno '"
-      #inputname
-    ></app-auto-complete>
-    <app-auto-complete
-      class="lastname2"
-      [text]="'Apellido Materno '"
-    ></app-auto-complete>
-    <app-auto-complete
-      className="settlement"
-      [arrays]="settlement"
-      [text]="'Colonia'"
-    ></app-auto-complete>
-
-    <app-auto-complete
-      className="phone"
-      [text]="'Telefono'"
-    ></app-auto-complete>
-    <app-auto-complete
-      className="street1"
-      [arrays]="streets"
-      [text]="'Calle 1'"
-    ></app-auto-complete>
-    <app-auto-complete
-      className="street2"
-      [arrays]="streets"
-      [text]="'Calle 2'"
-    ></app-auto-complete>
-    <app-auto-complete
-      className="street3"
-      [arrays]="streets"
-      [text]="'Calle 3'"
-    ></app-auto-complete>
+<div
+  class="ContainerDivs"
+  style="
+    background-color: #2a2d28;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    height: 700px;
+    width: 100%;
+    margin-top: -5px;
+  "
+>
+  <div
+    class="headerCard"
+    style="
+      padding-top: 1%;
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      width: 100%;
+    "
+  >
+    <!--AQUI VA EL HEADER Y SU CONTENT-->
+    <h1 mat-dialog-title>Contacto Extra del Conductor</h1>
+    <mat-dialog-content
+      >Aqui va todo el contenido del dialogo</mat-dialog-content
+    >
   </div>
-
-  <div mat-dialog-actions>
-    <div style="margin-left: 1%">
-      <button
-        mat-button
-        mat-dialog-close
-        color="primary"
-        class="text-button-red"
-      >
-        Cerrar</button
-      ><br />
+  <div
+    class="bodyCard"
+    style="width: 100%; height: 73%; margin-left: 20px; margin-right: 20px"
+  >
+    <!--AQUI VA EL BODY y-->
+    <div
+      class="renglon2"
+      style="
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+        align-items: center;
+        justify-content: flex-start;
+        margin-left: 1%;
+        width: 100%;
+        flex-wrap: wrap;
+      "
+    >
+      <app-auto-complete
+        style="width: 7px !important"
+        className="Brand"
+        [text]="'Nombres'"
+        style="width: 72%"
+      ></app-auto-complete>
+      <app-auto-complete
+        className="brand"
+        [text]="'Relacion'"
+        style="width: 25%"
+      ></app-auto-complete>
     </div>
-    <div style="margin-left: 53%">
-      <button mat-button color="primary" class="text-button-green">
-        Guardar
-      </button>
+    <div
+      class="renglon1"
+      style="
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+        align-items: center;
+        justify-content: flex-start;
+        margin-left: 1%;
+        width: 100%;
+        flex-wrap: wrap;
+      "
+    >
+      <app-auto-complete
+        className="brand"
+        [text]="'Apellido Paterno '"
+        style="width: 45%"
+      ></app-auto-complete>
+      <app-auto-complete
+        class="brand"
+        [text]="'Apellido Materno '"
+        style="width: 43.5%"
+      ></app-auto-complete>
+    </div>
+    <div
+      class="renglon3"
+      style="
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+        align-items: center;
+        justify-content: flex-start;
+        margin-left: 1%;
+        width: 100%;
+        flex-wrap: wrap;
+      "
+    >
+      <app-auto-complete
+        [arrays]="settlement"
+        [text]="'Colonia'"
+        className="brand"
+        style="width: 76.5%"
+      ></app-auto-complete>
+
+      <app-auto-complete
+        [text]="'Telefono'"
+        className="brand"
+        style="width: 20.7%"
+      ></app-auto-complete>
+    </div>
+    <div
+      class="renglon1"
+      style="
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+        align-items: center;
+        justify-content: flex-start;
+        margin-left: 1%;
+        width: 100%;
+        flex-wrap: wrap;
+      "
+    >
+      <app-auto-complete
+        [arrays]="streets"
+        [text]="'Calle 1'"
+        className="brand"
+        style="width: 98.6%"
+      ></app-auto-complete>
+    </div>
+    <div
+      class="renglon2"
+      style="
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+        align-items: center;
+        justify-content: flex-start;
+        margin-left: 1%;
+        width: 100%;
+        flex-wrap: wrap;
+      "
+    >
+      <app-auto-complete
+        [arrays]="streets"
+        [text]="'Calle 2'"
+        className="brand"
+        style="width: 98.6%"
+      ></app-auto-complete>
+    </div>
+    <div
+      class="renglon3"
+      style="
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+        align-items: center;
+        justify-content: flex-start;
+        margin-left: 1%;
+        width: 100%;
+        flex-wrap: wrap;
+      "
+    >
+      <app-auto-complete
+        [arrays]="streets"
+        [text]="'Calle 3'"
+        className="brand"
+        style="width: 98.6%"
+      ></app-auto-complete>
+    </div>
+  </div>
+  <div
+    class="footerCard"
+    style="
+      align-self: flex-end;
+      width: 100%;
+      height: 60px;
+      margin-top: auto;
+      margin-bottom: 2%;
+    "
+  >
+    <!--AQUI VA EL FOOOTER Y SU CONTENT-->
+    <div mat-dialog-actions>
+      <div style="margin-left: 1%">
+        <button
+          mat-button
+          mat-dialog-close
+          color="primary"
+          class="text-button-red"
+        >
+          Cerrar</button
+        ><br />
+      </div>
+      <div style="margin-left: 53%">
+        <button mat-button color="primary" class="text-button-green">
+          Guardar
+        </button>
+      </div>
     </div>
   </div>
 </div>

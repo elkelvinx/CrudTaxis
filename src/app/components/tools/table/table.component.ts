@@ -25,6 +25,7 @@ export class TableComponent implements OnInit, AfterViewInit {
   @Input() set data(data: Array<any>) {
     this.dataSource = new MatTableDataSource(data);
     this.dataSource.paginator = this.paginator;
+    console.log(this.data + " hola");
   }
 
   @Input() set columns(columns: TableColumn[]) {
@@ -41,7 +42,10 @@ export class TableComponent implements OnInit, AfterViewInit {
 
   constructor() { }
 
-  ngOnInit(): void { }
+  ngOnInit() {
+    //  debugger; 
+    console.log(this.data + " hola"); console.log(this.columns)
+  }
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
@@ -61,6 +65,7 @@ export class TableComponent implements OnInit, AfterViewInit {
     if (this.tableConfig.showActions) {
       this.tableDisplayColumns.push('actions');
     }
+    // debugger;
   }
 
   /** Whether the number of selected elements matches the total number of rows. */

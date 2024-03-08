@@ -28,7 +28,7 @@ export class ContactDialogComponent {
   constructor(public dialog: MatDialog) { }
 
   openDialog(arraySt: string[], arrayCol: string[]) {
-    console.log(arraySt, this.arrayCol);
+    // console.log(arraySt, this.arrayCol);
     this.dialog.open(DialogElementsExampleDialog, {
 
       data: {

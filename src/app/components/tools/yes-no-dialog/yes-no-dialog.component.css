@@ -16,3 +16,17 @@
 .mat-icon:active {
   color: #de0404 !important;
 }
+.cdk-overlay-pane {
+  position: absolute !important;
+  pointer-events: auto;
+  box-sizing: border-box;
+  z-index: 1000;
+  display: flex;
+  width: 410.517px !important;
+  max-width: 100% !important;
+}
+.dialog-a #cdk-overlay-10::before {
+  position: absolute;
+  width: 410.517px;
+  max-width: 100%;
+}

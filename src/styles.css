@@ -246,102 +246,13 @@ button {
     con esto se modifica cosas de el autocomplete
     todo lo siguiente sera para modificar sus estilos
  */
-.medium .mat-mdc-text-field-wrapper,
-.medium .mdc-text-field--filled:not(.mdc-text-field--disabled) {
-  background-color: #4a4a4a59 !important;
-  width: 250px !important;
-}
 
-.large .mat-mdc-text-field-wrapper,
-.large .mdc-text-field--filled:not(.mdc-text-field--disabled) {
-  background-color: #4a4a4a59 !important;
-  width: 380px !important;
-}
 .defaultClass .mat-mdc-text-field-wrapper,
 .defaultClass .mdc-text-field--filled:not(.mdc-text-field--disabled) {
   /* margin-top: 500px!important; */
   /* background-color: #b8141459 !important; */
   width: 120%;
 }
-/* DIALOG INPUTS */
-.names .mat-mdc-text-field-wrapper,
-.names .mdc-text-field--filled:not(.mdc-text-field--disabled) {
-  background-color: #4a4a4a59 !important;
-
-  margin-top: 10px;
-  margin-bottom: -9px;
-  width: 320px !important;
-}
-.relation .mat-mdc-text-field-wrapper,
-.relation .mdc-text-field--filled:not(.mdc-text-field--disabled) {
-  background-color: #4a4a4a59 !important;
-
-  position: absolute;
-  margin-top: -70px;
-  margin-left: 330px;
-  width: 170px !important;
-}
-.lastname1 .mat-mdc-text-field-wrapper,
-.lastname1 .mdc-text-field--filled:not(.mdc-text-field--disabled) {
-  background-color: #4a4a4a59 !important;
-  margin-top: -50px;
-  margin-bottom: -9px;
-  width: 250px !important;
-}
-.lastname2 .mat-mdc-text-field-wrapper,
-.lastname2 .mdc-text-field--filled:not(.mdc-text-field--disabled) {
-  background-color: #4a4a4a59 !important;
-  position: absolute;
-  margin-top: -70.015px;
-  margin-left: 260px;
-  width: 240px !important;
-}
-
-.phone .mat-mdc-text-field-wrapper,
-.phone .mdc-text-field--filled:not(.mdc-text-field--disabled) {
-  background-color: #4a4a4a59 !important;
-  margin-top: -10px;
-  position: absolute;
-  margin-top: -79.9px;
-  margin-left: 350px;
-  width: 150px !important;
-}
-.street1 .mat-mdc-text-field-wrapper,
-.street1 .mdc-text-field--filled:not(.mdc-text-field--disabled) {
-  background-color: #4a4a4a59 !important;
-  margin-top: -80px;
-
-  width: 500px !important;
-}
-.street2 .mat-mdc-text-field-wrapper,
-.street2 .mdc-text-field--filled:not(.mdc-text-field--disabled) {
-  background-color: #4a4a4a59 !important;
-  margin-top: 10px;
-
-  width: 500px !important;
-}
-.street3 .mat-mdc-text-field-wrapper,
-.street3 .mdc-text-field--filled:not(.mdc-text-field--disabled) {
-  background-color: #4a4a4a59 !important;
-  margin-top: -10px;
-
-  width: 500px !important;
-}
-.street4 .mat-mdc-text-field-wrapper,
-.street4 .mdc-text-field--filled:not(.mdc-text-field--disabled) {
-  background-color: #4a4a4a59 !important;
-  margin-top: 10px;
-
-  width: 500px !important;
-}
-.settlement .mat-mdc-text-field-wrapper,
-.settlement .mdc-text-field--filled:not(.mdc-text-field--disabled) {
-  background-color: #4a4a4a59 !important;
-  margin-top: -78px;
-
-  width: 340px !important;
-}
-
 .prueba1 .mat-mdc-text-field-wrapper,
 .prueba1 .mdc-text-field--filled:not(.mdc-text-field--disabled) {
   background-color: #ee191959 !important;
@@ -433,4 +344,8 @@ button {
   /* O agrega relieve */
   border: 1px solid #ccc;
   border-radius: 4px;
+}
+.mat-mdc-dialog-container .mdc-dialog__surface {
+  border-radius: 4% !important;
+  width: 70% !important;
 }

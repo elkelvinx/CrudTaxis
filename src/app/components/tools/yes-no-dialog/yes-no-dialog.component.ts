@@ -33,7 +33,7 @@ export class YesNoDialogComponent {
 
   openDialog(enterAnimationDuration: string, exitAnimationDuration: string, contentDialog: string, name: string): void {
     this.dialog.open(DialogAnimationsExampleDialog, {
-      width: '320px',
+      width: '520px',
       enterAnimationDuration,
       exitAnimationDuration,
       data: {

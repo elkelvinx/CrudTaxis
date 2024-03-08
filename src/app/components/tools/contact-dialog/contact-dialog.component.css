@@ -1,25 +1,32 @@
-.mat-mdc-dialog-container, .mat-mdc-dialog-container .mdc-dialog__container, .mat-mdc-dialog-container .mdc-dialog__surface {
-    max-height: 10000px;
-    min-height: inherit;
-    min-width: 50px;
-    max-width: 5000px;
-    width: 10px!important;
-    background-color:red ;
+.mat-mdc-dialog-container,
+.mat-mdc-dialog-container .mdc-dialog__container,
+.mat-mdc-dialog-container .mdc-dialog__surface {
+  max-height: 10000px;
+  min-height: inherit;
+  min-width: 50px;
+  max-width: 5000px;
+  width: 10px !important;
+  background-color: red;
 }
 @media (max-width: 600px) {
-    .mat-mdc-dialog-container, 
-    .mat-mdc-dialog-container .mdc-dialog__container, 
-    .mat-mdc-dialog-container .mdc-dialog__surface {
-      max-height: 300px;
-      min-height: 50px;
-      min-width: 100px;
-      max-width: 400px;
-      margin-bottom: -220px;
-    }
+  .mat-mdc-dialog-container,
+  .mat-mdc-dialog-container .mdc-dialog__container,
+  .mat-mdc-dialog-container .mdc-dialog__surface {
+    max-height: 300px;
+    min-height: 50px;
+    min-width: 100px;
+    max-width: 400px;
+    margin-bottom: -220px;
   }
+}
 
-  .mat-mdc-form-field-subscript-wrapper,
-  .mat-mdc-form-field-hint-wrapper {
-    margin: -10px !important;
-    padding: -100px !important;
-  }
+.mat-mdc-form-field-subscript-wrapper,
+.mat-mdc-form-field-hint-wrapper {
+  margin: -10px !important;
+  padding: -100px !important;
+}
+
+.mat-mdc-dialog-container .mdc-dialog__surface {
+  border-radius: 4% !important;
+  width: 70%;
+}

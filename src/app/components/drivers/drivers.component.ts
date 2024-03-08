@@ -5,7 +5,10 @@ import { AppComponent } from '../../app.component';
 import { driver } from '../../models/driver';
 import { AppService } from '../../services/services-app.service';
 import { YesNoDialogComponent } from '../tools/yes-no-dialog/yes-no-dialog.component';
-
+import { TableConfig } from '../tools/table/models/table-config';
+import { TableColumn } from '../tools/table/models/table-column';
+import { TABLE_ACTION } from '../tools/table/enums/action.enum';
+import { TableAction } from '../tools/table/models/table-actions';
 
 @Component({
   selector: 'app-drivers',
@@ -14,8 +17,8 @@ import { YesNoDialogComponent } from '../tools/yes-no-dialog/yes-no-dialog.compo
 
 })
 export class DriversComponent implements OnInit {
+  tableColumns: TableColumn[] = [];
   public Driver = new driver();
-  //fechaNacimiento: Date;
   //arreglos que se va a llenar con datos, voy a ver si los puedo comprimir
   public listDriver: driver[] = [];
   public settlements: any[] = [];
@@ -28,6 +31,17 @@ export class DriversComponent implements OnInit {
 
   public isLoadedSt: boolean = false;
   public isLoaded2: boolean = false;
+  public loadT: boolean = false;
+
+
+  public ActSave: boolean = true;
+
+  tableConfig: TableConfig = {
+    isSelectable: false,
+    isPaginable: false,
+    showActions: true,
+    showFilter: true,
+  };
 
   constructor(
     private serviciosDriver: ServicesDriversService,
@@ -36,16 +50,65 @@ export class DriversComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    // this.fechaNacimiento = new Date();
     this.consultarDriver(0);
     this.consultarDrivers();
-    console.log(this.isLoaded2)
-    console.log(this.isLoadedSt)
+    this.setTableColumns(2);
+    // console.log(this.tableConfig);
+    // console.log(this.tableColumns);
   }
-  ngAfterViewInit() {
-    //this.consultarSettleName();
-    //this.consultarStreetName();
+  public setTableColumns(numberOfColumns: number = 1) {
+    switch (numberOfColumns) {
+      case 1:
+        this.tableColumns = [
+          { label: 'Nombres', def: 'name', dataKey: 'name' },
+          { label: 'Apellido paterno', def: 'lm1', dataKey: 'lm1' },
+          { label: 'Apellido materno', def: 'lm2', dataKey: 'lm2' },
+          { label: 'Numero de telefono', def: 'phone', dataKey: 'phone' },
+          { label: 'Administrador', def: 'adminName', dataKey: 'adminName' },
+          { label: 'Vencimiento licencia', def: 'licenseEx', dataKey: 'licenseEx', dataType: 'date', formatt: 'dd MMM yyyy' },
+          { label: 'Fecha nacimiento', def: 'birth', dataKey: 'birth', dataType: 'date', formatt: 'dd MMM yyyy' },
+          { label: 'Fecha de ingreso', def: 'hireDate', dataKey: 'hireDate', dataType: 'date', formatt: 'dd MMM yyyy' },
+          { label: 'Colonia', def: 'settlementS', dataKey: 'settlementS' },
+          { label: 'Calle', def: 'street1', dataKey: 'street1' },
+          { label: 'Pago ingreso', def: 'ingressPay', dataKey: 'ingressPay' },
+        ]
+        break;
+      case 2:
+        this.tableColumns = [
+          { label: 'Nombres', def: 'name', dataKey: 'name' },
+          { label: 'Apellido paterno', def: 'lm1', dataKey: 'lm1' },
+          { label: 'Apellido materno', def: 'lm2', dataKey: 'lm2' },
+          { label: 'Numero de telefono', def: 'phone', dataKey: 'phone' },
+          { label: 'Administrador', def: 'adminName', dataKey: 'adminName' },
+          { label: 'Vencimiento licencia', def: 'licenseEx', dataKey: 'licenseEx', dataType: 'date', formatt: 'dd MMM yyyy' },
+          { label: 'Fecha de ingreso', def: 'hireDate', dataKey: 'hireDate', dataType: 'date', formatt: 'dd MMM yyyy' },
+          { label: 'Colonia', def: 'settlementS', dataKey: 'settlementS' },
+        ]
+        break;
+    }
+
   }
+  onDelete(customer: driver) {
+    console.log('Delete', customer);
+  }
+  onSelect(data: any) {
+    console.log(data);
+  }
+  onTableAction(tableAction: TableAction) {
+    switch (tableAction.action) {
+      case TABLE_ACTION.EDIT:
+        this.consultarDriver(tableAction.row.id);
+        break;
+
+      case TABLE_ACTION.DELETE:
+        this.onDelete(tableAction.row);
+        break;
+
+      default:
+        break;
+    }
+  }
+
   consultarSettleName() {
     this.servicioApp.consultarSettlementName('n').subscribe(
       (data: any[]) => {
@@ -88,6 +151,7 @@ export class DriversComponent implements OnInit {
       (data: any[]) => {
         this.admins = data;
         this.adminsName = this.admins.map(admins => admins.name);
+        //falta verificar que si es 0 se muestre para poder seleccionar
         if (this.Driver.idAdmin !== null) {
           this.isLoaded2 = true;
         }
@@ -117,6 +181,13 @@ export class DriversComponent implements OnInit {
         this.consultarSettleName();
         this.consultarStreetName();
         this.consultarAdminName();
+        if (this.Driver.id != 0) {
+          this.ActSave = false;
+        }
+        else {
+          this.Driver.licenseEx = this.Driver.birth = this.Driver.hireDate = this.Driver.lastModD = new Date();
+        }
+
       },
       error => {
         console.log(error);
@@ -127,7 +198,7 @@ export class DriversComponent implements OnInit {
     this.serviciosDriver.consultarDrivers().subscribe(
       (data: any[]) => {
         this.listDriver = data;
-
+        this.loadT = true;
       },
       error => {
         console.log(error);
@@ -144,7 +215,6 @@ export class DriversComponent implements OnInit {
         console.log(error);
       }
     )
-    debugger;
   }
   public actualizar() {
 
@@ -153,13 +223,11 @@ export class DriversComponent implements OnInit {
       (data) => {
         console.log("Actualizado correctamente")
         this.consultarDrivers();
-        debugger;
       },
       error => {
         console.log(error);
       }
     )
-    debugger;
   }
   public eliminar() {
     this.serviciosDriver.Eliminar(this.Driver.id).subscribe(
@@ -207,7 +275,7 @@ export class DriversComponent implements OnInit {
 
   }
   public guardarAdmin(event: Event) {
-    console.log(event + "y el valor es ");
+    // console.log(event + "y el valor es ");
     for (let i = 0; i < this.admins.length; i++) {
       if (this.admins[i].name == event) {
         this.Driver.idAdmin = this.admins[i].id;
