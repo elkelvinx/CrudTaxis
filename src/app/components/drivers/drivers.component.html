@@ -127,7 +127,7 @@
             [info]="Driver.phone"
             (data)="Driver.phone = $event"
             className="brand"
-            style="width: 15%"
+            style="width: 17%"
           ></app-auto-complete>
           <app-auto-complete
             [text]="'Colonia'"
@@ -136,7 +136,7 @@
             (data)="guardarDireccion($event)"
             *ngIf="isLoadedSt"
             className="brand"
-            style="width: 32%"
+            style="width: 30%"
           ></app-auto-complete>
         </div>
         <div
@@ -160,7 +160,7 @@
             (data)="guardarStreet($event, 1)"
             *ngIf="isLoadedSt"
             className="brand"
-            style="width: 30%"
+            style="width: 35%"
           ></app-auto-complete>
 
           <app-auto-complete
@@ -170,7 +170,7 @@
             (data)="guardarStreet($event, 2)"
             *ngIf="isLoadedSt"
             className="brand"
-            style="width: 33%"
+            style="width: 30%"
           ></app-auto-complete>
 
           <app-auto-complete
@@ -180,7 +180,7 @@
             (data)="guardarStreet($event, 3)"
             *ngIf="isLoadedSt"
             className="brand"
-            style="width: 32%"
+            style="width: 30%"
           ></app-auto-complete>
         </div>
         <div
@@ -204,14 +204,42 @@
             (data)="guardarAdmin($event)"
             *ngIf="isLoaded2"
             className="brand"
-            style="width: 64%"
+            style="width: 97%"
           ></app-auto-complete>
-
+        </div>
+        <div
+          class="renglon3"
+          style="
+            display: flex;
+            flex-direction: row;
+            gap: 10px;
+            align-items: center;
+            justify-content: flex-start;
+            margin-left: 1%;
+            width: 100%;
+            flex-wrap: wrap;
+          "
+        >
           <app-auto-complete
-            [text]="'Numero de la casa'"
+            [text]="'Status'"
             [info]="Driver.extNumber"
             (data)="Driver.extNumber = $event"
-            style="width: 27.1%"
+            className="brand"
+            style="width: 48%"
+          ></app-auto-complete>
+          <app-auto-complete
+            [text]="'Numero de casa'"
+            [info]="Driver.extNumber"
+            (data)="Driver.extNumber = $event"
+            className="brand"
+            style="width: 17%"
+          ></app-auto-complete>
+          <app-auto-complete
+            [text]="'Pago de ingreso'"
+            [info]="Driver.extNumber"
+            (data)="Driver.extNumber = $event"
+            className="brand"
+            style="width: 30%"
           ></app-auto-complete>
         </div>
         <div
@@ -306,9 +334,12 @@
             margin-left: 4%;
           "
         >
-          <button mat-button color="primary" class="text-button-red">
-            Eliminar
-          </button>
+          <app-yes-no-dialog
+            (click)="(eliminar)"
+            [text]="'Desea borrar el registro de la unidad'"
+            [name]="Driver.name + ' ' + Driver.lm1 + ' ' + Driver.lm2 + '?'"
+            [IconButton]="false"
+          ></app-yes-no-dialog>
           <br />
         </mat-card-actions>
         <mat-card-actions align="end" class="buttons-actionDelete">
@@ -318,7 +349,7 @@
             *ngIf="ActSave"
             color="primary"
             class="text-button-green"
-            style="position: absolute; margin-top: -46px; margin-left: 34%"
+            style="position: absolute; margin-top: -45px; margin-left: 34%"
           >
             Guardar
           </button>
@@ -328,7 +359,7 @@
             (click)="actualizar()"
             *ngIf="!ActSave"
             class="text-button-green"
-            style="position: absolute; margin-top: -46px; margin-left: 34%"
+            style="position: absolute; margin-top: -45px; margin-left: 34%"
           >
             Actualizar
           </button>
@@ -350,7 +381,7 @@
       <div class="tabla-dataPRUEBA">
         <app-table
           [data]="listDriver"
-          [columns]="tableColumns"
+          [columns]="tableColumns.columns"
           [config]="tableConfig"
           (select)="onSelect($event)"
           (action)="onTableAction($event)"

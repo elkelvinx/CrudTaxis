@@ -31,7 +31,7 @@ export class Unit2 {
     registerDate: Date = new Date();
     lastModDate: Date = new Date();
     expInsurance: Date = new Date();
-    idAdmin: number = 0;
+    admin: number = 0;
     adminName: string = "";
     brandName: string = "";
     modelName: string = "";

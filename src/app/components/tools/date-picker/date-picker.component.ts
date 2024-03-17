@@ -4,9 +4,11 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { DateAdapter, NativeDateAdapter } from '@angular/material/core';
 import { DatePipe } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
-//extra
+//Da el formato a las fechas
 import { MAT_DATE_FORMATS } from '@angular/material/core';
+import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { CustomDateAdapter, CUSTOM_DATE_FORMATS } from '../../../models/Dates';
 
 
@@ -24,15 +26,16 @@ import { CustomDateAdapter, CUSTOM_DATE_FORMATS } from '../../../models/Dates';
   providers: [
     { provide: DateAdapter, useClass: CustomDateAdapter },
     { provide: MAT_DATE_FORMATS, useValue: CUSTOM_DATE_FORMATS },
+    { provide: MAT_DATE_LOCALE, useValue: 'es-MX' },
   ],
-  imports: [MatFormFieldModule, MatInputModule, MatDatepickerModule],
+  imports: [MatFormFieldModule, MatInputModule, MatDatepickerModule, FormsModule],
 })
 
 export class DatepickerDateClass {
   @Input() text: string = '';
   @Input() actualDate: Date = new Date();
   @Input() isDisabled: boolean = true;
-  @Output() data = new EventEmitter<any>();
+  @Output() date = new EventEmitter<any>();
   dateF: any;
 
   constructor(private datePipe: DatePipe) { }
@@ -51,12 +54,22 @@ export class DatepickerDateClass {
     return '';
   };
   ChangeDate(event: any) {
-
-    const valordateFinal = event.value;
-    const formattedDate = this.datePipe.transform(valordateFinal, 'dd/MM/yyyy');
-    this.data.emit(formattedDate);
-    console.log(formattedDate + " este es we")
     debugger
+    // const valordateFinal = event.value;
+    // const formattedDate = this.datePipe.transform(valordateFinal, 'dd/MM/yyyy');
+    // this.date.emit(event.value);
+    // console.log(formattedDate + " este es we")
+    // debugger
+    if (event instanceof Date) {
+      this.date.emit(event);
+    } else {
+      // Si el evento es una cadena, entonces es una entrada manual
+      // Intenta convertir la cadena a un objeto Date
+      const parsedDate = Date.parse(event);
+      if (!isNaN(parsedDate)) {
+        this.date.emit(new Date(parsedDate));
+      }
+    }
   }
 
 }

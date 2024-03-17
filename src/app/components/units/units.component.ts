@@ -114,6 +114,7 @@ export class UnitsComponent implements OnInit {
           this.ActSave = false;
         else {
           this.units.expInsurance = this.units.lastModDate = this.units.registerDate = new Date();
+          this.units.color = '#FFFFFF'
           this.ActSave = true;
         }
       },
@@ -125,9 +126,10 @@ export class UnitsComponent implements OnInit {
 
   public grabar() {
     console.log(this.ActSave + " GUARDANDO PUTO");
-    if (this.ActSave === false && this.units.id == 0) {
+    if (this.ActSave === true && this.units.id == 0) {
       this.serviceUnit.Grabar(this.units).subscribe(
         (data) => {
+          debugger
           console.log("Guardado correctamente")
           this.consultarUnits();
           //falta agregar para actualizar la tabla
@@ -136,23 +138,24 @@ export class UnitsComponent implements OnInit {
           console.log(error);
         }
       )
-      debugger;
+
     }
+    else console.log("No se puede guardar");
   }
   public actualizar() {
-    console.log(this.ActSave + " ACTUALIZANDO PUTO");
-    if (this.ActSave === true) {
+    console.log(this.units.id + " ACTUALIZANDO " + this.units.expInsurance);
+    if (this.ActSave === false) {
+      debugger
       this.serviceUnit.Actualizar(this.units).subscribe(
         (data) => {
+          debugger
           console.log("Actualizado correctamente")
           this.consultarUnits();
-          debugger;
         },
         error => {
           console.log(error);
         }
       )
-      debugger;
     }
   }
   public eliminar() {
@@ -216,6 +219,7 @@ export class UnitsComponent implements OnInit {
     switch (type) {
       case 'admin':
         idFinal = this.AppComponent.changeAutocomplete(event, this.admins);
+        this.units.admin = idFinal;
         break;
       case 'brand':
         idFinal = this.AppComponent.changeAutocomplete(event, this.brands);

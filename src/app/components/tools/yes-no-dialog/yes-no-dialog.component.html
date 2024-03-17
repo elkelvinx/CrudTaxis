@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <div *ngIf="IconButton == false">
   <button
-    mat-raised-button
-    class="buttonP"
+    mat-button
+    color="primary"
+    class="text-button-red"
     (click)="openDialog('300ms', '300ms', text, name)"
   >
-    Delete
+    Eliminar
   </button>
 </div>
 <div *ngIf="IconButton == true">

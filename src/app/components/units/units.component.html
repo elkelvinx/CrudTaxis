@@ -191,6 +191,7 @@
         <app-datepicker-date
           [isDisabled]="false"
           [actualDate]="units.expInsurance"
+          (date)="units.expInsurance = $event"
           [text]="'Vencimiento de seguro'"
           style="width: 97%"
         ></app-datepicker-date>

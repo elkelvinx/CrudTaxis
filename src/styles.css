@@ -170,35 +170,7 @@ input {
   border-radius: 10px;
   border-style: groove;
 }
-input[data-style^="inputStreetName"] {
-  border-radius: 10px;
-  border-style: groove;
-  margin-left: 70px;
-  position: absolute;
-  width: 78%;
-}
-input[data-style^="stid"] {
-  width: 70px;
-  border-radius: 10px;
-  border-style: groove;
-}
-button[data-style^="buscarBtn"] {
-  border-radius: 10px;
-  border-style: groove;
-  margin-top: 25px;
-  margin-left: 30px;
-  position: absolute;
-  width: 150px;
-}
 
-input[data-style^="idPrincipal"] {
-  width: 100px;
-}
-input {
-  border-radius: 10px;
-  border-style: groove;
-  background-color: #a1c64a;
-}
 .tabla-data {
   position: absolute;
   width: 100%;
@@ -206,6 +178,7 @@ input {
   height: 500px;
   margin-left: 900px;
 }
+/*aASDASDASDSADASDASAS*/
 html,
 body {
   height: 100%;
@@ -253,47 +226,6 @@ button {
   /* background-color: #b8141459 !important; */
   width: 120%;
 }
-.prueba1 .mat-mdc-text-field-wrapper,
-.prueba1 .mdc-text-field--filled:not(.mdc-text-field--disabled) {
-  background-color: #ee191959 !important;
-  position: static;
-  margin-top: -39.9px;
-  width: 180px !important;
-}
-.prueba2 .mat-mdc-text-field-wrapper,
-.prueba2 .mdc-text-field--filled:not(.mdc-text-field--disabled) {
-  background-color: #ee191959 !important;
-  position: absolute;
-  margin-top: -39.9px;
-  width: 180px !important;
-}
-.prueba3 .mat-mdc-text-field-wrapper,
-.prueba3 .mdc-text-field--filled:not(.mdc-text-field--disabled) {
-  /* background-color: #ee191959 !important; */
-  background-color: #4a4a4a59 !important;
-  position: static;
-  margin-left: -84%;
-  margin-right: -10px;
-  margin-top: -47.9px;
-  width: 180px !important;
-}
-.prueba4 .mat-mdc-text-field-wrapper,
-.prueba4 .mdc-text-field--filled:not(.mdc-text-field--disabled) {
-  /* background-color: #ee191959 !important; */
-  background-color: #4a4a4a59 !important;
-  position: static;
-  /* margin-left: -100%; */
-  margin-top: -47.9px;
-  width: 180px !important;
-}
-.prueba5 .mat-mdc-text-field-wrapper,
-.prueba5 .mdc-text-field--filled:not(.mdc-text-field--disabled) {
-  /* background-color: #ee191959 !important; */
-  background-color: #4a4a4a59 !important;
-  position: static;
-  margin-top: 6px;
-  width: 180px !important;
-}
 .container {
   display: flex;
   flex-wrap: wrap;
@@ -304,15 +236,6 @@ button {
   margin-bottom: 10px;
   margin-left: 1px;
   margin: -5px;
-}
-
-.eco .mat-mdc-text-field-wrapper,
-.eco .mdc-text-field--filled:not(.mdc-text-field--disabled) {
-  /* background-color: #ee191959 !important; */
-  background-color: #dc0a0a59 !important;
-  flex: 0 0 70%;
-  /* width: 100% !important; */
-  /* width: 180px !important; */
 }
 
 .brand .mat-mdc-text-field-wrapper,
@@ -348,4 +271,37 @@ button {
 .mat-mdc-dialog-container .mdc-dialog__surface {
   border-radius: 4% !important;
   width: 70% !important;
+}
+.mat-mdc-button {
+  --mdc-text-button-label-text-size: 19px !important;
+  font-size: var(--mdc-text-button-label-text-size);
+}
+input[data-style^="inputStreetName"] {
+  border-radius: 10px;
+  border-style: groove;
+  margin-left: 70px;
+  position: absolute;
+  width: 78%;
+}
+input[data-style^="stid"] {
+  width: 70px;
+  border-radius: 10px;
+  border-style: groove;
+}
+button[data-style^="buscarBtn"] {
+  border-radius: 10px;
+  border-style: groove;
+  margin-top: 25px;
+  margin-left: 30px;
+  position: absolute;
+  width: 150px;
+}
+
+input[data-style^="idPrincipal"] {
+  width: 100px;
+}
+input {
+  border-radius: 10px;
+  border-style: groove;
+  background-color: #a1c64a;
 }

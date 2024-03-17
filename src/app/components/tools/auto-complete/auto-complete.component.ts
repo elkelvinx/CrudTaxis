@@ -7,7 +7,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ExtraDataService } from './services/extra-data.service';
-
+import { Pipe, PipeTransform } from '@angular/core';
 //services
 import { AppService } from '../../../services/services-app.service'
 
@@ -58,14 +58,17 @@ export class AutoCompleteComponent {
       this.brandModified = true;
     }
     else if (this.typeinput === 2) {
+      debugger
       this.changeModel();
       this.brandModified = false;
     }
+
     this.filteredOptions = this.myControl.valueChanges.pipe(
       debounceTime(200),
       startWith(''),
       map(value => this._filter(value || '')),
     );
+    // console.log(this.filteredOptions.forEach(element => { console.log(element) }) + " hola");
   }
 
   private _filter(value: string): string[] {
@@ -74,14 +77,16 @@ export class AutoCompleteComponent {
   }
 
   changeModel() {
-
+    // Filtrar el array de modelos para obtener solo los nombres de los modelos que coincidan con la marca seleccionada
+    this.arrays = this.models
+      .filter(model => model.idBrand === this.brandSelected)
+      .map(filteredModel => filteredModel.name);
   }
   changeBrand() {
     // en este for pasamos al service el id del brand seleccionado
     for (let i = 0; i < this.brand.length; i++) {
       if (this.brand[i].name === this.myControl.value) {
         this.number.selectedBrandId = this.brand[i].id;
-        // this.brandModified = false;
       }
     }
     //de todos modos tenemos que hacer el emmit para que se actualice el valor
@@ -91,8 +96,15 @@ export class AutoCompleteComponent {
   }
 
   changeName() {
-    //este es normal y corriente
     debugger;
+    console.log(this.filteredOptions + " " + this.myControl.value)
     this.data.emit(this.myControl.value);
+  }
+}
+
+@Pipe({ name: 'startsWith' })
+export class AutocompletePipeStartsWith implements PipeTransform {
+  public transform(collection: any[], term = '') {
+    return collection.filter((item) => item.toString().toLowerCase().startsWith(term.toString().toLowerCase()));
   }
 }

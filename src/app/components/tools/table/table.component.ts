@@ -25,7 +25,7 @@ export class TableComponent implements OnInit, AfterViewInit {
   @Input() set data(data: Array<any>) {
     this.dataSource = new MatTableDataSource(data);
     this.dataSource.paginator = this.paginator;
-    console.log(this.data + " hola");
+    // console.log(this.data + " hola");
   }
 
   @Input() set columns(columns: TableColumn[]) {
@@ -44,7 +44,7 @@ export class TableComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     //  debugger; 
-    console.log(this.data + " hola"); console.log(this.columns)
+    // console.log(this.data + " hola"); console.log(this.columns)
   }
 
   ngAfterViewInit() {
@@ -106,8 +106,10 @@ export class TableComponent implements OnInit, AfterViewInit {
   }
 
   applyFilter(event: Event) {
+
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
     this.currentFilterValue = filterValue;
+    debugger
   }
 }
