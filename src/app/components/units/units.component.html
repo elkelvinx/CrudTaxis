@@ -71,7 +71,7 @@
           style="width: 23%"
           #inputname
         ></app-auto-complete>
-        <app-auto-complete
+        <car-autoComplete
           className="brand"
           [text]="'Marca de la unidad'"
           [info]="units.brandName"
@@ -81,9 +81,9 @@
           (data)="changeSelection($event, 'brand')"
           *ngIf="loadBr"
           style="width: 30.2%"
-        ></app-auto-complete>
+        ></car-autoComplete>
         <!-- [arrays]="modelsName"  -->
-        <app-auto-complete
+        <car-autoComplete
           className="brand"
           [text]="'Modelo de la unidad'"
           [info]="units.modelName"
@@ -93,7 +93,7 @@
           (data)="changeSelection($event, 'model')"
           *ngIf="loadMd"
           style="width: 41.2%"
-        ></app-auto-complete>
+        ></car-autoComplete>
       </div>
       <div class="renglon1">
         <app-auto-complete

@@ -10,7 +10,7 @@
       [formControl]="myControl"
       [matAutocomplete]="auto"
       [value]="info"
-      (ngModelChange)="changeName()"
+      (ngModelChange)="brandModified ? changeBrand() : changeName()"
       class="{{ className }}"
     />
     <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">

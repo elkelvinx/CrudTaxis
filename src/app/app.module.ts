@@ -39,7 +39,7 @@ import { CommonModule } from '@angular/common';
 import { TableModule } from './components/tools/table/table.module';
 import { MatIconModule } from '@angular/material/icon';
 import { AccordionComponent } from './components/tools/accordion/accordion.component';
-
+import { carAutoCompleteComponent } from './components/tools/car_auto-complete/car-auto-complete.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -79,6 +79,7 @@ import { AccordionComponent } from './components/tools/accordion/accordion.compo
     CommonModule,
     TableModule,
     MatIconModule,
+    carAutoCompleteComponent,
 
   ],
   // entryComponents: [YesNoDialogComponent ],
