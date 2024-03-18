@@ -8,6 +8,7 @@ import { TableAction } from '../tools/table/models/table-actions';
 
 import { AppService } from '../../services/services-app.service';
 import { TableColumn } from '../tools/table/models/table-column';
+import { ExtraDataService } from '../tools/car_auto-complete/services/extra-data.service';
 
 @Component({
   selector: 'app-units',
@@ -47,7 +48,8 @@ export class UnitsComponent implements OnInit {
   constructor(
     private serviceUnit: UnitsService,
     private AppComponent: AppComponent,
-    private servicioApp: AppService
+    private servicioApp: AppService,
+    private number: ExtraDataService,
   ) { }
 
   ngOnInit() {
@@ -118,6 +120,9 @@ export class UnitsComponent implements OnInit {
           this.units.color = '#FFFFFF'
           this.ActSave = true;
         }
+        // debugger
+        this.number.selectedBrandId = this.units.idBrand;
+        // console.log(this.number.selectedBrandId + " IDbrand general");
       },
       error => {
         console.log(error);
@@ -227,8 +232,10 @@ export class UnitsComponent implements OnInit {
         break;
       case 'model':
         idFinal = this.AppComponent.changeAutocomplete(event, this.models);
+        this.units.model = idFinal;
+        debugger
         break;
     }
-    console.log("El valor es " + idFinal);
+    // console.log("El valor es " + idFinal);
   }
 }

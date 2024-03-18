@@ -305,3 +305,31 @@ input {
   border-style: groove;
   background-color: #a1c64a;
 }
+div.mat-mdc-autocomplete-panel {
+  box-shadow: -4px 3px 11px 1px rgba(0, 0, 0, 0.2),
+    0px 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+:root {
+  /* error en el input sin actividad*/
+  --mdc-filled-text-field-error-label-text-color: #ea9696;
+  --mdc-filled-text-field-error-active-indicator-color: #f67d74;
+  /* linea Input mouseOver*/
+  --mdc-filled-text-field-error-hover-active-indicator-color: #f4b067;
+  /* cuando se selecciona y error*/
+  --mdc-filled-text-field-error-focus-label-text-color: rgb(215, 16, 16);
+  --mdc-filled-text-field-error-focus-active-indicator-color: #fa2424;
+  /*correcto*/
+  --mdc-filled-text-field-focus-label-text-color: rgb(99, 237, 81);
+  /*YesNodialog*/
+  --mdc-dialog-container-color: #2f2f2f;
+  /* --mdc-dialog-supporting-text-color: rgb(255 255 255 / 53%); */
+  /*autocomplete*/
+  /*Sugerencias del autocomplete*/
+  --mat-autocomplete-background-color: #393939;
+  --mat-option-selected-state-layer-color: rgb(22 255 2 / 7%);
+  --mat-option-hover-state-layer-color: rgb(111 243 55 / 32%);
+  --mat-option-focus-state-layer-color: rgb(22 255 2 / 7%);
+  /*icono*/
+  --mat-option-selected-state-label-text-color: #51c155;
+  --mat-minimal-pseudo-checkbox-selected-checkmark-color: #40a744;
+}

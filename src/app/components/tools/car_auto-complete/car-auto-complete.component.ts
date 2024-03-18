@@ -8,8 +8,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ExtraDataService } from './services/extra-data.service';
 import { Pipe, PipeTransform } from '@angular/core';
-//services
-import { AppService } from '../../../services/services-app.service'
+import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 
 @Component({
   selector: 'car-autoComplete',
@@ -23,7 +22,6 @@ import { AppService } from '../../../services/services-app.service'
     MatAutocompleteModule,
     ReactiveFormsModule,
     AsyncPipe,
-
   ],
 })
 export class carAutoCompleteComponent {
@@ -37,23 +35,25 @@ export class carAutoCompleteComponent {
   @Input() info: any;
   //arreglo que trae datos
   @Input() arrays: string[] = [];
+  //arreglo por si es el model
+  @Input() arrays2: string[] = [];
   //devuelve el valor nuevo
   @Output() data = new EventEmitter<any>();
   myControl = new FormControl('');
   filteredOptions: Observable<string[]>;
 
-  //valores a validar 
-  //variable a pasar si uso brand
+  //variables necesarias para dependencia entre inputs
   @Input() brand: { id: number; name: string }[] = [];
-  @Input() models: { id: number; idBrand: number; name: string }[] = [];
+  @Input() modelsInput: { id: number; idBrand: number; name: string }[] = [];
+  public models: { id: number; idBrand: number; name: string }[] = [];
   @Input() brandSelected: number = 0;
   brandModified: boolean = false;
   constructor(
-    private servicioApp: AppService,
     private number: ExtraDataService
   ) { }
   ngOnInit() {
-    // if (this.typeinput === 0) 
+    if (this.number.bool == false)
+      this.models = this.modelsInput;
     if (this.typeinput === 1) {
       this.brandModified = true;
     }
@@ -64,41 +64,89 @@ export class carAutoCompleteComponent {
     }
 
     this.filteredOptions = this.myControl.valueChanges.pipe(
+
       debounceTime(200),
       startWith(''),
-      map(value => this._filter(value || '')),
+      map(value => {
+        debugger
+        console.log("Value Changes: ", value); // Agregar para depuración
+        return this._filter(value || '');
+      }),
     );
-    // console.log(this.filteredOptions.forEach(element => { console.log(element) }) + " hola");
+    if (this.typeinput === 2) {
+      debugger
+      this.filteredOptions = this.myControl.valueChanges.pipe(
+        debounceTime(200),
+        startWith(''),
+        map(value => {
+          console.log("Value Changes: ", value); // Agregar para depuración
+          return this._filter2(value || '');
+        }),
+      );
+
+    }
   }
 
   private _filter(value: string): string[] {
+    debugger
     const filterValue = value.toLowerCase();
     return this.arrays.filter(option => option.toLowerCase().includes(filterValue));
+
+  }
+  private _filter2(value: string): string[] {
+    //    debugger
+    const filterValue = value.toLowerCase();
+    console.log(filterValue)
+    return this.arrays2.filter(option => option.toLowerCase().includes(filterValue));
   }
 
   changeModel() {
-    // Filtrar el array de modelos para obtener solo los nombres de los modelos que coincidan con la marca seleccionada
-    this.arrays = this.models
-      .filter(model => model.idBrand === this.brandSelected)
-      .map(filteredModel => filteredModel.name);
+    if (this.number.bool == true) {
+      // debugger
+      this.arrays2 = this.number.models
+        .filter(model => model.idBrand === this.number.selectedBrandId)
+        .map(filteredModel => filteredModel.name);
+      if (this.typeinput === 2) {
+        this.filteredOptions = this.myControl.valueChanges.pipe(
+          debounceTime(200),
+          startWith(''),
+          map(value => {
+            // console.log("Value Changes: ", value); // Agregar para depuración
+            return this._filter2(value || '');
+          }),
+        );
+      }
+      // debugger
+    }
+    else if (this.number.bool == false) {
+      debugger;
+      // Filtrar el array de modelos para obtener solo los nombres de los modelos que coincidan con la marca seleccionada
+      this.arrays2 = this.models
+        .filter(model => model.idBrand === this.number.selectedBrandId)
+        .map(filteredModel => filteredModel.name);
+      console.log(this.arrays2);
+      this.number.models = this.models;
+      this.number.bool = true;
+    }
+
   }
   changeBrand() {
     // en este for pasamos al service el id del brand seleccionado
     for (let i = 0; i < this.brand.length; i++) {
       if (this.brand[i].name === this.myControl.value) {
         this.number.selectedBrandId = this.brand[i].id;
+        debugger
       }
     }
-    //de todos modos tenemos que hacer el emmit para que se actualice el valor
-    debugger;
-    console.log(this.number.selectedBrandId + " IDbrand general");
     this.data.emit(this.myControl.value);
+    this.changeModel();
   }
+  onSelection(event: MatAutocompleteSelectedEvent) {
 
-  changeName() {
-    debugger;
-    console.log(this.filteredOptions + " " + this.myControl.value)
+    this.myControl.setValue(event.option.value);
     this.data.emit(this.myControl.value);
+    this.changeBrand(); // O la función correspondiente
+    debugger
   }
 }
 

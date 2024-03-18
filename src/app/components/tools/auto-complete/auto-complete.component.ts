@@ -36,9 +36,7 @@ export class AutoCompleteComponent {
   @Output() data = new EventEmitter<any>();
   myControl = new FormControl('');
   filteredOptions: Observable<string[]>;
-  constructor(
 
-  ) { }
   ngOnInit() {
     this.filteredOptions = this.myControl.valueChanges.pipe(
       debounceTime(200),

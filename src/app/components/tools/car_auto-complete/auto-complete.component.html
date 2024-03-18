@@ -10,10 +10,15 @@
       [formControl]="myControl"
       [matAutocomplete]="auto"
       [value]="info"
-      (ngModelChange)="brandModified ? changeBrand() : changeName()"
+      (focus)="brandModified ? changeBrand() : changeModel()"
+      (ngModelChange)="brandModified ? changeBrand() : changeModel()"
       class="{{ className }}"
     />
-    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+    <mat-autocomplete
+      autoActiveFirstOption
+      #auto="matAutocomplete"
+      (optionSelected)="onSelection($event)"
+    >
       @for (option of filteredOptions | async; track option) {
       <mat-option [value]="option">{{ option }}</mat-option>
       }
