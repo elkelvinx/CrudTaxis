@@ -44,9 +44,9 @@
         <mat-icon style="transform: scale(1.2)" (click)="onEdit(row)"
           >edit</mat-icon
         >
-
+        <!--necesito corregir la parte de el id y que sea variable-->
         <app-yes-no-dialog
-          (click)="onDelete(row)"
+          (data)="onDelete(row)"
           [text]="'Desea borrar el registro de la unidad'"
           [name]="row.ecoNumber + '?'"
           [IconButton]="true"

@@ -236,9 +236,12 @@
           margin-left: 4%;
         "
       >
-        <button mat-button color="primary" class="text-button-red">
-          Eliminar
-        </button>
+        <app-yes-no-dialog
+          (data)="onDelete(units)"
+          [text]="'Desea borrar el registro de la unidad'"
+          [name]="units.ecoNumber + '?'"
+          [IconButton]="false"
+        ></app-yes-no-dialog>
         <br />
       </mat-card-actions>
       <mat-card-actions align="end" class="buttons-actionDelete">

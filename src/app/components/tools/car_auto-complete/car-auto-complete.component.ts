@@ -25,7 +25,6 @@ import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
   ],
 })
 export class carAutoCompleteComponent {
-  //podria poner  @Input() color: string = '#FFFFFF';
   @Input() typeinput: number = 0;
   //tengo que ver si realmente podria obtener el nombre de todos los modelos con su id para asi evitar la busqueda tan exaustiva 
   @Input() className: string = 'defaultClass';
@@ -46,6 +45,7 @@ export class carAutoCompleteComponent {
   @Input() brand: { id: number; name: string }[] = [];
   @Input() modelsInput: { id: number; idBrand: number; name: string }[] = [];
   public models: { id: number; idBrand: number; name: string }[] = [];
+
   @Input() brandSelected: number = 0;
   brandModified: boolean = false;
   constructor(
@@ -142,7 +142,7 @@ export class carAutoCompleteComponent {
     this.changeModel();
   }
   onSelection(event: MatAutocompleteSelectedEvent) {
-
+    //me falta ver que metodo llamar
     this.myControl.setValue(event.option.value);
     this.data.emit(this.myControl.value);
     this.changeBrand(); // O la función correspondiente

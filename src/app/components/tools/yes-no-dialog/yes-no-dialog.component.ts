@@ -12,7 +12,8 @@ import { Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
-
+import { Observable } from 'rxjs';
+import { DialogRef } from '@angular/cdk/dialog';
 
 @Component({
   selector: 'app-yes-no-dialog',
@@ -30,9 +31,11 @@ export class YesNoDialogComponent {
   @Output() data = new EventEmitter<any>();
 
   constructor(public dialog: MatDialog) { }
-
+  ChangeName() {
+    this.data.emit(true);
+  }
   openDialog(enterAnimationDuration: string, exitAnimationDuration: string, contentDialog: string, name: string): void {
-    this.dialog.open(DialogAnimationsExampleDialog, {
+    const dialogRef = this.dialog.open(DialogAnimationsExampleDialog, {
       width: '520px',
       enterAnimationDuration,
       exitAnimationDuration,
@@ -41,9 +44,11 @@ export class YesNoDialogComponent {
         nameObj: name,
       },
     });
-  }
-  ChangeName() {
-    this.data.emit(true);
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.ChangeName();
+      }
+    });
   }
 }
 @Component({
@@ -60,9 +65,13 @@ export class DialogAnimationsExampleDialog {
   constructor(
     public dialogRef: MatDialogRef<DialogAnimationsExampleDialog>,
     public CommonModule: CommonModule,
+
     @Inject(MAT_DIALOG_DATA) data: any,
   ) {
     this.contentDialog = data.contentDialog;
     this.nameObj = data.nameObj;
+  }
+  ChangeName() {
+    this.dialogRef.close(true);
   }
 }

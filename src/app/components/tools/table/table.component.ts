@@ -101,15 +101,12 @@ export class TableComponent implements OnInit, AfterViewInit {
   }
 
   onDelete(row: any) {
-    debugger
     this.action.emit({ action: TABLE_ACTION.DELETE, row });
   }
 
   applyFilter(event: Event) {
-
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
     this.currentFilterValue = filterValue;
-    debugger
   }
 }

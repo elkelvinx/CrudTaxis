@@ -77,8 +77,9 @@ export class AdminsComponent {
   searchAdmin() {
     this.consultarAdmin(this.Admin.id);
   }
-  onDelete(customer: Admin) {
-    console.log('Delete', customer);
+  onDelete(object: Admin) {
+    // console.log('Delete', object);
+    this.eliminarDialog(object.id);
   }
   onSelect(data: any) {
     console.log(data);
@@ -108,7 +109,8 @@ export class AdminsComponent {
         if (this.Admin.id !== 0)
           this.ActSave = false;
         else {
-          this.Admin.birthDate = this.Admin.registerD = this.Admin.lastModDate = new Date();
+          this.Admin.birthDate = new Date('1970-01-01T00:00:00');
+          this.Admin.registerD = this.Admin.lastModDate = new Date();
           this.ActSave = true;
         }
       },
@@ -134,8 +136,8 @@ export class AdminsComponent {
   public grabar() {
     this.serviciosAdmin.Grabar(this.Admin).subscribe(
       (data) => {
-        debugger;
         console.log("Guardado correctamente")
+        this.consultarAdmins();
       },
       error => {
         console.log(error);
@@ -146,8 +148,8 @@ export class AdminsComponent {
   public actualizar() {
     this.serviciosAdmin.Actualizar(this.Admin).subscribe(
       (data) => {
-        debugger;
         console.log("Actualizado correctamente")
+        this.consultarAdmins();
       },
       error => {
         console.log(error);
@@ -155,12 +157,23 @@ export class AdminsComponent {
     )
   }
   public eliminar() {
-    debugger;
+
     this.serviciosAdmin.Eliminar(this.Admin.id).subscribe(
       (data) => {
-        debugger;
         console.log("Eliminado correctamente")
-        console.log(data)
+        this.consultarAdmins();
+      },
+      error => {
+        console.log(error);
+      }
+    )
+  }
+  public eliminarDialog(id: number) {
+    debugger;
+    this.serviciosAdmin.Eliminar(id).subscribe(
+      (data) => {
+        console.log("Eliminado correctamente")
+        this.consultarAdmins();
       },
       error => {
         console.log(error);

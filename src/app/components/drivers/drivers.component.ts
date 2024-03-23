@@ -186,7 +186,6 @@ export class DriversComponent implements OnInit {
           console.log('colonia: ' + this.isLoaded2 + ' calle: ' + this.isLoadedSt)
           this.Driver.licenseEx = this.Driver.birth = this.Driver.hireDate = this.Driver.lastModD = new Date();
         }
-
       },
       error => {
         console.log(error);

@@ -203,6 +203,7 @@
           <app-datepicker-date
             [isDisabled]="false"
             [actualDate]="Admin.birthDate"
+            (date)="Admin.birthDate = $event"
             [text]="'Fecha de nacimiento'"
             className="brand"
             style="width: 48.1%"
@@ -263,9 +264,12 @@
             margin-left: 4%;
           "
         >
-          <button mat-button color="primary" class="text-button-red">
-            Eliminar
-          </button>
+          <app-yes-no-dialog
+            (data)="onDelete(Admin)"
+            [text]="'Desea borrar el registro de el administrador'"
+            [name]="Admin.id + '?'"
+            [IconButton]="false"
+          ></app-yes-no-dialog>
           <br />
         </mat-card-actions>
         <mat-card-actions align="end" class="buttons-actionDelete">
