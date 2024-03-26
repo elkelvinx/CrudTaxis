@@ -88,15 +88,11 @@ export class carAutoCompleteComponent {
   }
 
   private _filter(value: string): string[] {
-    debugger
     const filterValue = value.toLowerCase();
     return this.arrays.filter(option => option.toLowerCase().includes(filterValue));
-
   }
   private _filter2(value: string): string[] {
-    //    debugger
     const filterValue = value.toLowerCase();
-    console.log(filterValue)
     return this.arrays2.filter(option => option.toLowerCase().includes(filterValue));
   }
 

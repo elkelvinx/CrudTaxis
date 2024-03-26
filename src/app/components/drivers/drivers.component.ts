@@ -52,8 +52,11 @@ export class DriversComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    console.log(this.isLoaded2, this.isLoadedSt, this.loadT, ' Datos de inicio')
+    this.initalizeVariables();
     this.consultarDriver(0);
     this.consultarDrivers();
+
     // this.setTableColumns(2);
   }
   // public setTableColumns(numberOfColumns: number = 1) {
@@ -87,6 +90,12 @@ export class DriversComponent implements OnInit {
   //       break;
   //   }
   // }
+  initalizeVariables() {
+
+    this.isLoadedSt = false;
+    this.isLoaded2 = false;
+    this.loadT = false;
+  }
   onDelete(customer: driver) {
     console.log('Delete', customer);
   }
