@@ -15,7 +15,6 @@ import { TableAction } from '../tools/table/models/table-actions';
   selector: 'app-drivers',
   templateUrl: './drivers.component.html',
   styleUrl: './drivers.component.css',
-
 })
 export class DriversComponent implements OnInit {
   // tableColumns: TableColumn[] = [];
@@ -26,16 +25,12 @@ export class DriversComponent implements OnInit {
   public settlements: any[] = [];
   public streets: any[] = [];
   public admins: any[] = [];
+  public listStatus: any[] = [];
 
   public adminsName: any[] = [];
   public settlementName: any[] = [];
   public streetName: any[] = [];
-
-  public isLoadedSt: boolean = false;
-  public isLoaded2: boolean = false;
-  public loadT: boolean = false;
-
-
+  public statusName: any[] = [];
   public ActSave: boolean = true;
 
   tableConfig: TableConfig = {
@@ -52,52 +47,13 @@ export class DriversComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    console.log(this.isLoaded2, this.isLoadedSt, this.loadT, ' Datos de inicio')
-    this.initalizeVariables();
+    this.consultarStatusName();
     this.consultarDriver(0);
     this.consultarDrivers();
-
-    // this.setTableColumns(2);
   }
-  // public setTableColumns(numberOfColumns: number = 1) {
-  //   switch (numberOfColumns) {
-  //     case 1:
-  //       this.tableColumns = [
-  //         { label: 'Nombres', def: 'name', dataKey: 'name' },
-  //         { label: 'Apellido paterno', def: 'lm1', dataKey: 'lm1' },
-  //         { label: 'Apellido materno', def: 'lm2', dataKey: 'lm2' },
-  //         { label: 'Numero de telefono', def: 'phone', dataKey: 'phone' },
-  //         { label: 'Administrador', def: 'adminName', dataKey: 'adminName' },
-  //         { label: 'Vencimiento licencia', def: 'licenseEx', dataKey: 'licenseEx', dataType: 'date', formatt: 'dd MMM yyyy' },
-  //         { label: 'Fecha nacimiento', def: 'birth', dataKey: 'birth', dataType: 'date', formatt: 'dd MMM yyyy' },
-  //         { label: 'Fecha de ingreso', def: 'hireDate', dataKey: 'hireDate', dataType: 'date', formatt: 'dd MMM yyyy' },
-  //         { label: 'Colonia', def: 'settlementS', dataKey: 'settlementS' },
-  //         { label: 'Calle', def: 'street1', dataKey: 'street1' },
-  //         { label: 'Pago ingreso', def: 'ingressPay', dataKey: 'ingressPay' },
-  //       ]
-  //       break;
-  //     case 2:
-  //       this.tableColumns = [
-  //         { label: 'Nombres', def: 'name', dataKey: 'name' },
-  //         { label: 'Apellido paterno', def: 'lm1', dataKey: 'lm1' },
-  //         { label: 'Apellido materno', def: 'lm2', dataKey: 'lm2' },
-  //         { label: 'Numero de telefono', def: 'phone', dataKey: 'phone' },
-  //         { label: 'Administrador', def: 'adminName', dataKey: 'adminName' },
-  //         { label: 'Vencimiento licencia', def: 'licenseEx', dataKey: 'licenseEx', dataType: 'date', formatt: 'dd MMM yyyy' },
-  //         { label: 'Fecha de ingreso', def: 'hireDate', dataKey: 'hireDate', dataType: 'date', formatt: 'dd MMM yyyy' },
-  //         { label: 'Colonia', def: 'settlementS', dataKey: 'settlementS' },
-  //       ]
-  //       break;
-  //   }
-  // }
-  initalizeVariables() {
 
-    this.isLoadedSt = false;
-    this.isLoaded2 = false;
-    this.loadT = false;
-  }
-  onDelete(customer: driver) {
-    console.log('Delete', customer);
+  onDelete(object: driver) {
+    this.eliminarDialog(object.id);
   }
   onSelect(data: any) {
     console.log(data);
@@ -124,7 +80,7 @@ export class DriversComponent implements OnInit {
         this.settlementName = this.settlements.map(settlement => settlement.name);
         //cambio del flag para que se muestre el html
         if (this.Driver.settlementS == null) {
-          this.isLoadedSt = false;
+          // this.isLoadedSt = false;
         }
         else {
           //aqui deberia hacer algo jasjasjs
@@ -142,10 +98,10 @@ export class DriversComponent implements OnInit {
         this.streets = data;
         this.streetName = this.streets.map(streets => streets.name);
         if (this.Driver.street1 == null) {
-          this.isLoadedSt = true;
+          // this.isLoadedSt = true;
         }
         else {
-          console.log('PEDRO PICAPIEDRA')
+          // console.log('PEDRO PICAPIEDRA')
         }
       },
       error => {
@@ -160,10 +116,9 @@ export class DriversComponent implements OnInit {
         this.adminsName = this.admins.map(admins => admins.name);
         //falta verificar que si es 0 se muestre para poder seleccionar
         if (this.Driver.idAdmin !== null) {
-          this.isLoaded2 = true;
+          // this.isLoaded2 = true;
         }
         else {
-
           console.log('que pendejo falla admin')
         }
       },
@@ -171,13 +126,23 @@ export class DriversComponent implements OnInit {
         console.log(error);
       }
     )
-
+  }
+  consultarStatusName() {
+    this.servicioApp.consultarStatus().subscribe(
+      (data: any[]) => {
+        this.listStatus = data;
+        this.statusName = this.listStatus.map(status => status.name);
+      },
+      error => {
+        console.log(error);
+      }
+    )
   }
   searchDriver() {
     this.consultarDriver(this.Driver.id);
   }
   consultarDriver(idDriver: any) {
-    this.isLoadedSt = true;
+
     this.serviciosDriver.consultarDriverId(idDriver).subscribe(
       (data: any) => {
         this.Driver = data;
@@ -188,12 +153,15 @@ export class DriversComponent implements OnInit {
         this.consultarSettleName();
         this.consultarStreetName();
         this.consultarAdminName();
+        this.consultarSettleName();
         if (this.Driver.id != 0) {
           this.ActSave = false;
         }
         else {
-          console.log('colonia: ' + this.isLoaded2 + ' calle: ' + this.isLoadedSt)
+          // console.log('colonia: ' + this.isLoaded2 + ' calle: ' + this.isLoadedSt)
           this.Driver.licenseEx = this.Driver.birth = this.Driver.hireDate = this.Driver.lastModD = new Date();
+          this.Driver.statusS = 'Escoja un status';
+          console.log(this.statusName)
         }
       },
       error => {
@@ -205,7 +173,6 @@ export class DriversComponent implements OnInit {
     this.serviciosDriver.consultarDrivers().subscribe(
       (data: any[]) => {
         this.listDriver = data;
-        this.loadT = true;
       },
       error => {
         console.log(error);
@@ -215,7 +182,7 @@ export class DriversComponent implements OnInit {
   public grabar() {
     this.serviciosDriver.Grabar(this.Driver).subscribe(
       (data) => {
-        console.log("Guardado correctamente")
+        console.log("Guardado correctamente" + data)
         this.consultarDrivers();
       },
       error => {
@@ -228,7 +195,7 @@ export class DriversComponent implements OnInit {
 
     this.serviciosDriver.Actualizar(this.Driver).subscribe(
       (data) => {
-        console.log("Actualizado correctamente")
+        console.log("Actualizado correctamente" + data)
         this.consultarDrivers();
       },
       error => {
@@ -239,7 +206,7 @@ export class DriversComponent implements OnInit {
   public eliminar() {
     this.serviciosDriver.Eliminar(this.Driver.id).subscribe(
       (data) => {
-        console.log("Eliminado correctamente")
+        console.log("Eliminado correctamente" + data)
         this.consultarDrivers();
         console.log(data)
       },
@@ -249,7 +216,7 @@ export class DriversComponent implements OnInit {
     )
   }
   public guardarDireccion(event: Event) {
-    console.log(event + "y el valor es ");
+    // console.log(event + "y el valor es ");
     for (let i = 0; i < this.settlements.length; i++) {
       if (this.settlements[i].name == event) {
         this.Driver.settlement = this.settlements[i].id;
@@ -258,7 +225,7 @@ export class DriversComponent implements OnInit {
     }
   }
   public guardarStreet(event: Event, op: number) {
-    console.log(event + "y el valor es ");
+    // console.log(event + "y el valor es ");
     for (let i = 0; i < this.streets.length; i++) {
       if (this.streets[i].name == event) {
         switch (op) {
@@ -285,10 +252,29 @@ export class DriversComponent implements OnInit {
     for (let i = 0; i < this.admins.length; i++) {
       if (this.admins[i].name == event) {
         this.Driver.idAdmin = this.admins[i].id;
-
         break;
       }
     }
-
+  }
+  public guardarStatus(event: Event) {
+    // console.log(event + "y el valor es ");
+    for (let i = 0; i < this.listStatus.length; i++) {
+      if (this.listStatus[i].name == event) {
+        this.Driver.status = this.listStatus[i].id;
+        break;
+      }
+    }
+  }
+  public eliminarDialog(id: number) {
+    debugger;
+    this.serviciosDriver.Eliminar(id).subscribe(
+      (data) => {
+        console.log("Eliminado correctamente")
+        this.consultarDrivers();
+      },
+      error => {
+        console.log(error);
+      }
+    )
   }
 }

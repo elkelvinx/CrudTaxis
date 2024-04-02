@@ -30,3 +30,18 @@
   border-radius: 4% !important;
   width: 70%;
 }
+.mat-mdc-dialog-container .mdc-dialog__container {
+  margin-right: -126px;
+  margin-left: -126px;
+}
+
+.mat-mdc-dialog-container,
+.mat-mdc-dialog-container .mdc-dialog__container,
+.mat-mdc-dialog-container .mdc-dialog__surface {
+  max-height: inherit;
+  min-height: inherit;
+  min-width: inherit;
+  max-width: inherit;
+  margin-right: -126px;
+  margin-left: -126px;
+}

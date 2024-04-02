@@ -27,9 +27,6 @@ export class AdminsComponent {
   public settlementName: any[] = [];
   public streetName: any[] = [];
 
-  public isLoadedSt: boolean = false;
-  public isLoaded2: boolean = false;
-  public loadT: boolean = false;
   public ActSave: boolean = true;
   tableConfig: TableConfig = {
     isSelectable: false,
@@ -89,7 +86,6 @@ export class AdminsComponent {
       case TABLE_ACTION.EDIT:
         this.consultarAdmin(tableAction.row.id);
         break;
-
       case TABLE_ACTION.DELETE:
         this.onDelete(tableAction.row);
         break;
@@ -98,21 +94,19 @@ export class AdminsComponent {
         break;
     }
   }
-  //CONSULTARADMIN CON EL ID 5
   consultarAdmin(idAdmin: any) {
     this.serviciosAdmin.consultarAdminId(idAdmin).subscribe(
       (data: any) => {
         this.Admin = data;
         this.consultarSettleName();
         this.consultarStreetName();
-        this.isLoadedSt = true;
-        if (this.Admin.id !== 0)
-          this.ActSave = false;
-        else {
+        if (this.Admin.id == 0) {
           this.Admin.birthDate = new Date('1970-01-01T00:00:00');
           this.Admin.registerD = this.Admin.lastModDate = new Date();
-          this.ActSave = true;
+          this.ActSave = true
         }
+        else 
+        this.ActSave=false;
       },
       error => {
         console.log(error);
@@ -124,9 +118,6 @@ export class AdminsComponent {
     this.serviciosAdmin.consultarAdmins().subscribe(
       (data: any[]) => {
         this.listAdmin = data;
-        this.loadT = true;
-        debugger
-
       },
       error => {
         console.log(error);
@@ -144,7 +135,6 @@ export class AdminsComponent {
       }
     )
   }
-  //https://localhost:44319/Api/Admin
   public actualizar() {
     this.serviciosAdmin.Actualizar(this.Admin).subscribe(
       (data) => {
@@ -185,13 +175,6 @@ export class AdminsComponent {
       (data: any[]) => {
         this.settlements = data;
         this.settlementName = this.settlements.map(settlement => settlement.name);
-        //cambio del flag para que se muestre el html
-        if (this.Admin.settlementS == null) {
-          this.isLoadedSt = false;
-        }
-        else {
-          //aqui deberia hacer algo jasjasjs
-        }
       },
       error => {
         console.log(error);
@@ -204,12 +187,6 @@ export class AdminsComponent {
       (data: any[]) => {
         this.streets = data;
         this.streetName = this.streets.map(streets => streets.name);
-        if (this.Admin.street1 == null) {
-          this.isLoadedSt = true;
-        }
-        else {
-          console.log('PEDRO PICAPIEDRA')
-        }
       },
       error => {
         console.log(error);
@@ -246,7 +223,6 @@ export class AdminsComponent {
         break;
       }
     }
-
   }
 }
 

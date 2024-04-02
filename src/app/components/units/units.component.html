@@ -171,7 +171,6 @@
           [info]="units.adminName"
           [arrays]="adminsName"
           (data)="changeSelection($event, 'admin')"
-          *ngIf="loadAd"
           style="width: 97%"
         ></app-auto-complete>
       </div>
@@ -222,7 +221,7 @@
     >
       <br />
       <mat-divider
-        style="margin-left: 1%; width: 98%; margin-top: -3%"
+        style="margin-left: 1%; width: 98%; margin-top: -5.2%"
       ></mat-divider>
       <mat-card-actions
         align="start"
@@ -232,7 +231,7 @@
           flex-wrap: wrap;
           justify-content: flex-start;
           align-items: center;
-          margin-top: 9px;
+          margin-top: 40px;
           margin-left: 4%;
         "
       >
@@ -251,7 +250,7 @@
           *ngIf="ActSave"
           color="primary"
           class="text-button-green"
-          style="position: absolute; margin-top: -36px; margin-left: 30%"
+          style="position: absolute; margin-top: -51px; margin-left: 30%"
         >
           Guardar
         </button>
@@ -262,7 +261,7 @@
           (click)="actualizar()"
           *ngIf="!ActSave"
           class="text-button-green"
-          style="position: absolute; margin-top: -36px; margin-left: 30%"
+          style="position: absolute; margin-top: -51px; margin-left: 30%"
         >
           Actualizar
         </button>
@@ -288,7 +287,6 @@
         [config]="tableConfig"
         (select)="onSelect($event)"
         (action)="onTableAction($event)"
-        *ngIf="loadT"
       ></app-table>
     </div>
   </div>

@@ -18,11 +18,13 @@ export class driver {
             public st3: number = 0,
             public extNumber: number = 0,
             public idAdmin: number = 0,
+            public contactDrivers: number = 0,
             public adminName: string = '',
             public licenseEx: Date = new Date(),
             public licenseExS: string = '',
             public ingressPay: Date = new Date(),
             public status: number = 0,
+            public statusS: string = 'Esperando',
             public street1: string = '',
             public street2: string = '',
             public street3: string = '',
@@ -46,7 +48,6 @@ export class TableColumnsStructure {
         { label: 'Calle', def: 'street1', dataKey: 'street1' },
         { label: 'Pago ingreso', def: 'ingressPay', dataKey: 'ingressPay' },
     ];
-
     static tableColumnsCase2: TableColumn[] = [
         { label: 'Nombres', def: 'name', dataKey: 'name' },
         { label: 'Apellido paterno', def: 'lm1', dataKey: 'lm1' },
@@ -57,9 +58,7 @@ export class TableColumnsStructure {
         { label: 'Fecha de ingreso', def: 'hireDate', dataKey: 'hireDate', dataType: 'date', formatt: 'dd MMM yyyy' },
         { label: 'Colonia', def: 'settlementS', dataKey: 'settlementS' },
     ];
-
     columns: TableColumn[];
-
     constructor(numberOfColumns: number = 1) {
         if (numberOfColumns === 1) {
             this.columns = TableColumnsStructure.tableColumnsCase1;

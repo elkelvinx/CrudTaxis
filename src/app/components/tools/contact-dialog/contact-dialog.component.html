@@ -23,7 +23,7 @@
     "
   >
     <!--AQUI VA EL HEADER Y SU CONTENT-->
-    <h1 mat-dialog-title>Contacto Extra del Conductor</h1>
+    <h1 mat-dialog-title>Contacto del Conductor</h1>
     <mat-dialog-content
       >Aqui va todo el contenido del dialogo</mat-dialog-content
     >
@@ -50,11 +50,16 @@
         style="width: 7px !important"
         className="Brand"
         [text]="'Nombres'"
+        [info]="contactDriver.name"
+        (data)="contactDriver.name = $event"
         style="width: 72%"
       ></app-auto-complete>
       <app-auto-complete
         className="brand"
         [text]="'Relacion'"
+        [arrays]="relationshipName"
+        (data)="guardarContact($event)"
+        [info]="contactDriver.relationS"
         style="width: 25%"
       ></app-auto-complete>
     </div>
@@ -74,11 +79,15 @@
       <app-auto-complete
         className="brand"
         [text]="'Apellido Paterno '"
+        [info]="contactDriver.lm1"
+        (data)="contactDriver.lm1 = $event"
         style="width: 45%"
       ></app-auto-complete>
       <app-auto-complete
         class="brand"
         [text]="'Apellido Materno '"
+        [info]="contactDriver.lm2"
+        (data)="contactDriver.lm2 = $event"
         style="width: 43.5%"
       ></app-auto-complete>
     </div>
@@ -96,14 +105,18 @@
       "
     >
       <app-auto-complete
-        [arrays]="settlement"
+        [arrays]="settlementName"
         [text]="'Colonia'"
+        [info]="contactDriver.settlementS"
+        (data)="guardarDireccion($event)"
         className="brand"
         style="width: 76.5%"
       ></app-auto-complete>
 
       <app-auto-complete
         [text]="'Telefono'"
+        [info]="contactDriver.phone"
+        (data)="contactDriver.phone = $event"
         className="brand"
         style="width: 20.7%"
       ></app-auto-complete>
@@ -122,8 +135,10 @@
       "
     >
       <app-auto-complete
-        [arrays]="streets"
+        [arrays]="streetName"
         [text]="'Calle 1'"
+        [info]="contactDriver.street1"
+        (data)="guardarStreet($event, 1)"
         className="brand"
         style="width: 98.6%"
       ></app-auto-complete>
@@ -142,8 +157,10 @@
       "
     >
       <app-auto-complete
-        [arrays]="streets"
+        [arrays]="streetName"
         [text]="'Calle 2'"
+        [info]="contactDriver.street2"
+        (data)="guardarStreet($event, 2)"
         className="brand"
         style="width: 98.6%"
       ></app-auto-complete>
@@ -162,8 +179,10 @@
       "
     >
       <app-auto-complete
-        [arrays]="streets"
+        [arrays]="streetName"
         [text]="'Calle 3'"
+        [info]="contactDriver.street3"
+        (data)="guardarStreet($event, 3)"
         className="brand"
         style="width: 98.6%"
       ></app-auto-complete>
@@ -183,17 +202,49 @@
     <div mat-dialog-actions>
       <div style="margin-left: 8%">
         <button
-          mat-button
+          mat-raised-button
           mat-dialog-close
           color="primary"
-          class="text-button-red"
+          class="text-button-redFinal"
+          style="margin-left: -5% !important; width: 224% !important"
         >
           Cerrar</button
         ><br />
       </div>
       <div style="margin-left: 48%">
-        <button mat-button color="primary" class="text-button-green">
+        <button
+          mat-raised-button
+          *ngIf="idContact == 0"
+          (click)="grabar()"
+          color="primary"
+          class="text-button-greenFinal"
+          style="
+            position: absolute;
+            margin-top: -42px;
+            margin-left: 2%;
+            width: 25% !important;
+            height: 50px !important;
+            --mat-protected-button-ripple-color: rgb(4 77 27) !important;
+          "
+        >
           Guardar
+        </button>
+        <button
+          mat-raised-button
+          (click)="actualizar()"
+          color="primary"
+          class="text-button-greenFinal"
+          *ngIf="idContact !== 0"
+          style="
+            position: absolute;
+            margin-top: -42px;
+            margin-left: 2%;
+            width: 25% !important;
+            height: 50px !important;
+            --mat-protected-button-ripple-color: rgb(4 77 27) !important;
+          "
+        >
+          Actualizar
         </button>
       </div>
     </div>

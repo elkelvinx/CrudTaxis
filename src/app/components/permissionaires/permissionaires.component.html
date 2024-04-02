@@ -131,8 +131,7 @@
             [text]="'Colonia'"
             [info]="permissionaire.settlementS"
             [arrays]="settlementName"
-            (data)="guardarDireccion($event)"
-            *ngIf="isLoadedSt"
+            (data)="guardarDireccion($event)"            
             className="brand"
             style="width: 48%"
           ></app-auto-complete>
@@ -155,8 +154,7 @@
             [text]="'Calle principal'"
             [info]="permissionaire.street1"
             [arrays]="streetName"
-            (data)="guardarStreet($event, 1)"
-            *ngIf="isLoadedSt"
+            (data)="guardarStreet($event, 1)"            
             className="brand"
             style="width: 35%"
           ></app-auto-complete>
@@ -165,8 +163,7 @@
             [text]="'Entre la calle'"
             [info]="permissionaire.street2"
             [arrays]="streetName"
-            (data)="guardarStreet($event, 2)"
-            *ngIf="isLoadedSt"
+            (data)="guardarStreet($event, 2)"            
             className="brand"
             style="width: 30%"
           ></app-auto-complete>
@@ -175,8 +172,7 @@
             [text]="'y la Calle'"
             [info]="permissionaire.street3"
             [arrays]="streetName"
-            (data)="guardarStreet($event, 3)"
-            *ngIf="isLoadedSt"
+            (data)="guardarStreet($event, 3)"            
             className="brand"
             style="width: 30%"
           ></app-auto-complete>
@@ -254,7 +250,7 @@
             flex-wrap: wrap;
             justify-content: flex-start;
             align-items: center;
-            margin-top: 9px;
+            margin-top: 40px;
             margin-left: 4%;
           "
         >
@@ -309,7 +305,6 @@
           [config]="tableConfig"
           (select)="onSelect($event)"
           (action)="onTableAction($event)"
-          *ngIf="loadT"
         ></app-table>
       </div>
     </div>

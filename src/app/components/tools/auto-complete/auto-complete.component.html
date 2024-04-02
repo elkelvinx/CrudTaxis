@@ -10,6 +10,7 @@
       [formControl]="myControl"
       [matAutocomplete]="auto"
       [value]="info"
+      (focus)="actualizeOptions()"
       (ngModelChange)="changeName()"
       class="{{ className }}"
     />

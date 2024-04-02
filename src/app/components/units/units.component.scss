@@ -2,15 +2,8 @@
 @use "@angular/material" as mat;
 @import "../../../custom.scss";
 
-.tabla-dataPRUEBA {
-  /*display*/
-  position: relative;
-  width: 100%;
-  margin-top: 2px;
-  // background-color: #0d9e12!important;
-  /*
-    height: 500px;
-    margin-left: 60%;*/
+td.mat-cell {
+  color: var(--errorTabla);
 }
 .tabla-data {
   width: fit-content;
@@ -85,10 +78,6 @@
   color: rgb(1, 1, 1);
 }
 .buttons-actionDelete {
-  // position: absolute;
-
-  // margin-left: 70%;
-  // margin-right: 1%;
   margin-top: -63px;
 }
 
@@ -150,4 +139,12 @@
     padding: 0%;
     margin-right: 1%;
   }
+}
+
+.mdc-data-table__table {
+  color: var(--errorTabla)!important;
+}
+td.mat-cell {
+  background-color: #0b2645a6;
+  color: var(--errorTabla);
 }

@@ -98,7 +98,6 @@ export class carAutoCompleteComponent {
 
   changeModel() {
     if (this.number.bool == true) {
-      // debugger
       this.arrays2 = this.number.models
         .filter(model => model.idBrand === this.number.selectedBrandId)
         .map(filteredModel => filteredModel.name);

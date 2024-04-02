@@ -14,28 +14,6 @@ import { AppService } from '../../services/services-app.service';
   styleUrl: './permissionaires.component.css'
 })
 export class PermissionairesComponent {
-
-  // public permissionaire : any = {
-  //   id: 0,
-  //   name: null,
-  //   lm1: null,
-  //   lm2: null,
-  //   birth: null,
-  //   phone: null,
-  //   st1:0,
-  //   st2:0,
-  //   st3:0,
-  //   settlement:0,
-  //   extNumber:0,
-  //   registerD: null,
-  //   lastModDate: null,
-  //   street1: null,
-  //   street2: null,
-  //   street3: null,
-  //   settlementS: null,   
-  //    fecha : new Date()
-  // };
-
   public permissionaire = new permissionaire();
   tableColumns: TableColumn[] = [];
   public settlements: any[] = [];
@@ -44,9 +22,6 @@ export class PermissionairesComponent {
   public settlementName: any[] = [];
   public streetName: any[] = [];
 
-  public isLoadedSt: boolean = false;
-  public isLoaded2: boolean = false;
-  public loadT: boolean = false;
   public ActSave: boolean = true;
   tableConfig: TableConfig = {
     isSelectable: false,
@@ -88,11 +63,8 @@ export class PermissionairesComponent {
     this.servicioPermission.consultarPermissionId(idPermission).subscribe(
       (data: any) => {
         this.permissionaire = data;
-        // this.consultarPermissions();
         this.consultarSettleName();
         this.consultarStreetName();
-        this.isLoadedSt = true;
-        debugger;
         if (this.permissionaire.id !== 0)
           this.ActSave = false;
         else {
@@ -111,7 +83,6 @@ export class PermissionairesComponent {
     this.servicioPermission.consultarPermissions().subscribe(
       (data: any[]) => {
         this.listPermissionaire = data;
-        this.loadT = true;
       },
       error => {
         console.log(error);
@@ -195,12 +166,6 @@ export class PermissionairesComponent {
       (data: any[]) => {
         this.settlements = data;
         this.settlementName = this.settlements.map(settlement => settlement.name);
-        if (this.permissionaire.settlementS == null) {
-          this.isLoadedSt = false;
-        }
-        else {
-          //aqui deberia hacer algo jasjasjs
-        }
       },
       error => {
         console.log(error);
@@ -213,12 +178,6 @@ export class PermissionairesComponent {
       (data: any[]) => {
         this.streets = data;
         this.streetName = this.streets.map(streets => streets.name);
-        if (this.permissionaire.street1 == null) {
-          this.isLoadedSt = true;
-        }
-        else {
-          console.log('PEDRO PICAPIEDRA')
-        }
       },
       error => {
         console.log(error);

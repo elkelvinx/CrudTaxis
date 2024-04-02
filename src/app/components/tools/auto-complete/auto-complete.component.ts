@@ -46,12 +46,19 @@ export class AutoCompleteComponent {
     // console.log(this.filteredOptions.forEach(element => { console.log(element) }) + " hola");
   }
 
+  actualizeOptions() {
+    this.filteredOptions = this.myControl.valueChanges.pipe(
+      debounceTime(200),
+      startWith(''),
+      map(value => this._filter(value || '')),
+    );
+  }
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
     return this.arrays.filter(option => option.toLowerCase().includes(filterValue));
   }
   changeName() {
-    // debugger;
+
     console.log(this.filteredOptions + " " + this.myControl.value)
     this.data.emit(this.myControl.value);
   }

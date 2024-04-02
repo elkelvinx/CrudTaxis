@@ -19,7 +19,12 @@ body {
 main {
   padding: 2px;
 }
-
+td.mat-cell {
+  background-color: #293341;
+  color: rgb(255 117 117);
+  font-size: large;
+  padding: 8px;
+}
 /* header {
   /*Modificado de 80 a 50*/
 /*agregue el margin left a -10*
@@ -203,10 +208,55 @@ button {
   --mat-outlined-button-state-layer-color: #f70909bd;
   --mat-outlined-button-ripple-color: rgb(255, 0, 0) !important;
   --mat-text-button-state-layer-color: #ff0000 !important;
+  --mdc-outlined-button-outline-color: rgb(10 137 247) !important;
   text-shadow: -2px 3px 8px #000;
   color: #fc2900 !important;
 }
+/* app-yes-no-dialog {
+  width: 11% !important;
+  margin-top: 15px !important;
+} */
+button.text-button-redFinal.mdc-button.mdc-button--raised.mat-mdc-raised-button.mat-primary.mat-mdc-button-base {
+  height: 46px !important;
+  margin-top: -39px !important;
+}
 
+.text-button-redFinal {
+  --mdc-protected-button-label-text-color: #9e0d0d !important;
+  --mdc-protected-button-outline-color: rgba(0, 255, 81, 0) !important;
+  --mat-protected-button-state-layer-color: #f70909bd !important;
+  --mat-protected-button-ripple-color: rgb(157 4 4) !important;
+  --mat-text-button-state-layer-color: #e36f6f !important;
+  --mdc-protected-button-outline-color: rgb(10 137 247) !important;
+  /* text-shadow: -2px 3px 8px #000; */
+  color: #ffffff !important;
+  --mdc-protected-button-container-color: #b3041e !important;
+  border-radius: 10px !important;
+  --mat-protected-button-hover-state-layer-opacity: 0.68 !important;
+  --mat-protected-button-focus-state-layer-opacity: 0.24 !important;
+  --mat-protected-button-pressed-state-layer-opacity: 0.24 !important;
+  margin-top: -44px;
+  margin-left: 31%;
+  width: 200% !important;
+  box-shadow: -8px 10px 7px -1px rgba(0, 0, 0, 0.2),
+    0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12) !important;
+}
+
+.text-button-greenFinal {
+  --mdc-protected-button-container-color: #3e673f !important;
+  --mdc-protected-button-outline-color: rgba(0, 255, 81, 0) !important;
+  --mat-protected-button-state-layer-color: #09f711bd !important;
+  /* --mat-protected-button-ripple-color: rgb(4 77 27) !important; */
+  --mat-protected-button-ripple-color: rgb(157 4 4) !important;
+  --mdc-protected-button-shadow: 0 0 0 0 rgba(0, 0, 0, 0) !important;
+  --mat-protected-button-ripple-color: rgba(15, 241, 11, 0) !important;
+  --mdc-protected-button-container-shadow-color: #e3dd06 !important ;
+  border-radius: 10px !important;
+  box-shadow: 3px 3px 4px -2px rgba(0, 0, 0, 0.2),
+    0px 2px 2px 0px rgb(32 61 10 / 79%), 3px 4px 12px 0px rgb(1 9 5 / 34%) !important;
+  --mdc-protected-button-container-color: #017d05eb !important;
+  --mat-protected-button-hover-state-layer-opacity: 0.28 !important;
+}
 .text-button-green {
   --mdc-outlined-button-label-text-color: #0d9e12;
   --mdc-outlined-button-outline-color: rgba(0, 255, 81, 0) !important;
@@ -214,6 +264,11 @@ button {
   --mat-outlined-button-ripple-color: rgb(4 243 12);
   text-shadow: -2px 3px 5px #000;
   color: #0db813 !important;
+}
+td.mat-mdc-cell.mdc-data-table__cell.cdk-cell.cdk-column-actions.mat-column-actions.ng-star-inserted {
+  padding-right: 19px !important;
+  padding-left: 3px !important;
+  background-color: rgba(62, 60, 60, 0.475);
 }
 /* 
     con esto se modifica cosas de el autocomplete
@@ -236,6 +291,14 @@ button {
   margin-bottom: 10px;
   margin-left: 1px;
   margin: -5px;
+}
+/*Css de el Contact dialog*/
+.mat-mdc-dialog-container .mdc-dialog__surface {
+  border-radius: 4% !important;
+  width: 100% !important;
+}
+.cdk-overlay-pane {
+  max-width: 40vw !important;
 }
 
 .brand .mat-mdc-text-field-wrapper,
@@ -268,38 +331,11 @@ button {
   border: 1px solid #ccc;
   border-radius: 4px;
 }
-.mat-mdc-dialog-container .mdc-dialog__surface {
-  border-radius: 4% !important;
-  width: 70% !important;
-}
 .mat-mdc-button {
   --mdc-text-button-label-text-size: 19px !important;
   font-size: var(--mdc-text-button-label-text-size);
 }
-input[data-style^="inputStreetName"] {
-  border-radius: 10px;
-  border-style: groove;
-  margin-left: 70px;
-  position: absolute;
-  width: 78%;
-}
-input[data-style^="stid"] {
-  width: 70px;
-  border-radius: 10px;
-  border-style: groove;
-}
-button[data-style^="buscarBtn"] {
-  border-radius: 10px;
-  border-style: groove;
-  margin-top: 25px;
-  margin-left: 30px;
-  position: absolute;
-  width: 150px;
-}
 
-input[data-style^="idPrincipal"] {
-  width: 100px;
-}
 input {
   border-radius: 10px;
   border-style: groove;
@@ -309,6 +345,7 @@ div.mat-mdc-autocomplete-panel {
   box-shadow: -4px 3px 11px 1px rgba(0, 0, 0, 0.2),
     0px 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12);
 }
+
 :root {
   /* error en el input sin actividad*/
   --mdc-filled-text-field-error-label-text-color: #ea9696;

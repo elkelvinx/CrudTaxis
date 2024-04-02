@@ -88,7 +88,21 @@ export class AppService {
   }
   // esto es para units
   public consultarAdminsName(): Observable<any[]> {
-    let id: number = 3;
+    let id: string = "adminName";
+    let controller = "DataArray";
+    let params = new HttpParams().set("val", id);
+    let Headers = new HttpHeaders().set("Accept", "aplication/json");
+    return this.Http.get<any[]>(
+      `${this.urlApi}${encodeURIComponent(controller)}`,
+      {
+        headers: Headers,
+        params: params,
+        responseType: 'json'
+      }
+    );
+  }
+  public consultarStatus(): Observable<any[]> {
+    let id: string = "status";
     let controller = "DataArray";
     let params = new HttpParams().set("val", id);
     let Headers = new HttpHeaders().set("Accept", "aplication/json");
@@ -102,7 +116,7 @@ export class AppService {
     );
   }
   public consultarModelsName(): Observable<any[]> {
-    let id: number = 2;
+    let id: string = "modelCar";
     let controller = "DataArray";
     let params = new HttpParams().set("val", id);
     let Headers = new HttpHeaders().set("Accept", "aplication/json");
@@ -116,7 +130,7 @@ export class AppService {
     );
   }
   public consultarBrandsName(): Observable<any[]> {
-    let id: number = 1;
+    let id: string = "brandCar";
     let controller = "DataArray";
     let params = new HttpParams().set("val", id);
     let Headers = new HttpHeaders().set("Accept", "aplication/json");
