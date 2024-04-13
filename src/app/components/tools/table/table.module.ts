@@ -8,11 +8,21 @@ import { ColumnValuePipe } from '../../../pipes/column-value.pipe';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { YesNoDialogComponent } from '../yes-no-dialog/yes-no-dialog.component';
 import { MatIconModule } from '@angular/material/icon';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 
 @NgModule({
   declarations: [TableComponent, ColumnValuePipe],
-  imports: [CommonModule, MatTableModule, MatFormFieldModule, MatInputModule, MatCheckboxModule, YesNoDialogComponent, MatIconModule],
+  imports: [
+    CommonModule,
+    MatTableModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatCheckboxModule,
+    YesNoDialogComponent,
+    MatIconModule,
+    MatPaginatorModule
+  ],
   exports: [TableComponent],
 })
 export class TableModule { }

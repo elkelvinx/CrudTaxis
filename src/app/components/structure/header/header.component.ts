@@ -9,7 +9,9 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent {
   selectedOption: string = 'home';
-
+  isMenuOpen = false;
+  menuWidth = '70px'; // Ancho inicial
+  headerWidth = '98%'; // Ancho inicial
   constructor(private router: Router) { }
 
   isActive(path: string): boolean {
@@ -17,5 +19,11 @@ export class HeaderComponent {
     return currentRoute.startsWith(path);
   }
 
+
+
+  toggleMenu() {
+    this.menuWidth = '270px'; // Cambia el ancho al hacer clic
+    this.headerWidth = '90%'
+  }
 
 }

@@ -65,7 +65,6 @@ export class TableComponent implements OnInit, AfterViewInit {
     if (this.tableConfig.showActions) {
       this.tableDisplayColumns.push('actions');
     }
-    // debugger;
   }
 
   /** Whether the number of selected elements matches the total number of rows. */

@@ -1,7 +1,7 @@
 header {
   /*Modificado de 80 a 50*/
-  /*agregue el margin left a -10*/
-  width: 120%;
+  /*height 50px o 8%*/
+  width: 98%;
   height: 50px;
   background: #1b1e18d6;
   display: flex;
@@ -68,4 +68,39 @@ a.selected {
   position: absolute;
   top: 10%;
   left: -30px;
+}
+.mat-icon{
+  border: 1px solid #ccc0!important;
+  margin-left: -9px;
+  scale: 1.14;
+  width: 26px;
+  box-shadow: none!important;
+  
+}
+.collapsible:before, .collapsible:before {
+  content: "";
+  /* margin-left: 370px; */
+}
+.logo{
+  margin-top: 7px;
+  scale: 1.2 !important;
+}
+
+
+/*  */
+.body_move {
+  margin-left: 250px;
+}
+.body{
+  transition: margin-left 300ms cubic-bezier(0.785, 0.135, 0.15, 0.86);
+}
+@media screen and (max-width: 760px) {
+  .body_move {
+    margin-left: 0px;
+  }
+
+  .menu__side_move {
+    width: 80px;
+    left: -80px;
+  }
 }

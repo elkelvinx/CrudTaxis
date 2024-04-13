@@ -13,6 +13,7 @@ import { HomeComponent } from './components/structure/home/home.component';
 import { ErrorComponent } from './components/structure/error/error.component';
 import { FooterComponent } from './components/structure/footer/footer.component';
 import { YesNoDialogComponent } from './components/tools/yes-no-dialog/yes-no-dialog.component';
+import { SinistersComponent } from './components/sinisters/sinisters.component';
 import { TableComponent } from './components/tools/table/table.component';
 
 import { DatePipe } from '@angular/common';
@@ -38,8 +39,9 @@ import { ContactDialogComponent } from './components/tools/contact-dialog/contac
 import { CommonModule } from '@angular/common';
 import { TableModule } from './components/tools/table/table.module';
 import { MatIconModule } from '@angular/material/icon';
-import { AccordionComponent } from './components/tools/accordion/accordion.component';
 import { carAutoCompleteComponent } from './components/tools/car_auto-complete/car-auto-complete.component';
+import { DocumentsPDFComponent } from './components/documents-pdf/documents-pdf.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,6 +54,8 @@ import { carAutoCompleteComponent } from './components/tools/car_auto-complete/c
     FooterComponent,
     UnitsComponent,
     ContactDialogComponent,
+    SinistersComponent,
+    DocumentsPDFComponent,
 
 
   ],

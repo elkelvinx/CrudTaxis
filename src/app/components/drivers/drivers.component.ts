@@ -5,11 +5,10 @@ import { AppComponent } from '../../app.component';
 import { driver } from '../../models/driver';
 import { TableColumnsStructure } from '../../models/driver';
 import { AppService } from '../../services/services-app.service';
-import { YesNoDialogComponent } from '../tools/yes-no-dialog/yes-no-dialog.component';
 import { TableConfig } from '../tools/table/models/table-config';
-import { TableColumn } from '../tools/table/models/table-column';
 import { TABLE_ACTION } from '../tools/table/enums/action.enum';
 import { TableAction } from '../tools/table/models/table-actions';
+
 
 @Component({
   selector: 'app-drivers',
@@ -35,7 +34,7 @@ export class DriversComponent implements OnInit {
 
   tableConfig: TableConfig = {
     isSelectable: false,
-    isPaginable: false,
+    isPaginable: true,
     showActions: true,
     showFilter: true,
   };
@@ -54,9 +53,6 @@ export class DriversComponent implements OnInit {
 
   onDelete(object: driver) {
     this.eliminarDialog(object.id);
-  }
-  onSelect(data: any) {
-    console.log(data);
   }
   onTableAction(tableAction: TableAction) {
     switch (tableAction.action) {

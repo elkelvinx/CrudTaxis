@@ -25,7 +25,7 @@ export class PermissionairesComponent {
   public ActSave: boolean = true;
   tableConfig: TableConfig = {
     isSelectable: false,
-    isPaginable: false,
+    isPaginable: true,
     showActions: true,
     showFilter: true,
   };

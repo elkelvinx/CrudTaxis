@@ -7,6 +7,8 @@ import { DriversComponent } from './components/drivers/drivers.component';
 import { AdminsComponent } from './components/admins/admins.component';
 import { PermissionairesComponent } from './components/permissionaires/permissionaires.component';
 import { UnitsComponent } from './components/units/units.component';
+import { SinistersComponent } from './components/sinisters/sinisters.component';
+import { DocumentsPDFComponent } from './components/documents-pdf/documents-pdf.component';
 
 const routes: Routes = [
   //la ruta base cuando inicia la aplicacion
@@ -16,6 +18,8 @@ const routes: Routes = [
   { path: 'admins', component: AdminsComponent },
   { path: 'permission', component: PermissionairesComponent },
   { path: 'units', component: UnitsComponent },
+  { path: 'sinisters', component: SinistersComponent },
+  { path: 'documents', component: DocumentsPDFComponent },
   //ruta para cuando no se encuentre la url
   { path: '**', component: ErrorComponent }
 

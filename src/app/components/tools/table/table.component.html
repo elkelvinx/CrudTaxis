@@ -65,16 +65,16 @@
 
   <tr class="mat-row" *matNoDataRow>
     <td class="mat-cell" [colSpan]="tableDisplayColumns.length">
-      No hay informacion que coincida con el dato "{{ currentFilterValue }}"
+      No hay informacion que coincida con el dato <strong><em>"{{ currentFilterValue }}"</em></strong>
     </td>
   </tr>
 </table>
 
-<!-- <ng-container *ngIf="tableConfig?.isPaginable">
+<ng-container *ngIf="tableConfig?.isPaginable">
   <mat-paginator
-    [pageSizeOptions]="[5, 10, 20]"
+    [pageSizeOptions]="[10, 11, 15]"
     showFirstLastButtons
-    aria-label="Select page of periodic elements"
+    aria-label="Selecciona uno de estos datos"
   >
   </mat-paginator>
-</ng-container> -->
+</ng-container>
