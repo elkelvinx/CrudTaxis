@@ -86,7 +86,6 @@ export class DriversComponent implements OnInit {
         console.log(error);
       }
     )
-
   }
   consultarStreetName() {
     this.servicioApp.consultarStreetName('n').subscribe(
@@ -187,8 +186,6 @@ export class DriversComponent implements OnInit {
     )
   }
   public actualizar() {
-
-
     this.serviciosDriver.Actualizar(this.Driver).subscribe(
       (data) => {
         console.log("Actualizado correctamente" + data)

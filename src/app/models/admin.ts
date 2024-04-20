@@ -28,23 +28,21 @@ export class TableColumnsStructure {
       { label: 'Apellido paterno', def: 'lm1', dataKey: 'lm1' },
       { label: 'Apellido materno', def: 'lm2', dataKey: 'lm2' },
       { label: 'Numero de telefono', def: 'phone', dataKey: 'phone' },
-      { label: 'Administrador', def: 'adminName', dataKey: 'adminName' },
-      { label: 'Vencimiento licencia', def: 'licenseEx', dataKey: 'licenseEx', dataType: 'date', formatt: 'dd MMM yyyy' },
-      { label: 'Fecha nacimiento', def: 'birth', dataKey: 'birth', dataType: 'date', formatt: 'dd MMM yyyy' },
-      { label: 'Fecha de ingreso', def: 'hireDate', dataKey: 'hireDate', dataType: 'date', formatt: 'dd MMM yyyy' },
-      { label: 'Colonia', def: 'settlementS', dataKey: 'settlementS' },
-      { label: 'Calle', def: 'street1', dataKey: 'street1' },
-      { label: 'Pago ingreso', def: 'ingressPay', dataKey: 'ingressPay' },
-  ];
+      { label: 'Correo Electronico', def: 'mail', dataKey: 'mail' },
+      { label: 'Numero Exterior', def: 'extNumber', dataKey: 'extNumber' },
+      { label: 'Fecha de registro', def: 'registerD', dataKey: 'registerD', dataType: 'date', formatt: 'dd MMM yyyy' },
+    ]
   static tableColumnsCase2: TableColumn[] = [
-      { label: 'Nombres', def: 'name', dataKey: 'name' },
-      { label: 'Apellido paterno', def: 'lm1', dataKey: 'lm1' },
-      { label: 'Apellido materno', def: 'lm2', dataKey: 'lm2' },
-      { label: 'Numero de telefono', def: 'phone', dataKey: 'phone' },
-      { label: 'Administrador', def: 'adminName', dataKey: 'adminName' },
-      { label: 'Vencimiento licencia', def: 'licenseEx', dataKey: 'licenseEx', dataType: 'date', formatt: 'dd MMM yyyy' },
-      { label: 'Fecha de ingreso', def: 'hireDate', dataKey: 'hireDate', dataType: 'date', formatt: 'dd MMM yyyy' },
-      { label: 'Colonia', def: 'settlementS', dataKey: 'settlementS' },
+    { label: 'Nombres', def: 'name', dataKey: 'name' },
+    { label: 'Apellido paterno', def: 'lm1', dataKey: 'lm1' },
+    { label: 'Apellido materno', def: 'lm2', dataKey: 'lm2' },
+    { label: 'Numero de telefono', def: 'phone', dataKey: 'phone' },
+    { label: 'Correo Electronico', def: 'mail', dataKey: 'mail' },
+    { label: 'Colonia', def: 'settlementS', dataKey: 'settlementS' },
+    { label: 'Calle', def: 'street1', dataKey: 'street1' },
+    { label: 'Numero Exterior', def: 'extNumber', dataKey: 'extNumber' },
+    { label: 'Fecha nacimiento', def: 'birthDate', dataKey: 'birthDate', dataType: 'date', formatt: 'dd MMM yyyy' },
+    { label: 'Fecha de registro', def: 'registerD', dataKey: 'registerD', dataType: 'date', formatt: 'dd MMM yyyy' },
   ];
   columns: TableColumn[];
   constructor(numberOfColumns: number = 1) {
@@ -57,3 +55,4 @@ export class TableColumnsStructure {
       }
   }
 }
+

@@ -44,7 +44,7 @@
       "
     >
       Unidades automovilisticas
-      <mat-icon (click)="consultarSinister(0)" class="button-search"
+      <mat-icon (click)="formatearInput()" class="button-search"
         >add_circle_outline</mat-icon
       >
     </div>
@@ -74,13 +74,15 @@
           [text]="'Aseguradora'"
           [info]="sinister.insuranceS"
           (data)="sinister.insuranceS = $event"
+          [arrays]="insuranceName"
           className="brand"
           style="width: 30%"
         ></app-auto-complete>
         <app-auto-complete
           [text]="'tipo de seguro'"
-          [info]="sinister.typeInsuranceS"
-          (data)="sinister.typeInsuranceS = $event"
+          [info]="sinister.typeInsurance"
+          (data)="sinister.typeInsurance = $event"
+          [arrays]="arrays.typeInsurance"
           className="brand"
           style="width: 41%"
         ></app-auto-complete>
@@ -99,18 +101,18 @@
         "
       >
         <app-auto-complete
-          [text]="'Mecanico'"
-          [info]="sinister.workShop"
-          (data)="sinister.workShop = $event"
-          className="brand"
-          style="width: 40%"
-        ></app-auto-complete>
-        <app-auto-complete
           [text]="'Nombre del otro afectado'"
           [info]="sinister.crashCounterPart"
           (data)="sinister.crashCounterPart = $event"
           className="brand"
-          style="width: 57%"
+          style="width: 56.2%"
+        ></app-auto-complete>
+        <app-auto-complete
+          [text]="'Mecanico'"
+          [info]="sinister.workShop"
+          (data)="sinister.workShop = $event"
+          className="brand"
+          style="width: 40.6%"
         ></app-auto-complete>
       </div>
       <div
@@ -140,69 +142,9 @@
           className="brand"
           [text]="'Conductor'"
           [info]="sinister.driverS"
-          [arrays]="adminsName"
+          [arrays]="driverName"
           className="brand"
           style="width: 49%"
-        ></app-auto-complete>
-      </div>
-
-      <div
-        class="renglon1"
-        style="
-          display: flex;
-          flex-direction: row;
-          gap: 10px;
-          align-items: center;
-          justify-content: flex-start;
-          margin-left: 1%;
-          width: 100%;
-          flex-wrap: wrap;
-        "
-      >
-        <app-auto-complete
-          className="brand"
-          [text]="'Conductor o Administrador'"
-          [info]="sinister.personInvolvedS"
-          [arrays]="arrays.personInvolvedName"
-          className="brand"
-          style="width: 32%"
-        ></app-auto-complete>
-        <app-auto-complete
-          className="brand"
-          [text]="'Aplicacion de seguro'"
-          [info]="sinister.insuranceAplicationS"
-          [arrays]="arrays.insuranceAplication"
-          className="brand"
-          style="width: 27%"
-        ></app-auto-complete>
-        <app-auto-complete
-          className="brand"
-          [text]="'Ganado o Perdido'"
-          [info]="sinister.winOrLoseS"
-          [arrays]="arrays.winOrLose"
-          className="brand"
-          style="width: 37%"
-        ></app-auto-complete>
-      </div>
-      <div
-        class="renglon2"
-        style="
-          display: flex;
-          flex-direction: row;
-          gap: 10px;
-          align-items: center;
-          justify-content: flex-start;
-          margin-left: 1%;
-          width: 100%;
-          flex-wrap: wrap;
-        "
-      >
-        <app-auto-complete
-          [text]="'Observaciones del choque'"
-          [info]="sinister.OBS"
-          (data)="sinister.OBS = $event"
-          className="brand"
-          style="width: 98.6%"
         ></app-auto-complete>
       </div>
       <div
@@ -223,6 +165,7 @@
           [text]="'Tipo de siniestro'"
           [info]="sinister.typeSinisterS"
           (data)="sinister.typeSinister = $event"
+          [arrays]="typeSinisterName"
           className="brand"
           style="width: 60%"
         ></app-auto-complete>
@@ -273,7 +216,46 @@
           [arrays]="streetName"
           (data)="guardarStreet($event, 3)"
           className="brand"
+          style="width: 30.9%"
+        ></app-auto-complete>
+      </div>
+
+      <div
+        class="renglon1"
+        style="
+          display: flex;
+          flex-direction: row;
+          gap: 10px;
+          align-items: center;
+          justify-content: flex-start;
+          margin-left: 1%;
+          width: 100%;
+          flex-wrap: wrap;
+        "
+      >
+        <app-auto-complete
+          className="brand"
+          [text]="'Ganado o Perdido'"
+          [info]="sinister.winOrLooseS"
+          [arrays]="arrays.winOrLoose"
+          className="brand"
+          style="width: 35%"
+        ></app-auto-complete>
+        <app-auto-complete
+          className="brand"
+          [text]="'Aplicacion de seguro'"
+          [info]="sinister.insuranceAplicationS"
+          [arrays]="arrays.insuranceAplication"
+          className="brand"
           style="width: 30%"
+        ></app-auto-complete>
+        <app-auto-complete
+          className="brand"
+          [text]="'Conductor o Administrador'"
+          [info]="sinister.personInvolvedS"
+          [arrays]="arrays.personInvolvedName"
+          className="brand"
+          style="width: 30.9%"
         ></app-auto-complete>
       </div>
       <div
@@ -288,14 +270,36 @@
           width: 100%;
           flex-wrap: wrap;
         "
+      ></div>
+      <div
+        class="renglon2"
+        style="
+          display: flex;
+          flex-direction: row;
+          gap: 10px;
+          align-items: center;
+          justify-content: flex-start;
+          margin-left: 1%;
+          width: 100%;
+          flex-wrap: wrap;
+        "
       >
         <app-datepicker-date
-          [isDisabled]="true"
+          [isDisabled]="false"
           [actualDate]="sinister.dateEvent"
           (date)="sinister.dateEvent = $event"
           [text]="'Vencimiento de seguro'"
-          style="width: 97%"
+          style="width: 98.4%"
         ></app-datepicker-date>
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Observaciones del choque</mat-label>
+          <textarea
+            matInput
+            [(ngModel)]="sinister.observations"
+            placeholder="Ex. It makes me feel..."
+          ></textarea>
+        </mat-form-field>
       </div>
     </div>
     <div
@@ -310,7 +314,7 @@
     >
       <br />
       <mat-divider
-        style="margin-left: 1%; width: 98%; margin-top: -5.2%"
+        style="margin-left: 1%; width: 98%; margin-top: -3%"
       ></mat-divider>
       <mat-card-actions
         align="start"
@@ -332,31 +336,43 @@
         ></app-yes-no-dialog>
         <br />
       </mat-card-actions>
+
       <mat-card-actions align="end" class="buttons-actionDelete">
         <button
-          mat-button
+          mat-raised-button
           (click)="grabar()"
           *ngIf="ActSave"
           color="primary"
-          class="text-button-green"
-          style="position: absolute; margin-top: -51px; margin-left: 30%"
+          class="text-button-greenFinal"
+          style="
+            position: absolute;
+            margin-top: -55px;
+            margin-left: 26%;
+            width: 10% !important;
+            height: 46px !important;
+            --mat-protected-button-ripple-color: rgb(7 101 37) !important;
+          "
         >
           Guardar
         </button>
-
         <button
-          mat-button
+          mat-raised-button
           color="primary"
           (click)="actualizar()"
           *ngIf="!ActSave"
-          class="text-button-green"
-          style="position: absolute; margin-top: -51px; margin-left: 30%"
+          class="text-button-greenFinal"
+          style="
+            position: absolute;
+            margin-top: -54px;
+            margin-left: 26%;
+            width: 10%;
+            height: 46px !important;
+            --mat-protected-button-ripple-color: rgb(7 101 37) !important;
+          "
         >
           Actualizar
-        </button>
-        <br />
-        <br /> </mat-card-actions
-      >-->
+        </button></mat-card-actions
+      >
     </div>
   </div>
   <div
@@ -370,13 +386,12 @@
     "
   >
     <div class="tabla-dataPRUEBA">
-      <!-- <app-table
-        [data]="listUnits"
-        [columns]="tableColumns"
+      <app-table
+        [data]="listSinisters"
+        [columns]="tableColumns.columns"
         [config]="tableConfig"
-        (select)="onSelect($event)"
         (action)="onTableAction($event)"
-      ></app-table> -->
+      ></app-table>
     </div>
   </div>
 </div>

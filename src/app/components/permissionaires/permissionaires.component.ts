@@ -54,7 +54,6 @@ export class PermissionairesComponent {
     this.consultarPermissions();
     this.setTableColumns()
   }
-  //LastModD se obtiene automaticamente en el backend
 
   searchPermission() {
     this.consultarPermission(this.permissionaire.id);
@@ -79,7 +78,6 @@ export class PermissionairesComponent {
     )
   }
   consultarPermissions() {
-
     this.servicioPermission.consultarPermissions().subscribe(
       (data: any[]) => {
         this.listPermissionaire = data;
@@ -217,5 +215,3 @@ export class PermissionairesComponent {
 
   }
 }
-
-

@@ -40,32 +40,9 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.consultarSettlements();
     // this.consultarStreets();
-    this.consultarAdmins();
   }
 
-  consultarSettlements() {
-    this.servicioApp.consultarSettlements().subscribe(
-      (data: any[]) => {
-        this.listSettlement = data;
-      },
-      error => {
-        console.log(error);
-      }
-    )
-  }
-  consultarAdmins() {
-    this.servicioApp.consultarAdmins().subscribe(
-      (data: any[]) => {
-        this.listAdmin = data;
-        // console.log(this.listAdmin);
-      },
-      error => {
-        console.log(error);
-      }
-    )
-  }
   formatBirth(fecha: Date): string {
     let fechaString = formatDate(fecha, 'yyyy-MM-dd', 'en-US');
 

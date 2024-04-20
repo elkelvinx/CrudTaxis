@@ -307,7 +307,7 @@
       <div class="tabla-dataPRUEBA">
         <app-table
           [data]="listAdmin"
-          [columns]="tableColumns"
+          [columns]="tableColumns.columns"
           [config]="tableConfig"
           (select)="onSelect($event)"
           (action)="onTableAction($event)"          

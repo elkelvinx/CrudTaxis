@@ -238,8 +238,8 @@ button.text-button-redFinal.mdc-button.mdc-button--raised.mat-mdc-raised-button.
   margin-top: -44px;
   margin-left: 31%;
   width: 200% !important;
-  box-shadow: -8px 10px 7px -1px rgba(0, 0, 0, 0.2),
-    0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12) !important;
+  box-shadow: -1px 12px 9px 1px rgba(0, 0, 0, 0.2),
+    0px 2px 2px 0px rgb(32 61 10 / 79%), 3px 4px 12px 0px rgb(1 9 5 / 34%) !important;
 }
 
 .text-button-greenFinal {
@@ -252,7 +252,7 @@ button.text-button-redFinal.mdc-button.mdc-button--raised.mat-mdc-raised-button.
   --mat-protected-button-ripple-color: rgba(15, 241, 11, 0) !important;
   --mdc-protected-button-container-shadow-color: #e3dd06 !important ;
   border-radius: 10px !important;
-  box-shadow: 3px 3px 4px -2px rgba(0, 0, 0, 0.2),
+  box-shadow: 0px 9px 19px 1px rgba(0, 0, 0, 0.2),
     0px 2px 2px 0px rgb(32 61 10 / 79%), 3px 4px 12px 0px rgb(1 9 5 / 34%) !important;
   --mdc-protected-button-container-color: #017d05eb !important;
   --mat-protected-button-hover-state-layer-opacity: 0.28 !important;
@@ -369,4 +369,6 @@ div.mat-mdc-autocomplete-panel {
   /*icono*/
   --mat-option-selected-state-label-text-color: #51c155;
   --mat-minimal-pseudo-checkbox-selected-checkmark-color: #40a744;
+  /* datePiecker */
+  --mat-datepicker-calendar-date-selected-state-background-color: #2ac72f;
 }

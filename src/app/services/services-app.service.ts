@@ -2,7 +2,7 @@
 
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
@@ -13,32 +13,19 @@ export class AppService {
   constructor(private Http: HttpClient) { }
 
   //metodo para consultar todas las colonias
-  public consultarSettlements(): Observable<any[]> {
-    //se crean las variables para poder recibir la info del servidor
-    let controller = "Settlement";
-    let Headers = new HttpHeaders().set("Accept", "aplication/json");
-    //esta la URL de la api, ademas que su headers y el tipo de respuesta
-    return this.Http.get<any[]>(
-      `${this.urlApi}${encodeURIComponent(controller)}`,
-      {
-        headers: Headers,
-        responseType: 'json'
-      }
-    );
-  }
-
-
-  public consultarAdmins(): Observable<any[]> {
-    let controller = "Admin";
-    let Headers = new HttpHeaders().set("Accept", "aplication/json");
-    return this.Http.get<any[]>(
-      `${this.urlApi}${encodeURIComponent(controller)}`,
-      {
-        headers: Headers,
-        responseType: 'json'
-      }
-    );
-  }
+  // public consultarSettlements(): Observable<any[]> {
+  //   //se crean las variables para poder recibir la info del servidor
+  //   let controller = "Settlement";
+  //   let Headers = new HttpHeaders().set("Accept", "aplication/json");
+  //   //esta la URL de la api, ademas que su headers y el tipo de respuesta
+  //   return this.Http.get<any[]>(
+  //     `${this.urlApi}${encodeURIComponent(controller)}`,
+  //     {
+  //       headers: Headers,
+  //       responseType: 'json'
+  //     }
+  //   );
+  // }
 
 
   public consultarSettlementName(id: string): Observable<any[]> {
@@ -89,6 +76,48 @@ export class AppService {
   // esto es para units
   public consultarAdminsName(): Observable<any[]> {
     let id: string = "adminName";
+    let controller = "DataArray";
+    let params = new HttpParams().set("val", id);
+    let Headers = new HttpHeaders().set("Accept", "aplication/json");
+    return this.Http.get<any[]>(
+      `${this.urlApi}${encodeURIComponent(controller)}`,
+      {
+        headers: Headers,
+        params: params,
+        responseType: 'json'
+      }
+    );
+  }
+  public consultarDriverName(): Observable<any[]> {
+    let id: string = "driverName";
+    let controller = "DataArray";
+    let params = new HttpParams().set("val", id);
+    let Headers = new HttpHeaders().set("Accept", "aplication/json");
+    return this.Http.get<any[]>(
+      `${this.urlApi}${encodeURIComponent(controller)}`,
+      {
+        headers: Headers,
+        params: params,
+        responseType: 'json'
+      }
+    );
+  }
+  public consultarInsuranceName(): Observable<any[]> {
+    let id: string = "insuranceName";
+    let controller = "DataArray";
+    let params = new HttpParams().set("val", id);
+    let Headers = new HttpHeaders().set("Accept", "aplication/json");
+    return this.Http.get<any[]>(
+      `${this.urlApi}${encodeURIComponent(controller)}`,
+      {
+        headers: Headers,
+        params: params,
+        responseType: 'json'
+      }
+    );
+  }
+  public consultarTypeSinister(): Observable<any[]> {
+    let id: string = "sinisterType";
     let controller = "DataArray";
     let params = new HttpParams().set("val", id);
     let Headers = new HttpHeaders().set("Accept", "aplication/json");

@@ -1,0 +1,9 @@
+.mat-icon {
+    border: none !important;
+    transform: scale(1.2);
+    box-shadow: none !important;
+}
+.example-full-width {
+    width: 98%;
+    margin-top: -1%;
+  }
