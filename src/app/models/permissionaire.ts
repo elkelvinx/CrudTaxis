@@ -20,3 +20,29 @@ export class permissionaire {
         public settlementS: string = '',
     ) { }
 };
+import { TableColumn } from './../../app/components/tools/table/models/table-column';
+export class TableColumnsStructure {
+    static tableColumnsCase1: TableColumn[] = [
+        { label: 'Nombres', def: 'name', dataKey: 'name' },
+        { label: 'Apellido paterno', def: 'lm1', dataKey: 'lm1' },
+        { label: 'Apellido materno', def: 'lm2', dataKey: 'lm2' },
+        { label: 'Numero de telefono', def: 'phone', dataKey: 'phone' },
+        { label: 'Colonia', def: 'settlementS', dataKey: 'settlementS' },
+        { label: 'Calle', def: 'street1', dataKey: 'street1' },
+        { label: 'Numero Exterior', def: 'extNumber', dataKey: 'extNumber' },
+        { label: 'Fecha de registro', def: 'registerD', dataKey: 'registerD', dataType: 'date', formatt: 'dd MMM yyyy' },
+    ];
+    static tableColumnsCase2: TableColumn[] = [
+        { label: 'Nombres', def: 'name', dataKey: 'name' },
+    ];
+    columns: TableColumn[];
+    constructor(numberOfColumns: number = 1) {
+        if (numberOfColumns === 1) {
+            this.columns = TableColumnsStructure.tableColumnsCase1;
+        } else if (numberOfColumns === 2) {
+            this.columns = TableColumnsStructure.tableColumnsCase2;
+        } else {
+            this.columns = [];
+        }
+    }
+}

@@ -9,7 +9,7 @@ import { PermissionairesComponent } from './components/permissionaires/permissio
 import { UnitsComponent } from './components/units/units.component';
 import { SinistersComponent } from './components/sinisters/sinisters.component';
 import { DocumentsPDFComponent } from './components/documents-pdf/documents-pdf.component';
-
+import { MenuExtraDataComponent } from './components/extraData/menu-extra-data/menu-extra-data.component';
 const routes: Routes = [
   //la ruta base cuando inicia la aplicacion
   { path: '', component: HomeComponent },
@@ -20,6 +20,8 @@ const routes: Routes = [
   { path: 'units', component: UnitsComponent },
   { path: 'sinisters', component: SinistersComponent },
   { path: 'documents', component: DocumentsPDFComponent },
+  { path: 'extraData', component: MenuExtraDataComponent },
+
   //ruta para cuando no se encuentre la url
   { path: '**', component: ErrorComponent }
 

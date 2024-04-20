@@ -9,7 +9,6 @@ import { TableConfig } from '../tools/table/models/table-config';
 import { TABLE_ACTION } from '../tools/table/enums/action.enum';
 import { TableAction } from '../tools/table/models/table-actions';
 
-
 @Component({
   selector: 'app-drivers',
   templateUrl: './drivers.component.html',

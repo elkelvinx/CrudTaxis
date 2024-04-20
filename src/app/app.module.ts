@@ -41,6 +41,7 @@ import { TableModule } from './components/tools/table/table.module';
 import { MatIconModule } from '@angular/material/icon';
 import { carAutoCompleteComponent } from './components/tools/car_auto-complete/car-auto-complete.component';
 import { DocumentsPDFComponent } from './components/documents-pdf/documents-pdf.component';
+import { MenuExtraDataComponent } from './components/extraData/menu-extra-data/menu-extra-data.component';
 
 
 @NgModule({
@@ -57,6 +58,7 @@ import { DocumentsPDFComponent } from './components/documents-pdf/documents-pdf.
     ContactDialogComponent,
     SinistersComponent,
     DocumentsPDFComponent,
+    MenuExtraDataComponent,
 
 
   ],

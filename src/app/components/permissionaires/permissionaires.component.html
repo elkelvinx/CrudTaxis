@@ -301,7 +301,7 @@
       <div class="tabla-dataPRUEBA">
         <app-table
           [data]="listPermissionaire"
-          [columns]="tableColumns"
+          [columns]="tableColumns.columns"
           [config]="tableConfig"
           (select)="onSelect($event)"
           (action)="onTableAction($event)"
