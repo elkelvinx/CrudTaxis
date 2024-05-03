@@ -3,7 +3,7 @@ import { TableConfig } from '../../tools/table/models/table-config';
 import { TableAction } from '../../tools/table/models/table-actions';
 import { TableColumnsStructure } from '../../../models/extraData';
 import { structureData } from '../../../models/extraData';
-import { AppService } from '../../../services/services-app.service';
+import { ReadService } from '../../../services/crudDataArray/extra-Read.service';
 import { structureModel } from '../../../models/extraData';
 @Component({
   selector: 'app-menu-extra-data',
@@ -35,7 +35,7 @@ export class MenuExtraDataComponent implements OnInit {
   };
   onTableAction(tableAction: TableAction) {
   }
-  constructor(private servicioApp: AppService) { }
+  constructor(private servicioApp: ReadService) { }
   ngOnInit(): void {
     this.consultarSettleName();
     this.consultarStreetName();

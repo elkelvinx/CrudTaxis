@@ -3,7 +3,7 @@ import { DatePipe } from '@angular/common';
 import { ServicesAdminService } from '../../services/services-admin.service';
 import { Admin } from '../../models/admin';
 import { AppComponent } from '../../app.component';
-import { AppService } from '../../services/services-app.service';
+import { ReadService } from '../../services/crudDataArray/extra-Read.service';
 import { TableColumn } from '../tools/table/models/table-column';
 import { TableConfig } from '../tools/table/models/table-config';
 import { TABLE_ACTION } from '../tools/table/enums/action.enum';
@@ -37,7 +37,7 @@ export class AdminsComponent {
 
   constructor(
     private datePipe: DatePipe,
-    private servicioApp: AppService,
+    private servicioApp: ReadService,
     private serviciosAdmin: ServicesAdminService,
     private App: AppComponent) { }
 

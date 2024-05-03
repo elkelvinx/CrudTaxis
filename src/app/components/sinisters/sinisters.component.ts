@@ -8,7 +8,7 @@ import { SinisterService } from '../../services/sinister.service';
 import { sinisterData } from '../../models/sinister';
 import { TableColumnsStructure } from '../../models/sinister';
 import { SERVICE_TOKEN, PRUEBAService, IGenericService } from '../../services/cud_ZIP.service';
-import { AppService } from '../../services/services-app.service';
+import { ReadService } from '../../services/crudDataArray/extra-Read.service';
 
 @Component({
   selector: 'app-sinisters',
@@ -54,7 +54,7 @@ tableConfig: TableConfig = {
     private serviceSinister: SinisterService,
     private number: ExtraDataService,
     private pruebaService: PRUEBAService<Sinister>,
-    private servicioApp: AppService
+    private servicioApp: ReadService
   ) { }
   ngOnInit(): void {
     this.consultarSettleName();

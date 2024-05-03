@@ -7,7 +7,7 @@ import { Observable, of } from 'rxjs';
   providedIn: 'root'
 })
 
-export class AppService {
+export class ReadService {
   urlApi = "https://localhost:44319/Api/";
 
   constructor(private Http: HttpClient) { }

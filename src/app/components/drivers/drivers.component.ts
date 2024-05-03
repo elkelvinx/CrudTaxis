@@ -4,7 +4,7 @@ import { ServicesDriversService } from '../../services/services-drivers.service'
 import { AppComponent } from '../../app.component';
 import { driver } from '../../models/driver';
 import { TableColumnsStructure } from '../../models/driver';
-import { AppService } from '../../services/services-app.service';
+import { ReadService } from '../../services/crudDataArray/extra-Read.service';
 import { TableConfig } from '../tools/table/models/table-config';
 import { TABLE_ACTION } from '../tools/table/enums/action.enum';
 import { TableAction } from '../tools/table/models/table-actions';
@@ -41,7 +41,7 @@ export class DriversComponent implements OnInit {
   constructor(
     private serviciosDriver: ServicesDriversService,
     private AppComponent: AppComponent,
-    private servicioApp: AppService,
+    private servicioApp: ReadService,
   ) { }
 
   ngOnInit(): void {

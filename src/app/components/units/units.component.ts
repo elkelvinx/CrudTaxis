@@ -6,7 +6,7 @@ import { TableConfig } from '../tools/table/models/table-config';
 import { TABLE_ACTION } from '../tools/table/enums/action.enum';
 import { TableAction } from '../tools/table/models/table-actions';
 
-import { AppService } from '../../services/services-app.service';
+import { ReadService } from '../../services/crudDataArray/extra-Read.service';
 import { TableColumn } from '../tools/table/models/table-column';
 import { ExtraDataService } from '../tools/car_auto-complete/services/extra-data.service';
 
@@ -48,7 +48,7 @@ export class UnitsComponent implements OnInit {
   constructor(
     private serviceUnit: UnitsService,
     private AppComponent: AppComponent,
-    private servicioApp: AppService,
+    private servicioApp: ReadService,
     private number: ExtraDataService,
   ) { }
 

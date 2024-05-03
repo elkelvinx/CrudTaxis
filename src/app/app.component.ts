@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AppService } from './services/services-app.service';
+import { ReadService } from './services/crudDataArray/extra-Read.service';
 import { formatDate } from '@angular/common';
 
 @Component({
@@ -13,7 +13,7 @@ export class AppComponent implements OnInit {
   public nacimiento: string;
   constructor
     (
-      private servicioApp: AppService) {
+      private servicioApp: ReadService) {
       //todo lo que quiera cambiar aqui en el constructor
       this.vencimiento = '2025-06-06',
       this.nacimiento = '1990-06-06'

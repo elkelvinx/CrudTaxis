@@ -6,7 +6,7 @@ import { TABLE_ACTION } from '../tools/table/enums/action.enum';
 import { TableColumn } from '../tools/table/models/table-column';
 import { permissionaire } from '../../models/permissionaire'
 import { TableAction } from '../tools/table/models/table-actions';
-import { AppService } from '../../services/services-app.service';
+import { ReadService } from '../../services/crudDataArray/extra-Read.service';
 import { TableColumnsStructure } from '../../models/permissionaire';
 
 @Component({
@@ -35,7 +35,7 @@ export class PermissionairesComponent {
   constructor(
     private datePipe: DatePipe,
     private servicioPermission: ServicesPermissionaireService,
-    private servicioApp: AppService,
+    private servicioApp: ReadService,
   ) { }
 
   ngOnInit(): void {

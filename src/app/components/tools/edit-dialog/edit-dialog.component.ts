@@ -57,7 +57,7 @@ export class EditDialogComponent {
     });
   }
 }
-import { AppService } from '../../../services/services-app.service';
+import { ReadService } from '../../../services/crudDataArray/extra-Read.service';
 @Component({
   selector: 'dialog-animations-example-dialog',
   templateUrl: 'logic-dialog.component.html',
@@ -75,7 +75,7 @@ export class DialogAnimationsExampleDialog {
   constructor(
     public dialogRef: MatDialogRef<DialogAnimationsExampleDialog>,
     public CommonModule: CommonModule,
-    public serviceUnit: AppService,
+    public serviceUnit: ReadService,
 
     @Inject(MAT_DIALOG_DATA) data: any,
   ) {
