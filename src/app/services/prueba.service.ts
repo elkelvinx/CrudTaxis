@@ -65,6 +65,22 @@ export class PRUEBAService<T> implements IGenericService<T> {
       })
     );
   }
+  public actualizar(tipo: string, obj: string): Observable<any> {
+    const servicioSeleccionado = this.serviciosMapa.get(tipo);
+    if (!servicioSeleccionado) {
+      console.error(`No se encontró el servicio para el tipo: ${tipo}`);
+      // Aquí puedes decidir cómo manejar este caso, por ejemplo, devolver un Observable vacío
+      return of(null);
+    }
+    return servicioSeleccionado.actualizar(obj).pipe(
+      tap((data: any) => console.log('actualizado correctamente', data)),
+      catchError((error: Error) => {
+        console.error('Ocurrió un error:', error.message);
+        // Aquí puedes decidir cómo manejar los errores, por ejemplo, devolver un Observable con un error
+        return throwError(() => error);
+      })
+    );
+  }
   public Borrar(tipo: string, id: number): Observable<any> {
     const servicioSeleccionado = this.serviciosMapa.get(tipo);
     if (!servicioSeleccionado) {

@@ -1,4 +1,4 @@
-import { Component, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 
@@ -18,7 +18,6 @@ import { TableComponent } from './components/tools/table/table.component';
 
 import { DatePipe } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-//import {  MatDialogModule,  MatButtonModule} from '@angular/material'
 //estos no se
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
@@ -38,12 +37,15 @@ import { MatCardModule } from '@angular/material/card';
 import { ContactDialogComponent } from './components/tools/contact-dialog/contact-dialog.component';
 import { CommonModule } from '@angular/common';
 import { TableModule } from './components/tools/table/table.module';
+import { Tables2} from './components/tools/tableExtraData/table2.module';
 import { MatIconModule } from '@angular/material/icon';
 import { carAutoCompleteComponent } from './components/tools/car_auto-complete/car-auto-complete.component';
 import { DocumentsPDFComponent } from './components/documents-pdf/documents-pdf.component';
 import { MenuExtraDataComponent } from './components/extraData/menu-extra-data/menu-extra-data.component';
-
-
+import {MatTabsModule } from '@angular/material/tabs';
+import { CreateDialogComponent } from './components/tools/create-dialog/create-dialog.component';
+import { EditDialogComponent } from './components/tools/edit-dialog/edit-dialog.component';
+//import {  MatDialogModule,  MatButtonModule} from '@angular/material'
 @NgModule({
   declarations: [
     AppComponent,
@@ -59,6 +61,7 @@ import { MenuExtraDataComponent } from './components/extraData/menu-extra-data/m
     SinistersComponent,
     DocumentsPDFComponent,
     MenuExtraDataComponent,
+    CreateDialogComponent,
 
 
   ],
@@ -84,9 +87,12 @@ import { MenuExtraDataComponent } from './components/extraData/menu-extra-data/m
     DatepickerDateClass,
     MatDatepickerModule,
     CommonModule,
-    TableModule,
     MatIconModule,
     carAutoCompleteComponent,
+    MatTabsModule,
+    TableModule,
+    Tables2,
+
 
   ],
   // entryComponents: [YesNoDialogComponent ],

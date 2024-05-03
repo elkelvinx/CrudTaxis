@@ -1,12 +1,88 @@
 <!DOCTYPE html>
-<body>
-Aqui iran todos los extras de la base de datos como:<br>
+
+<mat-tab-group>
+  <mat-tab label="Colonias">
+    <ng-template matTabContent>
+      <div class="tablaData">
+        <app-tableExtraData
+          [indicator]="'Colonia'"
+          [data]="settlements"
+          [columns]="tableColumns.columns"
+          [config]="tableConfig"
+          [numIndicator]="1"
+          (action)="onTableAction($event)"
+        ></app-tableExtraData>
+      </div>
+    </ng-template>
+  </mat-tab>
+  <mat-tab label="Calles">
+    <ng-template matTabContent>
+      <div class="tablaData">
+        <app-tableExtraData
+          [indicator]="'Calles'"
+          [data]="streets"
+          [columns]="columnsStreet.columns"
+          [config]="tableConfig"
+          (action)="onTableAction($event)"
+        ></app-tableExtraData>
+      </div>
+    </ng-template>
+  </mat-tab>
+  <mat-tab label="Marcas de los Carros">
+    <ng-template matTabContent>
+      <div class="tablaData">
+        <app-tableExtraData
+          [indicator]="'Marca del Carro'"
+          [data]="brands"
+          [columns]="tableColumns.columns"
+          [config]="tableConfig"
+          (action)="onTableAction($event)"
+        ></app-tableExtraData>
+      </div>
+    </ng-template>
+  </mat-tab>
+  <mat-tab label="Modelos de los carros">
+    <ng-template matTabContent>
+      <div class="tablaData">
+        <app-tableExtraData
+          [indicator]="'Modelo del Carro'"
+          [data]="models"
+          [columns]="columnsModels.columns"
+          [config]="tableConfig"
+          (action)="onTableAction($event)"
+        ></app-tableExtraData>
+      </div>
+    </ng-template>
+  </mat-tab>
+  <mat-tab label="Aseguradoras">
+    <ng-template matTabContent>
+      <div class="tablaData">
+        <app-tableExtraData
+          [data]="insurers"
+          [columns]="tableColumns.columns"
+          [config]="tableConfig"
+          (action)="onTableAction($event)"
+        ></app-tableExtraData>
+      </div>
+    </ng-template>
+  </mat-tab>
+  <mat-tab label="Relaciones Personales">
+    <ng-template matTabContent> Contenido de relationShip </ng-template>
+  </mat-tab>
+  <mat-tab label="Status de los Chofereres">
+    <ng-template matTabContent> Contenido de modelCar </ng-template>
+  </mat-tab>
+  <mat-tab label="Tipos de Siniestros">
+    <ng-template matTabContent> Contenido de modelCar </ng-template>
+  </mat-tab>
+</mat-tab-group>
+
 <ul>
-    <li><strong>brandCar</strong></li>
-    <li><strong>modelCar</strong></li>
-    <li><strong>relationShip</strong></li>
-    <li><strong>status</strong></li>
-    <li><strong>case</strong></li>
-    <li><strong>sinisterType</strong></li>
+  <li><strong>brandCar</strong></li>
+  <li><strong>modelCar</strong></li>
+  <li><strong>relationShip</strong></li>
+  <li><strong>status</strong></li>
+  <li><strong>sinisterType</strong></li>
+  <li><strong>insuranceName</strong></li>
+  <li><strong>insurers</strong></li>
 </ul>
-</body>

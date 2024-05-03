@@ -1,0 +1,47 @@
+.example-full-width {
+    width: 93%;
+    margin-top: 10px;
+    margin-bottom: 26px;
+  }
+  form.example-form {
+    display: flex;
+    justify-content: space-around;
+  }
+  .buttonP {
+    margin-right: 8px !important;
+    background-color: red !important;
+    width: 100px !important;
+  }
+  .dialog {
+    width: 100px !important;
+    background-color: rgb(247, 247, 247) !important;
+  }
+  .text {
+    font-size: 20px !important;
+    font-weight: 500 !important;
+    color: rgb(250, 250, 250) !important;
+    margin-right: 10px;
+  }
+  .mat-icon:active {
+    color: #de0404 !important;
+  }
+  .cdk-overlay-pane {
+    position: absolute !important;
+    pointer-events: auto;
+    box-sizing: border-box;
+    z-index: 1000;
+    display: flex;
+    width: 410.517px !important;
+    max-width: 100% !important;
+  }
+  .dialog-a #cdk-overlay-10::before {
+    position: absolute;
+    width: 410.517px;
+    max-width: 100%;
+  }
+  .mat-icon:active {
+    transform: scale(
+      1.5
+    ) !important; /* Escala el ícono ligeramente al hacer clic */
+    color: #d5f600;
+  }

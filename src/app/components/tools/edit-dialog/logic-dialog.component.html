@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<h1 mat-dialog-title>Editar datos</h1>
+<div mat-dialog-content>
+  {{
+    contentDialog === ""
+      ? "¿Desea modificar a "+indicator + " " + nameObj + "?"
+      : contentDialog + indicator +" "+ nameObj
+  }}
+  <br />
+</div>
+
+<form class="example-form">
+  <mat-form-field class="example-full-width">
+    <mat-label>Nombre</mat-label>
+    <input matInput [(ngModel)]="information" [ngModelOptions]="{standalone: true}" placeholder="informacion a cambiar" />
+  </mat-form-field>
+</form>
+
+<div mat-dialog-actions>
+  <div style="margin-top: -5%; margin-left: 59px; position: absolute">
+    <button mat-button mat-dialog-close class="text-button-red">Cancelar</button
+    ><br />
+  </div>
+  <div style="margin-top: -5%; margin-left: 73%">
+    <button
+      mat-button
+      mat-dialog-close
+      cdkFocusInitial
+      color="primary"
+      class="text-button-green"
+      (click)="ChangeName()"
+    >
+      Actualizar
+    </button>
+  </div>
+</div>

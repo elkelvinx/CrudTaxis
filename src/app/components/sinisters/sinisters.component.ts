@@ -9,7 +9,6 @@ import { sinisterData } from '../../models/sinister';
 import { TableColumnsStructure } from '../../models/sinister';
 import { SERVICE_TOKEN, PRUEBAService, IGenericService } from '../../services/prueba.service';
 import { AppService } from '../../services/services-app.service';
-import { driver } from '../../models/driver';
 
 @Component({
   selector: 'app-sinisters',

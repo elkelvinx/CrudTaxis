@@ -9,7 +9,7 @@ import { FormsModule } from '@angular/forms';
 //Da el formato a las fechas
 import { MAT_DATE_FORMATS } from '@angular/material/core';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
-import { CustomDateAdapter, CUSTOM_DATE_FORMATS } from '../../../models/Dates';
+import { CustomDateAdapter, CUSTOM_DATE_FORMATS } from '../../../models/datesDatePiecker';
 
 
 /** @title Datepicker with custom date classes */

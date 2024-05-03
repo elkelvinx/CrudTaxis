@@ -58,6 +58,19 @@ export class AppService {
       }
     );
   }
+  public consultarStreets(): Observable<any[]> {
+    //se crean las variables para poder recibir la info del servidor
+    let controller = "Street";
+    let Headers = new HttpHeaders().set("Accept", "aplication/json");
+    //esta la URL de la api, ademas que su headers y el tipo de respuesta
+    return this.Http.get<any[]>(
+      `${this.urlApi}${encodeURIComponent(controller)}`,
+      {
+        headers: Headers,
+        responseType: 'json'
+      }
+    );
+  }
   public consultarAdminName(id: string): Observable<any[]> {
     //se crean las variables para poder recibir la info del servidor
     let controller = "Admin";
@@ -73,7 +86,6 @@ export class AppService {
       }
     );
   }
-  // esto es para units
   public consultarAdminsName(): Observable<any[]> {
     let id: string = "adminName";
     let controller = "DataArray";
@@ -172,4 +184,18 @@ export class AppService {
       }
     );
   }
+  public consultarRelations(): Observable<any[]> {
+    let id: string = "relationShip";
+    let controller = "DataArray";
+    let params = new HttpParams().set("val", id);
+    let Headers = new HttpHeaders().set("Accept", "aplication/json");
+    return this.Http.get<any[]>(
+        `${this.urlApi}${encodeURIComponent(controller)}`,
+        {
+            headers: Headers,
+            params: params,
+            responseType: 'json'
+        }
+    );
+}
 }

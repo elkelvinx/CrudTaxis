@@ -13,6 +13,7 @@
       (focus)="brandModified ? changeBrand() : changeModel()"
       (ngModelChange)="brandModified ? changeBrand() : changeModel()"
       class="{{ className }}"
+      [disabled]="isDisabled"
     />
     <mat-autocomplete
       autoActiveFirstOption

@@ -9,7 +9,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { ExtraDataService } from './services/extra-data.service';
 import { Pipe, PipeTransform } from '@angular/core';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
-
+import { FormGroup } from '@angular/forms';
+import { Validators } from '@angular/forms';
 @Component({
   selector: 'car-autoComplete',
   templateUrl: './auto-complete.component.html',
@@ -36,10 +37,14 @@ export class carAutoCompleteComponent {
   @Input() arrays: string[] = [];
   //arreglo por si es el model
   @Input() arrays2: string[] = [];
+  @Input() isDisabled: boolean = true;
   //devuelve el valor nuevo
   @Output() data = new EventEmitter<any>();
   myControl = new FormControl('');
   filteredOptions: Observable<string[]>;
+
+
+  form: FormGroup;
 
   //variables necesarias para dependencia entre inputs
   @Input() brand: { id: number; name: string }[] = [];
@@ -50,7 +55,10 @@ export class carAutoCompleteComponent {
   brandModified: boolean = false;
   constructor(
     private number: ExtraDataService
-  ) { }
+  ) {    this.form = new FormGroup({
+      brandControl: new FormControl({value: '', disabled: true}), // Deshabilitado inicialmente
+      modelControl: new FormControl('', Validators.required) // Habilitado
+    });}
   ngOnInit() {
     if (this.number.bool == false)
       this.models = this.modelsInput;
@@ -87,6 +95,10 @@ export class carAutoCompleteComponent {
     }
   }
 
+  enableModelControl() {
+    this.form.get('modelControl')?.enable();
+  }
+  
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
     return this.arrays.filter(option => option.toLowerCase().includes(filterValue));
