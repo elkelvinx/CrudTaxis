@@ -11,21 +11,7 @@ export class AppService {
   urlApi = "https://localhost:44319/Api/";
 
   constructor(private Http: HttpClient) { }
-
-  //metodo para consultar todas las colonias
-  // public consultarSettlements(): Observable<any[]> {
-  //   //se crean las variables para poder recibir la info del servidor
-  //   let controller = "Settlement";
-  //   let Headers = new HttpHeaders().set("Accept", "aplication/json");
-  //   //esta la URL de la api, ademas que su headers y el tipo de respuesta
-  //   return this.Http.get<any[]>(
-  //     `${this.urlApi}${encodeURIComponent(controller)}`,
-  //     {
-  //       headers: Headers,
-  //       responseType: 'json'
-  //     }
-  //   );
-  // }
+//service para consultas en general cambiar nombre
 
 
   public consultarSettlementName(id: string): Observable<any[]> {

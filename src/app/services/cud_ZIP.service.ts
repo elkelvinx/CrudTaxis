@@ -1,5 +1,5 @@
 import { Observable, of } from 'rxjs';
-import { Injectable, Inject, InjectionToken } from '@angular/core';
+import { Injectable, InjectionToken } from '@angular/core';
 import { ServicesDriversService } from './services-drivers.service';
 import { ServicesAdminService } from './services-admin.service';
 import { ServicesPermissionaireService } from './services-permissionaire.service';
@@ -7,6 +7,7 @@ import { UnitsService } from './services-units.service';
 import { SinisterService } from './sinister.service';
 import { catchError, throwError, tap } from 'rxjs';
 import { AppService } from './services-app.service';
+import { ContactDialogComponent } from '../components/tools/contact-dialog/contact-dialog.component';
 
 
 export interface IGenericService<T> {
@@ -18,7 +19,6 @@ export class streets {
   id: number;
   name: string;
 }
-
 export type ListStreets = streets[];
 
 // Definimos un token de inyección que será utilizado para inyectar diferentes servicios.
@@ -40,6 +40,7 @@ export class PRUEBAService<T> implements IGenericService<T> {
     servicioSinister: SinisterService,
     servicioUnit: UnitsService,
     servicioPermissionario: ServicesPermissionaireService,
+    ContactDialogComponent: ContactDialogComponent,
     private servicioApp: AppService,
   ) {
     this.serviciosMapa.set('driver', servicioDriver);
@@ -47,6 +48,8 @@ export class PRUEBAService<T> implements IGenericService<T> {
     this.serviciosMapa.set('sinister', servicioSinister);
     this.serviciosMapa.set('unit', servicioUnit);
     this.serviciosMapa.set('permissionaire', servicioPermissionario);
+    this.serviciosMapa.set('contactDialog', ContactDialogComponent);
+
   }
 
   public Grabar(tipo: string, obj: T): Observable<any> {
@@ -66,6 +69,22 @@ export class PRUEBAService<T> implements IGenericService<T> {
     );
   }
   public actualizar(tipo: string, obj: string): Observable<any> {
+    const servicioSeleccionado = this.serviciosMapa.get(tipo);
+    if (!servicioSeleccionado) {
+      console.error(`No se encontró el servicio para el tipo: ${tipo}`);
+      // Aquí puedes decidir cómo manejar este caso, por ejemplo, devolver un Observable vacío
+      return of(null);
+    }
+    return servicioSeleccionado.actualizar(obj).pipe(
+      tap((data: any) => console.log('actualizado correctamente', data)),
+      catchError((error: Error) => {
+        console.error('Ocurrió un error:', error.message);
+        // Aquí puedes decidir cómo manejar los errores, por ejemplo, devolver un Observable con un error
+        return throwError(() => error);
+      })
+    );
+  }
+  public actualizarDataArray(tipo: string, obj: string,dataType:string): Observable<any> {
     const servicioSeleccionado = this.serviciosMapa.get(tipo);
     if (!servicioSeleccionado) {
       console.error(`No se encontró el servicio para el tipo: ${tipo}`);

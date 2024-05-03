@@ -7,7 +7,7 @@ import { Sinister } from '../../models/sinister';
 import { SinisterService } from '../../services/sinister.service';
 import { sinisterData } from '../../models/sinister';
 import { TableColumnsStructure } from '../../models/sinister';
-import { SERVICE_TOKEN, PRUEBAService, IGenericService } from '../../services/prueba.service';
+import { SERVICE_TOKEN, PRUEBAService, IGenericService } from '../../services/cud_ZIP.service';
 import { AppService } from '../../services/services-app.service';
 
 @Component({
