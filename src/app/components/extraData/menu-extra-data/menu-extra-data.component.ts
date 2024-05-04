@@ -26,6 +26,8 @@ export class MenuExtraDataComponent implements OnInit {
   public brandName: string[] = [];
   public insurers: structureModel[] = [];
   public insurerName: string[] = [];
+  public relationships: structureData[] = [];
+  public relationshipsName: string[] = [];
 
   tableConfig: TableConfig = {
     isSelectable: false,
@@ -42,6 +44,7 @@ export class MenuExtraDataComponent implements OnInit {
     this.consultarModelName();
     this.consultarBrandName();
     this.consultarInsurersName();
+    this.consultarRelationshipsName();
   }
   consultarSettleName() {
     this.servicioApp.consultarSettlementName('n').subscribe(
@@ -92,6 +95,17 @@ export class MenuExtraDataComponent implements OnInit {
       (data: any[]) => {
         this.insurers = data;
         this.insurerName = this.insurers.map(insurers => insurers.name);
+      },
+      error => {
+        console.log(error);
+      }
+    )
+  }
+  consultarRelationshipsName() {
+    this.servicioApp.consultarRelations().subscribe(
+      (data: any[]) => {
+        this.relationships = data;
+        this.relationshipsName = this.relationships.map(relationships => relationships.name);
       },
       error => {
         console.log(error);

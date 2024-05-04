@@ -313,7 +313,7 @@ td.mat-mdc-cell.mdc-data-table__cell.cdk-cell.cdk-column-actions.mat-column-acti
 .mat-icon:hover {
   color: #1bea00ad;
   transform: scale(1.3) !important;
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2) !important;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
 }
 .mat-icon {
   transition: transform 0.2s ease !important; /* Agrega una transición suave */

@@ -3,14 +3,14 @@
 <div *ngIf="typeDialog == false">
   <mat-icon
     style="transform: scale(1.2)"
-    (click)="openDialog('300ms', '300ms', text, name, information, indicator, numIndicator)"
+    (click)="openDialog('300ms', '300ms', text, name, information, indicator, numIndicator,object)"
     >edit</mat-icon
   >
 </div>
 <div *ngIf="typeDialog == true">
   <mat-icon
     style="transform: scale(1.2)"
-    (click)="openDialog('300ms', '300ms', text, name, information, indicator, numIndicator)"
+    (click)="openDialog('300ms', '300ms', text, name, information, indicator, numIndicator,object)"
     >edit</mat-icon
   >
 </div>

@@ -23,6 +23,7 @@
           [data]="streets"
           [columns]="columnsStreet.columns"
           [config]="tableConfig"
+          [numIndicator]="2"
           (action)="onTableAction($event)"
         ></app-tableExtraData>
       </div>
@@ -36,6 +37,7 @@
           [data]="brands"
           [columns]="tableColumns.columns"
           [config]="tableConfig"
+          [numIndicator]="3"
           (action)="onTableAction($event)"
         ></app-tableExtraData>
       </div>
@@ -49,6 +51,7 @@
           [data]="models"
           [columns]="columnsModels.columns"
           [config]="tableConfig"
+          [numIndicator]="4"
           (action)="onTableAction($event)"
         ></app-tableExtraData>
       </div>
@@ -58,16 +61,27 @@
     <ng-template matTabContent>
       <div class="tablaData">
         <app-tableExtraData
+          [indicator]="'Seguro del carro'"
           [data]="insurers"
           [columns]="tableColumns.columns"
           [config]="tableConfig"
+          [numIndicator]="8"
           (action)="onTableAction($event)"
         ></app-tableExtraData>
       </div>
     </ng-template>
   </mat-tab>
   <mat-tab label="Relaciones Personales">
-    <ng-template matTabContent> Contenido de relationShip </ng-template>
+    <ng-template matTabContent> Contenido de relationShip 
+      <app-tableExtraData
+          [indicator]="'Relaciones Personales'"
+          [data]="relationships"
+          [columns]="tableColumns.columns"
+          [config]="tableConfig"
+          [numIndicator]="5"
+          (action)="onTableAction($event)"
+        ></app-tableExtraData>
+    </ng-template>
   </mat-tab>
   <mat-tab label="Status de los Chofereres">
     <ng-template matTabContent> Contenido de modelCar </ng-template>

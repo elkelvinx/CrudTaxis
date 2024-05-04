@@ -22,7 +22,7 @@ export class SinistersComponent implements OnInit{
 public sinister: Sinister = new Sinister();
 public listSinisters: Sinister[] = [];
 public tableColumns = new TableColumnsStructure(1);
-public service: IGenericService<Sinister>;
+//! ESTA FALLANDO ESTE service public service: IGenericService<Sinister>;   
 
 
 public arrays = new sinisterData();
@@ -173,9 +173,6 @@ tableConfig: TableConfig = {
       }
     )
   }
-  /* grabar() {
-     this.pruebaService.Grabar('sinister',this.sinister);
-  } */ 
   public grabar() {
     this.serviceSinister.Grabar(this.sinister).subscribe(
       (data) => {

@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ExtraCUDService } from './extra-Update.service';
+import { ExtraUpdateService } from './extra-Update.service';
 
 describe('ExtraCUDService', () => {
-  let service: ExtraCUDService;
+  let service: ExtraUpdateService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(ExtraCUDService);
+    service = TestBed.inject(ExtraUpdateService);
   });
 
   it('should be created', () => {

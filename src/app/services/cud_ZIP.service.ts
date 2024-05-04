@@ -7,7 +7,6 @@ import { UnitsService } from './services-units.service';
 import { SinisterService } from './sinister.service';
 import { catchError, throwError, tap } from 'rxjs';
 import { ReadService } from './crudDataArray/extra-Read.service';
-import { ContactDialogComponent } from '../components/tools/contact-dialog/contact-dialog.component';
 
 
 export interface IGenericService<T> {
@@ -40,7 +39,6 @@ export class PRUEBAService<T> implements IGenericService<T> {
     servicioSinister: SinisterService,
     servicioUnit: UnitsService,
     servicioPermissionario: ServicesPermissionaireService,
-    ContactDialogComponent: ContactDialogComponent,
     private servicioApp: ReadService,
   ) {
     this.serviciosMapa.set('driver', servicioDriver);
@@ -48,7 +46,6 @@ export class PRUEBAService<T> implements IGenericService<T> {
     this.serviciosMapa.set('sinister', servicioSinister);
     this.serviciosMapa.set('unit', servicioUnit);
     this.serviciosMapa.set('permissionaire', servicioPermissionario);
-    this.serviciosMapa.set('contactDialog', ContactDialogComponent);
 
   }
 

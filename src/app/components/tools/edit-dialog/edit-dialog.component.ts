@@ -30,6 +30,7 @@ export class EditDialogComponent {
   @Input() information: string;
   @Input() indicator: string;
   @Input() numIndicator: number;
+  @Input() object: any;
   //bool que devolvemos al padre
   @Output() data = new EventEmitter<any>();
   constructor(public dialog: MatDialog) { }
@@ -37,7 +38,7 @@ export class EditDialogComponent {
   ChangeName() {
     this.data.emit(true);
   }
-  openDialog(enterAnimationDuration: string, exitAnimationDuration: string, contentDialog: string, name: string, information: string, indicator: string, numIndicator: number): void {
+  openDialog(enterAnimationDuration: string, exitAnimationDuration: string, contentDialog: string, name: string, information: string, indicator: string, numIndicator: number, object: any): void {
     const dialogRef = this.dialog.open(DialogAnimationsExampleDialog, {
       width: '920px',
       enterAnimationDuration,
@@ -48,6 +49,7 @@ export class EditDialogComponent {
         information: information,
         indicator: indicator,
         numIndicator: numIndicator,
+        object: object,
       },
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -58,6 +60,8 @@ export class EditDialogComponent {
   }
 }
 import { ReadService } from '../../../services/crudDataArray/extra-Read.service';
+import { ExtraUpdateService } from '../../../services/crudDataArray/extra-Update.service';
+import { updateClass } from './switchCRUD/update';
 @Component({
   selector: 'dialog-animations-example-dialog',
   templateUrl: 'logic-dialog.component.html',
@@ -71,11 +75,14 @@ export class DialogAnimationsExampleDialog {
   public information: string;
   public indicator: string;
   public numIndicator: number;
+  public object: any;
   //de aqui para abajo es no comprendo al 100%
   constructor(
     public dialogRef: MatDialogRef<DialogAnimationsExampleDialog>,
     public CommonModule: CommonModule,
     public serviceUnit: ReadService,
+    public serviceUpdate: ExtraUpdateService,
+    public serviceUpdates: updateClass,
 
     @Inject(MAT_DIALOG_DATA) data: any,
   ) {
@@ -84,40 +91,89 @@ export class DialogAnimationsExampleDialog {
     this.information = data.information;
     this.indicator = data.indicator;
     this.numIndicator = data.numIndicator;
+    this.object = data.object;
   }
   ChangeName() {
-    this.updateData(this.numIndicator);
+    debugger;
+    this.serviceUpdates.updateData(this.numIndicator, this.object);
+    //this.updateData(this.numIndicator);
     this.dialogRef.close(true);
   }
   updateData(numIndicator: number) {
-   //! Switch para guardar 
-   switch (numIndicator) {
+    //! Switch para guardar 
+    switch (numIndicator) {
       case 1:
         //!Colonias
-        // this.serviceUnit.Actualizar(this.units).subscribe(
-        //   (data) => {
-        //     debugger
-        //     console.log("Actualizado correctamente")
-        //     this.consultarUnits();
-        //   },
-        //   error => {
-        //     console.log(error);
-        //   }
-        // )
+        this.serviceUpdate.ActualizarSettleBrand('settlement', this.object).subscribe(
+          (data) => {
+            console.log("Actualizado correctamente")
+          },
+          error => {
+            console.log(error + " fallo en colonias ");
+          }
+        )
         break;
       case 2:
-        this.nameObj = this.indicator;
+        //! Calles necesito crear todo especifico para ambos
         break;
       case 3:
-        this.nameObj = this.indicator;
+        //! brand
+        this.serviceUpdate.ActualizarSettleBrand('brand', this.object).subscribe(
+          (data) => {
+            console.log("Actualizado correctamente")
+          },
+          error => {
+            console.log(error + " fallo en colonias ");
+          }
+        )
         break;
       case 4:
-        this.nameObj = this.indicator;
+        //! Model
         break;
       case 5:
-        this.nameObj = this.indicator;
+        //! relationShip
+        debugger;
+        this.serviceUpdate.ActualizarRelationShip('relationShip', this.object).subscribe(
+          (data) => {
+            console.log("Actualizado correctamente")
+          },
+          error => {
+            console.log(error);
+          }
+        )
         break;
-   }
+      case 6:
+        //! Status
+        this.serviceUpdate.Actualizar('status', this.object).subscribe(
+          (data) => {
+            console.log("Actualizado correctamente")
+          },
+          error => {
+            console.log(error + " fallo en status ");
+          }
+        )
+        break;
+      case 7:
+        this.serviceUpdate.Actualizar('sinisterType', this.object).subscribe(
+          (data) => {
+            console.log("Actualizado correctamente")
+          },
+          error => {
+            console.log(error + " fallo en typeSinister ");
+          }
+        )
+        break;
+      case 8:
+        this.serviceUpdate.Actualizar('insuranceName', this.object).subscribe(
+          (data) => {
+            console.log("Actualizado correctamente")
+          },
+          error => {
+            console.log(error + " fallo en insurers ");
+          }
+        )
+        break;
+    }
   }
 }
 

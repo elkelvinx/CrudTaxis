@@ -8,6 +8,9 @@
     #input
   />
 </mat-form-field>
+
+<mat-icon class="add_icon">note_add</mat-icon>
+
 <table mat-table #table [dataSource]="dataSource">
   <!-- Checkbox Column -->
   <ng-container matColumnDef="select">
@@ -45,9 +48,11 @@
           (data)="onEdit(row)"
           [text]="'Desea modificar la informacion de '"
           [name]="row.id + '?'"
+          [object]="row"
           [typeDialog]="true"
           [information]="row.name"
           [indicator]="indicator"
+          [numIndicator]="numIndicator"
           [style]='"transform: scale(1.2); margin-left:5%;"'
         ></app-edit-dialog>
 
