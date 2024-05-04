@@ -45,6 +45,7 @@ import { MenuExtraDataComponent } from './components/extraData/menu-extra-data/m
 import {MatTabsModule } from '@angular/material/tabs';
 import { CreateDialogComponent } from './components/tools/create-dialog/create-dialog.component';
 import { EditDialogComponent } from './components/tools/edit-dialog/edit-dialog.component';
+
 //import {  MatDialogModule,  MatButtonModule} from '@angular/material'
 @NgModule({
   declarations: [
@@ -62,7 +63,6 @@ import { EditDialogComponent } from './components/tools/edit-dialog/edit-dialog.
     DocumentsPDFComponent,
     MenuExtraDataComponent,
     CreateDialogComponent,
-
 
   ],
   imports: [
@@ -92,7 +92,7 @@ import { EditDialogComponent } from './components/tools/edit-dialog/edit-dialog.
     MatTabsModule,
     TableModule,
     Tables2,
-
+    EditDialogComponent,
 
   ],
   // entryComponents: [YesNoDialogComponent ],

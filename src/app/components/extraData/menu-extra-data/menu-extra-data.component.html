@@ -24,6 +24,8 @@
           [columns]="columnsStreet.columns"
           [config]="tableConfig"
           [numIndicator]="2"
+          [typeDialog]="false"
+          [array]="settlements"
           (action)="onTableAction($event)"
         ></app-tableExtraData>
       </div>
@@ -52,6 +54,8 @@
           [columns]="columnsModels.columns"
           [config]="tableConfig"
           [numIndicator]="4"
+          [typeDialog]="false"
+          [array]="brands"
           (action)="onTableAction($event)"
         ></app-tableExtraData>
       </div>

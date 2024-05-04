@@ -26,7 +26,8 @@ export class Table2 implements OnInit, AfterViewInit {
   @Input() indicator:string
 //* tipo de dato a modificar
   @Input() numIndicator:number
-  
+  @Input() typeDialog:boolean=true;
+  @Input() array:any=[]
   @Input() set data(data: Array<any>) {
     this.dataSource = new MatTableDataSource(data);
     this.dataSource.paginator = this.paginator;

@@ -5,7 +5,7 @@ import { TableActionExtraData } from '../../../components/tools/tableExtraData/m
 import { TableColumnsStructure } from '../../../models/extraData';
 import { structureData } from '../../../models/extraData';
 import { ReadService } from '../../../services/crudDataArray/extra-Read.service';
-import { structureModel } from '../../../models/extraData';
+import { structureStreet } from '../../../models/extraData';
 @Component({
   selector: 'app-menu-extra-data',
   templateUrl: './menu-extra-data.component.html',
@@ -19,9 +19,9 @@ export class MenuExtraDataComponent implements OnInit {
 
   public settlements: structureData[] = [];
   public settlementName: string[] = [];
-  public streets: structureModel[] = [];
+  public streets: structureStreet[] = [];
   public streetName: string[] = [];
-  public models: structureModel[] = [];
+  public models: structureStreet[] = [];
   public modelName: string[] = [];
   public brands: structureData[] = [];
   public brandName: string[] = [];
@@ -149,7 +149,6 @@ export class MenuExtraDataComponent implements OnInit {
   consultarStatusName() {
     this.readService.consultarStatus().subscribe(
       (data: any[]) => {
-        debugger;
         this.status = data;
         this.statusName = this.status.map(status => status.name);
       },

@@ -49,10 +49,11 @@
           [text]="'Desea modificar la informacion de '"
           [name]="row.id + '?'"
           [object]="row"
-          [typeDialog]="true"
+          [typeDialog]="typeDialog"
           [information]="row.name"
           [indicator]="indicator"
           [numIndicator]="numIndicator"
+          [array]="array"
           [style]='"transform: scale(1.2); margin-left:5%;"'
         ></app-edit-dialog>
 

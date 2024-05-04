@@ -4,12 +4,29 @@ export class structureData {
         public name: string = '',
     ) { }
 };
+export class structureStreet {
+    constructor(
+        public id: number = 0,
+        public name: string = '',
+        public settlement: number = 0,
+        public secondS: string = '',
+    ) { }
+};
 export class structureModel {
     constructor(
         public id: number = 0,
         public name: string = '',
-        public idSecond: number = 0,
+        public settlement: number = 0,
         public secondS: string = '',
+    ) { }
+};
+export class structureExtraData {
+    constructor(
+        public id: number = 0,
+        public name: string = '',
+        public settlement: number = 0,
+        public secondS: string = '',
+        public idBrand: number = 0,
     ) { }
 };
 import { TableColumn } from './../../app/components/tools/table/models/table-column';

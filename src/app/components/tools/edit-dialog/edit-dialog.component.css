@@ -6,6 +6,7 @@
   form.example-form {
     display: flex;
     justify-content: space-around;
+    margin-bottom: -2%;
   }
   .buttonP {
     margin-right: 8px !important;
@@ -45,3 +46,8 @@
     ) !important; /* Escala el ícono ligeramente al hacer clic */
     color: #d5f600;
   }
+  .autocomplete{
+  /* background-color: red!important; */
+  margin-left: 3.5%;
+  margin-right: 3.5%;
+  margin-bottom: 5%;}
