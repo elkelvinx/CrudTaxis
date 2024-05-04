@@ -11,16 +11,6 @@ export class ExtraUpdateService {
   constructor(
     private Http: HttpClient
   ) { }
-  public Grabar(Entidad: any) {
-    //let Controller = 'Unit'
-    let Headers = new HttpHeaders().set("Accept", "application/json")
-    return this.Http.post(this.urlApi + this.Controller, Entidad,
-      {
-        headers: Headers,
-        responseType: 'json'
-      }
-    )
-  }
   public Eliminar(id: any) {
     let Controller = 'Unit'
     let Headers = new HttpHeaders().set("Accept", "application/json")
@@ -34,15 +24,6 @@ export class ExtraUpdateService {
     )
   }
   //? RELATIONSHIP
-  // public ActualizarRelationShip(metodo:string,Entidad: any) {
-  //   let Headers = new HttpHeaders().set("Accept", "application/json")
-  //   return this.Http.put(this.urlApi + this.Controller, Entidad,
-  //     {
-  //       headers: Headers,
-  //       responseType: 'json'
-  //     }
-  //   )
-  // }
   public Actualizar(metodo: string, entidad: any): Observable<any> {
     let headers = new HttpHeaders().set("Accept", "application/json");
     let params = new HttpParams().set('metodo', metodo); // Añade 'metodo' como parámetro de consulta

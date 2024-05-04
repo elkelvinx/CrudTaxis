@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TableConfig } from '../../tools/table/models/table-config';
 import { TableAction } from '../../tools/table/models/table-actions';
+import { TableActionExtraData } from '../../../components/tools/tableExtraData/models/table-actions'
 import { TableColumnsStructure } from '../../../models/extraData';
 import { structureData } from '../../../models/extraData';
 import { ReadService } from '../../../services/crudDataArray/extra-Read.service';
@@ -16,18 +17,22 @@ export class MenuExtraDataComponent implements OnInit {
   public columnsModels = new TableColumnsStructure(3);
   public arrays: structureData[] = [];
 
-  public settlements: structureModel[] = [];
+  public settlements: structureData[] = [];
   public settlementName: string[] = [];
-  public streets: structureData[] = [];
+  public streets: structureModel[] = [];
   public streetName: string[] = [];
   public models: structureModel[] = [];
   public modelName: string[] = [];
-  public brands: structureModel[] = [];
+  public brands: structureData[] = [];
   public brandName: string[] = [];
-  public insurers: structureModel[] = [];
+  public insurers: structureData[] = [];
   public insurerName: string[] = [];
   public relationships: structureData[] = [];
   public relationshipsName: string[] = [];
+  public status: structureData[] = [];
+  public statusName: string[] = [];
+  public typeSinister: structureData[] = [];
+  public typeSinisterName: string[] = [];
 
   tableConfig: TableConfig = {
     isSelectable: false,
@@ -35,9 +40,36 @@ export class MenuExtraDataComponent implements OnInit {
     showActions: true,
     showFilter: true,
   };
-  onTableAction(tableAction: TableAction) {
+  onTableAction(tableAction: TableActionExtraData) {
+    debugger;
+    switch (tableAction.numIndicator) {
+      case 1:
+        this.consultarSettleName();
+        break;
+      case 2:
+        this.consultarStreetName();
+        break;
+      case 3:
+        this.consultarBrandName();
+        break;
+      case 4:
+        this.consultarModelName();
+        break;
+      case 5:
+        this.consultarRelationshipsName();
+        break;
+      case 6:
+        this.consultarStatusName();
+        break;
+      case 7:
+        this.consultarTypeSinisterName();
+        break;
+      case 8:
+        this.consultarInsurersName();
+        break;
+    }
   }
-  constructor(private servicioApp: ReadService) { }
+  constructor(private readService: ReadService) { }
   ngOnInit(): void {
     this.consultarSettleName();
     this.consultarStreetName();
@@ -45,9 +77,11 @@ export class MenuExtraDataComponent implements OnInit {
     this.consultarBrandName();
     this.consultarInsurersName();
     this.consultarRelationshipsName();
+    this.consultarStatusName();
+    this.consultarTypeSinisterName();
   }
   consultarSettleName() {
-    this.servicioApp.consultarSettlementName('n').subscribe(
+    this.readService.consultarSettlementName('n').subscribe(
       (data: any[]) => {
         this.settlements = data;
         this.settlementName = this.settlements.map(settlement => settlement.name);
@@ -58,7 +92,7 @@ export class MenuExtraDataComponent implements OnInit {
     )
   }
   consultarStreetName() {
-    this.servicioApp.consultarStreets().subscribe(
+    this.readService.consultarStreets().subscribe(
       (data: any[]) => {
         this.streets = data;
         this.streetName = this.streets.map(streets => streets.name);
@@ -69,7 +103,7 @@ export class MenuExtraDataComponent implements OnInit {
     )
   }
   consultarModelName() {
-    this.servicioApp.consultarModelsName().subscribe(
+    this.readService.consultarModelsName().subscribe(
       (data: any[]) => {
         this.models = data;
         this.modelName = this.models.map(models => models.name);
@@ -80,7 +114,7 @@ export class MenuExtraDataComponent implements OnInit {
     )
   }
   consultarBrandName() {
-    this.servicioApp.consultarBrandsName().subscribe(
+    this.readService.consultarBrandsName().subscribe(
       (data: any[]) => {
         this.brands = data;
         this.brandName = this.brands.map(brands => brands.name);
@@ -91,7 +125,7 @@ export class MenuExtraDataComponent implements OnInit {
     )
   }
   consultarInsurersName() {
-    this.servicioApp.consultarInsuranceName().subscribe(
+    this.readService.consultarInsuranceName().subscribe(
       (data: any[]) => {
         this.insurers = data;
         this.insurerName = this.insurers.map(insurers => insurers.name);
@@ -102,10 +136,33 @@ export class MenuExtraDataComponent implements OnInit {
     )
   }
   consultarRelationshipsName() {
-    this.servicioApp.consultarRelations().subscribe(
+    this.readService.consultarRelations().subscribe(
       (data: any[]) => {
         this.relationships = data;
         this.relationshipsName = this.relationships.map(relationships => relationships.name);
+      },
+      error => {
+        console.log(error);
+      }
+    )
+  }
+  consultarStatusName() {
+    this.readService.consultarStatus().subscribe(
+      (data: any[]) => {
+        debugger;
+        this.status = data;
+        this.statusName = this.status.map(status => status.name);
+      },
+      error => {
+        console.log(error);
+      }
+    )
+  }
+  consultarTypeSinisterName() {
+    this.readService.consultarTypeSinister().subscribe(
+      (data: any[]) => {
+        this.typeSinister = data;
+        this.typeSinisterName = this.typeSinister.map(typeSinister => typeSinister.name);
       },
       error => {
         console.log(error);

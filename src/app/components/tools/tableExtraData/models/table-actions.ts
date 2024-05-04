@@ -4,3 +4,9 @@ export interface TableAction<T = any> {
     action: TABLE_ACTION;
     row: T;
 }
+
+export interface TableActionExtraData<T = any> {
+    action: TABLE_ACTION;
+    row: T;
+    numIndicator:number;
+}

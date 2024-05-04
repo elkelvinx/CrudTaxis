@@ -3,7 +3,7 @@ import { TableColumn } from './models/table-column';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { TABLE_ACTION } from './enums/action.enum';
-import { TableAction } from './models/table-actions'
+import { TableActionExtraData } from './models/table-actions'
 import { TableConfig } from './models/table-config';
 import { SelectionModel } from '@angular/cdk/collections';
 
@@ -42,7 +42,7 @@ export class Table2 implements OnInit, AfterViewInit {
   }
 
   @Output() select: EventEmitter<any> = new EventEmitter();
-  @Output() action: EventEmitter<TableAction> = new EventEmitter();
+  @Output() action: EventEmitter<TableActionExtraData> = new EventEmitter();
 
   constructor() { }
 
@@ -100,11 +100,14 @@ export class Table2 implements OnInit, AfterViewInit {
   }
 
   onEdit(row: any) {
-    this.action.emit({ action: TABLE_ACTION.EDIT, row });
+    let numIndicator=this.numIndicator
+    debugger;
+    this.action.emit({ action: TABLE_ACTION.EDIT, row, numIndicator });
   }
 
   onDelete(row: any) {
-    this.action.emit({ action: TABLE_ACTION.DELETE, row });
+    let numIndicator=this.numIndicator
+    this.action.emit({ action: TABLE_ACTION.DELETE, row, numIndicator });
   }
 
   applyFilter(event: Event) {

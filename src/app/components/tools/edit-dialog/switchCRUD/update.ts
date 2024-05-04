@@ -1,23 +1,17 @@
-import { CommonModule } from '@angular/common';
-import { ReadService, } from './../../../../services/crudDataArray/extra-Read.service';
 import { ExtraUpdateService } from './../../../../services/crudDataArray/extra-Update.service';
 import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
 export class updateClass {
-  constructor(
-    public CommonModule: CommonModule,
-    public serviceUnit: ReadService,
-    public serviceUpdate: ExtraUpdateService,) { }
+  constructor(public serviceUpdate: ExtraUpdateService) { }
   updateData(numIndicator: number, object: any) {
-    //! Switch para guardar 
     switch (numIndicator) {
       case 1:
         //!Colonias
         this.serviceUpdate.ActualizarSettleBrand('settlement', object).subscribe(
           (data) => {
-            console.log("Actualizado correctamente")
+            console.log("Actualizado correctamente, mensaje:" + data)
           },
           error => {
             console.log(error + " fallo en colonias ");
@@ -31,7 +25,7 @@ export class updateClass {
         //! brand
         this.serviceUpdate.ActualizarSettleBrand('brand', object).subscribe(
           (data) => {
-            console.log("Actualizado correctamente")
+            console.log("Actualizado correctamente, mensaje:" + data)
           },
           error => {
             console.log(error + " fallo en colonias ");
@@ -46,7 +40,7 @@ export class updateClass {
         debugger;
         this.serviceUpdate.ActualizarRelationShip('relationShip', object).subscribe(
           (data) => {
-            console.log("Actualizado correctamente")
+            console.log("Actualizado correctamente, mensaje:" + data)
           },
           error => {
             console.log(error);
@@ -57,7 +51,7 @@ export class updateClass {
         //! Status
         this.serviceUpdate.Actualizar('status', object).subscribe(
           (data) => {
-            console.log("Actualizado correctamente")
+            console.log("Actualizado correctamente, mensaje:" + data)
           },
           error => {
             console.log(error + " fallo en status ");
@@ -67,7 +61,7 @@ export class updateClass {
       case 7:
         this.serviceUpdate.Actualizar('sinisterType', object).subscribe(
           (data) => {
-            console.log("Actualizado correctamente")
+            console.log("Actualizado correctamente, mensaje:" + data)
           },
           error => {
             console.log(error + " fallo en typeSinister ");
@@ -77,7 +71,7 @@ export class updateClass {
       case 8:
         this.serviceUpdate.Actualizar('insuranceName', object).subscribe(
           (data) => {
-            console.log("Actualizado correctamente")
+            console.log("Actualizado correctamente, mensaje:" + data)
           },
           error => {
             console.log(error + " fallo en insurers ");
