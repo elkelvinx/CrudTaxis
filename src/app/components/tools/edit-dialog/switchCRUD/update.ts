@@ -11,7 +11,7 @@ export class updateClass {
         //!Colonias
         this.serviceUpdate.ActualizarSettleBrand('settlement', object).subscribe(
           (data) => {
-            console.log("Actualizado correctamente, mensaje:" + data)
+            console.log("Guardado correctamente, mensaje:" + data)
           },
           error => {
             console.log(error + " fallo en colonias ");
@@ -22,7 +22,7 @@ export class updateClass {
         //! Calles necesito crear todo especifico para ambos
         this.serviceUpdate.ActualizarSettleBrand('street', object).subscribe(
           (data) => {
-            console.log("Actualizado correctamente, mensaje:" + data)
+            console.log("Guardado correctamente, mensaje:" + data)
           },
           error => {
             console.log(error + " fallo en calles ");
@@ -33,7 +33,7 @@ export class updateClass {
         //! brand
         this.serviceUpdate.ActualizarSettleBrand('brand', object).subscribe(
           (data) => {
-            console.log("Actualizado correctamente, mensaje:" + data)
+            console.log("Guardado correctamente, mensaje:" + data)
           },
           error => {
             console.log(error + " fallo en colonias ");
@@ -44,7 +44,7 @@ export class updateClass {
         //! Model
         this.serviceUpdate.ActualizarSettleBrand('model', object).subscribe(
           (data) => {
-            console.log("Actualizado correctamente, mensaje:" + data)
+            console.log("Guardado correctamente, mensaje:" + data)
           },
           error => {
             console.log(error + " fallo en colonias ");
@@ -56,7 +56,7 @@ export class updateClass {
         debugger;
         this.serviceUpdate.ActualizarRelationShip('relationShip', object).subscribe(
           (data) => {
-            console.log("Actualizado correctamente, mensaje:" + data)
+            console.log("Guardado correctamente, mensaje:" + data)
           },
           error => {
             console.log(error);
@@ -67,7 +67,7 @@ export class updateClass {
         //! Status
         this.serviceUpdate.Actualizar('status', object).subscribe(
           (data) => {
-            console.log("Actualizado correctamente, mensaje:" + data)
+            console.log("Guardado correctamente, mensaje:" + data)
           },
           error => {
             console.log(error + " fallo en status ");
@@ -77,7 +77,7 @@ export class updateClass {
       case 7:
         this.serviceUpdate.Actualizar('sinisterType', object).subscribe(
           (data) => {
-            console.log("Actualizado correctamente, mensaje:" + data)
+            console.log("Guardado correctamente, mensaje:" + data)
           },
           error => {
             console.log(error + " fallo en typeSinister ");
@@ -87,7 +87,7 @@ export class updateClass {
       case 8:
         this.serviceUpdate.Actualizar('insuranceName', object).subscribe(
           (data) => {
-            console.log("Actualizado correctamente, mensaje:" + data)
+            console.log("Guardado correctamente, mensaje:" + data)
           },
           error => {
             console.log(error + " fallo en insurers ");

@@ -29,6 +29,18 @@ export class structureExtraData {
         public idBrand: number = 0,
     ) { }
 };
+export class extructureModel{
+    constructor(
+        public name: string = '',
+        public idBrand: number = 0,
+    ) { }
+}
+export class extructureStreet{
+    constructor(
+        public name: string = '',
+        public settlement: number = 0,
+    ) { }
+}
 import { TableColumn } from './../../app/components/tools/table/models/table-column';
 export class TableColumnsStructure {
     static tableColumns: TableColumn[] = [

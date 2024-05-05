@@ -16,7 +16,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
 @Component({
-  selector: 'app-edit-dialog',
+  selector: 'app-insert-dialog',
   templateUrl: './insert-dialog.component.html',
   styleUrl: '../edit-dialog.component.css',
   standalone: true,
@@ -30,7 +30,8 @@ export class InsertDialogComponent {
   @Input() information: string;
   @Input() indicator: string;
   @Input() numIndicator: number;
-  @Input() object: any;
+  @Input() object: any=[];
+  @Input() array: any=[];
   //bool que devolvemos al padre
   @Output() data = new EventEmitter<any>();
   constructor(public dialog: MatDialog) { }
@@ -38,7 +39,7 @@ export class InsertDialogComponent {
   ChangeName() {
     this.data.emit(true);
   }
-  openDialogSave(enterAnimationDuration: string, exitAnimationDuration: string, contentDialog: string, name: string, information: string, indicator: string, numIndicator: number, object: any): void {
+  openDialogInsert(enterAnimationDuration: string, exitAnimationDuration: string, contentDialog: string, name: string, information: string, indicator: string, numIndicator: number, object: any): void {
     const dialogRef = this.dialog.open(DialogUpdateLogic, {
       width: '920px',
       enterAnimationDuration,
@@ -58,10 +59,32 @@ export class InsertDialogComponent {
       }
     });
   }
+  openDialogInsertBig(enterAnimationDuration: string, exitAnimationDuration: string, contentDialog: string, name: string, information: string, indicator: string, numIndicator: number, object: any, array:any): void {
+    const dialogRef = this.dialog.open(DialogInsertLogicBig, {
+      width: '920px',
+      enterAnimationDuration,
+      exitAnimationDuration,
+      data: {
+        contentDialog: contentDialog,
+        nameObj: name,
+        information: information,
+        indicator: indicator,
+        numIndicator: numIndicator,
+        object: object,
+        array: array,
+      },
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.ChangeName();
+      }
+    });
+  }
 }
+
 import { ReadService } from '../../../../services/crudDataArray/extra-Read.service';
 import { ExtraUpdateService } from '../../../../services/crudDataArray/extra-Update.service';
-import { updateClass } from '../switchCRUD/update';
+import { insertClass } from '../switchCRUD/insert';
 @Component({
   selector: 'dialog-animations-example-dialog',
   templateUrl: 'insert-logic.component.html',
@@ -75,14 +98,14 @@ export class DialogUpdateLogic {
   public information: string;
   public indicator: string;
   public numIndicator: number;
-  public object: any;
+  public object: structureData={id:0,name:''};
   //de aqui para abajo es no comprendo al 100%
   constructor(
     public dialogRef: MatDialogRef<DialogUpdateLogic>,
     public CommonModule: CommonModule,
     public serviceUnit: ReadService,
     public serviceUpdate: ExtraUpdateService,
-    public serviceUpdates: updateClass,
+    public serviceInsert: insertClass,
 
     @Inject(MAT_DIALOG_DATA) data: any,
   ) {
@@ -95,8 +118,98 @@ export class DialogUpdateLogic {
   }
   ChangeName() {
     debugger;
-    this.serviceUpdates.updateData(this.numIndicator, this.object);
+    this.serviceInsert.insertData(this.numIndicator, this.object);
     this.dialogRef.close(true);
+  }
+}
+//! Insert GRANDE///////////////////////
+import { AutoCompleteComponent } from '../../auto-complete/auto-complete.component';
+import { PRUEBAService } from '../../../../services/cud_ZIP.service';
+import { structureExtraData,structureData,extructureStreet, extructureModel } from '../../../../models/extraData';
+@Component({
+  selector: 'dialog-animations-example-dialog',
+  templateUrl: 'insert-logic-big.component.html',
+  styleUrl: './../edit-dialog.component.css',
+  standalone: true,
+  imports: [
+    MatButtonModule,
+    MatDialogActions,
+    MatDialogClose,
+    MatDialogTitle,
+    MatDialogContent,
+    MatFormFieldModule,
+    CommonModule,
+    MatInputModule,
+    FormsModule,
+    AutoCompleteComponent,
+  ],
+})
+export class DialogInsertLogicBig {
+  public contentDialog: String;
+  public nameObj: any;
+  public information: string;
+  public indicator: string;
+  public numIndicator: number;
+  public array: any;
+  public arrayName:string[];
+  public secondId: number;
+
+  public object: structureExtraData;
+ 
+  public objectStreet: extructureStreet={name:'',settlement:0};
+  public objectBrand: extructureModel={name:'',idBrand:0};
+  constructor(
+    public dialogRef: MatDialogRef<DialogUpdateLogic>,
+    public CommonModule: CommonModule,
+    public serviceUnit: ReadService,
+    public serviceUpdate: ExtraUpdateService,
+    public serviceInsert: insertClass,
+    //en duda este servicio
+    public service: PRUEBAService<any>,
+    @Inject(MAT_DIALOG_DATA) data: any,
+  ) {
+    this.contentDialog = data.contentDialog;
+    this.nameObj = data.nameObj;
+    this.information = data.information;
+    this.indicator = data.indicator;
+    this.numIndicator = data.numIndicator;
+    this.object = data.object;
+    this.array = data.array;
+    this.arrayName = this.array.map((array: any) => array.name);
+  }
+  insertData(event:Event)
+  {
+    debugger
+    this.secondId = this.service.guardarStreetExtraData(event, this.array);
+    this.object.settlement = this.secondId;
+    this.object.idBrand= this.secondId
+    
+  }
+  ChangeName() {
+    debugger
+    let dataToInsert;
+    switch (this.numIndicator) {
+      case 2:
+        this.objectStreet.name = this.object.name;
+        this.objectStreet.settlement = this.secondId;
+        dataToInsert = this.objectStreet;
+        break;
+      case 4:
+        this.objectBrand.name = this.object.name;
+        this.objectBrand.idBrand = this.secondId;
+        dataToInsert = this.objectBrand;
+        break;
+      // ... otros casos
+    }
+
+    if (dataToInsert) {
+      this.serviceInsert.insertData(this.numIndicator, dataToInsert);
+      this.dialogRef.close(true);
+      console.log(dataToInsert);
+    }
+    else {  
+      console.log('Error: no se encontró el caso para numIndicator ' + this.numIndicator);
+    }
   }
 }
 

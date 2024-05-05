@@ -34,7 +34,7 @@ export class EditDialogComponent {
   @Input() array: any=[];
   //bool que devolvemos al padre
   @Output() data = new EventEmitter<any>();
-  @Output() secondId = new EventEmitter<any>();
+  // @Output() secondId = new EventEmitter<any>();
   constructor(public dialog: MatDialog) { }
 
   ChangeName() {
@@ -123,7 +123,7 @@ export class DialogUpdateLogic {
     this.dialogRef.close(true);
   }
 }
-//! UPDATE GRANDE///////////////////////
+//! Insert GRANDE///////////////////////
 import { AutoCompleteComponent } from '../auto-complete/auto-complete.component';
 import { PRUEBAService } from '../../../services/cud_ZIP.service';
 import { structureModel, structureStreet,structureExtraData } from '../../../models/extraData';

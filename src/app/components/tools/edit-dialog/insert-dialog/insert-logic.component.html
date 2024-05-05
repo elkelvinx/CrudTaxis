@@ -1,18 +1,17 @@
 <!DOCTYPE html>
-<h1 mat-dialog-title>Editar datos</h1>
+<h1 mat-dialog-title>Agregar {{indicator}}</h1>
 <div mat-dialog-content>
   {{
     contentDialog === ""
       ? "¿Desea crear un nuevo "+indicator + " " + nameObj + "?"
-      : contentDialog + indicator +" "+ nameObj
+      : contentDialog + indicator +"?"
   }}
-  <br />
 </div>
 
 <form class="example-form">
   <mat-form-field class="example-full-width">
     <mat-label>Nombre</mat-label>
-    <input matInput [(ngModel)]="object.name" [ngModelOptions]="{standalone: true}" placeholder="informacion a cambiar" />
+    <input matInput [(ngModel)]="object.name" [ngModelOptions]="{standalone: true}" placeholder="introducza el nuevo dato" />
   </mat-form-field>
 </form>
 
@@ -30,7 +29,7 @@
       class="text-button-green"
       (click)="ChangeName()"
     >
-      Actualizar
+      Guardar
     </button>
   </div>
 </div>

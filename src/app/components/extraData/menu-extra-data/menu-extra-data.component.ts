@@ -6,6 +6,7 @@ import { TableColumnsStructure } from '../../../models/extraData';
 import { structureData } from '../../../models/extraData';
 import { ReadService } from '../../../services/crudDataArray/extra-Read.service';
 import { structureStreet } from '../../../models/extraData';
+import { deleteClass } from '../../tools/edit-dialog/switchCRUD/delete';
 @Component({
   selector: 'app-menu-extra-data',
   templateUrl: './menu-extra-data.component.html',
@@ -42,6 +43,50 @@ export class MenuExtraDataComponent implements OnInit {
   };
   onTableAction(tableAction: TableActionExtraData) {
     debugger;
+    if (tableAction.action == 1) {
+      this.deleteSearch(tableAction);
+    }
+    else
+      this.actualizarTabla(tableAction);
+  }
+  deleteSearch(tableAction: TableActionExtraData) {
+    debugger;
+    switch (tableAction.numIndicator) {
+      case 1:
+        this.deleteService.deleteData(1, tableAction.row.id);
+        this.actualizarTabla(tableAction);
+        break;
+      case 2:
+        this.deleteService.deleteData(2, tableAction.row.id);
+        this.actualizarTabla(tableAction);
+        break;
+      case 3:
+        this.deleteService.deleteData(3, tableAction.row.id);
+        this.actualizarTabla(tableAction);
+        break;
+      case 4:
+        this.deleteService.deleteData(4, tableAction.row.id);
+        this.actualizarTabla(tableAction);
+        break;
+      case 5:
+        this.deleteService.deleteData(5, tableAction.row.id);
+        this.actualizarTabla(tableAction);
+        break;
+      case 6:
+        this.deleteService.deleteData(6, tableAction.row.id);
+        this.actualizarTabla(tableAction);
+        break;
+      case 7:
+        this.deleteService.deleteData(7, tableAction.row.id);
+        this.actualizarTabla(tableAction);
+        break;
+      case 8:
+        this.deleteService.deleteData(8, tableAction.row.id);
+        this.actualizarTabla(tableAction);
+    }
+  }
+  actualizarTabla(tableAction: TableActionExtraData) {
+    debugger;
     switch (tableAction.numIndicator) {
       case 1:
         this.consultarSettleName();
@@ -69,7 +114,7 @@ export class MenuExtraDataComponent implements OnInit {
         break;
     }
   }
-  constructor(private readService: ReadService) { }
+  constructor(private readService: ReadService, public deleteService: deleteClass) { }
   ngOnInit(): void {
     this.consultarSettleName();
     this.consultarStreetName();

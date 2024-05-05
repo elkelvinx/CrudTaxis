@@ -10,7 +10,8 @@ import { YesNoDialogComponent } from '../yes-no-dialog/yes-no-dialog.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatDialogModule } from '@angular/material/dialog';
-import { EditDialogComponent } from '../edit-dialog/edit-dialog.component';
+import { EditDialogComponent } from '../edit-dialog/edit-dialog.component'
+import { InsertDialogComponent } from '../edit-dialog/insert-dialog/insert-dialog.component';
 
 @NgModule({
   declarations: [Table2, ColumnValuePipe],
@@ -25,6 +26,7 @@ import { EditDialogComponent } from '../edit-dialog/edit-dialog.component';
     MatPaginatorModule,
     MatDialogModule,
     EditDialogComponent,
+    InsertDialogComponent
   ],
   exports: [Table2],
 })

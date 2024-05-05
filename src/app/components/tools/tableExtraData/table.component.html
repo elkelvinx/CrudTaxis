@@ -1,15 +1,27 @@
 <!DOCTYPE html>
-<mat-form-field class="input-filtro" *ngIf="tableConfig?.showFilter">
-  <mat-label>Buscar</mat-label>
-  <input
-    matInput
-    (keyup)="applyFilter($event)"
-    placeholder="Introduzca el valor a buscar"
-    #input
-  />
-</mat-form-field>
-
-<mat-icon class="add_icon">note_add</mat-icon>
+<div class="buscador">
+  <mat-form-field class="input-filtro" *ngIf="tableConfig?.showFilter">
+    <mat-label>Buscar</mat-label>
+    <input
+      matInput
+      (keyup)="applyFilter($event)"
+      placeholder="Introduzca el valor a buscar"
+      #input
+    />
+  </mat-form-field>
+  <!-- [object]="row" -->
+  <app-insert-dialog
+    (data)="onUpdate(1)"
+    [text]="'Desea Agregar un nuevo registro de '"
+    [typeDialog]="typeDialog"
+    [indicator]="indicator"
+    [numIndicator]="numIndicator"
+    [array]="array"
+    [style]="'margin-left: 2.5%;transform: scale(1.3);'"
+    class="add_icon"
+  >
+  </app-insert-dialog>
+</div>
 
 <table mat-table #table [dataSource]="dataSource">
   <!-- Checkbox Column -->
@@ -54,15 +66,15 @@
           [indicator]="indicator"
           [numIndicator]="numIndicator"
           [array]="array"
-          [style]='"transform: scale(1.2); margin-left:5%;"'
+          [style]="'transform: scale(1.2); margin-left:5%;'"
         ></app-edit-dialog>
 
         <app-yes-no-dialog
           (data)="onDelete(row)"
-          [text]="'Desea borrar el registro de la unidad'"
+          [text]="'Desea borrar el registro de ' + indicator + ' '"
           [name]="row.name + '?'"
           [IconButton]="true"
-          [style]='"transform: scale(1.2); margin-right: 6%;"'
+          [style]="'transform: scale(1.2); margin-right: 6%;'"
         ></app-yes-no-dialog>
       </div>
     </td>
@@ -78,7 +90,10 @@
 
   <tr class="mat-row" *matNoDataRow>
     <td class="mat-cell" [colSpan]="tableDisplayColumns.length">
-      No hay informacion que coincida con el dato <strong><em>"{{ currentFilterValue }}"</em></strong>
+      No hay informacion que coincida con el dato
+      <strong
+        ><em>"{{ currentFilterValue }}"</em></strong
+      >
     </td>
   </tr>
 </table>

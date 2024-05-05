@@ -2,16 +2,20 @@
 <!--* SAVE -->
 <div *ngIf="typeDialog == false">
   <mat-icon
-    style="transform: scale(1.2)"
-    (click)="openDialogSave('300ms', '300ms', text, name, information, indicator, numIndicator,object)"
-    >edit</mat-icon
+    style="    transform: scale(1.5);
+    border: none;
+    box-shadow: none !important;"
+     (click)="openDialogInsertBig('300ms', '300ms', text, name, information, indicator, numIndicator,object,array)"
+    >note_add</mat-icon
   >
 </div>
 <!--* Street y model -->
-<!-- <div *ngIf="typeDialog == true">
+<div *ngIf="typeDialog == true">
   <mat-icon
-    style="transform: scale(1.2)"
-    (click)="openDialogUpdate('300ms', '300ms', text, name, information, indicator, numIndicator,object)"
-    >edit</mat-icon
+    style="    transform: scale(1.5);
+    border: none;
+    box-shadow: none !important;"
+    (click)="openDialogInsert('300ms', '300ms', text, name, information, indicator, numIndicator,object)"
+    >note_add</mat-icon
   >
-</div> -->
+</div>

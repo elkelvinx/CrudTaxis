@@ -43,7 +43,7 @@ import { carAutoCompleteComponent } from './components/tools/car_auto-complete/c
 import { DocumentsPDFComponent } from './components/documents-pdf/documents-pdf.component';
 import { MenuExtraDataComponent } from './components/extraData/menu-extra-data/menu-extra-data.component';
 import {MatTabsModule } from '@angular/material/tabs';
-import { CreateDialogComponent } from './components/tools/create-dialog/create-dialog.component';
+import { InsertDialogComponent } from './components/tools/edit-dialog/insert-dialog/insert-dialog.component';
 import { EditDialogComponent } from './components/tools/edit-dialog/edit-dialog.component';
 
 //import {  MatDialogModule,  MatButtonModule} from '@angular/material'
@@ -62,7 +62,6 @@ import { EditDialogComponent } from './components/tools/edit-dialog/edit-dialog.
     SinistersComponent,
     DocumentsPDFComponent,
     MenuExtraDataComponent,
-    CreateDialogComponent,
 
   ],
   imports: [
@@ -93,6 +92,7 @@ import { EditDialogComponent } from './components/tools/edit-dialog/edit-dialog.
     TableModule,
     Tables2,
     EditDialogComponent,
+    InsertDialogComponent,
 
   ],
   // entryComponents: [YesNoDialogComponent ],

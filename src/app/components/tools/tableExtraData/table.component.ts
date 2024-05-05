@@ -20,14 +20,14 @@ export class Table2 implements OnInit, AfterViewInit {
   tableConfig: TableConfig | undefined;
   currentFilterValue: string = '';
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-//* dato que se le pasa al input a modificar
-  @Input() variable:string 
-//* nombre del tipo de dato a modificar
-  @Input() indicator:string
-//* tipo de dato a modificar
-  @Input() numIndicator:number
-  @Input() typeDialog:boolean=true;
-  @Input() array:any=[]
+  //* dato que se le pasa al input a modificar
+  @Input() variable: string
+  //* nombre del tipo de dato a modificar
+  @Input() indicator: string
+  //* tipo de dato a modificar
+  @Input() numIndicator: number
+  @Input() typeDialog: boolean = true;
+  @Input() array: any = []
   @Input() set data(data: Array<any>) {
     this.dataSource = new MatTableDataSource(data);
     this.dataSource.paginator = this.paginator;
@@ -101,13 +101,18 @@ export class Table2 implements OnInit, AfterViewInit {
   }
 
   onEdit(row: any) {
-    let numIndicator=this.numIndicator
+    let numIndicator = this.numIndicator
+    debugger;
+    this.action.emit({ action: TABLE_ACTION.EDIT, row, numIndicator });
+  }
+  onUpdate(row: any) {
+    let numIndicator = this.numIndicator
     debugger;
     this.action.emit({ action: TABLE_ACTION.EDIT, row, numIndicator });
   }
 
   onDelete(row: any) {
-    let numIndicator=this.numIndicator
+    let numIndicator = this.numIndicator
     this.action.emit({ action: TABLE_ACTION.DELETE, row, numIndicator });
   }
 

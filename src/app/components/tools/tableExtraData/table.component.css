@@ -91,3 +91,10 @@ td.mat-mdc-cell.mdc-data-table__cell.cdk-cell.cdk-column-actions.mat-column-acti
   border: none;
   box-shadow: none !important;
 }
+.buscador{
+  /* background-color: red !important; */
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+}

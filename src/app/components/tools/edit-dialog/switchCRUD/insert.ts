@@ -20,6 +20,14 @@ export class insertClass {
                 break;
             case 2:
                 //! Calles necesito crear todo especifico para ambos
+                this.serviceInsert.GuardarSettleBrand('street', object).subscribe(
+                    (data) => {
+                        console.log("Guardado correctamente, mensaje:'" + data+"'")
+                    },
+                    error => {
+                        console.log(error + " fallo en calles ");
+                    }
+                )
                 break;
             case 3:
                 //! brand
@@ -34,6 +42,14 @@ export class insertClass {
                 break;
             case 4:
                 //! Model
+                this.serviceInsert.GuardarSettleBrand('model', object).subscribe(
+                    (data) => {
+                        console.log("Guardado correctamente, mensaje:'" + data+"'")
+                    },
+                    error => {
+                        console.log(error + " fallo en calles ");
+                    }
+                )
                 break;
             case 5:
                 //! relationShip
