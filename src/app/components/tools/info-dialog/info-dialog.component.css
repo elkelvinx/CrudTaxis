@@ -1,12 +1,11 @@
-mat-form-field {
-    margin-right: 12px;
-  }
-  
 h1{
     font-size: 30px!important;
     font-weight: bold;
     margin-bottom: 10px;
     margin-top: 1%;
+}
+mat-form-field {
+  margin-right: 12px;
 }
 .contentStyle{
     margin-top: 5px;
@@ -30,4 +29,9 @@ h1{
   justify-content: start;
   height: 31%;
   margin-top: -11px;
+}
+
+/* HTML */
+.mat-mdc-button:not(:disabled) {
+  width: fit-content;
 }
