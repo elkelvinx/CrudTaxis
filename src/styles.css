@@ -16,6 +16,7 @@ body {
   font-family: "Open Sans", sans-serif;
 }
 
+
 main {
   padding: 2px;
 }
@@ -376,4 +377,6 @@ div.mat-mdc-autocomplete-panel {
   --mat-tab-header-active-hover-indicator-color: #24d90f!important;
   --mat-paginator-container-background-color: #20450603;
   --mdc-filled-text-field-disabled-container-color: #464646;
+  /* snackBar */
+  --mdc-snackbar-container-shape: 14px;
 }

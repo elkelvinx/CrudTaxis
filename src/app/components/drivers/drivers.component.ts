@@ -108,7 +108,6 @@ export class DriversComponent implements OnInit {
       (data: any[]) => {
         this.admins = data;
         this.adminsName = this.admins.map(admins => admins.name);
-        //falta verificar que si es 0 se muestre para poder seleccionar
         if (this.Driver.idAdmin !== null) {
           // this.isLoaded2 = true;
         }

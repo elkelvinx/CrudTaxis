@@ -1,10 +1,11 @@
 import { ExtraUpdateService } from './../../../../services/crudDataArray/extra-Update.service';
 import { Injectable } from '@angular/core';
+import { NotificationService } from '../../info-dialog/notification.service';
 @Injectable({
   providedIn: 'root'
 })
 export class updateClass {
-  constructor(public serviceUpdate: ExtraUpdateService) { }
+  constructor(public serviceUpdate: ExtraUpdateService,public notificationService: NotificationService ) { }
   updateData(numIndicator: number, object: any) {
     switch (numIndicator) {
       case 1:
@@ -12,6 +13,7 @@ export class updateClass {
         this.serviceUpdate.ActualizarSettleBrand('settlement', object).subscribe(
           (data) => {
             console.log("Guardado correctamente, mensaje:" + data)
+            this.notificationService.success("Colonia guardada correctamente");
           },
           error => {
             console.log(error + " fallo en colonias ");
@@ -23,6 +25,7 @@ export class updateClass {
         this.serviceUpdate.ActualizarSettleBrand('street', object).subscribe(
           (data) => {
             console.log("Guardado correctamente, mensaje:" + data)
+            this.notificationService.success("Calle guardada correctamente "+data);
           },
           error => {
             console.log(error + " fallo en calles ");
@@ -34,6 +37,7 @@ export class updateClass {
         this.serviceUpdate.ActualizarSettleBrand('brand', object).subscribe(
           (data) => {
             console.log("Guardado correctamente, mensaje:" + data)
+            this.notificationService.success("marca guardada correctamente "+data);
           },
           error => {
             console.log(error + " fallo en colonias ");
