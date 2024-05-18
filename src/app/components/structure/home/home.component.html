@@ -37,5 +37,17 @@
 <app-yes-no-dialog [text]="'you must be ames arent you?'" [name]="'Kevin'"
   >p</app-yes-no-dialog
 >
-
-<p>home works!</p>
+<button
+mat-raised-button
+(click)="redirecionar()"
+color="primary"
+class="text-button-greenFinal"
+style="
+  /* position: absolute; */
+  width: 21% !important;
+  height: 46px !important;
+  --mat-protected-button-ripple-color: rgb(7 101 37) !important;
+"
+>
+Ir a el login
+</button>

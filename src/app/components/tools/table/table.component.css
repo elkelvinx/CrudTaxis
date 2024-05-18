@@ -59,3 +59,7 @@ table {
   --mat-text-button-focus-state-layer-opacity: 0.24 !important;
   --mat-text-button-pressed-state-layer-opacity: 0.24 !important;
 }
+
+.custom-row:hover {
+  background-color: rgb(77, 71, 71); /* Cambia este color al que prefieras */
+}

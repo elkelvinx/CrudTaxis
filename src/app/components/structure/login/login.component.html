@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<div class="principal">
+
+    <img src="../../../../assets/images/TaxiLogo.png" alt="logo" class="logoLogin" />
+
+    <form class="example-form">
+   
+        <h1 class="titulo">Iniciar Sesion</h1>
+        <mat-form-field class="logInInput">
+          <mat-label>Nombre</mat-label>
+          <input
+            matInput
+            [(ngModel)]="user.name"
+            [ngModelOptions]="{ standalone: true }"
+            placeholder="Usuario a ingresar"
+          />
+        </mat-form-field>
+        <mat-form-field class="logInInput">
+            <mat-label>Contraseña</mat-label>
+            <input
+              matInput
+              [(ngModel)]="user.password"
+              [ngModelOptions]="{ standalone: true }"
+              placeholder="Ej.123"
+            />
+          </mat-form-field>
+          <button
+          mat-raised-button
+          (click)="logIn()"
+          color="primary"
+          class="text-button-greenFinal"
+          style="
+            /* position: absolute; */
+            width: 100% !important;
+            height: 52px !important;
+            --mat-protected-button-ripple-color: rgb(7 101 37) !important;
+          "
+        >
+          Guardar
+        </button>
+      </form>
+</div>
+

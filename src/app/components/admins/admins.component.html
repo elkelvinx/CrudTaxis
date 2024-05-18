@@ -270,22 +270,36 @@
         </mat-card-actions>
         <mat-card-actions align="end" class="buttons-actionDelete">
           <button
-            mat-button
+            mat-raised-button
             (click)="grabar()"
             *ngIf="ActSave"
             color="primary"
-            class="text-button-green"
-            style="position: absolute; margin-top: -46px; margin-left: 34%"
+            class="text-button-greenFinal"
+            style="
+              position: absolute;
+              margin-top: -55px;
+              margin-left: 28%;
+              width: 10% !important;
+              height: 46px !important;
+              --mat-protected-button-ripple-color: rgb(7 101 37) !important;
+            "
           >
             Guardar
           </button>
           <button
-            mat-button
+            mat-raised-button
             color="primary"
             (click)="actualizar()"
             *ngIf="!ActSave"
-            class="text-button-green"
-            style="position: absolute; margin-top: -46px; margin-left: 34%"
+            class="text-button-greenFinal"
+            style="
+              position: absolute;
+              margin-top: -54px;
+              margin-left: 28%;
+              width: 10%;
+              height: 46px !important;
+              --mat-protected-button-ripple-color: rgb(7 101 37) !important;
+            "
           >
             Actualizar
           </button>

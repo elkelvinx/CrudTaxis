@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+import { LoginComponent } from './components/structure/login/login.component';
 import { HomeComponent } from './components/structure/home/home.component';
 import { ErrorComponent } from './components/structure/error/error.component';
 import { DriversComponent } from './components/drivers/drivers.component';
@@ -13,6 +14,7 @@ import { MenuExtraDataComponent } from './components/extraData/menu-extra-data/m
 const routes: Routes = [
   //la ruta base cuando inicia la aplicacion
   { path: '', component: HomeComponent },
+  { path: 'login', component: LoginComponent },
   { path: 'home', component: HomeComponent },
   { path: 'drivers', component: DriversComponent },
   { path: 'admins', component: AdminsComponent },
@@ -21,6 +23,7 @@ const routes: Routes = [
   { path: 'sinisters', component: SinistersComponent },
   { path: 'documents', component: DocumentsPDFComponent },
   { path: 'extraData', component: MenuExtraDataComponent },
+  
 
   //ruta para cuando no se encuentre la url
   { path: '**', component: ErrorComponent }

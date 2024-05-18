@@ -88,6 +88,7 @@ import { MatRippleModule } from '@angular/material/core';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatTreeModule} from '@angular/material/tree';
+import { LoginComponent } from './components/structure/login/login.component';
 
 
 
@@ -155,6 +156,7 @@ import {MatTreeModule} from '@angular/material/tree';
     DocumentsPDFComponent,
     MenuExtraDataComponent,
     InfoDialogComponent,
+    LoginComponent,
 
   ],
   imports: [

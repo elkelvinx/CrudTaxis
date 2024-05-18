@@ -98,3 +98,6 @@ td.mat-mdc-cell.mdc-data-table__cell.cdk-cell.cdk-column-actions.mat-column-acti
   flex-wrap: nowrap;
   align-items: center;
 }
+.custom-row:hover {
+  background-color: #3e5d33; /* Cambia este color al que prefieras */
+}
