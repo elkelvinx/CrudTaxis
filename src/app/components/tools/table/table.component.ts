@@ -108,4 +108,16 @@ export class TableComponent implements OnInit, AfterViewInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
     this.currentFilterValue = filterValue;
   }
+  searchRowName(row: any) {
+    if(row.name != undefined){
+      return 'con nombre '+row.name
+    }
+    else if(row.ecoNumber != undefined){
+      return 'con numero de carro '+row.ecoNumber
+    }
+    debugger
+    return this.tableColumns.some((col) => {
+      return row[col.def].toLowerCase().includes(this.currentFilterValue.toLowerCase());
+    });
+  }
 }

@@ -47,8 +47,8 @@
         <!--necesito corregir la parte de el id y que sea variable-->
         <app-yes-no-dialog
           (data)="onDelete(row)"
-          [text]="'Desea borrar el registro de la unidad'"
-          [name]="row.ecoNumber + '?'"
+          [text]="'Desea borrar el registro de la fila '"
+          [name]="searchRowName(row) + '?'"
           [IconButton]="true"
         ></app-yes-no-dialog>
       </div>

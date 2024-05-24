@@ -29,8 +29,6 @@ export class UnitsComponent implements OnInit {
   public brandsName: any[] = [];
   public modelsName: { id: any; idBrand: any; name: any }[] = [];// En tu componente.ts
 
-
-
   public loadAd: boolean = false;
   public loadBr: boolean = false;
   public loadMd: boolean = false;
@@ -131,14 +129,13 @@ export class UnitsComponent implements OnInit {
   }
 
   public grabar() {
-    console.log(this.ActSave + " GUARDANDO PUTO");
+    debugger
     if (this.ActSave === true && this.units.id == 0) {
       this.serviceUnit.Grabar(this.units).subscribe(
         (data) => {
           debugger
           console.log("Guardado correctamente")
-          this.consultarUnits();
-          //falta agregar para actualizar la tabla
+          this.consultarUnits();  
         },
         error => {
           console.log(error);

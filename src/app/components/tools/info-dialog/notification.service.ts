@@ -19,6 +19,8 @@ import { FormsModule } from '@angular/forms';
   providedIn: 'root'
 })
 export class NotificationService {
+  private messageDefault:string=
+  'Hubo un error, el mensaje de error no llego o se perdio, porfavor contacte a la persona de sistemas'
   constructor(
     private readonly snackBar: MatSnackBar,
     public dialog: MatDialog
@@ -33,7 +35,9 @@ export class NotificationService {
   success(message: string) {
     this.openSnackBar(message, '', 'success-snackbar');
   }
-
+  successInfo(message: string) {
+    this.openSnackBar(message, '', 'blue-snackbarInfo');
+  }
   /**
    * Presents a toast displaying the message with a red background
    * @param message Message to display
@@ -45,7 +49,12 @@ export class NotificationService {
   error(message: string) {
     this.openSnackBar(message, '', 'error-snackbar', 2000);
   }
-
+  // ! Errores que son muy largos
+  displayMessageError(title: string='Informacion del error', content: string=this.messageDefault) {
+    this.alert(content, title, () => {
+      this.success("Lo notificare!");
+    });
+  }
   /**
    * Shows a confirmation modal, presenting the user with
    * an OK and Cancel button. 
@@ -99,6 +108,7 @@ export class NotificationService {
   */
   //! AlertDialog
   alert(message: string, title = 'Notice', okCallback: () => void = () => { }) {
+
     const dialogRef = this.dialog.open(AlertDialog, {
       width: '1450px',
       height: '290px',
@@ -124,7 +134,7 @@ export class NotificationService {
     message: string,
     action: string,
     className = '',
-    duration = 1000,
+    duration = 3000,
 
   ) {
     this.snackBar.open(message, action, {
@@ -212,4 +222,6 @@ export class AlertDialog {
   onYesClick(): void {
     this.dialogRef.close(true);
   }
+
+
 }

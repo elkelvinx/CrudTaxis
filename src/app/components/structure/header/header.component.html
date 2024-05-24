@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <!--Menu y barra navegacion aqui-->
 
-<header [style.width]="headerWidth">
+<header [style.margin-left]="headerWidth" class="header">
   <div class="icon__menu" >
-    <i class="collapsible" id="btn_open" (click)="toggleMenu()"> <mat-icon>menu</mat-icon></i>
+    <i class="collapsible" id="btn_open" (click)="toggleMenu()" [style.margin-left]="iconButtonWidth"> <mat-icon>menu</mat-icon></i>
   </div>
 </header>
 

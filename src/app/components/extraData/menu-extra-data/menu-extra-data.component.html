@@ -21,10 +21,10 @@
         <app-tableExtraData
           [indicator]="'Calles'"
           [data]="streets"
-          [columns]="columnsStreet.columns"
+          [columns]="tableColumns.columns"
           [config]="tableConfig"
           [numIndicator]="2"
-          [typeDialog]="false"
+          [typeDialog]="true"
           [array]="settlements"
           (action)="onTableAction($event)"
         ></app-tableExtraData>
@@ -49,7 +49,7 @@
     <ng-template matTabContent>
       <div class="tablaData">
         <app-tableExtraData
-          [indicator]="'Modelo del Carro'"
+          [indicator]="'Marca del Carro'"
           [data]="models"
           [columns]="columnsModels.columns"
           [config]="tableConfig"

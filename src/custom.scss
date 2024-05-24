@@ -95,11 +95,15 @@ $error3: map-get($error-palette,400);
   --mdc-snackbar-supporting-text-color: rgb(0 0 0);
   --mat-snack-bar-button-color: rgb(236 255 0 / 99%);
 }
-
-.success-snackbar {
-    --mdc-snackbar-container-color: #2ede43;
-    --mdc-snackbar-supporting-text-color: rgb(0 0 0);
+.blue-snackbarInfo {
+  --mdc-snackbar-container-color: #04cad4d2;
+  --mdc-snackbar-supporting-text-color: rgb(0 0 0);
 }
+.success-snackbar {
+    --mdc-snackbar-container-color: #2b8636;
+    --mdc-snackbar-supporting-text-color: rgb(255 255 255);   
+}
+ 
 .error-snackbar {
   --mdc-snackbar-container-color: #de2e2e;
   --mdc-snackbar-supporting-text-color: rgb(251, 251, 251);

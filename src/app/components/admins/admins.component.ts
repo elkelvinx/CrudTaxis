@@ -9,6 +9,8 @@ import { TableConfig } from '../tools/table/models/table-config';
 import { TABLE_ACTION } from '../tools/table/enums/action.enum';
 import { TableAction } from '../tools/table/models/table-actions';
 import { TableColumnsStructure } from '../../models/admin';
+import { NotificationService } from "../tools/info-dialog/notification.service";
+import { PRUEBAService } from '../../services/cud_ZIP.service';
 @Component({
   selector: 'app-admins',
   templateUrl: './admins.component.html',
@@ -39,7 +41,9 @@ export class AdminsComponent {
     private datePipe: DatePipe,
     private servicioApp: ReadService,
     private serviciosAdmin: ServicesAdminService,
-    private App: AppComponent) { }
+    private servicioZip: PRUEBAService<any>,
+    private notificationService: NotificationService
+  ) { }
 
   ngOnInit(): void {
     this.consultarAdmins();
@@ -49,7 +53,6 @@ export class AdminsComponent {
     this.consultarAdmin(this.Admin.id);
   }
   onDelete(object: Admin) {
-    // console.log('Delete', object);
     this.eliminarDialog(object.id);
   }
   onSelect(data: any) {
@@ -101,18 +104,20 @@ export class AdminsComponent {
   public grabar() {
     this.serviciosAdmin.Grabar(this.Admin).subscribe(
       (data) => {
-        console.log("Guardado correctamente")
+        this.notificationService.success("El Admin ha sido guardado");
         this.consultarAdmins();
       },
       error => {
-        console.log(error);
+        const errorMessage = error.error.ExceptionMessage || "Error desconocido";
+        this.notificationService.displayMessageError("Error al guardar el registro", errorMessage);
       }
     )
   }
   public actualizar() {
     this.serviciosAdmin.Actualizar(this.Admin).subscribe(
       (data) => {
-        console.log("Actualizado correctamente")
+        console.log("Actualizado correctamente" + data)
+        this.notificationService.success("El Admin ha sido Actualizado");
         this.consultarAdmins();
       },
       error => {
@@ -121,10 +126,9 @@ export class AdminsComponent {
     )
   }
   public eliminar() {
-
     this.serviciosAdmin.Eliminar(this.Admin.id).subscribe(
       (data) => {
-        console.log("Eliminado correctamente")
+        this.notificationService.success("El Admin ha sido Borrado");
         this.consultarAdmins();
       },
       error => {
@@ -136,7 +140,7 @@ export class AdminsComponent {
     debugger;
     this.serviciosAdmin.Eliminar(id).subscribe(
       (data) => {
-        console.log("Eliminado correctamente")
+        this.notificationService.success("El Admin ha sido Borrado");
         this.consultarAdmins();
       },
       error => {
@@ -154,7 +158,6 @@ export class AdminsComponent {
         console.log(error);
       }
     )
-
   }
   consultarStreetName() {
     this.servicioApp.consultarStreetName('n').subscribe(
@@ -176,27 +179,51 @@ export class AdminsComponent {
       }
     }
   }
-  public guardarStreet(event: Event, op: number) {
-    console.log(event + "y el valor es ");
-    for (let i = 0; i < this.streets.length; i++) {
-      if (this.streets[i].name == event) {
-        switch (op) {
-          case 1:
-            this.Admin.st1 = this.streets[i].id;
-            this.Admin.street1 = this.streets[i].name;
-            break;
-          case 2:
-            this.Admin.st2 = this.streets[i].id;
-            this.Admin.street2 = this.streets[i].name;
-            break;
-          case 3:
-            this.Admin.st3 = this.streets[i].id;
-            this.Admin.street3 = this.streets[i].name;
-            break;
-        }
+  public guardarStreets(event: Event, op: number) {
+    const name = event.toString();
+  const idStreet =  this.servicioZip.guardarStreet(event, op, this.streets);
+  debugger
+    switch (op) {
+      case 1:
+        this.Admin.st1 = idStreet;
+        // this.Admin.street1 = name;
         break;
-      }
+      case 2:
+        this.Admin.st2 = idStreet;
+        // this.Admin.street2 = name;
+        break;
+      case 3:
+        this.Admin.st3 = idStreet;
+        // this.Admin.street3 = name;
+        break;
     }
   }
+  get nombreCompleto() {
+    return this.servicioZip.nombreCompleto(this.Admin.name, this.Admin.lm1, this.Admin.lm2);
+  }
+  // public guardarStreet(event: Event, op: number) {
+
+  //   console.log(event + "y el valor es ");
+  //   for (let i = 0; i < this.streets.length; i++) {
+  //     if (this.streets[i].name == event) {
+  //       switch (op) {
+  //         case 1:
+  //           this.Admin.st1 = this.streets[i].id;
+  //           this.Admin.street1 = this.streets[i].name;
+  //           break;
+  //         case 2:
+  //           this.Admin.st2 = this.streets[i].id;
+  //           this.Admin.street2 = this.streets[i].name;
+  //           break;
+  //         case 3:
+  //           this.Admin.st3 = this.streets[i].id;
+  //           this.Admin.street3 = this.streets[i].name;
+  //           break;
+  //       }
+  //       break;
+  //     }
+  //   }
+  // }
+
 }
 

@@ -152,7 +152,7 @@
             [text]="'Calle principal'"
             [info]="Admin.street1"
             [arrays]="streetName"
-            (data)="guardarStreet($event, 1)"
+            (data)="guardarStreets($event, 1)"
             className="brand"
             style="width: 35%"
           ></app-auto-complete>
@@ -161,7 +161,7 @@
             [text]="'Entre la calle'"
             [info]="Admin.street2"
             [arrays]="streetName"
-            (data)="guardarStreet($event, 2)"
+            (data)="guardarStreets($event, 2)"
             className="brand"
             style="width: 30%"
           ></app-auto-complete>
@@ -170,7 +170,7 @@
             [text]="'y la Calle'"
             [info]="Admin.street3"
             [arrays]="streetName"
-            (data)="guardarStreet($event, 3)"
+            (data)="guardarStreets($event, 3)"
             className="brand"
             style="width: 30%"
           ></app-auto-complete>
@@ -264,6 +264,7 @@
             (data)="onDelete(Admin)"
             [text]="'Desea borrar el registro de el administrador'"
             [name]="Admin.id + '?'"
+            [name]="nombreCompleto"
             [IconButton]="false"
           ></app-yes-no-dialog>
           <br />

@@ -89,6 +89,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatTreeModule} from '@angular/material/tree';
 import { LoginComponent } from './components/structure/login/login.component';
+import { NotificationService } from './components/tools/info-dialog/notification.service';
 
 
 
@@ -191,7 +192,7 @@ import { LoginComponent } from './components/structure/login/login.component';
 
   ],
   // entryComponents: [YesNoDialogComponent ],
-  providers: [DatePipe],
+  providers: [DatePipe,NotificationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -182,8 +182,7 @@ export class DialogInsertLogicBig {
     debugger
     this.secondId = this.service.guardarStreetExtraData(event, this.array);
     this.object.settlement = this.secondId;
-    this.object.idBrand= this.secondId
-    
+    this.object.idBrand= this.secondId;
   }
   ChangeName() {
     debugger

@@ -5,7 +5,7 @@
     mat-raised-button
     color="primary"
     class="text-button-redFinal"
-    (click)="openDialog('300ms', '300ms', text, name)"
+    (click)="openDialog('300ms', '300ms', text, name,title)"
   >
     Eliminar
   </button>
@@ -13,7 +13,7 @@
 <div *ngIf="IconButton == true">
   <mat-icon
     style="transform: scale(1.2)"
-    (click)="openDialog('300ms', '300ms', text, name)"
+    (click)="openDialog('300ms', '300ms', text, name,title)"
     >delete_outline</mat-icon
   >
 </div>

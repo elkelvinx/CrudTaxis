@@ -254,6 +254,7 @@
           <app-datepicker-date
             [isDisabled]="false"
             [actualDate]="Driver.birth"
+            (date)="Driver.birth = $event"
             [text]="'Fecha de nacimiento'"
             className="brand"
             style="width: 48%"
@@ -262,6 +263,7 @@
           <app-datepicker-date
             [isDisabled]="false"
             [actualDate]="Driver.licenseEx"
+            (date)="Driver.licenseEx = $event"
             [text]="'Vencimiento de licencia'"
             className="brand"
             style="width: 48%"
@@ -334,9 +336,10 @@
           "
         >
           <app-yes-no-dialog
-            (click)="(eliminar)"
-            [text]="'Desea borrar el registro de la unidad'"
-            [name]="Driver.name + ' ' + Driver.lm1 + ' ' + Driver.lm2 + '?'"
+            (data)="eliminarDialog(Driver.id)"
+            [title]="'conductor'"
+            [text]="'Borrar el registro del conductor'"
+            [name]="nombreCompleto"
             [IconButton]="false"
           ></app-yes-no-dialog>
           <br />

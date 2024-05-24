@@ -8,7 +8,7 @@ import { ReadService } from '../../services/crudDataArray/extra-Read.service';
 import { TableConfig } from '../tools/table/models/table-config';
 import { TABLE_ACTION } from '../tools/table/enums/action.enum';
 import { TableAction } from '../tools/table/models/table-actions';
-
+import { NotificationService } from "../tools/info-dialog/notification.service";
 @Component({
   selector: 'app-drivers',
   templateUrl: './drivers.component.html',
@@ -42,6 +42,7 @@ export class DriversComponent implements OnInit {
     private serviciosDriver: ServicesDriversService,
     private AppComponent: AppComponent,
     private servicioApp: ReadService,
+    public notificationService: NotificationService
   ) { }
 
   ngOnInit(): void {
@@ -51,15 +52,18 @@ export class DriversComponent implements OnInit {
   }
 
   onDelete(object: driver) {
+    debugger
     this.eliminarDialog(object.id);
   }
   onTableAction(tableAction: TableAction) {
     switch (tableAction.action) {
       case TABLE_ACTION.EDIT:
+        this.notificationService.successInfo("Driver Cargado");
         this.consultarDriver(tableAction.row.id);
         break;
 
       case TABLE_ACTION.DELETE:
+        debugger
         this.onDelete(tableAction.row);
         break;
 
@@ -68,18 +72,23 @@ export class DriversComponent implements OnInit {
     }
   }
 
+  get nombreCompleto(): string {
+    const nombre = this.Driver.name || '';
+    const apellido1 = this.Driver.lm1 || '';
+    const apellido2 = this.Driver.lm2 || '';
+
+    if (nombre || apellido1 || apellido2) {
+      return `${nombre} ${apellido1} ${apellido2}`;
+    } else {
+      // Todos los valores están vacíos
+      return 'con nombre no especificado';
+    }
+  }
   consultarSettleName() {
     this.servicioApp.consultarSettlementName('n').subscribe(
       (data: any[]) => {
         this.settlements = data;
         this.settlementName = this.settlements.map(settlement => settlement.name);
-        //cambio del flag para que se muestre el html
-        if (this.Driver.settlementS == null) {
-          // this.isLoadedSt = false;
-        }
-        else {
-          //aqui deberia hacer algo jasjasjs
-        }
       },
       error => {
         console.log(error);
@@ -91,15 +100,10 @@ export class DriversComponent implements OnInit {
       (data: any[]) => {
         this.streets = data;
         this.streetName = this.streets.map(streets => streets.name);
-        if (this.Driver.street1 == null) {
-          // this.isLoadedSt = true;
-        }
-        else {
-          // console.log('PEDRO PICAPIEDRA')
-        }
       },
       error => {
-        console.log(error);
+        const errorMessage = error.error.ExceptionMessage || "Error Relacionado a la BD"; // Accede al mensaje de error
+        this.notificationService.displayMessageError("Error al guardar el registro", errorMessage);
       }
     )
   }
@@ -108,7 +112,7 @@ export class DriversComponent implements OnInit {
       (data: any[]) => {
         this.admins = data;
         this.adminsName = this.admins.map(admins => admins.name);
-        if (this.Driver.idAdmin !== null) {
+        if (this.Driver.admin !== null) {
           // this.isLoaded2 = true;
         }
         else {
@@ -127,7 +131,8 @@ export class DriversComponent implements OnInit {
         this.statusName = this.listStatus.map(status => status.name);
       },
       error => {
-        console.log(error);
+        const errorMessage = error.error.ExceptionMessage || "Error Relacionado a la BD"; 
+        this.notificationService.displayMessageError("Error al guardar el registro", errorMessage);
       }
     )
   }
@@ -151,10 +156,10 @@ export class DriversComponent implements OnInit {
           this.ActSave = false;
         }
         else {
-          // console.log('colonia: ' + this.isLoaded2 + ' calle: ' + this.isLoadedSt)
-          this.Driver.licenseEx = this.Driver.birth = this.Driver.hireDate = this.Driver.lastModD = new Date();
+          this.ActSave = true;
+          this.Driver.licenseEx = this.Driver.hireDate = this.Driver.lastModD = new Date();
+          this.Driver.birth = new Date('1900-01-01');
           this.Driver.statusS = 'Escoja un status';
-          console.log(this.statusName)
         }
       },
       error => {
@@ -173,24 +178,31 @@ export class DriversComponent implements OnInit {
     )
   }
   public grabar() {
+    debugger
     this.serviciosDriver.Grabar(this.Driver).subscribe(
       (data) => {
-        console.log("Guardado correctamente" + data)
+        debugger
+        this.notificationService.success("El Conductor ha sido guardado");
         this.consultarDrivers();
       },
       error => {
-        console.log(error);
+        const errorMessage = error.error.ExceptionMessage || "Error desconocido"; // Accede al mensaje de error
+        this.notificationService.displayMessageError("Error al guardar el registro", errorMessage);
       }
     )
   }
+  
   public actualizar() {
+    debugger
     this.serviciosDriver.Actualizar(this.Driver).subscribe(
       (data) => {
         console.log("Actualizado correctamente" + data)
+        this.notificationService.success("El Conductor ha sido actualizado");
         this.consultarDrivers();
       },
       error => {
-        console.log(error);
+        const errorMessage = error.error.ExceptionMessage || "Error desconocido, posiblemente falla de la API o BD";
+        this.notificationService.displayMessageError("Error al actualizar el registro",errorMessage);
       }
     )
   }
@@ -202,7 +214,7 @@ export class DriversComponent implements OnInit {
         console.log(data)
       },
       error => {
-        console.log(error);
+        this.notificationService.displayMessageError("Error al guardar el registro",error);
       }
     )
   }
@@ -239,10 +251,11 @@ export class DriversComponent implements OnInit {
 
   }
   public guardarAdmin(event: Event) {
+    debugger
     // console.log(event + "y el valor es ");
     for (let i = 0; i < this.admins.length; i++) {
       if (this.admins[i].name == event) {
-        this.Driver.idAdmin = this.admins[i].id;
+        this.Driver.admin = this.admins[i].id;
         break;
       }
     }
@@ -267,5 +280,6 @@ export class DriversComponent implements OnInit {
         console.log(error);
       }
     )
+    
   }
 }

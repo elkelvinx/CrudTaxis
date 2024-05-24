@@ -25,6 +25,7 @@ import { DialogRef } from '@angular/cdk/dialog';
 export class YesNoDialogComponent {
   //pregunta que hara el dialog
   @Input() text: string = '';
+  @Input() title: string = '';
   @Input() name: any;
   @Input() IconButton: boolean = true;
   //bool que devolvemos al padre
@@ -34,14 +35,16 @@ export class YesNoDialogComponent {
   ChangeName() {
     this.data.emit(true);
   }
-  openDialog(enterAnimationDuration: string, exitAnimationDuration: string, contentDialog: string, name: string): void {
+  openDialog(enterAnimationDuration: string, exitAnimationDuration: string, contentDialog: string, name: string,title:string): void {
     const dialogRef = this.dialog.open(DialogAnimationsExampleDialog, {
       width: '520px',
+      height: '200px',
       enterAnimationDuration,
       exitAnimationDuration,
       data: {
         contentDialog: contentDialog,
         nameObj: name,
+        title: title,
       },
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -61,6 +64,7 @@ export class YesNoDialogComponent {
 export class DialogAnimationsExampleDialog {
   public contentDialog: String;
   public nameObj: any;
+  public title: string;
   //de aqui para abajo es no comprendo al 100%
   constructor(
     public dialogRef: MatDialogRef<DialogAnimationsExampleDialog>,
@@ -70,6 +74,7 @@ export class DialogAnimationsExampleDialog {
   ) {
     this.contentDialog = data.contentDialog;
     this.nameObj = data.nameObj;
+    this.title = data.title;
   }
   ChangeName() {
     this.dialogRef.close(true);

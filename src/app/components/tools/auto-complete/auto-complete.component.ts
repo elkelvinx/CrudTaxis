@@ -58,8 +58,7 @@ export class AutoCompleteComponent {
     return this.arrays.filter(option => option.toLowerCase().includes(filterValue));
   }
   changeName() {
-
-    console.log(this.filteredOptions + " " + this.myControl.value)
+    // console.log(this.filteredOptions + " " + this.myControl.value)
     this.data.emit(this.myControl.value);
   }
 }

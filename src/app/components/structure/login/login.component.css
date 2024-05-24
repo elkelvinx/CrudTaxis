@@ -1,39 +1,46 @@
 .titulo {
-    /* font-size: 30px;
-    font-weight: bold;
-    margin-bottom: 20px;
-    color: black; */
+
     font-size: 43px;
     font-weight: 600;
     font-family: 'montserrat', sans-serif;
     margin-bottom: 20px;
-    color: black;
+    margin-left: 23%;
+    color: #ffffff;
 }
 .principal {
-    /* background-color: #f8f9fa;
+    /*
+    background-color: #16161d;
     height: 86vh;
     display: flex;
-    width: 63%;
-    flex-direction: row;
-    align-content: center;
-    justify-content: center;    
-    flex-wrap: wrap;
-    border-radius: 25px; */
-    background-color: #f8f9fa;
-    height: 86vh;
-    display: flex;
-    width: 63%;
+    width: 40%;
     flex-direction: column;
     align-content: center;
     justify-content: space-evenly;
     flex-wrap: wrap;
     border-radius: 25px;
     align-items: center;
+    margin-left: 30%;
+    margin-top: 5%;
+    */
+    background-color: #16161d;
+    height: 86vh;
+    display: flex;
+    width: fit-content;
+    flex-direction: column;
+    align-content: center;
+    flex-wrap: wrap;
+    border-radius: 25px;
+    margin-left: 30%;
+    margin-top: 5%;
+    padding-left: 1%;
+    padding-right: 1.3%;
+    justify-content: space-evenly;
+    align-items: center;
+
 }
 .logoLogin {
-    /* width: 20%; */
-    transform: scale(1.8);
-    /* margin-right: 40px; */
+    /* transform: scale(1.2); */
+    border-radius: 14px;
 }
 .logInInput {
     width: 100%;
@@ -43,5 +50,35 @@
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
     margin-left: 5px;
-    margin-right: 5px;
+}
+.backgroundPage{
+background-image: url('https://images.unsplash.com/photo-1517243667550-44d5628894d0?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+background-size: cover;}
+@media screen and (max-width: 1460px) {
+    .logoLogin {
+        transform: scale(0.9);
+    }
+    .principal {
+        margin-left: 24%;
+    }
+  }
+@media screen and (max-width: 1360px) {
+    .logoLogin {
+        transform: scale(0.6);
+    }
+    .principal {
+        margin-left: 20%;
+    }
+  }
+  @media (min-width: 100px) and (max-width: 1260px)   {
+    .logoLogin {
+        transform: scale(0.6);
+    }
+    .principal {
+        margin-left: 20%;
+    }
+  }
+
+:root{
+    --mdc-filled-text-field-container-color: #1C1C27!important;
 }

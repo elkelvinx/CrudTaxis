@@ -17,7 +17,7 @@ export class driver {
             public st2: number = 0,
             public st3: number = 0,
             public extNumber: number = 0,
-            public idAdmin: number = 0,
+            public admin: number = 0,
             public contactDrivers: number = 0,
             public adminName: string = '',
             public licenseEx: Date = new Date(),

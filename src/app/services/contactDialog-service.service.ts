@@ -9,7 +9,6 @@ export class ServicesContactService {
     urlApi = "https://localhost:44319/Api/";
     constructor(private Http: HttpClient
     ) { }
-
     public consultarContactId(id: number) {
         let controller = "contactDriver";
         let params = new HttpParams().set("id", id);
@@ -82,5 +81,4 @@ export class ServicesContactService {
             }
         )
     }
-
 }

@@ -1,11 +1,5 @@
-import { Observable, of } from 'rxjs';
 import { Injectable, InjectionToken } from '@angular/core';
 import { ServicesDriversService } from './services-drivers.service';
-import { ServicesAdminService } from './services-admin.service';
-import { ServicesPermissionaireService } from './services-permissionaire.service';
-import { UnitsService } from './services-units.service';
-import { SinisterService } from './sinister.service';
-import { catchError, throwError, tap } from 'rxjs';
 import { ReadService } from './crudDataArray/extra-Read.service';
 
 
@@ -29,25 +23,17 @@ export class PRUEBAService<T> implements IGenericService<T> {
   private settlementName: any[] = [];
   private streets: any[] = [];
   private streetName: any[] = [];
-
   constructor(
     servicioDriver: ServicesDriversService,
-    servicioAdmin: ServicesAdminService,
-    servicioSinister: SinisterService,
-    servicioUnit: UnitsService,
-    servicioPermissionario: ServicesPermissionaireService,
     private servicioApp: ReadService,
   ) {
     this.serviciosMapa.set('driver', servicioDriver);
-    this.serviciosMapa.set('admin', servicioAdmin);
-    this.serviciosMapa.set('sinister', servicioSinister);
-    this.serviciosMapa.set('unit', servicioUnit);
-    this.serviciosMapa.set('permissionaire', servicioPermissionario);
-
   }
+
+
   public guardarStreet(event: Event, op: number, object: ListStreets) {
     var idStreet = 0;
-    const eventName = (event.target as HTMLInputElement).value;
+    const eventName = event.toString();
     for (let i = 0; i < object.length; i++) {
       if (object[i].name === eventName) {
         idStreet = object[i].id;
@@ -57,6 +43,18 @@ export class PRUEBAService<T> implements IGenericService<T> {
     return idStreet;
   }
 
+  public nombreCompleto(name:string,lm1:string, lm2:string): string {
+    const nombre = name || '';
+    const apellido1 = lm1 || '';
+    const apellido2 = lm2 || '';
+
+    if (nombre || apellido1 || apellido2) {
+      return `${nombre} ${apellido1} ${apellido2}`;
+    } else {
+      // Todos los valores están vacíos
+      return 'con nombre no especificado';
+    }
+  }
   public guardarStreetExtraData(event: Event, object: any) {
     var id = 0;
     const eventName = event;
