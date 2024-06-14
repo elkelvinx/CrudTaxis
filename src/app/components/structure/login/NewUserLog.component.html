@@ -16,15 +16,8 @@
             placeholder="Usuario a ingresar"
             required
             pattern="[a-zA-Z0-9 ]*"
-            #nameInput="ngModel"
           />
-         
         </mat-form-field>
-        <div class="text-danger" 
-        *ngIf="nameInput.invalid && (nameInput.dirty || logInForm.submitted)">
-        <div *ngIf="nameInput.hasError('required')">{{errorMensaje}}</div>
-        <div *ngIf="nameInput.hasError('pattern')">{{errorMensaje2}}</div>
-        </div>
         <mat-form-field class="logInInput">
             <mat-label>Contraseña</mat-label>
             <input
@@ -36,12 +29,14 @@
               required
               #passwordInput="ngModel"
             />
+            <div class="text-danger" 
+            *ngIf="passwordInput.invalid && (passwordInput.dirty || logInForm.submitted)">
+
+            <div *ngIf="passwordInput.hasError('required')">Email is required</div>
+            <div *ngIf="passwordInput.hasError('email')">Invalid email format</div>
+
+            </div>
           </mat-form-field>
-          <div class="text-danger" 
-          *ngIf="passwordInput.invalid && (passwordInput.dirty || logInForm.submitted)">
-          <div *ngIf="passwordInput.hasError('required')">La contaseña es obligatoria</div>
-          <div *ngIf="passwordInput.hasError('pattern')">No se permiten valores extraños</div>
-          </div>
           <button
           mat-raised-button
           (click)="logIn()"

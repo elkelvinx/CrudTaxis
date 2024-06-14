@@ -13,7 +13,7 @@ import { DocumentsPDFComponent } from './components/documents-pdf/documents-pdf.
 import { MenuExtraDataComponent } from './components/extraData/menu-extra-data/menu-extra-data.component';
 const routes: Routes = [
   //la ruta base cuando inicia la aplicacion
-  { path: '', component: HomeComponent },
+  { path: '', component: LoginComponent },
   { path: 'login', component: LoginComponent },
   { path: 'home', component: HomeComponent },
   { path: 'drivers', component: DriversComponent },
