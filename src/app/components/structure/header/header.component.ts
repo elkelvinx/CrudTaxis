@@ -21,7 +21,6 @@ export class HeaderComponent implements OnInit{
  ngOnInit(): void {
    this.permissions=this.auth.getDecodedToken();  
    console.log(this.permissions.Driver);
-   
  }
   isActive(path: string): boolean {
     const currentRoute = this.router.url;

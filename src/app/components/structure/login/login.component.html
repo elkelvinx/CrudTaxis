@@ -16,7 +16,7 @@
           [(ngModel)]="user.name"
           placeholder="Usuario a ingresar"
           required
-          pattern="[a-zA-Z0-9 ]*"
+          pattern="[a-zA-Z0-9]*"
           #nameInput="ngModel"
         />
       </mat-form-field>
@@ -24,8 +24,12 @@
         class="text-danger"
         *ngIf="nameInput.invalid && (nameInput.dirty || logInForm.submitted)"
       >
-        <div class="errorText" *ngIf="nameInput.hasError('required')">{{ errorMensaje }}</div>
-        <div class="errorText" *ngIf="nameInput.hasError('pattern')">{{ errorMensaje2 }}</div>
+        <div *ngIf="nameInput.hasError('required')">
+           Nombre de usuario es obligatorio
+        </div>
+        <div *ngIf="nameInput.hasError('pattern')">
+          No se permiten caracteres especiales ni espacios
+        </div>
       </div>
       <mat-form-field class="logInInput">
         <mat-label>Contraseña</mat-label>
@@ -34,20 +38,22 @@
           name="password"
           [(ngModel)]="user.password"
           placeholder="Ej.123"
-          pattern="[a-zA-Z0-9 ]*"
+          pattern="[a-zA-Z0-9]*"
           required
           #passwordInput="ngModel"
         />
       </mat-form-field>
       <div
         class="text-danger"
-        *ngIf="passwordInput.invalid && (passwordInput.dirty || logInForm.submitted)"
+        *ngIf="
+          passwordInput.invalid && (passwordInput.dirty || logInForm.submitted)
+        "
       >
         <div *ngIf="passwordInput.hasError('required')">
           La contaseña es obligatoria
         </div>
         <div *ngIf="passwordInput.hasError('pattern')">
-          No se permiten valores extraños
+          No se permiten caracteres especiales ni espacios
         </div>
       </div>
       <button
@@ -55,12 +61,10 @@
         class="text-button-greenFinal"
         [disabled]="!logInForm.valid"
       >
-        Guardar
+        Confirmar
       </button>
-      <div
-        class="link_text"
-      >
-      <a routerLink="/newLogIn"><strong>¿Crear usuario?</strong></a>
+      <div class="link_text">
+        <a routerLink="/newLogIn"><strong>¿Crear usuario?</strong></a>
       </div>
     </form>
   </div>

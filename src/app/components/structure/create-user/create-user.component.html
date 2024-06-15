@@ -19,7 +19,7 @@
           [(ngModel)]="user.name"
           placeholder="Usuario a ingresar"
           required
-          pattern="[a-zA-Z0-9 ]*"
+          pattern="[a-zA-Z0-9]*"
           #nameInput="ngModel"
         />
       </mat-form-field>
@@ -27,10 +27,11 @@
         class="text-danger"
         *ngIf="nameInput.invalid && (nameInput.dirty || logInForm.submitted)"
       >
-        <div *ngIf="nameInput.hasError('required')">{{ errorMensaje }}</div>
-        <div *ngIf="nameInput.hasError('pattern')">{{ errorMensaje2 }}</div>
+      <div *ngIf="nameInput.hasError('required')">
+        Nombre de usuario es obligatorio
+     </div>
+     <div *ngIf="nameInput.hasError('pattern')">{{ errorMensaje }}</div>
       </div>
-
       <mat-form-field class="logInInput">
         <mat-label>Correo electronico</mat-label>
         <input
@@ -48,8 +49,10 @@
         class="text-danger"
         *ngIf="mailinput.invalid && (mailinput.dirty || logInForm.submitted)"
       >
-        <div *ngIf="mailinput.hasError('required')">{{ errorMensaje }}</div>
-        <div *ngIf="mailinput.hasError('pattern')">{{ errorMensaje2 }}</div>
+      <div *ngIf="mailinput.hasError('required')">
+        Correo Electronico es obligatorio
+     </div>
+        <div *ngIf="mailinput.hasError('pattern')">{{ errorMensaje }}</div>
       </div>
 
       <mat-form-field class="logInInput">
@@ -73,9 +76,7 @@
         <div *ngIf="passwordInput.hasError('required')">
           La contaseña es obligatoria
         </div>
-        <div *ngIf="passwordInput.hasError('pattern')">
-          No se permiten valores extraños
-        </div>
+        <div *ngIf="passwordInput.hasError('pattern')">{{ errorMensaje }}</div>
       </div>
       <button
         mat-raised-button

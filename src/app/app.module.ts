@@ -91,7 +91,7 @@ import {MatTreeModule} from '@angular/material/tree';
 import { LoginComponent } from './components/structure/login/login.component';
 import { NotificationService } from './components/tools/info-dialog/notification.service';
 import { CreateUserComponent } from './components/structure/create-user/create-user.component';
-
+import { AuthViewComponent } from './AuthView.componet';
 
 @NgModule({
   exports: [
@@ -157,7 +157,7 @@ import { CreateUserComponent } from './components/structure/create-user/create-u
     InfoDialogComponent,
     LoginComponent,
     CreateUserComponent,
-
+    AuthViewComponent,
   ],
   imports: [
     BrowserModule,
@@ -192,6 +192,6 @@ import { CreateUserComponent } from './components/structure/create-user/create-u
   ],
   // entryComponents: [YesNoDialogComponent ],
   providers: [DatePipe,NotificationService],
-  bootstrap: [AppComponent]
+  bootstrap: [AuthViewComponent]
 })
 export class AppModule { }

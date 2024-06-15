@@ -13,12 +13,25 @@ import { DocumentsPDFComponent } from './components/documents-pdf/documents-pdf.
 import { MenuExtraDataComponent } from './components/extraData/menu-extra-data/menu-extra-data.component';
 import { CreateUserComponent } from './components/structure/create-user/create-user.component';
 import { AuthGuardService } from './services/security/auth-guard.service';
-
+import { AuthViewComponent } from './AuthView.componet';
+import { AppModule } from './app.module';
+import { AppComponent } from './app.component';
 const routes: Routes = [
-  //la ruta base cuando inicia la aplicacion
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
-  { path: 'login', component: LoginComponent },
-  {path:  'newLogIn', component: CreateUserComponent},
+  {
+    path: '',
+    component: AuthViewComponent,
+    children: [
+      //estas rutas no estan protegidas ni tienen sidemenu
+      { path: '', redirectTo: '/login', pathMatch: 'full' },
+      { path: 'login', component: LoginComponent },
+      { path: 'newLogIn', component: CreateUserComponent }
+    ]
+  },
+  {
+    path: '',
+    component: AppComponent,
+    children: [
+  //Cuando el logIn fue exitoso
   { path: 'home', component: HomeComponent},
   { path: 'drivers', component: DriversComponent, canActivate: [AuthGuardService],data: { section: 'Driver' } },
   { path: 'admins', component: AdminsComponent, canActivate: [AuthGuardService],data: { section: 'Admin' } },
@@ -27,7 +40,8 @@ const routes: Routes = [
   { path: 'sinisters', component: SinistersComponent, canActivate: [AuthGuardService],data: { section: 'Sinister' } },
   { path: 'documents', component: DocumentsPDFComponent, canActivate: [AuthGuardService],data: { section: 'PDF' } },
   { path: 'extraData', component: MenuExtraDataComponent, canActivate: [AuthGuardService],data: { section: 'ExtraData' } },
-  
+]
+},
   //ruta para cuando no se encuentre la url
   { path: '**', component: ErrorComponent }
 ];

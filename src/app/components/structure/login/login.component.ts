@@ -13,8 +13,6 @@ import { AuthService } from '../../../services/security/authService.service';
 export class LoginComponent {
 public user= new userLogIn();
 public JWT= new userResponse();
-public errorMensaje: string= 'Informacion necesaria';
-public errorMensaje2: string= 'No se permiten valores extraños';
 constructor(private router: Router,private notificationService: NotificationService, private logInservice:LogInService,private authService:AuthService) { }
 logIn(){
   this.grabar(this.user);

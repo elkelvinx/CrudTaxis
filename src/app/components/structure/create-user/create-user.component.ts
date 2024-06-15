@@ -12,8 +12,9 @@ import { userResponse } from '../../../models/user';
 })
 export class CreateUserComponent {
   public user= new user();
-  public errorMensaje: string= 'Informacion necesaria';
-  public errorMensaje2: string= 'No se permiten valores extraños';
+  public errorMensaje: string= ' No se permiten caracteres especiales ni espacios';
+
+  
   constructor(private router: Router,private notificationService: NotificationService, private logInservice:LogInService) { }
   createUser(){
     

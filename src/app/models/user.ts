@@ -15,7 +15,7 @@ export class userLogIn {
     constructor
         (
             public name: string = 'leo',
-            public password: string = 'de pelos',
+            public password: string = 'prueba',
         ) {
     }
 }
