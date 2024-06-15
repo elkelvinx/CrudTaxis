@@ -11,7 +11,14 @@ export class AuthService {
     getToken(): string | null {
       return localStorage.getItem('token');
     }
-  
+    getDecodedToken(): any {
+      debugger
+      const token = this.getToken();
+      if(token) {
+        return jwt_decode.jwtDecode(token);
+      }
+      return null;
+    }
     // Verifica si el usuario está autenticado
     verifyPermission(section:string): boolean {
       const token = this.getToken();

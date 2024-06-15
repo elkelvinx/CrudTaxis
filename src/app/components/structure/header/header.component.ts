@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
 import { AppRoutingModule } from '../../../app-routing.module';
 import { AuthService } from '../../../services/security/authService.service';
 import { Router } from '@angular/router';
@@ -10,14 +10,19 @@ import { MatDialog } from '@angular/material/dialog';
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit{
   selectedOption: string = 'home';
+  permissions: any;
   isMenuOpen = false;
   menuWidth = '70px'; // Ancho inicial
   headerWidth = '3.7%'; // Ancho inicial
-  iconButtonWidth = '1%'; 
+  iconButtonWidth = '1%'; //Ancho del icono
   constructor(private router: Router,private auth:AuthService,public dialog: MatDialog) { }
-
+ ngOnInit(): void {
+   this.permissions=this.auth.getDecodedToken();  
+   console.log(this.permissions.Driver);
+   
+ }
   isActive(path: string): boolean {
     const currentRoute = this.router.url;
     return currentRoute.startsWith(path);

@@ -27,3 +27,11 @@ export class userResponse{
         public ErrorMessage: string= ''
     ){}
 }
+export class userPermissions{
+    constructor
+    (
+        public Token: string = '',
+        public IsSuccess:boolean= false,
+        public ErrorMessage: string= ''
+    ){}
+}
