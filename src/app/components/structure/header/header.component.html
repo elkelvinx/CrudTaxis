@@ -6,12 +6,8 @@
     <i class="collapsible" id="btn_open" (click)="toggleMenu()" > <mat-icon>menu</mat-icon></i>
   </div>
   <div class="Buttons__LogOut">
-    <!-- <button mat-stroked-button class="text-button-greenFinal" (click)="logOut()">Salir</button> -->
-    <app-yes-no-dialog
-    (data)="closeSession()"
-    [text]="'Desea cerrar sesion?'"
-    [IconButton]="true"
-  ></app-yes-no-dialog>
+    <button mat-stroked-button class="text-button-greenFinal" (click)="openDialog('300ms', '300ms','Seguro que ya se quiere ir?')">Cerrar Sesion</button>
+
   </div>
 </header>
 
