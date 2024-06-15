@@ -114,7 +114,7 @@ a.selected {
     width: 80px;
     left: -80px;
   }
-  .icon__menu {
-   margin-left:145px!important;
+  .icon__menu::after{
+   margin-left:245px!important;
   }
 }

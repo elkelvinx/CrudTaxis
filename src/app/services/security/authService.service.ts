@@ -17,7 +17,6 @@ export class AuthService {
       const token = this.getToken();
       if(token) {
         const decodedToken: any = jwt_decode.jwtDecode(token);
-        debugger
         if (decodedToken[section]=='True')
           return true;
         else{

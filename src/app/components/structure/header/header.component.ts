@@ -13,7 +13,7 @@ export class HeaderComponent {
   isMenuOpen = false;
   menuWidth = '70px'; // Ancho inicial
   headerWidth = '3.7%'; // Ancho inicial
-  iconButtonWidth = '70px'; 
+  iconButtonWidth = '1%'; 
   constructor(private router: Router,private auth:AuthService) { }
 
   isActive(path: string): boolean {
@@ -35,14 +35,16 @@ closeSession(){
       this.closeMenu();
     }
     else {
-    this.menuWidth = '270px'; // Cambia el ancho al hacer clic
+    this.menuWidth = '270px'; // abre el menu
     this.headerWidth = '270px'
+    this.iconButtonWidth = '12%'; 
     this.isMenuOpen = true;
     }
   }
   closeMenu() {
-    this.menuWidth = '70px'; // Cambia el ancho al hacer clic
+    this.menuWidth = '70px'; // cierra el menu
     this.headerWidth = '3.7%'
+    this.iconButtonWidth = '1%'; 
     this.isMenuOpen = false;
   }
 
