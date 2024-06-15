@@ -195,7 +195,7 @@ export class ConfirmationDialog {
               (click)="onYesClick()"
               color="primary"
               class="text-button-greenFinal"
-            >Enterado</button>
+            >Continuar</button>
      </div>
     </div>
   `,

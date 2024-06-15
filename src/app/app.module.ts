@@ -90,11 +90,9 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatTreeModule} from '@angular/material/tree';
 import { LoginComponent } from './components/structure/login/login.component';
 import { NotificationService } from './components/tools/info-dialog/notification.service';
+import { CreateUserComponent } from './components/structure/create-user/create-user.component';
 
 
-
-
-//import {  MatDialogModule,  MatButtonModule} from '@angular/material'
 @NgModule({
   exports: [
     A11yModule,
@@ -158,6 +156,7 @@ import { NotificationService } from './components/tools/info-dialog/notification
     MenuExtraDataComponent,
     InfoDialogComponent,
     LoginComponent,
+    CreateUserComponent,
 
   ],
   imports: [

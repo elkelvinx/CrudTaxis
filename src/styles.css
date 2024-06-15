@@ -76,7 +76,8 @@ td.mat-cell {
   justify-content: center;
   align-items: center;
   transform: translateX(10px);
-  margin-left: -70px;
+  margin-left: 162px;
+  /* margin-left: -70px; */
 }
 
 .ImagenLogo {

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AppRoutingModule } from '../../../app-routing.module';
+import { AuthService } from '../../../services/security/authService.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -13,14 +14,20 @@ export class HeaderComponent {
   menuWidth = '70px'; // Ancho inicial
   headerWidth = '3.7%'; // Ancho inicial
   iconButtonWidth = '70px'; 
-  constructor(private router: Router) { }
+  constructor(private router: Router,private auth:AuthService) { }
 
   isActive(path: string): boolean {
     const currentRoute = this.router.url;
     return currentRoute.startsWith(path);
   }
-
-
+logOut(){
+this.auth.logout();
+}
+closeSession(){
+  debugger
+  this.auth.logout();
+  this.router.navigate(['/login']);
+}
 
   toggleMenu() {
     debugger

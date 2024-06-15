@@ -1,7 +1,7 @@
 header {
   /*Modificado de 80 a 50*/
   /*height 50px o 8%*/
-  width: 98%;
+  width: 100%;
   height: 50px;
   background: #1b1e18d6;
   display: flex;
@@ -9,7 +9,16 @@ header {
   position: fixed;
   top: 0;
   z-index: 200;
-  margin-left: 70px;
+  /* margin-left: 70px; */
+  justify-content: space-between;
+}
+.Buttons__LogOut{
+  margin-right: 3.5%;
+  margin-bottom: 0.1%;
+}
+.text-button-greenFinal{
+  --mat-outlined-button-state-layer-color: #ea1111!important;
+width: fit-content;
 }
 .menu__side {
   /*Modificado de 80 a 70*/
@@ -21,7 +30,7 @@ header {
   width: 70px;
   height: 100%;
   /* background: #8b0101be; */
-  background: #1b1e18d6;
+  background: #202220;
   position: fixed;
   top: 0;
   left: 0;

@@ -1,9 +1,17 @@
 <!DOCTYPE html>
 <!--Menu y barra navegacion aqui-->
 
-<header [style.margin-left]="headerWidth" class="header">
+<header  class="header">
   <div class="icon__menu" >
     <i class="collapsible" id="btn_open" (click)="toggleMenu()" [style.margin-left]="iconButtonWidth"> <mat-icon>menu</mat-icon></i>
+  </div>
+  <div class="Buttons__LogOut">
+    <!-- <button mat-stroked-button class="text-button-greenFinal" (click)="logOut()">Salir</button> -->
+    <app-yes-no-dialog
+    (data)="closeSession()"
+    [text]="'Desea cerrar sesion?'"
+    [IconButton]="true"
+  ></app-yes-no-dialog>
   </div>
 </header>
 

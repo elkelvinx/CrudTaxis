@@ -1,18 +1,14 @@
 .titulo {
-    font-size: 39px;
+    font-size: 29px;
     font-weight: 600;
     font-family: 'montserrat', sans-serif;
     margin-bottom: 20px;
+    margin-left: 23%;
     color: #ffffff;
 }
 .principalForm{
     width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    align-items: center;
 }
-
 .principal {
     /*
     background-color: #16161d;
@@ -66,14 +62,11 @@
     --mat-protected-button-ripple-color: rgb(7 101 37) !important;
 }
 .link_text{
-margin-top: 7%;
-margin-left: -7px;
+margin-top: 2%;
+margin-left: 40%;
 }
 a{
     color: rgb(86, 86, 218)!important;
-}
-.errorText{
-     color: red;
 }
 .backgroundPage{
 background-image: url('https://images.unsplash.com/photo-1517243667550-44d5628894d0?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');

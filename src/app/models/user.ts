@@ -3,7 +3,7 @@ export class user {
         (
             public id: number = 0,
             public name: string = 'leo',
-            public email: string = 'de pelos',
+            public email: string = 'elkelvin484@gmail.com',
             public role: string = '',//Alomejor lo quito
             public dateCreated: Date = new Date('2024-01-01'),
             public password: string = 'de pelos',
@@ -22,7 +22,7 @@ export class userLogIn {
 export class userResponse{
     constructor
     (
-        public token: string = 'de pelos',
+        public Token: string = '',
         public IsSuccess:boolean= false,
         public ErrorMessage: string= ''
     ){}
