@@ -8,9 +8,10 @@ import { Router } from '@angular/router';
       <router-outlet></router-outlet>
     </div>
   `,
-  styles: './app.component.css'
+  styles: 'app.component.css'
 })
 export class AuthViewComponent {
     
     constructor(private router: Router) { debugger}
 }
+

@@ -14,7 +14,6 @@ export class CreateUserComponent {
   public user= new user();
   public errorMensaje: string= ' No se permiten caracteres especiales ni espacios';
 
-  
   constructor(private router: Router,private notificationService: NotificationService, private logInservice:LogInService) { }
   createUser(){
     

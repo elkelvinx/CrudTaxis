@@ -58,6 +58,12 @@ export class TableColumnsStructure {
         { label: 'Modelo', def: 'name', dataKey: 'name' },
         { label: 'Marca', def: 'brandName', dataKey: 'brandName' },
     ];
+    static tableColumns4: TableColumn[] = [
+        { label: 'Identificador', def: 'id', dataKey: 'id' },
+        { label: 'Nombres', def: 'name', dataKey: 'name' },
+        { label: 'Id Colonia', def: 'settlement', dataKey: 'settlement' },
+        { label: 'Colonia', def: 'settlementS', dataKey: 'settlementS' },
+    ];
     columns: TableColumn[];
     constructor(numberOfColumns: number) {
         if (numberOfColumns === 1) {

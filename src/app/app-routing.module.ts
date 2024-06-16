@@ -24,7 +24,6 @@ const routes: Routes = [
       //estas rutas no estan protegidas ni tienen sidemenu
       { path: '', redirectTo: '/login', pathMatch: 'full' },
       { path: 'login', component: LoginComponent },
-      { path: 'newLogIn', component: CreateUserComponent }
     ]
   },
   {
@@ -33,6 +32,7 @@ const routes: Routes = [
     children: [
   //Cuando el logIn fue exitoso
   { path: 'home', component: HomeComponent},
+  { path: 'newLogIn', component: CreateUserComponent,canActivate: [AuthGuardService],data: { section: 'ExtraData' } },
   { path: 'drivers', component: DriversComponent, canActivate: [AuthGuardService],data: { section: 'Driver' } },
   { path: 'admins', component: AdminsComponent, canActivate: [AuthGuardService],data: { section: 'Admin' } },
   { path: 'permission', component: PermissionairesComponent, canActivate: [AuthGuardService],data: { section: 'Permissionaire' } },

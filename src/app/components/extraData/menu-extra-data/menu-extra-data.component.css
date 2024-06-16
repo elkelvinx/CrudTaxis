@@ -37,6 +37,12 @@
   transform: scale(1.7);
   color: #d5f600;
 }
+.text-button-greenFinal
+{
+width: 100%;
+height: 6vh;
+background-color: #222226a6;
+}
 :root {
   /* Table2 */
   --mat-tab-header-active-label-text-color: #35f53b !important;

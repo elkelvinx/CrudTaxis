@@ -64,10 +64,6 @@
     margin-top: 4%;
     --mat-protected-button-ripple-color: rgb(7 101 37) !important;
 }
-.link_text{
-margin-top: 7%;
-margin-left: -7px;
-}
 a{
     color: rgb(86, 86, 218)!important;
 }
@@ -102,13 +98,11 @@ margin-left: 0px;
   }
   @media (min-width: 100px) and (max-width: 1260px)   {
     .logoLogin {
-        transform: scale(0.6);
+        transform: scale(1);
     }
     .principal {
+        display: flex;
         margin-left: 20%;
+        width: 60vh;
     }
   }
-
-:root{
-    --mdc-filled-text-field-container-color: #1C1C27!important;
-}

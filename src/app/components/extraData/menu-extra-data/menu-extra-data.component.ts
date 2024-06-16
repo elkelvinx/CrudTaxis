@@ -7,6 +7,9 @@ import { structureData } from '../../../models/extraData';
 import { ReadService } from '../../../services/crudDataArray/extra-Read.service';
 import { structureStreet } from '../../../models/extraData';
 import { deleteClass } from '../../tools/edit-dialog/switchCRUD/delete';
+import {DialogAnimationsExampleDialog} from '../../tools/yes-no-dialog/yes-no-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-menu-extra-data',
   templateUrl: './menu-extra-data.component.html',
@@ -114,7 +117,7 @@ export class MenuExtraDataComponent implements OnInit {
         break;
     }
   }
-  constructor(private readService: ReadService, public deleteService: deleteClass) { }
+  constructor(private readService: ReadService, public deleteService: deleteClass,public dialog: MatDialog,private router:Router) { }
   ngOnInit(): void {
     this.consultarSettleName();
     this.consultarStreetName();
@@ -212,5 +215,23 @@ export class MenuExtraDataComponent implements OnInit {
         console.log(error);
       }
     )
+  }
+  openDialog(enterAnimationDuration: string, exitAnimationDuration: string, contentDialog: string): void {
+    const dialogRef = this.dialog.open(DialogAnimationsExampleDialog, {
+      width: '530px',
+      height: '180px',
+      enterAnimationDuration,
+      exitAnimationDuration,
+      data: {
+        contentDialog: contentDialog,
+        nameObj: name,
+        title: 'Ir a New LogIn',
+      },
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.router.navigate(['/newLogIn']);
+      }
+    });
   }
 }
