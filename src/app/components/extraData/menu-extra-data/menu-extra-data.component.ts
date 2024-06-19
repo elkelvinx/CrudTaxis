@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { TableConfig } from '../../tools/table/models/table-config';
-import { TableAction } from '../../tools/table/models/table-actions';
 import { TableActionExtraData } from '../../../components/tools/tableExtraData/models/table-actions'
 import { TableColumnsStructure } from '../../../models/extraData';
 import { structureData } from '../../../models/extraData';
@@ -10,6 +9,7 @@ import { deleteClass } from '../../tools/edit-dialog/switchCRUD/delete';
 import {DialogAnimationsExampleDialog} from '../../tools/yes-no-dialog/yes-no-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { LogInService } from '../../../services/security/log-in.service';
 @Component({
   selector: 'app-menu-extra-data',
   templateUrl: './menu-extra-data.component.html',
@@ -19,6 +19,7 @@ export class MenuExtraDataComponent implements OnInit {
   public tableColumns = new TableColumnsStructure(1);
   public columnsStreet = new TableColumnsStructure(2);
   public columnsModels = new TableColumnsStructure(3);
+  public columnsUsers = new TableColumnsStructure(4);
   public arrays: structureData[] = [];
 
   public settlements: structureData[] = [];
@@ -37,6 +38,8 @@ export class MenuExtraDataComponent implements OnInit {
   public statusName: string[] = [];
   public typeSinister: structureData[] = [];
   public typeSinisterName: string[] = [];
+  public users: structureData[] = [];
+
 
   tableConfig: TableConfig = {
     isSelectable: false,
@@ -117,7 +120,7 @@ export class MenuExtraDataComponent implements OnInit {
         break;
     }
   }
-  constructor(private readService: ReadService, public deleteService: deleteClass,public dialog: MatDialog,private router:Router) { }
+  constructor(private readService: ReadService, public deleteService: deleteClass,public dialog: MatDialog,private router:Router,private logIn: LogInService) { }
   ngOnInit(): void {
     this.consultarSettleName();
     this.consultarStreetName();
@@ -127,6 +130,7 @@ export class MenuExtraDataComponent implements OnInit {
     this.consultarRelationshipsName();
     this.consultarStatusName();
     this.consultarTypeSinisterName();
+    this.consultarUsersName
   }
   consultarSettleName() {
     this.readService.consultarSettlementName('n').subscribe(
@@ -207,6 +211,17 @@ export class MenuExtraDataComponent implements OnInit {
   }
   consultarTypeSinisterName() {
     this.readService.consultarTypeSinister().subscribe(
+      (data: any[]) => {
+        this.typeSinister = data;
+        this.typeSinisterName = this.typeSinister.map(typeSinister => typeSinister.name);
+      },
+      error => {
+        console.log(error);
+      }
+    )
+  }
+  consultarUsersName() {
+    this.logIn.consultarUsers().subscribe(
       (data: any[]) => {
         this.typeSinister = data;
         this.typeSinisterName = this.typeSinister.map(typeSinister => typeSinister.name);

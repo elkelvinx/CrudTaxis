@@ -40,7 +40,7 @@ export class InsertDialogComponent {
     this.data.emit(true);
   }
   openDialogInsert(enterAnimationDuration: string, exitAnimationDuration: string, contentDialog: string, name: string, information: string, indicator: string, numIndicator: number, object: any): void {
-    const dialogRef = this.dialog.open(DialogUpdateLogic, {
+    const dialogRef = this.dialog.open(DialogInsertLogic, {
       width: '920px',
       enterAnimationDuration,
       exitAnimationDuration,
@@ -92,16 +92,16 @@ import { insertClass } from '../switchCRUD/insert';
   standalone: true,
   imports: [MatButtonModule, MatDialogActions, MatDialogClose, MatDialogTitle, MatDialogContent, MatFormFieldModule, CommonModule, MatInputModule, FormsModule],
 })
-export class DialogUpdateLogic {
+export class DialogInsertLogic {
   public contentDialog: String;
   public nameObj: any;
   public information: string;
   public indicator: string;
   public numIndicator: number;
-  public object: structureData={id:0,name:''};
+  public object: structureData;
   //de aqui para abajo es no comprendo al 100%
   constructor(
-    public dialogRef: MatDialogRef<DialogUpdateLogic>,
+    public dialogRef: MatDialogRef<DialogInsertLogic>,
     public CommonModule: CommonModule,
     public serviceUnit: ReadService,
     public serviceUpdate: ExtraUpdateService,
@@ -118,6 +118,7 @@ export class DialogUpdateLogic {
   }
   ChangeName() {
     debugger;
+    this.object.name = this.object.name;
     this.serviceInsert.insertData(this.numIndicator, this.object);
     this.dialogRef.close(true);
   }
@@ -159,7 +160,7 @@ export class DialogInsertLogicBig {
   public objectStreet: extructureStreet={name:'',settlement:0};
   public objectBrand: extructureModel={name:'',idBrand:0};
   constructor(
-    public dialogRef: MatDialogRef<DialogUpdateLogic>,
+    public dialogRef: MatDialogRef<DialogInsertLogic>,
     public CommonModule: CommonModule,
     public serviceUnit: ReadService,
     public serviceUpdate: ExtraUpdateService,
@@ -184,6 +185,7 @@ export class DialogInsertLogicBig {
     this.object.settlement = this.secondId;
     this.object.idBrand= this.secondId;
   }
+  //usado cuando son dos datos
   ChangeName() {
     debugger
     let dataToInsert;

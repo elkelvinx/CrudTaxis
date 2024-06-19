@@ -126,7 +126,7 @@ export class DialogUpdateLogic {
 //! Insert GRANDE///////////////////////
 import { AutoCompleteComponent } from '../auto-complete/auto-complete.component';
 import { PRUEBAService } from '../../../services/cud_ZIP.service';
-import { structureModel, structureStreet,structureExtraData } from '../../../models/extraData';
+import { structureExtraData } from '../../../models/extraData';
 @Component({
   selector: 'dialog-animations-example-dialog',
   templateUrl: 'edit-logic-big.component.html',
@@ -155,8 +155,7 @@ export class DialogUpdateLogicBig {
   public arrayName:string[];
   public secondId: number;
 
-  public street: structureStreet
-  public model: structureModel;
+
   public object: structureExtraData;
   public result:any;
   //de aqui para abajo es no comprendo al 100%

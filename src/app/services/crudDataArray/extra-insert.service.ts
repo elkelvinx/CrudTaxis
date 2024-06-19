@@ -13,14 +13,22 @@ export class ExtraInsertService {
   ) { }
 
   public Guardar(metodo: string, entidad: any): Observable<any> {
-    let headers = new HttpHeaders().set("Accept", "application/json");
+    let headers = new HttpHeaders().set("Content-Type", "application/json");
     let params = new HttpParams().set('metodo', metodo); // Añade 'metodo' como parámetro de consulta
 
-    return this.Http.post(`${this.urlApi}${this.Controller}?${params.toString()}`, entidad, {
+    return this.Http.post(`${this.urlApi}${this.Controller}?${params.toString()}`, entidad.name, {
       headers: headers,
+      params: params,
       responseType: 'json'
     });
   }
+  // public Guardar(metodo: string, entidad: any): Observable<any> {
+  //   let headers = new HttpHeaders().set("Content-Type", "application/json");
+  //   return this.Http.post(`${this.urlApi}${this.Controller}?metodo=${metodo}`, entidad, {
+  //     headers: headers,
+  //     responseType: 'json'
+  //   });
+  // }
   public GuardarSettleBrand(metodo: string, entidad: any): Observable<any> {
     let controller=metodo
     let Headers = new HttpHeaders().set("Accept", "application/json")

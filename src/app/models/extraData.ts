@@ -1,6 +1,5 @@
 export class structureData {
     constructor(
-        public id: number = 0,
         public name: string = '',
     ) { }
 };
@@ -60,9 +59,13 @@ export class TableColumnsStructure {
     ];
     static tableColumns4: TableColumn[] = [
         { label: 'Identificador', def: 'id', dataKey: 'id' },
+        { label: 'Rol', def: 'IdRole', dataKey: 'IdRole' },
         { label: 'Nombres', def: 'name', dataKey: 'name' },
-        { label: 'Id Colonia', def: 'settlement', dataKey: 'settlement' },
-        { label: 'Colonia', def: 'settlementS', dataKey: 'settlementS' },
+        { label: 'Email', def: 'email', dataKey: 'email' },
+        { label: 'F-Creacion', def: 'dateCreated', dataKey: 'dateCreated' },
+        { label: 'F-Baja', def: 'dateOut', dataKey: 'dateOut' },
+        { label: 'AdminPerm', def: 'ExtraData', dataKey: 'ExtraData' },
+        
     ];
     columns: TableColumn[];
     constructor(numberOfColumns: number) {

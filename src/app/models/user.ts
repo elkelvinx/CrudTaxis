@@ -1,16 +1,4 @@
-export class user {
-    constructor
-        (
-            public id: number = 0,
-            public name: string = 'leo',
-            public email: string = 'elkelvin484@gmail.com',
-            public role: string = '',//Alomejor lo quito
-            public dateCreated: Date = new Date('2024-01-01'),
-            public password: string = 'de pelos',
-        ) {
-
-    }
-}
+//* used in the LogInComponent
 export class userLogIn {
     constructor
         (
@@ -19,6 +7,7 @@ export class userLogIn {
         ) {
     }
 }
+//* used to recive the token from the server
 export class userResponse{
     constructor
     (
@@ -27,11 +16,42 @@ export class userResponse{
         public ErrorMessage: string= ''
     ){}
 }
-export class userPermissions{
+//! Classes for the CRUD of the user
+//* used to create a new user
+export class user {
+    constructor
+        (
+            public id: number = 0,
+            public name: string = 'leo',
+            public email: string = 'elkelvin484@gmail.com',
+            public dateCreated: Date = new Date('2024-01-01'),
+           //! public password: string = 'de pelos', PELIGROSO TENER ESTE DATO 
+           public password: string = 'de pelos',
+        ) {
+
+    }
+}
+export class userPermission{
+    constructor
+        (
+            public id: number = 0,
+            public idUser: number = 0,
+            public idRole: number = 0,
+            public driver: boolean = false,
+            public admin: boolean = false,
+            public permissionaire: boolean = false,
+            public unit: boolean = false,
+            public sinister: boolean = false,
+            public extraData: boolean = false,
+            public pdf: boolean = false,
+        ) {
+
+    }
+}
+export class userModification{
     constructor
     (
-        public Token: string = '',
-        public IsSuccess:boolean= false,
-        public ErrorMessage: string= ''
+        public userData: user = new user(),
+        public userPerm: userPermission = new userPermission(),
     ){}
 }

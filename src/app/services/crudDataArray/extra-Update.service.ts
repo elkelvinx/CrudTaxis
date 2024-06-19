@@ -25,6 +25,7 @@ export class ExtraUpdateService {
   }
   //? RELATIONSHIP
   public Actualizar(metodo: string, entidad: any): Observable<any> {
+    debugger
     let headers = new HttpHeaders().set("Accept", "application/json");
     let params = new HttpParams().set('metodo', metodo); // Añade 'metodo' como parámetro de consulta
 
