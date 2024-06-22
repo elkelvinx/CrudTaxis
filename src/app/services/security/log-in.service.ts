@@ -44,6 +44,7 @@ export class LogInService {
     )
   }
   public consultarUsers(): Observable<any[]> {
+    debugger;
     let controller = "user";
     let Headers = new HttpHeaders().set("Accept", "aplication/json");
     return this.Http.get<any[]>(

@@ -12,6 +12,6 @@ import { Router } from '@angular/router';
 })
 export class AuthViewComponent {
     
-    constructor(private router: Router) { debugger}
+    constructor(private router: Router) { }
 }
 

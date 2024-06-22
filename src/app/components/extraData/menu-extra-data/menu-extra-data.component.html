@@ -121,12 +121,11 @@
       <div class="tablaData">
         <app-tableExtraData
           [indicator]="'Usuarios'"
-          [data]="streets"
+          [data]="UserTable"
           [columns]="columnsUsers.columns"
           [config]="tableConfig"
-          [numIndicator]="2"
-          [typeDialog]="true"
-          [array]="settlements"
+          [typeDialog]="false"
+          [array]="user"
           (action)="onTableAction($event)"
         ></app-tableExtraData>
       </div>

@@ -10,6 +10,7 @@ import {DialogAnimationsExampleDialog} from '../../tools/yes-no-dialog/yes-no-di
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { LogInService } from '../../../services/security/log-in.service';
+import { UserModification, userInsert } from '../../../models/user';
 @Component({
   selector: 'app-menu-extra-data',
   templateUrl: './menu-extra-data.component.html',
@@ -30,15 +31,15 @@ export class MenuExtraDataComponent implements OnInit {
   public modelName: string[] = [];
   public brands: structureData[] = [];
   public brandName: string[] = [];
+  
   public insurers: structureData[] = [];
-  public insurerName: string[] = [];
   public relationships: structureData[] = [];
-  public relationshipsName: string[] = [];
   public status: structureData[] = [];
-  public statusName: string[] = [];
   public typeSinister: structureData[] = [];
-  public typeSinisterName: string[] = [];
-  public users: structureData[] = [];
+  //usa la clase users
+  public userInsert: userInsert[] = [];
+  public UserTable: structureData[] = [];
+  public user: UserModification[];
 
 
   tableConfig: TableConfig = {
@@ -130,7 +131,7 @@ export class MenuExtraDataComponent implements OnInit {
     this.consultarRelationshipsName();
     this.consultarStatusName();
     this.consultarTypeSinisterName();
-    this.consultarUsersName
+    this.consultarUsersName();
   }
   consultarSettleName() {
     this.readService.consultarSettlementName('n').subscribe(
@@ -178,10 +179,7 @@ export class MenuExtraDataComponent implements OnInit {
   }
   consultarInsurersName() {
     this.readService.consultarInsuranceName().subscribe(
-      (data: any[]) => {
-        this.insurers = data;
-        this.insurerName = this.insurers.map(insurers => insurers.name);
-      },
+      (data: any[]) => {this.insurers = data;},
       error => {
         console.log(error);
       }
@@ -189,10 +187,7 @@ export class MenuExtraDataComponent implements OnInit {
   }
   consultarRelationshipsName() {
     this.readService.consultarRelations().subscribe(
-      (data: any[]) => {
-        this.relationships = data;
-        this.relationshipsName = this.relationships.map(relationships => relationships.name);
-      },
+      (data: any[]) => {this.relationships = data;},
       error => {
         console.log(error);
       }
@@ -200,10 +195,7 @@ export class MenuExtraDataComponent implements OnInit {
   }
   consultarStatusName() {
     this.readService.consultarStatus().subscribe(
-      (data: any[]) => {
-        this.status = data;
-        this.statusName = this.status.map(status => status.name);
-      },
+      (data: any[]) => {this.status = data;},
       error => {
         console.log(error);
       }
@@ -212,8 +204,8 @@ export class MenuExtraDataComponent implements OnInit {
   consultarTypeSinisterName() {
     this.readService.consultarTypeSinister().subscribe(
       (data: any[]) => {
+        debugger
         this.typeSinister = data;
-        this.typeSinisterName = this.typeSinister.map(typeSinister => typeSinister.name);
       },
       error => {
         console.log(error);
@@ -222,9 +214,17 @@ export class MenuExtraDataComponent implements OnInit {
   }
   consultarUsersName() {
     this.logIn.consultarUsers().subscribe(
-      (data: any[]) => {
-        this.typeSinister = data;
-        this.typeSinisterName = this.typeSinister.map(typeSinister => typeSinister.name);
+      (data: UserModification[]) => {
+        debugger
+        this.user=data;
+        this.UserTable = this.user.map(userMod => ({
+          id: userMod.User.id,
+          IdRole: userMod.Permissions.idRole,
+          name: userMod.User.name,
+          email: userMod.User.email,
+          dateCreated: userMod.User.dateCreated,
+        }));        
+        console.log(this.user);
       },
       error => {
         console.log(error);

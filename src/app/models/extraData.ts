@@ -1,17 +1,10 @@
 export class structureData {
     constructor(
+        public id:number =0,
         public name: string = '',
     ) { }
 };
 export class structureStreet {
-    constructor(
-        public id: number = 0,
-        public name: string = '',
-        public settlement: number = 0,
-        public secondS: string = '',
-    ) { }
-};
-export class structureModel {
     constructor(
         public id: number = 0,
         public name: string = '',
@@ -59,23 +52,29 @@ export class TableColumnsStructure {
     ];
     static tableColumns4: TableColumn[] = [
         { label: 'Identificador', def: 'id', dataKey: 'id' },
-        { label: 'Rol', def: 'IdRole', dataKey: 'IdRole' },
-        { label: 'Nombres', def: 'name', dataKey: 'name' },
-        { label: 'Email', def: 'email', dataKey: 'email' },
-        { label: 'F-Creacion', def: 'dateCreated', dataKey: 'dateCreated' },
-        { label: 'F-Baja', def: 'dateOut', dataKey: 'dateOut' },
-        { label: 'AdminPerm', def: 'ExtraData', dataKey: 'ExtraData' },
+         { label: 'Rol', def: 'IdRole', dataKey: 'IdRole' },
+         { label: 'Nombres', def: 'name', dataKey: 'name' },
+         { label: 'Email', def: 'email', dataKey: 'email' },
+         { label: 'F-Creacion', def: 'dateCreated', dataKey: 'dateCreated' },
+        // { label: 'F-Baja', def: 'dateOut', dataKey: 'dateOut' },
+        // { label: 'AdminPerm', def: 'ExtraData', dataKey: 'ExtraData' },
         
     ];
     columns: TableColumn[];
     constructor(numberOfColumns: number) {
-        if (numberOfColumns === 1) {
-            this.columns = TableColumnsStructure.tableColumns;
-        } else if (numberOfColumns === 2) {
-            this.columns = TableColumnsStructure.tableColumns2;
-        }
-        else if (numberOfColumns === 3) {
-            this.columns = TableColumnsStructure.tableColumns3;
+        switch(numberOfColumns){
+            case 1:
+                this.columns = TableColumnsStructure.tableColumns;
+                break;
+            case 2:
+                this.columns = TableColumnsStructure.tableColumns2;
+                break;
+            case 3:
+                this.columns = TableColumnsStructure.tableColumns3;
+                break;
+            case 4:
+                this.columns = TableColumnsStructure.tableColumns4;
+                break;
         }
     }
 }

@@ -1,17 +1,22 @@
 <!DOCTYPE html>
-<h1 mat-dialog-title>Agregar {{indicator}}</h1>
+<h1 mat-dialog-title>Agregar {{ indicator }}</h1>
 <div mat-dialog-content>
   {{
     contentDialog === ""
-      ? "¿Desea crear un nuevo "+indicator + " " + nameObj + "?"
-      : contentDialog + indicator +"?"
+      ? "¿Desea crear un nuevo " + indicator + " " + nameObj + "?"
+      : contentDialog + indicator + "?"
   }}
 </div>
 
 <form class="example-form">
   <mat-form-field class="example-full-width">
     <mat-label>Nombre</mat-label>
-    <input matInput [(ngModel)]="object.name" [ngModelOptions]="{standalone: true}" placeholder="introducza el nuevo dato" />
+    <input
+      matInput
+      [(ngModel)]="object.name"
+      [ngModelOptions]="{ standalone: true }"
+      placeholder="introducza el nuevo dato"
+    />
   </mat-form-field>
 </form>
 
