@@ -59,6 +59,16 @@ export class InsertDialogComponent {
       }
     });
   }
+   /**
+   * Dialogo que necesita mas de el dato nombre
+   * @param contentDialog Message to display
+   * @param name Name of the object
+   * @param information nombre dato a insertar,es title dialog
+   * @param indicator Indicator to display
+   * @param numIndicator saber si es street o un model
+   * @param object Object to insert
+   * @param array Datos a mostrar en el autocomplete
+   */
   openDialogInsertBig(enterAnimationDuration: string, exitAnimationDuration: string, contentDialog: string, name: string, information: string, indicator: string, numIndicator: number, object: any, array:any): void {
     const dialogRef = this.dialog.open(DialogInsertLogicBig, {
       width: '920px',

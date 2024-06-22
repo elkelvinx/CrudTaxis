@@ -1,10 +1,11 @@
+import { LogInService } from '../../../../services/security/log-in.service';
 import { ExtraInsertService } from './../../../../services/crudDataArray/extra-insert.service'
 import { Injectable } from '@angular/core';
 @Injectable({
     providedIn: 'root'
 })
 export class insertClass {
-    constructor(public serviceInsert: ExtraInsertService) { }
+    constructor(public serviceInsert: ExtraInsertService, public serviceLogin: LogInService) { }
     insertData(numIndicator: number, object: any) {
         switch (numIndicator) {
             case 1:
@@ -22,7 +23,7 @@ export class insertClass {
                 //! Calles necesito crear todo especifico para ambos
                 this.serviceInsert.GuardarSettleBrand('street', object).subscribe(
                     (data) => {
-                        console.log("Guardado correctamente, mensaje:'" + data+"'")
+                        console.log("Guardado correctamente, mensaje:'" + data + "'")
                     },
                     error => {
                         console.log(error + " fallo en calles ");
@@ -44,7 +45,7 @@ export class insertClass {
                 //! Model
                 this.serviceInsert.GuardarSettleBrand('model', object).subscribe(
                     (data) => {
-                        console.log("Guardado correctamente, mensaje:'" + data+"'")
+                        console.log("Guardado correctamente, mensaje:'" + data + "'")
                     },
                     error => {
                         console.log(error + " fallo en calles ");
@@ -94,6 +95,16 @@ export class insertClass {
                     }
                 )
                 break;
+            case 9:
+                //! User pero hay errores
+                this.serviceLogin.CreateUser(object,object).subscribe(
+                    (data) => {
+                        console.log("Guardado correctamente, mensaje:" + data)
+                    },
+                    error => {
+                        console.log(error + " fallo en insurers ");
+                    }
+                )
         }
     }
 }
