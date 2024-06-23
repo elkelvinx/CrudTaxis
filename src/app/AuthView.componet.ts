@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
       <router-outlet></router-outlet>
     </div>
   `,
-  styles: 'app.component.css'
+  styleUrl: './app.component.css'
 })
 export class AuthViewComponent {
     

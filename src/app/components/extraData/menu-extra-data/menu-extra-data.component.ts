@@ -12,8 +12,7 @@ import { Router } from '@angular/router';
 import { LogInService } from '../../../services/security/log-in.service';
 import { UserModification, userInsert } from '../../../models/user';
 import { RoleNamePipe } from '../../../pipes/role-name.pipe';
-// import { DatePipe } from '@angular/common';
-import { pipe } from 'rxjs';
+ import { DatePipe } from '@angular/common';
 @Component({
   selector: 'app-menu-extra-data',
   templateUrl: './menu-extra-data.component.html',
@@ -129,9 +128,9 @@ export class MenuExtraDataComponent implements OnInit {
     public dialog: MatDialog,
     private router:Router,
     private logIn: LogInService,
-   // private datePipe: DatePipe,
+    private datePipe: DatePipe,
   ) {
-     this.pipeRole2= new RoleNamePipe();
+     this.pipeRole2= new RoleNamePipe(datePipe);
    }
   ngOnInit(): void {
     this.consultarSettleName();
@@ -232,9 +231,8 @@ export class MenuExtraDataComponent implements OnInit {
           id: data.User.id,
           name: data.User.name,
           email: data.User.email,
-          //dateCreated: this.datePipe.transform(data.User.dateCreated),
+          dateCreated: this.pipeRole2.transformDateIn(data.User.dateCreated),
           roleName: this.pipeRole2.transformRolName(data.Permissions.idRole),
-        // roleName: this.datePipe.transform(data.Permissions.idRole),
         }));       
         console.log(this.user);
       },

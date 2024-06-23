@@ -6,7 +6,7 @@ import { DatePipe } from '@angular/common';
   name: 'roleName'
 })
 export class RoleNamePipe  {
-  constructor() {}
+  constructor(private datePipe: DatePipe) {}
   transformRolName(idUser: number): string {
     switch (idUser) {
       case 1:
@@ -19,12 +19,12 @@ export class RoleNamePipe  {
         return 'Desconocido';
     }
   }
-  // transformDateIn(dateIn: Date): string {
-  //   if (!dateIn) {
-  //     return 'Fecha desconocida'; // O cualquier otro valor predeterminado que desees
-  //   }
-  //   // Formatea la fecha en el formato deseado (por ejemplo, 'dd/MM/yyyy hh:mm a')
-  //   const formattedDate = this.datePipe.transformRolName(dateIn, 'dd/MM/yyyy hh:mm a');
-  //   return formattedDate || ''; // Asegúrate de que siempre devuelva una cadena
-  // }
+  transformDateIn(dateIn: Date): string {
+    if (!dateIn) {
+      return 'Fecha desconocida'; // O cualquier otro valor predeterminado que desees
+    }
+    // Formatea la fecha en el formato deseado (por ejemplo, 'dd/MM/yyyy hh:mm a')
+    const formattedDate = this.datePipe.transform(dateIn, 'dd MMM yyyy hh:mm a');
+    return formattedDate || ''; // Asegúrate de que siempre devuelva una cadena
+  }
 }
