@@ -38,6 +38,7 @@ export class userPermission{
             public id: number = 0,
             public idUser: number = 0,
             public idRole: number = 0,
+            public roleName: string = '',
             public driver: boolean = false,
             public admin: boolean = false,
             public permissionaire: boolean = false,

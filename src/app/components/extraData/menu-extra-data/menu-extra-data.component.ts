@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TableConfig } from '../../tools/table/models/table-config';
 import { TableActionExtraData } from '../../../components/tools/tableExtraData/models/table-actions'
-import { TableColumnsStructure } from '../../../models/extraData';
+import { TableColumnsStructure, structureUserTable } from '../../../models/extraData';
 import { structureData } from '../../../models/extraData';
 import { ReadService } from '../../../services/crudDataArray/extra-Read.service';
 import { structureStreet } from '../../../models/extraData';
@@ -11,6 +11,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { LogInService } from '../../../services/security/log-in.service';
 import { UserModification, userInsert } from '../../../models/user';
+import { RoleNamePipe } from '../../../pipes/role-name.pipe';
+// import { DatePipe } from '@angular/common';
+import { pipe } from 'rxjs';
 @Component({
   selector: 'app-menu-extra-data',
   templateUrl: './menu-extra-data.component.html',
@@ -40,7 +43,7 @@ export class MenuExtraDataComponent implements OnInit {
   public userInsert: userInsert[] = [];
   public UserTable: structureData[] = [];
   public user: UserModification[];
-
+  public pipeRole2: RoleNamePipe;
 
   tableConfig: TableConfig = {
     isSelectable: false,
@@ -121,7 +124,15 @@ export class MenuExtraDataComponent implements OnInit {
         break;
     }
   }
-  constructor(private readService: ReadService, public deleteService: deleteClass,public dialog: MatDialog,private router:Router,private logIn: LogInService) { }
+  constructor(private readService: ReadService, 
+    public deleteService: deleteClass,
+    public dialog: MatDialog,
+    private router:Router,
+    private logIn: LogInService,
+   // private datePipe: DatePipe,
+  ) {
+     this.pipeRole2= new RoleNamePipe();
+   }
   ngOnInit(): void {
     this.consultarSettleName();
     this.consultarStreetName();
@@ -217,13 +228,14 @@ export class MenuExtraDataComponent implements OnInit {
       (data: UserModification[]) => {
         debugger
         this.user=data;
-        this.UserTable = this.user.map(userMod => ({
-          id: userMod.User.id,
-          IdRole: userMod.Permissions.idRole,
-          name: userMod.User.name,
-          email: userMod.User.email,
-          dateCreated: userMod.User.dateCreated,
-        }));        
+        this.UserTable = this.user.map(data => ({
+          id: data.User.id,
+          name: data.User.name,
+          email: data.User.email,
+          //dateCreated: this.datePipe.transform(data.User.dateCreated),
+          roleName: this.pipeRole2.transformRolName(data.Permissions.idRole),
+        // roleName: this.datePipe.transform(data.Permissions.idRole),
+        }));       
         console.log(this.user);
       },
       error => {

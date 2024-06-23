@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <!--FINAL-->
-<div
-  class="ContainerDivs"
->
+<div class="ContainerDivs">
   <div
     class="CardSerch"
     style="
@@ -231,8 +229,9 @@
         ></app-yes-no-dialog>
         <br />
       </mat-card-actions>
+
       <mat-card-actions align="end" class="buttons-actionDelete">
-        <button
+        <!-- <button
           mat-button
           (click)="grabar()"
           *ngIf="ActSave"
@@ -241,15 +240,38 @@
           style="position: absolute; margin-top: -51px; margin-left: 30%"
         >
           Guardar
-        </button>
-
+        </button> -->
         <button
-          mat-button
+          mat-raised-button
+          (click)="grabar()"
+          *ngIf="ActSave"
+          color="primary"
+          class="text-button-greenFinal"
+          style="
+            position: absolute;
+            margin-top: -2.7%;
+            margin-left: 25.7%;
+            width: 10%;
+            height: 46px;
+            --mat-protected-button-ripple-color: rgb(7 101 37) !important;
+          "
+        >
+          Guardar
+        </button>
+        <button
+          mat-raised-button
           color="primary"
           (click)="actualizar()"
           *ngIf="!ActSave"
-          class="text-button-green"
-          style="position: absolute; margin-top: -51px; margin-left: 30%"
+          class="text-button-greenFinal"
+          style="
+           position: absolute;
+            margin-top: -2.7%;
+            margin-left: 25.7%;
+            width: 10%;
+            height: 46px;
+            --mat-protected-button-ripple-color: rgb(7 101 37) !important;
+          "
         >
           Actualizar
         </button>

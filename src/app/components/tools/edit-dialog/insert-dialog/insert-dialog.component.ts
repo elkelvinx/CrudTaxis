@@ -210,7 +210,9 @@ export class DialogInsertLogicBig {
         this.objectBrand.idBrand = this.secondId;
         dataToInsert = this.objectBrand;
         break;
-      // ... otros casos
+        case 9:
+                // ... otros casos
+          break;
     }
 
     if (dataToInsert) {

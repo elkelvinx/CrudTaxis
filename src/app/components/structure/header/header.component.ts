@@ -17,10 +17,10 @@ export class HeaderComponent implements OnInit{
   menuWidth = '70px'; // Ancho inicial
   headerWidth = '3.7%'; // Ancho inicial
   iconButtonWidth = '1%'; //Ancho del icono
-  constructor(private router: Router,private auth:AuthService,public dialog: MatDialog) { }
+  constructor(private router: Router,private auth:AuthService,private dialog: MatDialog) { }
  ngOnInit(): void {
    this.permissions=this.auth.getDecodedToken();  
-   console.log(this.permissions.Driver);
+  //  console.log(this.permissions);
  }
   isActive(path: string): boolean {
     const currentRoute = this.router.url;

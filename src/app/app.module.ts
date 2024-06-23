@@ -92,6 +92,7 @@ import { LoginComponent } from './components/structure/login/login.component';
 import { NotificationService } from './components/tools/info-dialog/notification.service';
 import { CreateUserComponent } from './components/structure/create-user/create-user.component';
 import { AuthViewComponent } from './AuthView.componet';
+import { RoleNamePipe } from './pipes/role-name.pipe';
 
 @NgModule({
   exports: [
@@ -158,6 +159,7 @@ import { AuthViewComponent } from './AuthView.componet';
     LoginComponent,
     CreateUserComponent,
     AuthViewComponent,
+    RoleNamePipe,
   ],
   imports: [
     BrowserModule,

@@ -19,7 +19,7 @@ export class ExtraInsertService {
     let headers = new HttpHeaders().set("Content-Type", "application/json");
     let params = new HttpParams().set('metodo', metodo); // Añade 'metodo' como parámetro de consulta
 
-    return this.Http.post(`${this.urlApi}${this.Controller}?${params.toString()}`, this.objeto, {
+    return this.Http.post(`${this.urlApi}${this.Controller}?${params.toString()}`, this.objeto, { 
       headers: headers,
       params: params,
       responseType: 'json'

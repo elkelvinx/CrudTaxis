@@ -33,6 +33,13 @@ export class extructureStreet{
         public settlement: number = 0,
     ) { }
 }
+export class structureUserTable{
+    constructor(
+        public id:number =0,
+        public name: string = '',
+        public IdRole: string = '',
+    ) { }
+}
 import { TableColumn } from './../../app/components/tools/table/models/table-column';
 export class TableColumnsStructure {
     static tableColumns: TableColumn[] = [
@@ -52,7 +59,7 @@ export class TableColumnsStructure {
     ];
     static tableColumns4: TableColumn[] = [
         { label: 'Identificador', def: 'id', dataKey: 'id' },
-         { label: 'Rol', def: 'IdRole', dataKey: 'IdRole' },
+         { label: 'Rol', def: 'roleName', dataKey: 'roleName' },
          { label: 'Nombres', def: 'name', dataKey: 'name' },
          { label: 'Email', def: 'email', dataKey: 'email' },
          { label: 'F-Creacion', def: 'dateCreated', dataKey: 'dateCreated' },

@@ -86,7 +86,7 @@ export class insertClass {
                 )
                 break;
             case 8:
-                this.serviceInsert.Guardar('insuranceName', object.name).subscribe(
+                this.serviceInsert.Guardar('insuranceName', object).subscribe(
                     (data) => {
                         console.log("Guardado correctamente, mensaje:" + data)
                     },
