@@ -70,7 +70,7 @@ export class userInsert{
 export class UserModification{
     constructor
     (
-        public User:user,
-        public Permissions:userPermission
+        public User:user= new user(),
+        public Permissions:userPermission = new userPermission()
     ){}
 }

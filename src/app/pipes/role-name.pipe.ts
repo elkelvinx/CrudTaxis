@@ -7,7 +7,9 @@ import { DatePipe } from '@angular/common';
 })
 export class RoleNamePipe  {
   constructor(private datePipe: DatePipe) {}
+
   transformRolName(idUser: number): string {
+    debugger; 
     switch (idUser) {
       case 1:
         return 'Administrador';

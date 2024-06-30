@@ -10,11 +10,12 @@ import {
 } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { Inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
+import { LoginComponent } from '../../../structure/login/login.component';
 @Component({
   selector: 'app-insert-dialog',
   templateUrl: './insert-dialog.component.html',
@@ -35,7 +36,6 @@ export class InsertDialogComponent {
   //bool que devolvemos al padre
   @Output() data = new EventEmitter<any>();
   constructor(public dialog: MatDialog) { }
-
   ChangeName() {
     this.data.emit(true);
   }
@@ -60,7 +60,8 @@ export class InsertDialogComponent {
     });
   }
    /**
-   * Dialogo que necesita mas de el dato nombre
+    ** Este metodo es para MARCA De auto y USUARIO
+   * Uso de cada parametro
    * @param contentDialog Message to display
    * @param name Name of the object
    * @param information nombre dato a insertar,es title dialog
@@ -90,6 +91,28 @@ export class InsertDialogComponent {
       }
     });
   }
+
+openDialogInsertUser(enterAnimationDuration: string, exitAnimationDuration: string, contentDialog: string, name: string, information: string, indicator: string, numIndicator: number, object: any, array:any): void {
+  const dialogRef = this.dialog.open(DialogInsertLogicUser, {
+    width: '1520px',
+    enterAnimationDuration,
+    exitAnimationDuration,
+    data: {
+      contentDialog: contentDialog,
+      nameObj: name,
+      information: information,
+      indicator: indicator,
+      numIndicator: numIndicator,
+      object: object,
+      array: array,
+    },
+  });
+  dialogRef.afterClosed().subscribe(result => {
+    if (result) {
+      this.ChangeName();
+    }
+  });
+}
 }
 
 import { ReadService } from '../../../../services/crudDataArray/extra-Read.service';
@@ -192,7 +215,7 @@ export class DialogInsertLogicBig {
   {
     debugger
     this.secondId = this.service.guardarStreetExtraData(event, this.array);
-    this.object.settlement = this.secondId;
+    //this.object.settlement = this.secondId;
     this.object.idBrand= this.secondId;
   }
   //usado cuando son dos datos
@@ -201,6 +224,7 @@ export class DialogInsertLogicBig {
     let dataToInsert;
     switch (this.numIndicator) {
       case 2:
+        debugger
         this.objectStreet.name = this.object.name;
         this.objectStreet.settlement = this.secondId;
         dataToInsert = this.objectStreet;
@@ -216,6 +240,7 @@ export class DialogInsertLogicBig {
     }
 
     if (dataToInsert) {
+      debugger
       this.serviceInsert.insertData(this.numIndicator, dataToInsert);
       this.dialogRef.close(true);
       console.log(dataToInsert);
@@ -225,4 +250,68 @@ export class DialogInsertLogicBig {
     }
   }
 }
+//! Insert para los users
+import { UserModification, user, userPermission } from '../../../../models/user';
+import { RoleNamePipe } from '../../../../pipes/role-name.pipe';
+@Component({
+  selector: 'dialog-User-Insert',
+  templateUrl: 'insertUser-dialog.component.html',
+  styleUrl: './insertUser.component.css',
+  standalone: true,
+  imports: [
+    MatButtonModule,
+    MatDialogActions,
+    MatDialogClose,
+    MatDialogTitle,
+    MatDialogContent,
+    MatFormFieldModule,
+    CommonModule,
+    MatInputModule,
+    FormsModule,
+    AutoCompleteComponent,
+  ],
+})
+export class DialogInsertLogicUser {
+  public contentDialog: String;
+  public nameObj: any;
+  public information: string;
+  public indicator: string;
+  public numIndicator: number;
+  public array: UserModification[];
+  public arrayRolName:string[];
+  public object: UserModification;
 
+  public pipeRole2: RoleNamePipe;
+  constructor(
+    public dialogRef: MatDialogRef<DialogInsertLogic>,
+    public CommonModule: CommonModule,
+    public serviceUnit: ReadService,
+    public serviceUpdate: ExtraUpdateService,
+    public serviceInsert: insertClass,
+    //en duda este servicio
+    public service: PRUEBAService<any>,
+    private datePipe: DatePipe,
+    @Inject(MAT_DIALOG_DATA) data: any,
+  ) {
+    this.pipeRole2= new RoleNamePipe(datePipe);
+    this.contentDialog = data.contentDialog;
+    this.nameObj = data.nameObj;
+    this.information = data.information;
+    this.indicator = data.indicator;
+    this.numIndicator = data.numIndicator;
+    this.object = data.object;
+    this.object.User= new user();
+    this.object.Permissions= new userPermission();
+    console.log(this.object.User.name)
+    debugger
+    this.array = data.array;
+    this.arrayRolName = this.array.map(
+      array => this.pipeRole2.transformRolName(array.Permissions.idRole));     
+  }
+ insertData(event:Event){
+
+ }
+ ChangeName(){
+ }
+ 
+}
