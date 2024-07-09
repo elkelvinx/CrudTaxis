@@ -16,6 +16,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
 import { LoginComponent } from '../../../structure/login/login.component';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 @Component({
   selector: 'app-insert-dialog',
   templateUrl: './insert-dialog.component.html',
@@ -251,8 +252,10 @@ export class DialogInsertLogicBig {
   }
 }
 //! Insert para los users
-import { UserModification, user, userPermission } from '../../../../models/user';
+import { RolesNames, UserModification, user, userPermission } from '../../../../models/user';
 import { RoleNamePipe } from '../../../../pipes/role-name.pipe';
+import { MatDivider, MatDividerModule } from '@angular/material/divider';
+import { LogInService } from '../../../../services/security/log-in.service';
 @Component({
   selector: 'dialog-User-Insert',
   templateUrl: 'insertUser-dialog.component.html',
@@ -269,6 +272,8 @@ import { RoleNamePipe } from '../../../../pipes/role-name.pipe';
     MatInputModule,
     FormsModule,
     AutoCompleteComponent,
+    MatSlideToggleModule,
+    MatDividerModule
   ],
 })
 export class DialogInsertLogicUser {
@@ -280,14 +285,22 @@ export class DialogInsertLogicUser {
   public array: UserModification[];
   public arrayRolName:string[];
   public object: UserModification;
-
+  public isChecked: boolean = false;
+  //array con los roles disponibles
+  public rolesNames : RolesNames[] = [
+    { id: 1, name: 'User' },
+    { id: 2, name: 'Admin' },
+    { id: 3, name: 'Guest' }
+];
+public SuperPermissions:boolean=false;
   public pipeRole2: RoleNamePipe;
   constructor(
     public dialogRef: MatDialogRef<DialogInsertLogic>,
     public CommonModule: CommonModule,
     public serviceUnit: ReadService,
-    public serviceUpdate: ExtraUpdateService,
     public serviceInsert: insertClass,
+    public serviceLogIn: LogInService,
+    public extraSerive: PRUEBAService<any>,
     //en duda este servicio
     public service: PRUEBAService<any>,
     private datePipe: DatePipe,
@@ -302,16 +315,30 @@ export class DialogInsertLogicUser {
     this.object = data.object;
     this.object.User= new user();
     this.object.Permissions= new userPermission();
-    console.log(this.object.User.name)
-    debugger
-    this.array = data.array;
-    this.arrayRolName = this.array.map(
-      array => this.pipeRole2.transformRolName(array.Permissions.idRole));     
+    this.array = data.array;  
+      this.arrayRolName = this.rolesNames.map(
+      array => array.name);  
+      console.log(this.rolesNames) 
   }
- insertData(event:Event){
+ insertData(data:Event){
+  this.object.Permissions.idRole = this.extraSerive.guardarStreetExtraData(data,this.rolesNames);
+ }
+ toggleSuperUser(): void {
+  this.object.Permissions.driver = this.object.Permissions.admin = this.object.Permissions.permissionaire =
+  this.object.Permissions.extraData=this.object.Permissions.sinister=
+  this.object.Permissions.unit=this.object.Permissions.pdf = this.SuperPermissions;
+}
+unToggleSuperUser(): void {
+  this.SuperPermissions = false;
+}
 
- }
  ChangeName(){
+  console.log(this.object)
+  debugger
+  this.serviceLogIn.CreateUser(this.object.User,this.object.Permissions).subscribe(
+  (data)=> {
+    console.log(data);
+  }
+  )
  }
- 
 }

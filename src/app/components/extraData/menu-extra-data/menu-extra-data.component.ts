@@ -234,7 +234,6 @@ export class MenuExtraDataComponent implements OnInit {
           dateCreated: this.pipeRole2.transformDateIn(data.User.dateCreated),
           roleName: this.pipeRole2.transformRolName(data.Permissions.idRole),
         }));       
-        console.log(this.user);
       },
       error => {
         console.log(error);

@@ -16,17 +16,21 @@ export class userResponse{
         public ErrorMessage: string= ''
     ){}
 }
+export interface RolesNames{
+   id: number;
+   name:string;
+}
 //! Classes for the CRUD of the user
 //* used to get,update a user
 export class user {
     constructor
         (
             public id: number = 0,
-            public name: string = 'leo',
+            public name: string = '',
             public email: string = 'elkelvin484@gmail.com',
-            public dateCreated: Date = new Date('2024-01-01'),
+            public dateCreated: Date = new Date(),
            //! public password: string = 'de pelos', PELIGROSO TENER ESTE DATO 
-           public password: string = 'de pelos',
+           public password: string = 'CONTRASEÑA DEFAULT',
         ) {
 
     }
@@ -37,7 +41,7 @@ export class userPermission{
         (
             public id: number = 0,
             public idUser: number = 0,
-            public idRole: number = 0,
+            public idRole: number = 1,
             public roleName: string = '',
             public driver: boolean = false,
             public admin: boolean = false,

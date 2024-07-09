@@ -10,7 +10,7 @@ import {
 } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { Inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -192,4 +192,96 @@ export class DialogUpdateLogicBig {
     console.log(this.object);
     this.dialogRef.close(true);
   }
+}
+//! Insert para los users
+import { RolesNames, UserModification, user, userPermission } from '../../../models/user';
+import { RoleNamePipe } from '../../../pipes/role-name.pipe';
+import { MatDividerModule } from '@angular/material/divider';
+import { LogInService } from '../../../services/security/log-in.service';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+@Component({
+  selector: 'dialog-User-Insert',
+  templateUrl: 'editUser.component.html',
+  styleUrl: 'edit-dialog.component.css',
+  standalone: true,
+  imports: [
+    MatButtonModule,
+    MatDialogActions,
+    MatDialogClose,
+    MatDialogTitle,
+    MatDialogContent,
+    MatFormFieldModule,
+    CommonModule,
+    MatInputModule,
+    FormsModule,
+    AutoCompleteComponent,
+    MatSlideToggleModule,
+    MatDividerModule
+  ],
+})
+export class DialogInsertLogicUser {
+  public contentDialog: String;
+  public nameObj: any;
+  public information: string;
+  public indicator: string;
+  public numIndicator: number;
+  public array: UserModification[];
+  public arrayRolName:string[];
+  public object: UserModification;
+  public isChecked: boolean = false;
+  //array con los roles disponibles
+  public rolesNames : RolesNames[] = [
+    { id: 1, name: 'User' },
+    { id: 2, name: 'Admin' },
+    { id: 3, name: 'Guest' }
+];
+public SuperPermissions:boolean=false;
+  public pipeRole2: RoleNamePipe;
+  constructor(
+    public dialogRef: MatDialogRef<DialogUpdateLogic>,
+    public CommonModule: CommonModule,
+    public serviceUnit: ReadService,
+    public serviceUpdate: updateClass,
+    public serviceLogIn: LogInService,
+    public extraSerive: PRUEBAService<any>,
+    //en duda este servicio
+    public service: PRUEBAService<any>,
+    private datePipe: DatePipe,
+    @Inject(MAT_DIALOG_DATA) data: any,
+  ) {
+    this.pipeRole2= new RoleNamePipe(datePipe);
+    this.contentDialog = data.contentDialog;
+    this.nameObj = data.nameObj;
+    this.information = data.information;
+    this.indicator = data.indicator;
+    this.numIndicator = data.numIndicator;
+    this.object = data.object;
+    this.object.User= new user();
+    this.object.Permissions= new userPermission();
+    this.array = data.array;  
+      this.arrayRolName = this.rolesNames.map(
+      array => array.name);  
+      console.log(this.rolesNames) 
+  }
+ insertData(data:Event){
+  this.object.Permissions.idRole = this.extraSerive.guardarStreetExtraData(data,this.rolesNames);
+ }
+ toggleSuperUser(): void {
+  this.object.Permissions.driver = this.object.Permissions.admin = this.object.Permissions.permissionaire =
+  this.object.Permissions.extraData=this.object.Permissions.sinister=
+  this.object.Permissions.unit=this.object.Permissions.pdf = this.SuperPermissions;
+}
+unToggleSuperUser(): void {
+  this.SuperPermissions = false;
+}
+
+ ChangeName(){
+  console.log(this.object)
+  debugger
+  this.serviceLogIn.CreateUser(this.object.User,this.object.Permissions).subscribe(
+  (data)=> {
+    console.log(data);
+  }
+  )
+ }
 }

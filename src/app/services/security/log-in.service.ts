@@ -22,27 +22,6 @@ export class LogInService {
       }
     )
   }
-  public CreateUser(userData: user,userPerm: userPermission) {
-    let Controller = 'user'
-    let Headers = new HttpHeaders().set("Accept", "application/json")
-    return this.Http.post(this.urlApi + Controller, [userData,userPerm],
-      {
-        headers: Headers,
-        responseType: 'json'
-      }
-    )
-  }
-  public Grabar(Entidad: any) {
-
-    let Controller = 'Driver'
-    let Headers = new HttpHeaders().set("Accept", "application/json")
-    return this.Http.post(this.urlApi + Controller, Entidad,
-      {
-        headers: Headers,
-        responseType: 'json'
-      }
-    )
-  }
   public consultarUsers(): Observable<any[]> {
     debugger;
     let controller = "user";
@@ -54,6 +33,36 @@ export class LogInService {
         responseType: 'json'
       }
     );
+  }
+  public CreateUser(User: user,Permissions: userPermission) {
+    let Controller = 'logIn'
+    let Headers = new HttpHeaders().set("Accept", "application/json")
+    debugger
+    const userDataToSend = {
+        User: User,
+        Permissions: Permissions
+    };
+    return this.Http.post(this.urlApi + Controller, userDataToSend,
+      {
+        headers: Headers,
+        responseType: 'json'
+      }
+    )
+  }
+  public UpdateUser(User: user,Permissions: userPermission) {
+    let Controller = 'logIn'
+    let Headers = new HttpHeaders().set("Accept", "application/json")
+    debugger
+    const userDataToSend = {
+        User: User,
+        Permissions: Permissions
+    };
+    return this.Http.put(this.urlApi + Controller, userDataToSend,
+      {
+        headers: Headers,
+        responseType: 'json'
+      }
+    )
   }
 
 }
