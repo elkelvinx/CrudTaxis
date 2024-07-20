@@ -32,7 +32,6 @@ export class Table2 implements OnInit, AfterViewInit {
     this.dataSource = new MatTableDataSource(data);
     this.dataSource.paginator = this.paginator;
   }
-
   @Input() set columns(columns: TableColumn[]) {
     this.tableColumns = columns;
     this.tableDisplayColumns = this.tableColumns.map((col) => col.def);

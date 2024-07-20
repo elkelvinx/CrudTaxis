@@ -6,13 +6,13 @@ import { structureData } from '../../../models/extraData';
 import { ReadService } from '../../../services/crudDataArray/extra-Read.service';
 import { structureStreet } from '../../../models/extraData';
 import { deleteClass } from '../../tools/edit-dialog/switchCRUD/delete';
-import {DialogAnimationsExampleDialog} from '../../tools/yes-no-dialog/yes-no-dialog.component';
+import { DialogAnimationsExampleDialog } from '../../tools/yes-no-dialog/yes-no-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { LogInService } from '../../../services/security/log-in.service';
 import { UserModification, userInsert } from '../../../models/user';
 import { RoleNamePipe } from '../../../pipes/role-name.pipe';
- import { DatePipe } from '@angular/common';
+import { DatePipe } from '@angular/common';
 @Component({
   selector: 'app-menu-extra-data',
   templateUrl: './menu-extra-data.component.html',
@@ -33,7 +33,7 @@ export class MenuExtraDataComponent implements OnInit {
   public modelName: string[] = [];
   public brands: structureData[] = [];
   public brandName: string[] = [];
-  
+
   public insurers: structureData[] = [];
   public relationships: structureData[] = [];
   public status: structureData[] = [];
@@ -121,17 +121,20 @@ export class MenuExtraDataComponent implements OnInit {
       case 8:
         this.consultarInsurersName();
         break;
+      case 9:
+        this.consultarUsersName();
+        break;
     }
   }
-  constructor(private readService: ReadService, 
+  constructor(private readService: ReadService,
     public deleteService: deleteClass,
     public dialog: MatDialog,
-    private router:Router,
+    private router: Router,
     private logIn: LogInService,
     private datePipe: DatePipe,
   ) {
-     this.pipeRole2= new RoleNamePipe(datePipe);
-   }
+    this.pipeRole2 = new RoleNamePipe(datePipe);
+  }
   ngOnInit(): void {
     this.consultarSettleName();
     this.consultarStreetName();
@@ -189,7 +192,7 @@ export class MenuExtraDataComponent implements OnInit {
   }
   consultarInsurersName() {
     this.readService.consultarInsuranceName().subscribe(
-      (data: any[]) => {this.insurers = data;},
+      (data: any[]) => { this.insurers = data; },
       error => {
         console.log(error);
       }
@@ -197,7 +200,7 @@ export class MenuExtraDataComponent implements OnInit {
   }
   consultarRelationshipsName() {
     this.readService.consultarRelations().subscribe(
-      (data: any[]) => {this.relationships = data;},
+      (data: any[]) => { this.relationships = data; },
       error => {
         console.log(error);
       }
@@ -205,7 +208,7 @@ export class MenuExtraDataComponent implements OnInit {
   }
   consultarStatusName() {
     this.readService.consultarStatus().subscribe(
-      (data: any[]) => {this.status = data;},
+      (data: any[]) => { this.status = data; },
       error => {
         console.log(error);
       }
@@ -226,14 +229,14 @@ export class MenuExtraDataComponent implements OnInit {
     this.logIn.consultarUsers().subscribe(
       (data: UserModification[]) => {
         debugger
-        this.user=data;
+        this.user = data;
         this.UserTable = this.user.map(data => ({
           id: data.User.id,
           name: data.User.name,
           email: data.User.email,
           dateCreated: this.pipeRole2.transformDateIn(data.User.dateCreated),
           roleName: this.pipeRole2.transformRolName(data.Permissions.idRole),
-        }));       
+        }));
       },
       error => {
         console.log(error);

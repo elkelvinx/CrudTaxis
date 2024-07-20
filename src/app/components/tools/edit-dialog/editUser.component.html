@@ -1,1 +1,171 @@
 <!DOCTYPE html>
+<h1 mat-dialog-title>Modificar Usuario</h1>
+<div mat-dialog-content>
+  {{
+    contentDialog === ""
+      ? "¿Desea Modificar a " + indicator + "?"
+      : contentDialog + indicator + "?"
+  }}
+  <br />
+</div>
+
+<form class="principalForm" #logInForm="ngForm">
+  <mat-form-field class="default_input_css">
+    <mat-label>Nombre</mat-label>
+    <input
+      matInput
+      [(ngModel)]="object.User.name"
+      [ngModelOptions]="{ standalone: true }"
+      placeholder="Nueva Informacion"
+    />
+  </mat-form-field>
+  <mat-form-field class="password_input">
+    <mat-label>Contraseña</mat-label>
+    <input
+      matInput
+      [(ngModel)]="object.User.password"
+      [ngModelOptions]="{ standalone: true }"
+      placeholder="Ej.3juan"
+      pattern="[a-zA-Z0-9]*"
+      required
+      #passwordInput="ngModel"
+    />
+  </mat-form-field>
+  <mat-form-field class="password_input" style="width: 44% !important">
+    <mat-label>Confirme Contraseña</mat-label>
+    <input
+      matInput
+      [(ngModel)]="object.User.confirmPassword"
+      [ngModelOptions]="{ standalone: true }"
+      placeholder="Confirmar"
+      pattern="[a-zA-Z0-9]*"
+      required
+      #passwordInput2="ngModel"
+    />
+  </mat-form-field>
+  <div
+    class="text-danger"
+    *ngIf="hasPasswordError(passwordInput, passwordInput2) && (passwordInput.dirty || passwordInput2.dirty || logInForm.submitted)"
+  >
+  <div *ngIf="!object.User.password && !object.User.confirmPassword">
+    Introduzca la contraseña en ambos inputs
+  </div>
+  <div *ngIf="passwordInput.hasError('pattern') || passwordInput2.hasError('pattern')">
+    No se permiten caracteres especiales ni espacios
+  </div>
+  <div *ngIf="!passwordsMatch()">
+    Las contraseñas no coinciden
+  </div>
+</div>
+  <mat-form-field class="default_input_css">
+    <mat-label>Correo Electronico</mat-label>
+    <input
+      matInput
+      [(ngModel)]="object.User.email"
+      [ngModelOptions]="{ standalone: true }"
+      placeholder="Nueva Informacion"
+    />
+  </mat-form-field>
+  <div class="autocomplete">
+    <app-auto-complete
+      className="brand"
+      [text]="information" 
+      [arrays]="arrayRolName"
+      (data)="insertData($event)"
+      style="width: 97%"
+    ></app-auto-complete>
+  </div>
+</form>
+<mat-slide-toggle
+  class="permission_slider"
+  [(ngModel)]="SuperPermissions"
+  [ngModelOptions]="{ standalone: true }"
+  (change)="toggleSuperUser()"
+  style="margin-bottom: 1%; margin-top: 5%;transform: scale(
+  1.12
+); "
+  >Super Usuario</mat-slide-toggle
+>
+<div class="permissions_Sliders_Section">
+  <mat-slide-toggle
+    class="permission_slider"
+    [(ngModel)]="object.Permissions.driver"
+    [ngModelOptions]="{ standalone: true }"
+    (change)="unToggleSuperUser()"
+    >Driver</mat-slide-toggle
+  >
+  <mat-slide-toggle
+    class="permission_slider"
+    [(ngModel)]="object.Permissions.admin"
+    [ngModelOptions]="{ standalone: true }"
+    (change)="unToggleSuperUser()"
+    >Admin</mat-slide-toggle
+  >
+  <mat-slide-toggle
+    class="permission_slider"
+    [(ngModel)]="object.Permissions.permissionaire"
+    [ngModelOptions]="{ standalone: true }"
+    (change)="unToggleSuperUser()"
+    >Permissionario</mat-slide-toggle
+  >
+  <mat-slide-toggle
+    class="permission_slider"
+    [(ngModel)]="object.Permissions.unit"
+    [ngModelOptions]="{ standalone: true }"
+    (change)="unToggleSuperUser()"
+    >Unidad</mat-slide-toggle
+  >
+  <mat-slide-toggle
+    class="permission_slider"
+    [(ngModel)]="object.Permissions.sinister"
+    [ngModelOptions]="{ standalone: true }"
+    (change)="unToggleSuperUser()"
+    >Siniestros</mat-slide-toggle
+  >
+  <mat-slide-toggle
+    class="permission_slider"
+    [(ngModel)]="object.Permissions.extraData"
+    [ngModelOptions]="{ standalone: true }"
+    (change)="unToggleSuperUser()"
+    >Informacion Extra(Admins)</mat-slide-toggle
+  >
+  <mat-slide-toggle
+    class="permission_slider"
+    [(ngModel)]="object.Permissions.pdf"
+    [ngModelOptions]="{ standalone: true }"
+    (change)="unToggleSuperUser()"
+    >Generador de Pdf's</mat-slide-toggle
+  >
+  <!-- <mat-slide-toggle class="permission_slider" ngModel name="enableWifi">Enable Wifi</mat-slide-toggle> -->
+ 
+</div>
+<div mat-dialog-actions>
+  <mat-divider></mat-divider>
+  <div style="position: absolute">
+    <br />
+    <button
+      mat-raised-button
+      mat-dialog-close
+      color="primary"
+      class="button_dialog_red_extraCSS"
+    >
+      Cancelar
+    </button>
+  </div>
+  <button
+    mat-raised-button
+    color="primary"
+    (click)="ChangeName()"
+    class="text-button-greenFinal"
+    style="
+      position: absolute;
+      margin-top: -27px;
+      margin-left: 55%;
+      width: 38% !important;
+      height: 46px !important;
+      --mat-protected-button-ripple-color: rgb(7 101 37) !important;
+    "
+  >
+    Actualizar
+  </button>
+</div>

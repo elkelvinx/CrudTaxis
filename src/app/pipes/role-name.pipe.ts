@@ -9,14 +9,13 @@ export class RoleNamePipe  {
   constructor(private datePipe: DatePipe) {}
 
   transformRolName(idUser: number): string {
-    debugger; 
     switch (idUser) {
       case 1:
         return 'Administrador';
       case 2:
-        return 'Invitado';
-      case 3:
         return 'Usuario';
+      case 3:
+        return 'Invitado';
       default:
         return 'Desconocido';
     }

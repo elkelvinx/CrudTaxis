@@ -16,7 +16,7 @@
           [(ngModel)]="user.name"
           placeholder="Usuario a ingresar"
           required
-          pattern="[a-zA-Z0-9]*"
+          pattern="[a-zA-Z0-9 ñ Ñ]*"
           #nameInput="ngModel"
         />
       </mat-form-field>
@@ -38,7 +38,7 @@
           name="password"
           [(ngModel)]="user.password"
           placeholder="Ej.123"
-          pattern="[a-zA-Z0-9]*"
+          pattern="[a-zA-Z0-9 ñ Ñ]*"
           required
           #passwordInput="ngModel"
         />

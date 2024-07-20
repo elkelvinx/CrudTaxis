@@ -10,7 +10,7 @@ import {
 } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { Inject } from '@angular/core';
-import { CommonModule, DatePipe } from '@angular/common';
+import { CommonModule, DatePipe, NgIf } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -95,7 +95,7 @@ export class InsertDialogComponent {
 
 openDialogInsertUser(enterAnimationDuration: string, exitAnimationDuration: string, contentDialog: string, name: string, information: string, indicator: string, numIndicator: number, object: any, array:any): void {
   const dialogRef = this.dialog.open(DialogInsertLogicUser, {
-    width: '1520px',
+    width: '1620px',
     enterAnimationDuration,
     exitAnimationDuration,
     data: {
@@ -273,7 +273,8 @@ import { LogInService } from '../../../../services/security/log-in.service';
     FormsModule,
     AutoCompleteComponent,
     MatSlideToggleModule,
-    MatDividerModule
+    MatDividerModule,
+    NgIf
   ],
 })
 export class DialogInsertLogicUser {
@@ -288,8 +289,8 @@ export class DialogInsertLogicUser {
   public isChecked: boolean = false;
   //array con los roles disponibles
   public rolesNames : RolesNames[] = [
-    { id: 1, name: 'User' },
-    { id: 2, name: 'Admin' },
+    { id: 1, name: 'Admin' },
+    { id: 2, name: 'User' },
     { id: 3, name: 'Guest' }
 ];
 public SuperPermissions:boolean=false;
@@ -331,7 +332,12 @@ public SuperPermissions:boolean=false;
 unToggleSuperUser(): void {
   this.SuperPermissions = false;
 }
-
+passwordsMatch(): boolean {
+  return this.object.User.password === this.object.User.confirmPassword;
+}
+hasPasswordError(passwordInput: any, passwordInput2: any): boolean {
+  return passwordInput.invalid || passwordInput2.invalid || this.passwordsMatch();
+}
  ChangeName(){
   console.log(this.object)
   debugger

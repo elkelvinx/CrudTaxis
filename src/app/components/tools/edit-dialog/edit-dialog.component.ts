@@ -36,7 +36,6 @@ export class EditDialogComponent {
   @Output() data = new EventEmitter<any>();
   // @Output() secondId = new EventEmitter<any>();
   constructor(public dialog: MatDialog) { }
-
   ChangeName() {
     this.data.emit(true);
   }
@@ -76,6 +75,28 @@ export class EditDialogComponent {
       },
     });
     dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.ChangeName();
+      }
+    });
+  }
+  openDialogUpdateUser(enterAnimationDuration: string, exitAnimationDuration: string, contentDialog: string, name: string, information: string, indicator: string, numIndicator: number, object: any, array:any): void {
+    const dialogRef = this.dialog.open(DialogUpdateUser, {
+      width: '1520px',
+      enterAnimationDuration,
+      exitAnimationDuration,
+      data: {
+        contentDialog: contentDialog,
+        nameObj: name,
+        information: information,
+        indicator: indicator,
+        numIndicator: numIndicator,
+        object: object,
+        array: array,
+      },
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      debugger
       if (result) {
         this.ChangeName();
       }
@@ -123,7 +144,7 @@ export class DialogUpdateLogic {
     this.dialogRef.close(true);
   }
 }
-//! Insert GRANDE///////////////////////
+//! Edit GRANDE///////////////////////
 import { AutoCompleteComponent } from '../auto-complete/auto-complete.component';
 import { PRUEBAService } from '../../../services/cud_ZIP.service';
 import { structureExtraData } from '../../../models/extraData';
@@ -193,7 +214,7 @@ export class DialogUpdateLogicBig {
     this.dialogRef.close(true);
   }
 }
-//! Insert para los users
+//! Edit para los users
 import { RolesNames, UserModification, user, userPermission } from '../../../models/user';
 import { RoleNamePipe } from '../../../pipes/role-name.pipe';
 import { MatDividerModule } from '@angular/material/divider';
@@ -202,7 +223,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 @Component({
   selector: 'dialog-User-Insert',
   templateUrl: 'editUser.component.html',
-  styleUrl: 'edit-dialog.component.css',
+  styleUrl: './edit-dialog.component.css',
   standalone: true,
   imports: [
     MatButtonModule,
@@ -219,7 +240,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     MatDividerModule
   ],
 })
-export class DialogInsertLogicUser {
+export class DialogUpdateUser {
   public contentDialog: String;
   public nameObj: any;
   public information: string;
@@ -229,10 +250,11 @@ export class DialogInsertLogicUser {
   public arrayRolName:string[];
   public object: UserModification;
   public isChecked: boolean = false;
+  public idUser: number;
   //array con los roles disponibles
   public rolesNames : RolesNames[] = [
-    { id: 1, name: 'User' },
-    { id: 2, name: 'Admin' },
+    { id: 1, name: 'Admin' },
+    { id: 2, name: 'User' },
     { id: 3, name: 'Guest' }
 ];
 public SuperPermissions:boolean=false;
@@ -252,18 +274,43 @@ public SuperPermissions:boolean=false;
     this.pipeRole2= new RoleNamePipe(datePipe);
     this.contentDialog = data.contentDialog;
     this.nameObj = data.nameObj;
-    this.information = data.information;
     this.indicator = data.indicator;
     this.numIndicator = data.numIndicator;
-    this.object = data.object;
-    this.object.User= new user();
-    this.object.Permissions= new userPermission();
+    this.idUser = data.nameObj;
     this.array = data.array;  
-      this.arrayRolName = this.rolesNames.map(
+    this.arrayRolName = this.rolesNames.map(
       array => array.name);  
       console.log(this.rolesNames) 
+    debugger
+    if (Array.isArray(this.array)) {
+      // Convertir this.idUser a número si es necesario
+      const userId = Number(this.idUser);
+
+      // Buscar el objeto que contiene el User con el id que necesitas
+      const foundItem = this.array.find(item => item.User.id === userId);
+
+      // Verificar si se encontró el objeto antes de asignarlo
+      if (foundItem) {
+        this.object = foundItem;
+
+        // Buscar el nombre del rol actual del usuario
+        const userRole = this.rolesNames.find(role => role.id === this.object.Permissions.idRole);
+        if (userRole) {
+          this.information = userRole.name;
+        } else {
+          console.error('Rol del usuario no encontrado');
+        }
+      } else {
+        console.error('Usuario no encontrado');
+      }
+    } else {
+      console.error('data.array no es un array');
+    }
+
+    console.log(this.array);
   }
  insertData(data:Event){
+  debugger
   this.object.Permissions.idRole = this.extraSerive.guardarStreetExtraData(data,this.rolesNames);
  }
  toggleSuperUser(): void {
@@ -274,13 +321,20 @@ public SuperPermissions:boolean=false;
 unToggleSuperUser(): void {
   this.SuperPermissions = false;
 }
-
+passwordsMatch(): boolean {
+  return this.object.User.password === this.object.User.confirmPassword;
+}
+hasPasswordError(passwordInput: any, passwordInput2: any): boolean {
+  return passwordInput.invalid || passwordInput2.invalid || !this.passwordsMatch();
+}
  ChangeName(){
-  console.log(this.object)
   debugger
-  this.serviceLogIn.CreateUser(this.object.User,this.object.Permissions).subscribe(
+  this.serviceLogIn.UpdateUser(this.object.User,this.object.Permissions).subscribe(
   (data)=> {
+    this.dialogRef.close(true);
+    debugger
     console.log(data);
+    
   }
   )
  }

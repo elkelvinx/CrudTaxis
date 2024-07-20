@@ -27,10 +27,12 @@ export class user {
         (
             public id: number = 0,
             public name: string = '',
-            public email: string = 'elkelvin484@gmail.com',
+            public email: string = '',
             public dateCreated: Date = new Date(),
            //! public password: string = 'de pelos', PELIGROSO TENER ESTE DATO 
-           public password: string = 'CONTRASEÑA DEFAULT',
+           public password: string = '',
+           public confirmPassword: string = '',
+           public active: boolean = true
         ) {
 
     }

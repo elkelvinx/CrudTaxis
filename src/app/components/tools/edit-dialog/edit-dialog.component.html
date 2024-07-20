@@ -1,11 +1,27 @@
 <!DOCTYPE html>
 <!--* SAVE -->
 <div *ngIf="typeDialog == false">
-  <mat-icon
-    style="transform: scale(1.2)"
-    (click)="openDialogUpdateBig('300ms', '300ms', text, name, information, indicator, numIndicator,object,array)"
-    >edit</mat-icon
-  >
+  <div *ngIf="numIndicator!=9;then model else user">Prueba </div>
+  <ng-template #model>
+    <mat-icon
+      style="   
+      transform: scale(1.5);
+      border: none;
+      box-shadow: none !important;"
+       (click)="openDialogUpdateBig('300ms', '300ms', text, name, information, indicator, numIndicator,object,array)"
+      >edit
+    </mat-icon>
+  </ng-template>
+  <ng-template #user>
+    <mat-icon
+    style="    
+    transform: scale(1.5);
+    border: none;
+    box-shadow: none !important;"
+     (click)="openDialogUpdateUser('300ms', '300ms', text, name, information, indicator, numIndicator,object,array)"
+    >edit
+  </mat-icon>
+  </ng-template>
 </div>
 <!--* UPDATE -->
 <div *ngIf="typeDialog == true">
