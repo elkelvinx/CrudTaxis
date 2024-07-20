@@ -217,7 +217,6 @@ export class MenuExtraDataComponent implements OnInit {
   consultarTypeSinisterName() {
     this.readService.consultarTypeSinister().subscribe(
       (data: any[]) => {
-        debugger
         this.typeSinister = data;
       },
       error => {

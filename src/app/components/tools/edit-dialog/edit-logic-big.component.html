@@ -1,51 +1,65 @@
 <!DOCTYPE html>
-<h1 mat-dialog-title>Editar datos de {{indicator}}</h1>
+<h1 mat-dialog-title>Editar datos de Modelo del Carro</h1>
 <div mat-dialog-content>
   {{
     contentDialog === ""
       ? "¿Desea modificar a " + indicator + " " + nameObj + "?"
       : contentDialog + indicator + " " + nameObj
   }}
-  {{ information  }}
+ 
   <br />
 </div>
 
-<form class="example-form">
-  <mat-form-field class="example-full-width">
+<form class="principalForm" #form="ngForm">
+  <mat-form-field class="input-edit-short">
     <mat-label>Nombre</mat-label>
     <input
       matInput
+      cdkFocusInitial
+      name="name"
       [(ngModel)]="object.name"
-      [ngModelOptions]="{ standalone: true }"
       placeholder="informacion a cambiar"
+      required
+      pattern="[a-zA-Z0-9 ]*"
+      #nameInput="ngModel"
     />
   </mat-form-field>
-</form>
-<div class="autocomplete">
+  <div
+    class="text-danger-singleInputs" style="margin-top: -3.7%;"
+    *ngIf="nameInput.invalid && (nameInput.dirty || form.submitted)"
+  >
+    <div *ngIf="nameInput.hasError('required')">
+      Nombre de usuario es obligatorio
+    </div>
+    <div *ngIf="nameInput.hasError('pattern')">
+      No se permiten caracteres especiales
+    </div>
+  </div>
+<div class="autocomplete" style="margin-bottom: 3%;">
   <app-auto-complete
     className="brand"
     [text]="indicator"
     [info]="information"
     [arrays]="arrayName"
     (data)="insertData($event)"
-    style="width: 97%"
   ></app-auto-complete>
 </div>
-<div mat-dialog-actions>
-  <div style="margin-top: -5%; margin-left: 59px; position: absolute">
-    <button mat-button mat-dialog-close class="text-button-red">Cancelar</button
+<div mat-dialog-actions style="width: 100%; margin-bottom: 2%;">
+  <div style="margin-top: 3.2%; position: absolute">
+    <button mat-raised-button mat-dialog-close class="button_dialog_red_extraCSS">Cancelar</button
     ><br />
   </div>
-  <div style="margin-top: -5%; margin-left: 73%">
     <button
-      mat-button
+      mat-raised-button
       mat-dialog-close
       cdkFocusInitial
       color="primary"
-      class="text-button-green"
+      [disabled]="!form.valid"
+      class="text-button-greenFinal"
       (click)="ChangeName()"
     >
       Actualizar
     </button>
-  </div>
+    
 </div>
+</form>

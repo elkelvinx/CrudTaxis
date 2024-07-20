@@ -12,7 +12,6 @@ export class AuthService {
       return localStorage.getItem('token');
     }
     getDecodedToken(): any {
-      debugger
       const token = this.getToken();
       if(token) {
         return jwt_decode.jwtDecode(token);
@@ -44,7 +43,6 @@ export class AuthService {
   
     // Remover el token JWT del almacenamiento local
     logout(): void {
-      debugger
       localStorage.removeItem('token');
     }
 }

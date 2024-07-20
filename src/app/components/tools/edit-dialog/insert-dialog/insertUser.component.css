@@ -1,3 +1,9 @@
+form.principalForm {
+  display: flex;
+  margin-bottom: 2%;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
 .text-danger {
   margin-top: -2.7%;
   margin-left: 6%;
@@ -8,7 +14,15 @@
   margin-top: -2.7%;
   margin-left: 6%;
   width: 100%;
-  margin-bottom: 1%
+  margin-bottom: 1%;
+}
+.text-button-greenFinal {
+  position: absolute;
+  margin-top: -27px;
+  margin-left: 55%;
+  width: 38% !important;
+  height: 46px !important;
+  --mat-protected-button-ripple-color: rgb(7 101 37) !important;
 }
 .password_input {
   width: 45.5%;
@@ -16,11 +30,30 @@
 .default_input_css {
   width: 93%;
 }
-form.principalForm {
-  display: flex;
+.text {
+  font-size: 20px !important;
+  font-weight: 500 !important;
+  color: rgb(250, 250, 250) !important;
+  margin-right: 10px;
+}
+.text-danger {
+  margin-top: -2.7%;
+  margin-left: 6%;
+  width: 100%;
   margin-bottom: 2%;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
+}
+.text-danger-singleInputs {
+  margin-top: -5.7%;
+  margin-left: 6%;
+  width: 100%;
+  margin-bottom: 4%;
+  color: rgb(183, 10, 10);
+}
+.text-dangerPassword {
+  margin-top: -2.7%;
+  margin-left: 6%;
+  width: 100%;
+  margin-bottom: 1%;
 }
 .buttonP {
   margin-right: 8px !important;
@@ -30,12 +63,6 @@ form.principalForm {
 .dialog {
   width: 100px !important;
   background-color: rgb(247, 247, 247) !important;
-}
-.text {
-  font-size: 20px !important;
-  font-weight: 500 !important;
-  color: rgb(250, 250, 250) !important;
-  margin-right: 10px;
 }
 .mat-icon:active {
   color: #de0404 !important;

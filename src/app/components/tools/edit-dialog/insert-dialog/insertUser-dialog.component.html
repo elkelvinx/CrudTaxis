@@ -9,14 +9,13 @@
   <br />
 </div>
 
-<form class="principalForm" #UserForm="ngForm" (ngSubmit)="ChangeName()">
+<form class="principalForm" #UserForm="ngForm"  (ngSubmit)="ChangeName()">
   <mat-form-field class="default_input_css">
     <mat-label>Nombre</mat-label>
     <input
       matInput
       name="name"
       [(ngModel)]="object.User.name"
-      [ngModelOptions]="{ standalone: true }"
       placeholder="Ej.Kevin"
       required
       pattern="[a-zA-Z0-9]*"
@@ -40,7 +39,6 @@
       matInput
       name="password"
       [(ngModel)]="object.User.password"
-      [ngModelOptions]="{ standalone: true }"
       placeholder="Ej.3juan"
       pattern="[a-zA-Z0-9]*"
       required
@@ -53,7 +51,6 @@
       matInput
       name="confirmPassword"
       [(ngModel)]="object.User.confirmPassword"
-      [ngModelOptions]="{ standalone: true }"
       placeholder="Confirmar"
       pattern="[a-zA-Z0-9]*"
       required
@@ -71,9 +68,7 @@
       Introduzca la contraseña en ambos inputs
     </div>
     <div
-      *ngIf="
-        passwordInput.hasError('pattern') || passwordInput2.hasError('pattern')
-      "
+      *ngIf="passwordInput.hasError('pattern') || passwordInput2.hasError('pattern')"
     >
       No se permiten caracteres especiales ni espacios
     </div>
@@ -85,8 +80,7 @@
       matInput
       name="email"
       [(ngModel)]="object.User.email"
-      [ngModelOptions]="{ standalone: true }"
-      placeholder="Nueva Informacion"
+      placeholder="Ej.name595@gmail.com"
       required
       pattern="[a-zA-Z0-9 @ .]*"
       #mailInput="ngModel"
@@ -179,11 +173,10 @@
       (change)="unToggleSuperUser()"
       >Generador de Pdf's</mat-slide-toggle
     >
-    <!-- <mat-slide-toggle class="permission_slider" ngModel name="enableWifi">Enable Wifi</mat-slide-toggle> -->
   </div>
   <div mat-dialog-actions style="width: 100%">
     <mat-divider></mat-divider>
-    <div style="position: absolute">
+    <div style="position: absolute; width: 14%;">
       <br />
       <button
         mat-raised-button
@@ -196,9 +189,8 @@
     </div>
     <button
       mat-raised-button
-     
       class="text-button-greenFinal"
-      [disabled]="!UserForm.valid"
+      [disabled]="!UserForm.valid || object.Permissions.idRole===4"
       style="
         position: absolute;
         margin-top: -27px;

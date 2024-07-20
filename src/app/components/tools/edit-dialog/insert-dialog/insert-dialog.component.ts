@@ -14,7 +14,7 @@ import { CommonModule, DatePipe, NgIf } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 import { LoginComponent } from '../../../structure/login/login.component';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 @Component({
@@ -320,6 +320,7 @@ public SuperPermissions:boolean=false;
       this.arrayRolName = this.rolesNames.map(
       array => array.name);  
       console.log(this.rolesNames) 
+      debugger
   }
  insertData(data:Event){
   this.object.Permissions.idRole = this.extraSerive.guardarStreetExtraData(data,this.rolesNames);

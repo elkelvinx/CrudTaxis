@@ -10,7 +10,7 @@ import {
 } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { Inject } from '@angular/core';
-import { CommonModule, DatePipe } from '@angular/common';
+import { CommonModule, DatePipe, NgIf } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -31,7 +31,7 @@ export class EditDialogComponent {
   @Input() indicator: string;
   @Input() numIndicator: number;
   @Input() object: any;
-  @Input() array: any=[];
+  @Input() array: any = [];
   //bool que devolvemos al padre
   @Output() data = new EventEmitter<any>();
   // @Output() secondId = new EventEmitter<any>();
@@ -59,7 +59,7 @@ export class EditDialogComponent {
       }
     });
   }
-  openDialogUpdateBig(enterAnimationDuration: string, exitAnimationDuration: string, contentDialog: string, name: string, information: string, indicator: string, numIndicator: number, object: any, array:any): void {
+  openDialogUpdateBig(enterAnimationDuration: string, exitAnimationDuration: string, contentDialog: string, name: string, information: string, indicator: string, numIndicator: number, object: any, array: any): void {
     const dialogRef = this.dialog.open(DialogUpdateLogicBig, {
       width: '920px',
       enterAnimationDuration,
@@ -80,7 +80,7 @@ export class EditDialogComponent {
       }
     });
   }
-  openDialogUpdateUser(enterAnimationDuration: string, exitAnimationDuration: string, contentDialog: string, name: string, information: string, indicator: string, numIndicator: number, object: any, array:any): void {
+  openDialogUpdateUser(enterAnimationDuration: string, exitAnimationDuration: string, contentDialog: string, name: string, information: string, indicator: string, numIndicator: number, object: any, array: any): void {
     const dialogRef = this.dialog.open(DialogUpdateUser, {
       width: '1520px',
       enterAnimationDuration,
@@ -96,7 +96,6 @@ export class EditDialogComponent {
       },
     });
     dialogRef.afterClosed().subscribe(result => {
-      debugger
       if (result) {
         this.ChangeName();
       }
@@ -173,12 +172,10 @@ export class DialogUpdateLogicBig {
   public indicator: string;
   public numIndicator: number;
   public array: any;
-  public arrayName:string[];
+  public arrayName: string[];
   public secondId: number;
-
-
   public object: structureExtraData;
-  public result:any;
+  public result: any;
   //de aqui para abajo es no comprendo al 100%
   constructor(
     public dialogRef: MatDialogRef<DialogUpdateLogic>,
@@ -199,13 +196,12 @@ export class DialogUpdateLogicBig {
     this.array = data.array;
     this.arrayName = this.array.map((array: any) => array.name);
   }
-  insertData(event:Event)
-  {
+  insertData(event: Event) {
     debugger
     this.secondId = this.service.guardarStreetExtraData(event, this.array);
     this.object.settlement = this.secondId;
-    this.object.idBrand= this.secondId
-    
+    this.object.idBrand = this.secondId
+
   }
   ChangeName() {
     debugger
@@ -215,7 +211,7 @@ export class DialogUpdateLogicBig {
   }
 }
 //! Edit para los users
-import { RolesNames, UserModification, user, userPermission } from '../../../models/user';
+import { RolesNames, UserModification} from '../../../models/user';
 import { RoleNamePipe } from '../../../pipes/role-name.pipe';
 import { MatDividerModule } from '@angular/material/divider';
 import { LogInService } from '../../../services/security/log-in.service';
@@ -237,7 +233,8 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     FormsModule,
     AutoCompleteComponent,
     MatSlideToggleModule,
-    MatDividerModule
+    MatDividerModule,
+    NgIf,
   ],
 })
 export class DialogUpdateUser {
@@ -247,17 +244,17 @@ export class DialogUpdateUser {
   public indicator: string;
   public numIndicator: number;
   public array: UserModification[];
-  public arrayRolName:string[];
+  public arrayRolName: string[];
   public object: UserModification;
   public isChecked: boolean = false;
   public idUser: number;
   //array con los roles disponibles
-  public rolesNames : RolesNames[] = [
+  public rolesNames: RolesNames[] = [
     { id: 1, name: 'Admin' },
     { id: 2, name: 'User' },
     { id: 3, name: 'Guest' }
-];
-public SuperPermissions:boolean=false;
+  ];
+  public SuperPermissions: boolean = false;
   public pipeRole2: RoleNamePipe;
   constructor(
     public dialogRef: MatDialogRef<DialogUpdateLogic>,
@@ -271,28 +268,24 @@ public SuperPermissions:boolean=false;
     private datePipe: DatePipe,
     @Inject(MAT_DIALOG_DATA) data: any,
   ) {
-    this.pipeRole2= new RoleNamePipe(datePipe);
+    this.pipeRole2 = new RoleNamePipe(datePipe);
     this.contentDialog = data.contentDialog;
     this.nameObj = data.nameObj;
     this.indicator = data.indicator;
     this.numIndicator = data.numIndicator;
     this.idUser = data.nameObj;
-    this.array = data.array;  
+    this.array = data.array;
+    //crea un objeto unicamente de nombres de los roles
     this.arrayRolName = this.rolesNames.map(
-      array => array.name);  
-      console.log(this.rolesNames) 
-    debugger
+      array => array.name);
     if (Array.isArray(this.array)) {
       // Convertir this.idUser a número si es necesario
       const userId = Number(this.idUser);
-
       // Buscar el objeto que contiene el User con el id que necesitas
       const foundItem = this.array.find(item => item.User.id === userId);
-
       // Verificar si se encontró el objeto antes de asignarlo
       if (foundItem) {
         this.object = foundItem;
-
         // Buscar el nombre del rol actual del usuario
         const userRole = this.rolesNames.find(role => role.id === this.object.Permissions.idRole);
         if (userRole) {
@@ -306,36 +299,35 @@ public SuperPermissions:boolean=false;
     } else {
       console.error('data.array no es un array');
     }
-
     console.log(this.array);
   }
- insertData(data:Event){
-  debugger
-  this.object.Permissions.idRole = this.extraSerive.guardarStreetExtraData(data,this.rolesNames);
- }
- toggleSuperUser(): void {
-  this.object.Permissions.driver = this.object.Permissions.admin = this.object.Permissions.permissionaire =
-  this.object.Permissions.extraData=this.object.Permissions.sinister=
-  this.object.Permissions.unit=this.object.Permissions.pdf = this.SuperPermissions;
-}
-unToggleSuperUser(): void {
-  this.SuperPermissions = false;
-}
-passwordsMatch(): boolean {
-  return this.object.User.password === this.object.User.confirmPassword;
-}
-hasPasswordError(passwordInput: any, passwordInput2: any): boolean {
-  return passwordInput.invalid || passwordInput2.invalid || !this.passwordsMatch();
-}
- ChangeName(){
-  debugger
-  this.serviceLogIn.UpdateUser(this.object.User,this.object.Permissions).subscribe(
-  (data)=> {
-    this.dialogRef.close(true);
+  insertData(data: Event) {
     debugger
-    console.log(data);
-    
+    this.object.Permissions.idRole = this.extraSerive.guardarStreetExtraData(data, this.rolesNames);
   }
-  )
- }
+  toggleSuperUser(): void {
+    this.object.Permissions.driver = this.object.Permissions.admin = this.object.Permissions.permissionaire =
+      this.object.Permissions.extraData = this.object.Permissions.sinister =
+      this.object.Permissions.unit = this.object.Permissions.pdf = this.SuperPermissions;
+  }
+  unToggleSuperUser(): void {
+    this.SuperPermissions = false;
+  }
+  passwordsMatch(): boolean {
+    return this.object.User.password === this.object.User.confirmPassword;
+  }
+  hasPasswordError(passwordInput: any, passwordInput2: any): boolean {
+    return passwordInput.invalid || passwordInput2.invalid || !this.passwordsMatch();
+  }
+  ChangeName() {
+    debugger
+    this.serviceLogIn.UpdateUser(this.object.User, this.object.Permissions).subscribe(
+      (data) => {
+        this.dialogRef.close(true);
+        debugger
+        console.log(data);
+
+      }
+    )
+  }
 }
