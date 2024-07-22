@@ -63,6 +63,7 @@ export class TableColumnsStructure {
          { label: 'Nombres', def: 'name', dataKey: 'name' },
          { label: 'Email', def: 'email', dataKey: 'email' },
          { label: 'F-Creacion', def: 'dateCreated', dataKey: 'dateCreated' },
+        // { label: 'Estado', def: 'active', dataKey: 'active' },
         // { label: 'F-Baja', def: 'dateOut', dataKey: 'dateOut' },
         // { label: 'AdminPerm', def: 'ExtraData', dataKey: 'ExtraData' },
         

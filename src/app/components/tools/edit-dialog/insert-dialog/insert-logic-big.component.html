@@ -10,7 +10,8 @@
 </div>
 
 <form class="principalForm" #form="ngForm">
-  <mat-form-field class="input-edit-short">
+  <mat-form-field class="input-edit-short" style="width: 93%;
+    margin-bottom: 3%;">
     <mat-label>Nombre</mat-label>
     <input
       matInput
@@ -24,7 +25,7 @@
     />
   </mat-form-field>
   <div
-    class="text-danger-singleInputs" style="margin-top: -3.7%;"
+    class="text-danger-singleInputs" style="margin-bottom: 0%;"
     *ngIf="nameInput.invalid && (nameInput.dirty || form.submitted)"
   >
     <div *ngIf="nameInput.hasError('required')">
@@ -44,21 +45,23 @@
     style="width: 97%"
   ></app-auto-complete>
 </div>
-<div mat-dialog-actions style="width: 100%; margin-bottom: 2%;">
-  <div style="margin-top: 3.2%; position: absolute">
-    <button  mat-raised-button mat-dialog-close class="button_dialog_red_extraCSS">Cancelar</button
+<div mat-dialog-actions class="actions-section">
+  <div style="width: 39%;">
+    <button  mat-raised-button mat-dialog-close class="buttonred_new">Cancelar</button
     ><br />
   </div>
-    <button
-      mat-raised-button
-      mat-dialog-close
-      cdkFocusInitial
-      color="primary"
-      [disabled]="!form.valid"
-      class="text-button-greenFinal"
-      (click)="ChangeName()"
-    >
-      Guardar
-    </button>
+    <div style="width: 39%;">
+      <button
+        mat-raised-button
+        mat-dialog-close
+        cdkFocusInitial
+        color="primary"
+        [disabled]="!form.valid"
+        class="button-green"
+        (click)="ChangeName()"
+      >
+        Guardar
+      </button>
+    </div>
   </div>
 </form>

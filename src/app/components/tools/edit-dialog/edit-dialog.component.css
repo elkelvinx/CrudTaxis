@@ -175,6 +175,39 @@ form.principalForm {
   box-shadow: -5px 7px 18px 1px rgba(0, 0, 0, 0.2),
     0px 2px 2px 0px rgb(32 61 10 / 79%), 3px 4px 12px 0px rgb(1 9 5 / 34%) !important;
 }
+.buttonred_new {
+  height: 46px !important;
+  width: 100% !important;
+  --mdc-protected-button-label-text-color: #9e0d0d !important;
+  --mdc-protected-button-outline-color: rgba(0, 255, 81, 0) !important;
+  --mat-protected-button-state-layer-color: #f70909bd !important;
+  --mat-protected-button-ripple-color: rgb(157 4 4) !important;
+  --mat-text-button-state-layer-color: #e36f6f !important;
+  --mdc-protected-button-outline-color: rgb(10 137 247) !important;
+  color: #ffffff !important;
+  --mdc-protected-button-container-color: #b3041e !important;
+  border-radius: 10px !important;
+  --mat-protected-button-hover-state-layer-opacity: 0.68 !important;
+  --mat-protected-button-focus-state-layer-opacity: 0.24 !important;
+  --mat-protected-button-pressed-state-layer-opacity: 0.24 !important;
+  box-shadow: -5px 7px 18px 1px rgba(0, 0, 0, 0.2),
+    0px 2px 2px 0px rgb(32 61 10 / 79%), 3px 4px 12px 0px rgb(1 9 5 / 34%) !important;
+}
+.button-green{
+  width: 100% !important;
+  height: 46px !important;
+  border-radius: 10px !important;
+  --mat-protected-button-ripple-color: rgb(7 101 37) !important;
+  box-shadow: -5px 7px 18px 1px rgba(0, 0, 0, 0.2),
+  0px 2px 2px 0px rgb(32 61 10 / 79%), 3px 4px 12px 0px rgb(1 9 5 / 34%) !important;
+}
+.actions-section{
+  width: 98%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
 :root {
   --mat-slide-toggle-label-text-size: 20px !important;
 }

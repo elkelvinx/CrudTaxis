@@ -122,7 +122,7 @@ import { insertClass } from '../switchCRUD/insert';
 @Component({
   selector: 'dialog-animations-example-dialog',
   templateUrl: 'insert-logic.component.html',
-  styleUrl: './../edit-dialog.component.css',
+  styleUrl:'./insertUser.component.css',
   standalone: true,
   imports: [MatButtonModule, MatDialogActions, MatDialogClose, MatDialogTitle, MatDialogContent, MatFormFieldModule, CommonModule, MatInputModule, FormsModule],
 })
@@ -164,7 +164,7 @@ import { structureExtraData,structureData,extructureStreet, extructureModel } fr
 @Component({
   selector: 'dialog-animations-example-dialog',
   templateUrl: 'insert-logic-big.component.html',
-  styleUrl: './../edit-dialog.component.css',
+  styleUrl: './insertUser.component.css',
   standalone: true,
   imports: [
     MatButtonModule,
@@ -307,7 +307,7 @@ public SuperPermissions:boolean=false;
     private datePipe: DatePipe,
     @Inject(MAT_DIALOG_DATA) data: any,
   ) {
-    this.pipeRole2= new RoleNamePipe(datePipe);
+    //this.pipeRole2= new RoleNamePipe(datePipe);
     this.contentDialog = data.contentDialog;
     this.nameObj = data.nameObj;
     this.information = data.information;

@@ -139,6 +139,7 @@ import { RoleNamePipe } from './pipes/role-name.pipe';
     MatTreeModule,
     PortalModule,
     ScrollingModule,
+    RoleNamePipe
   ],
   
   declarations: [

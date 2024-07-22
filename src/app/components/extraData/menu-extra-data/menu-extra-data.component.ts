@@ -13,6 +13,7 @@ import { LogInService } from '../../../services/security/log-in.service';
 import { UserModification, userInsert } from '../../../models/user';
 import { RoleNamePipe } from '../../../pipes/role-name.pipe';
 import { DatePipe } from '@angular/common';
+import { DomSanitizer } from '@angular/platform-browser';
 @Component({
   selector: 'app-menu-extra-data',
   templateUrl: './menu-extra-data.component.html',
@@ -132,8 +133,9 @@ export class MenuExtraDataComponent implements OnInit {
     private router: Router,
     private logIn: LogInService,
     private datePipe: DatePipe,
+    private san: DomSanitizer
   ) {
-    this.pipeRole2 = new RoleNamePipe(datePipe);
+    this.pipeRole2 = new RoleNamePipe(datePipe,san);
   }
   ngOnInit(): void {
     this.consultarSettleName();
@@ -227,7 +229,7 @@ export class MenuExtraDataComponent implements OnInit {
   consultarUsersName() {
     this.logIn.consultarUsers().subscribe(
       (data: UserModification[]) => {
-        debugger
+      
         this.user = data;
         this.UserTable = this.user.map(data => ({
           id: data.User.id,
@@ -235,7 +237,9 @@ export class MenuExtraDataComponent implements OnInit {
           email: data.User.email,
           dateCreated: this.pipeRole2.transformDateIn(data.User.dateCreated),
           roleName: this.pipeRole2.transformRolName(data.Permissions.idRole),
+          active:this.pipeRole2.transformActiveBadge(data.User.active),
         }));
+        debugger
       },
       error => {
         console.log(error);

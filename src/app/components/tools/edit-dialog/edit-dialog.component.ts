@@ -216,6 +216,7 @@ import { RoleNamePipe } from '../../../pipes/role-name.pipe';
 import { MatDividerModule } from '@angular/material/divider';
 import { LogInService } from '../../../services/security/log-in.service';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { DomSanitizer } from '@angular/platform-browser';
 @Component({
   selector: 'dialog-User-Insert',
   templateUrl: 'editUser.component.html',
@@ -263,12 +264,12 @@ export class DialogUpdateUser {
     public serviceUpdate: updateClass,
     public serviceLogIn: LogInService,
     public extraSerive: PRUEBAService<any>,
-    //en duda este servicio
     public service: PRUEBAService<any>,
     private datePipe: DatePipe,
+    private san: DomSanitizer,
     @Inject(MAT_DIALOG_DATA) data: any,
   ) {
-    this.pipeRole2 = new RoleNamePipe(datePipe);
+    this.pipeRole2 = new RoleNamePipe(datePipe,san);
     this.contentDialog = data.contentDialog;
     this.nameObj = data.nameObj;
     this.indicator = data.indicator;
