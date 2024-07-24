@@ -78,11 +78,11 @@ form.example-form {
   ) !important; /* Escala el ícono ligeramente al hacer clic */
   color: #d5f600;
 }
-.autocomplete {
+/* .autocomplete {
   margin-left: 3.5%;
   margin-right: 3.5%;
   margin-bottom: 3%;
-}
+} */
 /* ! esto es del update dialog */
 .password_input {
   width: 45.5%;
@@ -92,7 +92,7 @@ form.example-form {
 }
 form.principalForm {
   display: flex;
-
+  margin-bottom: 2%;
   flex-wrap: wrap;
   justify-content: space-evenly;
 }
@@ -110,6 +110,13 @@ form.principalForm {
   font-weight: 500 !important;
   color: rgb(250, 250, 250) !important;
   margin-right: 10px;
+}
+.text-danger-Big {
+  margin-top: -3%;
+  margin-left: 6%;
+  width: 100%;
+  margin-bottom: 1.5%;
+  color: rgb(183, 10, 10);
 }
 .mat-icon:active {
   color: #de0404 !important;

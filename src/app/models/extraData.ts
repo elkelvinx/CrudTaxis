@@ -18,7 +18,7 @@ export class structureExtraData {
         public name: string = '',
         public settlement: number = 0,
         public secondS: string = '',
-        public idBrand: number = 0,
+        public idBrand: number = -1,
     ) { }
 };
 export class extructureModel{

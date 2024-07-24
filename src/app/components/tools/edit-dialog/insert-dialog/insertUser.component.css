@@ -49,6 +49,14 @@ form.principalForm {
   margin-bottom: 4%;
   color: rgb(183, 10, 10);
 }
+.text-danger-Big {
+  margin-top: -2.7%;
+  margin-left: 6%;
+  width: 100%;
+  margin-bottom: 1.5%;
+  color: rgb(183, 10, 10);
+}
+
 .text-dangerPassword {
   margin-top: -2.7%;
   margin-left: 6%;
@@ -146,16 +154,15 @@ form.principalForm {
   box-shadow: -5px 7px 18px 1px rgba(0, 0, 0, 0.2),
     0px 2px 2px 0px rgb(32 61 10 / 79%), 3px 4px 12px 0px rgb(1 9 5 / 34%) !important;
 }
-.button-green{
+.button-green {
   width: 100% !important;
   height: 46px !important;
   border-radius: 10px !important;
   --mat-protected-button-ripple-color: rgb(7 101 37) !important;
   box-shadow: -5px 7px 18px 1px rgba(0, 0, 0, 0.2),
-  0px 2px 2px 0px rgb(32 61 10 / 79%), 3px 4px 12px 0px rgb(1 9 5 / 34%) !important;
-
+    0px 2px 2px 0px rgb(32 61 10 / 79%), 3px 4px 12px 0px rgb(1 9 5 / 34%) !important;
 }
-.actions-section{
+.actions-section {
   width: 98%;
   display: flex;
   flex-direction: row;

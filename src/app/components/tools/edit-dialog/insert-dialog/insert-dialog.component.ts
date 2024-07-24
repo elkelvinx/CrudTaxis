@@ -191,8 +191,8 @@ export class DialogInsertLogicBig {
 
   public object: structureExtraData;
  
-  public objectStreet: extructureStreet={name:'',settlement:0};
-  public objectBrand: extructureModel={name:'',idBrand:0};
+  //public objectStreet: extructureStreet={name:'',settlement:0};
+  public objectBrand: extructureModel={name:'',idBrand:-1};
   constructor(
     public dialogRef: MatDialogRef<DialogInsertLogic>,
     public CommonModule: CommonModule,
@@ -218,18 +218,13 @@ export class DialogInsertLogicBig {
     this.secondId = this.service.guardarStreetExtraData(event, this.array);
     //this.object.settlement = this.secondId;
     this.object.idBrand= this.secondId;
+    
   }
   //usado cuando son dos datos
   ChangeName() {
     debugger
     let dataToInsert;
     switch (this.numIndicator) {
-      case 2:
-        debugger
-        this.objectStreet.name = this.object.name;
-        this.objectStreet.settlement = this.secondId;
-        dataToInsert = this.objectStreet;
-        break;
       case 4:
         this.objectBrand.name = this.object.name;
         this.objectBrand.idBrand = this.secondId;

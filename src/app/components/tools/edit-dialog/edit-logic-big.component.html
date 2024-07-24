@@ -6,12 +6,11 @@
       ? "¿Desea modificar a " + indicator + " " + nameObj + "?"
       : contentDialog + indicator + " " + nameObj
   }}
- 
   <br />
 </div>
 
 <form class="principalForm" #form="ngForm">
-  <mat-form-field class="input-edit-short">
+  <mat-form-field class="input-edit-short" style="width: 93%">
     <mat-label>Nombre</mat-label>
     <input
       matInput
@@ -25,7 +24,7 @@
     />
   </mat-form-field>
   <div
-    class="text-danger-singleInputs" style="margin-top: -3.7%;"
+    class="text-danger-Big"
     *ngIf="nameInput.invalid && (nameInput.dirty || form.submitted)"
   >
     <div *ngIf="nameInput.hasError('required')">
@@ -35,31 +34,33 @@
       No se permiten caracteres especiales
     </div>
   </div>
-<div class="autocomplete" style="margin-bottom: 3%;">
-  <app-auto-complete
-    className="brand"
-    [text]="indicator"
-    [info]="information"
-    [arrays]="arrayName"
-    (data)="insertData($event)"
-  ></app-auto-complete>
-</div>
-<div mat-dialog-actions style="width: 100%; margin-bottom: 2%;">
-  <div style="margin-top: 3.2%; position: absolute">
-    <button mat-raised-button mat-dialog-close class="button_dialog_red_extraCSS">Cancelar</button
-    ><br />
+  <div class="autocomplete" style="margin-bottom: 1% !important">
+    <app-auto-complete
+      className="brand"
+      [text]="indicator"
+      [info]="information"
+      [arrays]="arrayName"
+      (data)="insertData($event)"
+    ></app-auto-complete>
   </div>
-    <button
-      mat-raised-button
-      mat-dialog-close
-      cdkFocusInitial
-      color="primary"
-      [disabled]="!form.valid"
-      class="text-button-greenFinal"
-      (click)="ChangeName()"
-    >
-      Actualizar
-    </button>
-    
-</div>
+  <div mat-dialog-actions class="actions-section">
+    <div style="width: 39%">
+      <button mat-raised-button mat-dialog-close class="buttonred_new">
+        Cancelar</button
+      ><br />
+    </div>
+    <div style="width: 39%">
+      <button
+        mat-raised-button
+        mat-dialog-close
+        cdkFocusInitial
+        color="primary"
+        [disabled]="!form.valid"
+        class="button-green"
+        (click)="ChangeName()"
+      >
+        Actualizar
+      </button>
+    </div>
+  </div>
 </form>
