@@ -1,29 +1,18 @@
 <!DOCTYPE html>
 <!--FINAL-->
-<div
-  class="ContainerDivs"
-  style="
-    background-color: rgba(182, 174, 174, 0.079);
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-content: center;
-    justify-content: space-evenly;
-    align-items: stretch;
-    border-radius: 15px;
-    width: 99%;
-  "
->
+<div class="ContainerDivs">
   <div
     class="CardSerch"
     style="
-      width: 40%;
+      width: 42%;
       height: 800px;
       background-color: var(--backCards);
       border-radius: 20px;
       display: flex;
       flex-direction: column;
       flex-wrap: nowrap;
+      padding-left: 0.5%;
+      padding-right: 0.5%;
     "
   >
     <div
@@ -31,13 +20,19 @@
       style="
         color: rgba(255, 255, 255, 0.7);
         font-family: Roboto, sans-serif;
-        letter-spacing: 1px;
-        padding-left: 7%;
+        letter-spacing: 2px;
+        padding-left: 4%;
+        padding-right: 3%;
         padding-top: 3%;
         padding-bottom: 2%;
+        display: flex;
+        justify-content: space-between;
       "
     >
       Unidades automovilisticas
+      <mat-icon (click)="consultarUnit(0)" class="button-search"
+        >add_circle_outline</mat-icon
+      >
     </div>
     <div class="bodyCard" style="width: 100%; height: 20px; height: 100%">
       <div
@@ -61,16 +56,30 @@
           style="width: 23%"
           #inputname
         ></app-auto-complete>
-        <app-auto-complete
+        <car-autoComplete
           className="brand"
           [text]="'Marca de la unidad'"
           [info]="units.brandName"
+          [brand]="brands"
           [arrays]="brandsName"
+          [typeinput]="1"
           (data)="changeSelection($event, 'brand')"
           *ngIf="loadBr"
-          style="width: 73%"
-          #inputname
-        ></app-auto-complete>
+          style="width: 30.2%"
+        ></car-autoComplete>
+        <!-- [arrays]="modelsName"  -->
+        <car-autoComplete
+          className="brand"
+          [text]="'Modelo de la unidad'"
+          [info]="units.modelName"
+          [modelsInput]="modelsName"
+          [brandSelected]="units.idBrand"
+          [typeinput]="2"
+          (data)="changeSelection($event, 'model')"
+          *ngIf="loadMd"
+          style="width: 41.2%"
+          [isDisabled]="false"
+        ></car-autoComplete>
       </div>
       <div class="renglon1">
         <app-auto-complete
@@ -81,12 +90,13 @@
           style="width: 23%"
           #inputname
         ></app-auto-complete>
+
         <app-auto-complete
           className="brand"
           [text]="'color de la unidad'"
           [info]="units.color"
           (data)="units.color = $event"
-          style="width: 33%"
+          style="width: 30%"
           #inputname
         ></app-auto-complete>
         <app-auto-complete
@@ -94,7 +104,7 @@
           [text]="'placas'"
           [info]="units.plate"
           (data)="units.plate = $event"
-          style="width: 38.5%"
+          style="width: 41.5%"
           #inputname
         ></app-auto-complete>
       </div>
@@ -117,16 +127,14 @@
           [info]="units.serie"
           (data)="units.serie = $event"
           #inputname
-          style="width: 57.5%"
+          style="width: 54.5%"
         ></app-auto-complete>
         <app-auto-complete
           className="brand"
-          [text]="'Modelo de la unidad'"
-          [info]="units.modelName"
-          [arrays]="modelsName"
-          (data)="changeSelection($event, 'model')"
-          *ngIf="loadMd"
-          style="width: 38.2%"
+          [text]="'clave del Motor'"
+          [info]="units.motor"
+          (data)="units.motor = $event"
+          style="width: 41.2%"
           #inputname
         ></app-auto-complete>
       </div>
@@ -149,23 +157,31 @@
           [info]="units.adminName"
           [arrays]="adminsName"
           (data)="changeSelection($event, 'admin')"
-          *ngIf="loadAd"
           style="width: 97%"
         ></app-auto-complete>
-        <app-auto-complete
-          className="brand"
-          [text]="'clave del Motor'"
-          [info]="units.motor"
-          (data)="units.motor = $event"
-          style="width: 56.45%"
-          #inputname
-        ></app-auto-complete>
+      </div>
+      <div
+        class="renglon2"
+        style="
+          display: flex;
+          flex-direction: row;
+          gap: 10px;
+          align-items: center;
+          justify-content: flex-start;
+          margin-left: 1%;
+          width: 100%;
+          flex-wrap: wrap;
+        "
+      >
         <app-datepicker-date
           [isDisabled]="false"
           [actualDate]="units.expInsurance"
+          (date)="units.expInsurance = $event"
           [text]="'Vencimiento de seguro'"
-          style="width: 39%"
+          style="width: 97%"
         ></app-datepicker-date>
+      </div>
+      <div class="renglon1">
         <app-datepicker-date
           [actualDate]="units.registerDate"
           [text]="'Fecha de registro'"
@@ -184,14 +200,14 @@
       style="
         align-self: flex-end;
         width: 100%;
-        height: 100px;
+        height: 60px;
         margin-top: auto;
         margin-bottom: 2%;
       "
     >
       <br />
       <mat-divider
-        style="margin-left: 3%; width: 94%; margin-top: -3%"
+        style="margin-left: 1%; width: 98%; margin-top: -5.2%"
       ></mat-divider>
       <mat-card-actions
         align="start"
@@ -201,27 +217,67 @@
           flex-wrap: wrap;
           justify-content: flex-start;
           align-items: center;
+          margin-top: 40px;
+          margin-left: 4%;
         "
       >
-        <button mat-button color="primary" class="text-button-green">
-          Guardar
-        </button>
-
-        <button mat-button color="primary" class="text-button-green">
-          Actualizar
-        </button>
-
-        <button mat-button color="primary" class="text-button-red">
-          Eliminar</button
-        ><br />
+        <app-yes-no-dialog
+          (data)="onDelete(units)"
+          [text]="'Desea borrar el registro de la unidad'"
+          [name]="units.ecoNumber + '?'"
+          [IconButton]="false"
+        ></app-yes-no-dialog>
         <br />
       </mat-card-actions>
-      <!-- <mat-card-actions align="end" class="buttons-actionDelete">
-        <button mat-button color="primary" class="text-button-red">
-          Eliminar</button
-        ><br />
+
+      <mat-card-actions align="end" class="buttons-actionDelete">
+        <!-- <button
+          mat-button
+          (click)="grabar()"
+          *ngIf="ActSave"
+          color="primary"
+          class="text-button-green"
+          style="position: absolute; margin-top: -51px; margin-left: 30%"
+        >
+          Guardar
+        </button> -->
+        <button
+          mat-raised-button
+          (click)="grabar()"
+          *ngIf="ActSave"
+          color="primary"
+          class="text-button-greenFinal"
+          style="
+            position: absolute;
+            margin-top: -2.7%;
+            margin-left: 25.7%;
+            width: 10%;
+            height: 46px;
+            --mat-protected-button-ripple-color: rgb(7 101 37) !important;
+          "
+        >
+          Guardar
+        </button>
+        <button
+          mat-raised-button
+          color="primary"
+          (click)="actualizar()"
+          *ngIf="!ActSave"
+          class="text-button-greenFinal"
+          style="
+           position: absolute;
+            margin-top: -2.7%;
+            margin-left: 25.7%;
+            width: 10%;
+            height: 46px;
+            --mat-protected-button-ripple-color: rgb(7 101 37) !important;
+          "
+        >
+          Actualizar
+        </button>
         <br />
-      </mat-card-actions> -->
+        <br />
+      </mat-card-actions>
     </div>
   </div>
   <div
@@ -235,49 +291,13 @@
     "
   >
     <div class="tabla-dataPRUEBA">
-      <table
-        class="table table-danger table-striped table-hover table-bordered"
-        style="width: fit-content; margin-left: 1%; border-radius: 12px"
-      >
-        <thead>
-          <tr>
-            <th scope="col">Id se borra</th>
-            <th scope="col">ecoNumber</th>
-            <th scope="col">Marca</th>
-            <th scope="col">Modelo</th>
-            <th scope="row">Otras</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let units of listUnits; let i = index">
-            <td>{{ units.id }}</td>
-            <td>
-              {{ units.ecoNumber + " " }}
-            </td>
-            <td>{{ units.brandName }}</td>
-            <td>{{ units.modelName }}</td>
-            <td>
-              <button
-                mat-raised-button
-                color="primary"
-                class="text"
-                style="height: 35px !important"
-                (click)="consultarUnit(units.id)"
-              >
-                Editar
-              </button>
-              <app-yes-no-dialog
-                [text]="'Desea borrar la unidad?'"
-                [name]="units.ecoNumber"
-              ></app-yes-no-dialog>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <!-- <app-table
+      <app-table
         [data]="listUnits"
-        [columns]="['id', 'ecoNumber', 'Marca', 'Modelo']"
-      ></app-table> -->
+        [columns]="tableColumns"
+        [config]="tableConfig"
+        (select)="onSelect($event)"
+        (action)="onTableAction($event)"
+      ></app-table>
     </div>
   </div>
 </div>

@@ -6,9 +6,7 @@ import { AsyncPipe } from '@angular/common';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-
-//services
-import { AppService } from '../../../services/services-app.service'
+import { Pipe, PipeTransform } from '@angular/core';
 
 @Component({
   selector: 'app-auto-complete',
@@ -26,10 +24,8 @@ import { AppService } from '../../../services/services-app.service'
   ],
 })
 export class AutoCompleteComponent {
-
-  //css a utilizar
-  @Input() className: string;
-  @Input() defaultClass: string = 'defaultClass';
+  //podria poner  @Input() color: string = '#FFFFFF';
+  @Input() className: string = 'defaultClass';
   //texto del dato que se pide
   @Input() text: string = '';
   //valor actual de la variable
@@ -38,17 +34,20 @@ export class AutoCompleteComponent {
   @Input() arrays: string[] = [];
   //devuelve el valor nuevo
   @Output() data = new EventEmitter<any>();
-  //opciones para el autocomplete
-  options: string[] = this.arrays;
   myControl = new FormControl('');
   filteredOptions: Observable<string[]>;
 
-  constructor(
-    private servicioApp: AppService
-  ) { }
   ngOnInit() {
     this.filteredOptions = this.myControl.valueChanges.pipe(
-      //tiempo de espera para que se ejecute el filtro
+      debounceTime(200),
+      startWith(''),
+      map(value => this._filter(value || '')),
+    );
+    // console.log(this.filteredOptions.forEach(element => { console.log(element) }) + " hola");
+  }
+
+  actualizeOptions() {
+    this.filteredOptions = this.myControl.valueChanges.pipe(
       debounceTime(200),
       startWith(''),
       map(value => this._filter(value || '')),
@@ -58,9 +57,15 @@ export class AutoCompleteComponent {
     const filterValue = value.toLowerCase();
     return this.arrays.filter(option => option.toLowerCase().includes(filterValue));
   }
-
-  ChangeName() {
+  changeName() {
+    // console.log(this.filteredOptions + " " + this.myControl.value)
     this.data.emit(this.myControl.value);
   }
+}
 
+@Pipe({ name: 'startsWith' })
+export class AutocompletePipeStartsWith implements PipeTransform {
+  public transform(collection: any[], term = '') {
+    return collection.filter((item) => item.toString().toLowerCase().startsWith(term.toString().toLowerCase()));
+  }
 }

@@ -1,0 +1,37 @@
+h1{
+    font-size: 30px!important;
+    font-weight: bold;
+    margin-bottom: 10px;
+    margin-top: 1%;
+}
+mat-form-field {
+  margin-right: 12px;
+}
+.contentStyle{
+    margin-top: 5px;
+    margin-left: 9px;
+    margin-right: 3px;
+    font-size: 20px!important;
+}
+.text-button-greenFinal
+{
+ width: 96%;
+  --mdc-protected-button-container-height: 50px;
+}
+.mat-mdc-raised-button 
+{
+  --mdc-protected-button-label-text-size: 22px;
+}
+.mdc-dialog__content {
+  flex-grow: 0.7;
+}
+.mat-mdc-dialog-actions {
+  justify-content: start;
+  height: 31%;
+  margin-top: -11px;
+}
+
+/* HTML */
+.mat-mdc-button:not(:disabled) {
+  width: fit-content;
+}

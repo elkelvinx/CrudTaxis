@@ -1,0 +1,100 @@
+.titulo {
+    font-size: 29px;
+    font-weight: 600;
+    font-family: 'montserrat', sans-serif;
+    margin-bottom: 20px;
+    margin-left: 23%;
+    color: #ffffff;
+}
+.principalForm{
+    width: 100%;
+}
+.principal {
+    background-color: #16161d;
+    height: 89vh;
+    display: flex;
+    width: 30%;
+    flex-direction: column;
+    align-content: center;
+    flex-wrap: wrap;
+    border-radius: 25px;
+    padding-left: 1%;
+    padding-right: 1.3%;
+    justify-content: space-evenly;
+    align-items: center;
+
+}
+.logoLogin {
+    border-radius: 14px;
+}
+.logInInput {
+    width: 100%;
+    margin-top: 20px;
+}
+.text-danger{
+    margin-top: -20px;}
+*, *::before, *::after {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    margin-left: 5px;
+}
+.text-button-greenFinal{
+    width: 100% !important;
+    height: 52px !important;
+    margin-top: 4%;
+    --mat-protected-button-ripple-color: rgb(7 101 37) !important;
+}
+.link_text{
+margin-top: 2%;
+margin-left: 40%;
+}
+a{
+    color: rgb(86, 86, 218)!important;
+}
+.backgroundPage{
+display: flex;
+align-content: center;
+flex-wrap: wrap;
+justify-content: center;
+background-image: url('https://images.unsplash.com/photo-1517243667550-44d5628894d0?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+background-size: cover;
+height: 95vh;
+margin-left: -5rem;
+margin-top: -1rem;
+}
+@media screen and (max-width: 1460px) {
+    .logoLogin {
+        transform: scale(0.9);
+    }
+    .principal {
+        margin-left: 24%;
+    }
+  }
+@media screen and (max-width: 1360px) {
+    .logoLogin {
+        transform: scale(0.6);
+    }
+    .principal {
+        margin-left: 20%;
+    }
+  }
+  @media (min-width: 100px) and (max-width: 1260px)   {
+    .logoLogin {
+        transform: scale(0.6);
+    }
+    .principal {
+        margin-left: 11%;
+        width: 70%;
+        padding-right: 4%;
+        padding-left: 4%;
+        display: flex;
+        margin-top: -48px;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        height: 77vh;
+    }
+  }
+
+:root{
+    --mdc-filled-text-field-container-color: #1C1C27!important;
+}

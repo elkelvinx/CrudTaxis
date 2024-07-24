@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<h1 mat-dialog-title>Agregar {{ indicator }}</h1>
+<div mat-dialog-content>
+  {{
+    contentDialog === ""
+      ? "¿Desea crear un nuevo " + indicator + " " + nameObj + "?"
+      : contentDialog + indicator + "?"
+  }}
+</div>
+
+<form class="example-form">
+  <mat-form-field class="example-full-width">
+    <mat-label>Nombre</mat-label>
+    <input
+      matInput
+      [(ngModel)]="object.name"
+      [ngModelOptions]="{ standalone: true }"
+      placeholder="introducza el nuevo dato"
+    />
+  </mat-form-field>
+</form>
+
+<div mat-dialog-actions>
+  <div style="margin-top: -5%; margin-left: 59px; position: absolute">
+    <button mat-button mat-dialog-close class="text-button-red">Cancelar</button
+    ><br />
+  </div>
+  <div style="margin-top: -5%; margin-left: 73%">
+    <button
+      mat-button
+      mat-dialog-close
+      cdkFocusInitial
+      color="primary"
+      class="text-button-green"
+      (click)="ChangeName()"
+    >
+      Guardar
+    </button>
+  </div>
+</div>

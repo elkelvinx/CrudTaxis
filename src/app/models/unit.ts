@@ -21,6 +21,7 @@ export class unit {
 export class Unit2 {
     id: number = 0;
     ecoNumber: number = 0;
+    idBrand: number = 0;
     model: number = 0;
     yearModel: number = 0;
     color: string = "";
@@ -30,7 +31,7 @@ export class Unit2 {
     registerDate: Date = new Date();
     lastModDate: Date = new Date();
     expInsurance: Date = new Date();
-    idAdmin: number = 0;
+    admin: number = 0;
     adminName: string = "";
     brandName: string = "";
     modelName: string = "";

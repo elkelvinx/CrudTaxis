@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<!--* Street y model -->
+<div *ngIf="typeDialog == false">
+ <div *ngIf="numIndicator!=9;then model else user">Prueba </div>
+    <ng-template #model>
+      <mat-icon
+        style="   
+        transform: scale(1.5);
+        border: none;
+        box-shadow: none !important;"
+         (click)="openDialogInsertBig('300ms', '300ms', text, name, information, indicator, numIndicator,object,array)"
+        >note_add
+      </mat-icon>
+    </ng-template>
+    <ng-template #user>
+      <mat-icon
+      style="    
+      transform: scale(1.5);
+      border: none;
+      box-shadow: none !important;"
+       (click)="openDialogInsertUser('300ms', '300ms', text, name, information, indicator, numIndicator,object,array)"
+      >note_add
+    </mat-icon>
+    </ng-template>
+</div>
+<!--* SAVE -->
+<div *ngIf="typeDialog == true">
+  <mat-icon
+    style="    transform: scale(1.5);
+    border: none;
+    box-shadow: none !important;"
+    (click)="openDialogInsert('300ms', '300ms', text, name, information, indicator, numIndicator,object)"
+    >note_add</mat-icon
+  >
+</div>

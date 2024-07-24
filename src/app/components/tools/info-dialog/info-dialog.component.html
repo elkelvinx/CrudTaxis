@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<mat-card
+  style="
+    position: relative;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-direction: row;          
+    flex-wrap: wrap;
+  "
+>
+  <button mat-button (click)="openSnackBar('Hello', 'Close', 'blue-snackbar')">
+    snackbar1
+  </button>
+  <button mat-button (click)="openSnackBar('Hello', 'Close', 'error-snackbar')">
+    snackbarerror
+  </button>
+  <button mat-button (click)="notificationService.error('error')">Error</button>
+
+  <button mat-button (click)="notificationService.success('success')">
+    Success
+  </button>
+  <button mat-button (click)="showAlert('Informacion del error')">Alert</button>
+  <!--este componente no me servira-->
+  <button mat-button style="color: rgb(233, 127, 127)" (click)="showConfirm()">
+    Confirm
+  </button>
+</mat-card>

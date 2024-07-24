@@ -1,0 +1,50 @@
+.tablaData {
+  width: 98%;
+  margin-left: 14px;
+  background-color: rgba(91, 213, 4, 0.215);
+  margin-top: 15px; 
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+.mat-icon {
+  font-family: "Material Icons" !important;
+  transition: transform 0.2s ease;
+  box-shadow: none;
+  border: none;
+  border-radius: 35px;
+  color: rgb(255, 0, 0) !important;
+  margin-right: 4%;
+  font-size: 160%;
+  height: 27px;
+}
+.mat-icon:active {
+  transform: scale(
+    1.6
+  ) !important; /* Escala el ícono ligeramente al hacer clic */
+  color: #d5f600;
+}
+.mat-icon:hover {
+  color: #1bea00ad;
+  transform: scale(1.3) !important;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2) !important;
+}
+.mat-mdc-tab-header {
+
+  margin-top: -7px;
+}
+.mat-icon:active {
+  transform: scale(1.7);
+  color: #d5f600;
+}
+.text-button-greenFinal
+{
+width: 100%;
+height: 6vh;
+background-color: #222226a6;
+}
+:root {
+  /* Table2 */
+  --mat-tab-header-active-label-text-color: #35f53b !important;
+  --mat-tab-header-active-hover-indicator-color: #24d90f !important;
+}

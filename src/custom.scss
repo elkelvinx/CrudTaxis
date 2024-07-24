@@ -1,12 +1,117 @@
+
 @use '@angular/material' as mat;
 @use 'sass:map';
-
 @include mat.core();
 
+$dark-primary-text: rgba(black, 0.87);
+$dark-secondary-text: rgba(black, 0.54);
+$dark-disabled-text: rgba(black, 0.38);
+$dark-dividers: rgba(black, 0.12);
+$dark-focused: rgba(black, 0.12);
+$light-primary-text: white;
+$light-secondary-text: rgba(white, 0.7);
+$light-disabled-text: rgba(white, 0.5);
+$light-dividers: rgba(white, 0.12);
+$light-focused: rgba(white, 0.12);
 
-//**************************Light Theme*****************************//
+$achieve-primary: (
+  50: #bac6ff,
+  100: #6f82e4,
+  200: #6478d9,
+  300: #4254ad,
+  400: #36479c,
+  500: #24327b,
+  600: #212e74,
+  700: #1b2769,
+  800: #111b55,
+  900: #0c1447,
+  A100: #716fe4,
+  A200: #6664d9,
+  A400: #3d369c,
+  A700: #2d1b69,
+  contrast: (
+    50: $dark-primary-text,
+    100: $dark-primary-text,
+    200: $dark-primary-text,
+    300: $light-primary-text,
+    400: $light-primary-text,
+    500: $light-primary-text,
+    600: $light-primary-text,
+    700: $light-primary-text,
+    800: $light-primary-text,
+    900: $light-primary-text,
+    A100: $dark-primary-text,
+    A200: $light-primary-text,
+    A400: $light-primary-text,
+    A700: $light-primary-text,
+  )
+);
+
+$achieve-red: (
+  50: #ff7396,
+  100: #eb5278,
+  200: #d43f64,
+  300: #c33357,
+  400: #b1274a,
+  500: #a12041,
+  600: #951d3b,
+  700: #881935,
+  800: #7c152f,
+  900: #6e1028,
+  A100: #eb5299,
+  A200: #d43f84,
+  A400: #b1275c,
+  A700: #881944,
+  contrast: (
+    50: $dark-primary-text,
+    100: $dark-primary-text,
+    200: $dark-primary-text,
+    300: $dark-primary-text,
+    400: $dark-primary-text,
+    500: $light-primary-text,
+    600: $light-primary-text,
+    700: $light-primary-text,
+    800: $light-primary-text,
+    900: $light-primary-text,
+    A100: $dark-primary-text,
+    A200: $light-primary-text,
+    A400: $light-primary-text,
+    A700: $light-primary-text,
+  )
+);
+$primary-palette: mat.define-palette($achieve-primary);
+$accent-palette: mat.define-palette($achieve-primary);
+$error-palette: mat.define-palette($achieve-red);
+
+$primary1: map-get($primary-palette, 300);
+$success2: map-get($accent-palette, A200, A100, A400);
+$error3: map-get($error-palette,400);
+//////****************** Clases Para colores de los dialogs y snackBars*******************/////////
+.basic-container {
+  padding: 5px;
+}
+.blue-snackbar {
+  --mdc-snackbar-container-color: #2779ee;
+  --mdc-snackbar-supporting-text-color: rgb(0 0 0);
+  --mat-snack-bar-button-color: rgb(236 255 0 / 99%);
+}
+.blue-snackbarInfo {
+  --mdc-snackbar-container-color: #04cad4d2;
+  --mdc-snackbar-supporting-text-color: rgb(0 0 0);
+}
+.success-snackbar {
+    --mdc-snackbar-container-color: #2b8636;
+    --mdc-snackbar-supporting-text-color: rgb(255 255 255);   
+}
+ 
+.error-snackbar {
+  --mdc-snackbar-container-color: #de2e2e;
+  --mdc-snackbar-supporting-text-color: rgb(251, 251, 251);
+  --mat-snack-bar-button-color: rgb(223 255 0);
+}
+
+// //**************************Light Theme*****************************//
 $green-palette: mat.$pink-palette;
-
 $green-palette: map.merge($green-palette, (400: #167319));
 
 $my-primary: mat.define-palette($green-palette, 400);
@@ -21,6 +126,9 @@ $my-theme: mat.define-light-theme((
    primary: $my-primary,
    accent: $my-accent,
     warn: $my-warn,
+    extra1: $primary1,
+    extra2: $success2,
+    extra3: $error3,
  ),
  typography: mat.define-typography-config(),
  density: 0,
@@ -53,4 +161,6 @@ $my-dark-theme: mat.define-dark-theme((
 :root{
   --backCards: #2a2d28;
   --cards: $my-dark-background,400;
+  // --errorTabla: rgb(255 117 117);
+  --error: #ff0000;
 }

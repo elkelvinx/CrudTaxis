@@ -1,21 +1,80 @@
 <!DOCTYPE html>
-<mat-form-field>
-  <mat-label>Filter</mat-label>
-  <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input />
+<mat-form-field class="input-filtro" *ngIf="tableConfig?.showFilter">
+  <mat-label>Buscar</mat-label>
+  <input
+    matInput
+    (keyup)="applyFilter($event)"
+    placeholder="Introduzca el valor a buscar"
+    #input
+  />
 </mat-form-field>
-
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-  <ng-container *ngFor="let column of columns" [matColumnDef]="column">
-    <th mat-header-cell *matHeaderCellDef>{{ columns }}</th>
-    <td mat-cell *matCellDef="let element">{{ element[column] }}</td>
+<table mat-table #table [dataSource]="dataSource">
+  <!-- Checkbox Column -->
+  <ng-container matColumnDef="select">
+    <th mat-header-cell *matHeaderCellDef>
+      <mat-checkbox
+        (change)="$event ? toggleAllRows() : null"
+        [checked]="selection.hasValue() && isAllSelected()"
+        [indeterminate]="selection.hasValue() && !isAllSelected()"
+        [aria-label]="checkboxLabel()"
+      >
+      </mat-checkbox>
+    </th>
+    <td mat-cell *matCellDef="let row">
+      <mat-checkbox
+        (click)="$event.stopPropagation()"
+        (change)="$event ? selection.toggle(row) : null; onSelect()"
+        [checked]="selection.isSelected(row)"
+        [aria-label]="checkboxLabel(row)"
+      >
+      </mat-checkbox>
+    </td>
   </ng-container>
 
-  <tr mat-header-row *matHeaderRowDef="columns"></tr>
-  <tr mat-row *matRowDef="let row; columns: columns"></tr>
+  <ng-container matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef>Acciones</th>
+    <td mat-cell *matCellDef="let row">
+      <div
+        style="
+          display: flex;
+          justify-content: space-between;
+          align-items: flex-start;
+        "
+      >
+        <mat-icon style="transform: scale(1.2)" (click)="onEdit(row)"
+          >edit</mat-icon
+        >
+        <!--necesito corregir la parte de el id y que sea variable-->
+        <app-yes-no-dialog
+          (data)="onDelete(row)"
+          [text]="'Desea borrar el registro de la fila '"
+          [name]="searchRowName(row) + '?'"
+          [IconButton]="true"
+        ></app-yes-no-dialog>
+      </div>
+    </td>
+  </ng-container>
 
-  <tr class="mat-row">
-    <td class="mat-cell" colspan="4">
-      No data matching the filter "{{ input.value }}"
+  <ng-container *ngFor="let column of tableColumns" [matColumnDef]="column.def">
+    <th mat-header-cell *matHeaderCellDef>{{ column.label }}</th>
+    <td mat-cell *matCellDef="let row">{{ row | columnValue : column }}</td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="tableDisplayColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: tableDisplayColumns" class="custom-row"></tr>
+
+  <tr class="mat-row" *matNoDataRow>
+    <td class="mat-cell" [colSpan]="tableDisplayColumns.length">
+      No hay informacion que coincida con el dato <strong><em>"{{ currentFilterValue }}"</em></strong>
     </td>
   </tr>
 </table>
+
+<ng-container *ngIf="tableConfig?.isPaginable">
+  <mat-paginator
+    [pageSizeOptions]="[10, 11, 15]"
+    showFirstLastButtons
+    aria-label="Selecciona uno de estos datos"
+  >
+  </mat-paginator>
+</ng-container>

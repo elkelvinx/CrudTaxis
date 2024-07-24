@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<form class="example-form">
+  <mat-form-field class="example-full-width {{ className }}">
+    <mat-label>{{ text }}</mat-label>
+    <input
+      type="text"
+      placeholder="{{ myControl.value || 'Pick One' }}"
+      aria-label="Number"
+      matInput
+      [formControl]="myControl"
+      [matAutocomplete]="auto"
+      [value]="info"
+      (focus)="brandModified ? changeBrand() : changeModel()"
+      (ngModelChange)="brandModified ? changeBrand() : changeModel()"
+      class="{{ className }}"
+      [disabled]="isDisabled"
+    />
+    <mat-autocomplete
+      autoActiveFirstOption
+      #auto="matAutocomplete"
+      (optionSelected)="onSelection($event)"
+    >
+      @for (option of filteredOptions | async; track option) {
+      <mat-option [value]="option">{{ option }}</mat-option>
+      }
+    </mat-autocomplete>
+  </mat-form-field>
+</form>

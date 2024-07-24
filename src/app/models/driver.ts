@@ -1,3 +1,4 @@
+import { TableColumn } from './../../app/components/tools/table/models/table-column';
 export class driver {
     constructor
         (
@@ -16,12 +17,14 @@ export class driver {
             public st2: number = 0,
             public st3: number = 0,
             public extNumber: number = 0,
-            public idAdmin: number = 0,
+            public admin: number = 0,
+            public contactDrivers: number = 0,
             public adminName: string = '',
             public licenseEx: Date = new Date(),
             public licenseExS: string = '',
             public ingressPay: Date = new Date(),
             public status: number = 0,
+            public statusS: string = 'Esperando',
             public street1: string = '',
             public street2: string = '',
             public street3: string = '',
@@ -30,45 +33,39 @@ export class driver {
 
     }
 }
-export class driver2 {
-    constructor
-        (
-            public id: number,
-            public name: string,
-            public lm1: string,
-            public lm2: string,
-            public birth: Date,
-            public hireDate: Date,
-            public lastModD: Date,
-            public password: string,
-            public phone: string,
-            public settlement: number,
-            public st1: number,
-            public st2: number,
-            public st3: number,
-            public extNumber: number,
-            public idAdmin: number,
-            public admin: string,
-            public licenseEx: Date,
-            public ingressPay: Date,
-            public status: number,
-            public street1: string,
-            public street2: string,
-            public street3: string,
-            public settlementS: string,
-        ) {
 
+export class TableColumnsStructure {
+    static tableColumnsCase1: TableColumn[] = [
+        { label: 'Nombres', def: 'name', dataKey: 'name' },
+        { label: 'Apellido paterno', def: 'lm1', dataKey: 'lm1' },
+        { label: 'Apellido materno', def: 'lm2', dataKey: 'lm2' },
+        { label: 'Numero de telefono', def: 'phone', dataKey: 'phone' },
+        { label: 'Administrador', def: 'adminName', dataKey: 'adminName' },
+        { label: 'Vencimiento licencia', def: 'licenseEx', dataKey: 'licenseEx', dataType: 'date', formatt: 'dd MMM yyyy' },
+        { label: 'Fecha nacimiento', def: 'birth', dataKey: 'birth', dataType: 'date', formatt: 'dd MMM yyyy' },
+        { label: 'Fecha de ingreso', def: 'hireDate', dataKey: 'hireDate', dataType: 'date', formatt: 'dd MMM yyyy' },
+        { label: 'Colonia', def: 'settlementS', dataKey: 'settlementS' },
+        { label: 'Calle', def: 'street1', dataKey: 'street1' },
+        { label: 'Pago ingreso', def: 'ingressPay', dataKey: 'ingressPay' },
+    ];
+    static tableColumnsCase2: TableColumn[] = [
+        { label: 'Nombres', def: 'name', dataKey: 'name' },
+        { label: 'Apellido paterno', def: 'lm1', dataKey: 'lm1' },
+        { label: 'Apellido materno', def: 'lm2', dataKey: 'lm2' },
+        { label: 'Numero de telefono', def: 'phone', dataKey: 'phone' },
+        { label: 'Administrador', def: 'adminName', dataKey: 'adminName' },
+        { label: 'Vencimiento licencia', def: 'licenseEx', dataKey: 'licenseEx', dataType: 'date', formatt: 'dd MMM yyyy' },
+        { label: 'Fecha de ingreso', def: 'hireDate', dataKey: 'hireDate', dataType: 'date', formatt: 'dd MMM yyyy' },
+        { label: 'Colonia', def: 'settlementS', dataKey: 'settlementS' },
+    ];
+    columns: TableColumn[];
+    constructor(numberOfColumns: number = 1) {
+        if (numberOfColumns === 1) {
+            this.columns = TableColumnsStructure.tableColumnsCase1;
+        } else if (numberOfColumns === 2) {
+            this.columns = TableColumnsStructure.tableColumnsCase2;
+        } else {
+            this.columns = []; // O cualquier configuración por defecto
+        }
     }
 }
-/*export class driverName {
-    constructor
-        (
-            public id: number,
-            public name: string,
-            public lm1: string,
-            public lm2: string,
-        ) {
-
-    }
-
-}*/

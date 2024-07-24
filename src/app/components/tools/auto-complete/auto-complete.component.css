@@ -1,27 +1,27 @@
 .example-form {
   min-width: 60px;
-  /* max-width: 400px; */
   width: 100%;
 }
-
-/* .example-full-width {
-    width: 50%;
-    height: 60%;
-  } */
 .example-full-width {
   min-width: 70% !important;
   /* max-width: 100% !important; */
   width: 100% !important;
 }
 
-/*  */
 .name {
   position: fixed;
   width: 500px !important;
   background-color: #940e0e59 !important;
 }
-.name-moved {
-  position: absolute;
-  width: 500px !important;
-  background-color: #940e0e59 !important;
+/* Establece la variable CSS */
+:root {
+  --my-custom-color: var(
+    --color,
+    #eb1e1e
+  ); /* Valor predeterminado o valor de la variable 'color' */
+}
+
+/* Utiliza la variable en tu estilo */
+.mdc-text-field--filled:not(.mdc-text-field--disabled) {
+  background-color: var(--my-custom-color) !important;
 }

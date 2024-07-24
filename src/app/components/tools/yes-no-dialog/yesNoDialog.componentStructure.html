@@ -1,24 +1,40 @@
 <!DOCTYPE html>
-<h1 mat-dialog-title>Borrar Conductor</h1>
+<h1 mat-dialog-title>
+   {{(title === '') ? "Borrar el registro" : title}}
+</h1>
 <div mat-dialog-content>
   {{(contentDialog === '') ? "¿Desea borrar a "+" " + nameObj+"?" :
-  contentDialog+" "+nameObj}}
+  contentDialog +" "+ "\n" + nameObj}}
   <br />
 </div>
 <div mat-dialog-actions>
-  <div style="margin-top: -5%; position: absolute">
-    <button mat-button mat-dialog-close class="text-button-red">Cerrar</button
-    ><br />
-  </div>
-  <div style="margin-top: -5%; margin-left: 57%">
+  <div style="position: absolute">
+    <br />
     <button
-      mat-button
+      mat-raised-button
       mat-dialog-close
-      cdkFocusInitial
       color="primary"
-      class="text-button-green"
+      style="margin-bottom: 12px"
+      class="text-button-redFinal"
     >
-      Ok
+      Cancelar
     </button>
   </div>
-</div>
+    <button
+      mat-raised-button
+      mat-dialog-close
+      color="primary"
+      (click)="ChangeName()"
+      class="text-button-greenFinal"
+      style="
+        position: absolute;
+        margin-top: -27px;
+        margin-left: 55%;
+        width: 38% !important;
+        height: 46px !important;
+        --mat-protected-button-ripple-color: rgb(7 101 37) !important;
+      "
+    >
+      Continuar
+    </button>
+  </div>

@@ -1,7 +1,7 @@
 header {
   /*Modificado de 80 a 50*/
-  /*agregue el margin left a -10*/
-  width: 120%;
+  /*height 50px o 8%*/
+  width: 100%;
   height: 50px;
   background: #1b1e18d6;
   display: flex;
@@ -9,7 +9,16 @@ header {
   position: fixed;
   top: 0;
   z-index: 200;
-  margin-left: 70px;
+  /* margin-left: 70px; */
+  justify-content: space-between;
+}
+.Buttons__LogOut{
+  margin-right: 3.5%;
+  margin-bottom: 0.1%;
+}
+.text-button-greenFinal{
+  --mat-outlined-button-state-layer-color: #ea1111!important;
+width: fit-content;
 }
 .menu__side {
   /*Modificado de 80 a 70*/
@@ -21,7 +30,7 @@ header {
   width: 70px;
   height: 100%;
   /* background: #8b0101be; */
-  background: #1b1e18d6;
+  background: #202220;
   position: fixed;
   top: 0;
   left: 0;
@@ -35,6 +44,8 @@ header {
   transition: all 300ms cubic-bezier(0.785, 0.135, 0.15, 0.86);
 }
 
+.header{
+  transition: all 300ms cubic-bezier(0.785, 0.135, 0.15, 0.86);}
 .options__menu a:hover {
   color: #ccf070;
 }
@@ -68,4 +79,42 @@ a.selected {
   position: absolute;
   top: 10%;
   left: -30px;
+}
+.mat-icon{
+  border: 1px solid #ccc0!important;
+  margin-left: -9px;
+  scale: 1.14;
+  width: 26px;
+  box-shadow: none!important;
+  
+}
+.collapsible:before, .collapsible:before {
+  content: "";
+  /* margin-left: 370px; */
+}
+.logo{
+  margin-top: 7px;
+  scale: 1.2 !important;
+}
+
+
+/*  */
+.body_move {
+  margin-left: 250px;
+}
+.body{
+  transition: margin-left 300ms cubic-bezier(0.785, 0.135, 0.15, 0.86);
+}
+@media screen and (max-width: 760px) {
+  .body_move {
+    margin-left: 0px;
+  }
+
+  .menu__side_move {
+    width: 80px;
+    left: -80px;
+  }
+  .icon__menu::after{
+   margin-left:245px!important;
+  }
 }

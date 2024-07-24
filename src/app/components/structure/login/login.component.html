@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<div class="backgroundPage">
+  <div class="principal">
+    <img
+      src="../../../../assets/images/descarga.png"
+      alt="logo"
+      class="logoLogin"
+    />
+    <form class="principalForm" #logInForm="ngForm" (ngSubmit)="logIn()">
+      <h1 class="titulo">Iniciar Sesion</h1>
+      <mat-form-field class="logInInput">
+        <mat-label>Nombre</mat-label>
+        <input
+          matInput
+          name="name"
+          [(ngModel)]="user.name"
+          placeholder="Usuario a ingresar"
+          required
+          pattern="[a-zA-Z0-9 ñ Ñ]*"
+          #nameInput="ngModel"
+        />
+      </mat-form-field>
+      <div
+        class="text-danger"
+        *ngIf="nameInput.invalid && (nameInput.dirty || logInForm.submitted)"
+      >
+        <div *ngIf="nameInput.hasError('required')">
+           Nombre de usuario es obligatorio
+        </div>
+        <div *ngIf="nameInput.hasError('pattern')">
+          No se permiten caracteres especiales ni espacios
+        </div>
+      </div>
+      <mat-form-field class="logInInput">
+        <mat-label>Contraseña</mat-label>
+        <input
+          matInput
+          name="password"
+          [(ngModel)]="user.password"
+          placeholder="Ej.123"
+          pattern="[a-zA-Z0-9 ñ Ñ]*"
+          required
+          #passwordInput="ngModel"
+        />
+      </mat-form-field>
+      <div
+        class="text-danger"
+        *ngIf="
+          passwordInput.invalid && (passwordInput.dirty || logInForm.submitted)
+        "
+      >
+        <div *ngIf="passwordInput.hasError('required')">
+          La contaseña es obligatoria
+        </div>
+        <div *ngIf="passwordInput.hasError('pattern')">
+          No se permiten caracteres especiales ni espacios
+        </div>
+      </div>
+      <button
+        mat-raised-button
+        class="text-button-greenFinal"
+        [disabled]="!logInForm.valid"
+      >
+        Confirmar
+      </button>
+      
+    </form>
+  </div>
+</div>

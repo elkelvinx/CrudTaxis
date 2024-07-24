@@ -7,3 +7,59 @@ table {
   font-size: 14px;
   width: 100%;
 }
+.input-filtro {
+  width: 99.4%;
+  margin-left: 0.3%;
+  margin-top: 0.2%;
+  margin-bottom: -0.7%;
+}
+.text-button-green {
+  --mdc-outlined-button-label-text-color: #0d9e12;
+  --mdc-outlined-button-outline-color: rgba(0, 255, 81, 0) !important;
+  --mat-outlined-button-state-layer-color: #09f711bd;
+  --mat-outlined-button-ripple-color: rgb(4 243 12);
+  text-shadow: -2px 3px 5px #000;
+  color: #0db813 !important;
+}
+.mat-mdc-button,
+.mat-primary {
+  --mdc-text-button-label-text-color: #732216;
+  --mat-text-button-state-layer-color: #167319;
+  --mat-text-button-ripple-color: rgba(22, 115, 25, 0.1);
+  --mat-text-button-hover-state-layer-opacity: 0.08 !important;
+  --mat-text-button-focus-state-layer-opacity: 0.24 !important;
+  --mat-text-button-pressed-state-layer-opacity: 0.24 !important;
+}
+.mat-primary[_ngcontent-ng-c2720847565] {
+  --mat-full-pseudo-checkbox-selected-icon-color: #167319;
+  --mat-full-pseudo-checkbox-selected-checkmark-color: #303030;
+  --mat-full-pseudo-checkbox-unselected-icon-color: rgba(255, 255, 255, 0.7);
+  --mat-full-pseudo-checkbox-disabled-selected-checkmark-color: #303030;
+  --mat-full-pseudo-checkbox-disabled-unselected-icon-color: #686868;
+  --mat-full-pseudo-checkbox-disabled-selected-icon-color: #686868 !important;
+  --mat-minimal-pseudo-checkbox-selected-checkmark-color: #167319 !important;
+  --mat-minimal-pseudo-checkbox-disabled-selected-checkmark-color: #686868 !important;
+}
+.mat-mdc-button.mat-primary[_ngcontent-ng-c2720847565] {
+  --mdc-text-button-label-text-color: #167319;
+  --mat-text-button-state-layer-color: #731616;
+  --mat-text-button-ripple-color: rgba(22, 115, 25, 0.1);
+}
+.mat-mdc-button[_ngcontent-ng-c2720847565] {
+  --mdc-text-button-label-text-color: #fff !important;
+  --mdc-text-button-disabled-label-text-color: rgba(
+    255,
+    255,
+    255,
+    0.5
+  ) !important;
+  --mat-text-button-state-layer-color: #fff !important;
+  --mat-text-button-ripple-color: rgba(255, 255, 255, 0.1) !important;
+  --mat-text-button-hover-state-layer-opacity: 0.08 !important;
+  --mat-text-button-focus-state-layer-opacity: 0.24 !important;
+  --mat-text-button-pressed-state-layer-opacity: 0.24 !important;
+}
+
+.custom-row:hover {
+  background-color: rgb(77, 71, 71); /* Cambia este color al que prefieras */
+}

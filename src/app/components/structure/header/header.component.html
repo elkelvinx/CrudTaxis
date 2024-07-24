@@ -1,63 +1,103 @@
 <!DOCTYPE html>
 <!--Menu y barra navegacion aqui-->
-<header>
-  <div class="icon__menu">
-    <i class="fas fa-bars" id="btn_open"></i>
+
+<header  class="header">
+  <div class="icon__menu" [style.margin-left]="iconButtonWidth">
+    <i class="collapsible" id="btn_open" (click)="toggleMenu()" > <mat-icon>menu</mat-icon></i>
+  </div>
+  <div class="Buttons__LogOut">
+    <button mat-stroked-button class="text-button-greenFinal" (click)="openDialog('300ms', '300ms','Seguro que ya se quiere ir?')">Cerrar Sesion</button>
+
   </div>
 </header>
+
 <!--Menu lateral-->
-<div class="menu__side" id="menu_side">
+<div class="menu__side" id="menu_side" [style.width]="menuWidth">
   <div class="name__page">
-    <i class="fa-brands fa-fort-awesome-alt"></i>
+    <i class="logo"><mat-icon>location_on</mat-icon></i>
     <h4>TaxisRocio</h4>
   </div>
 
-  <div class="options__menu">
-    <a [routerLink]="['/home']" [ngClass]="{ selected: isActive('/home') }">
-      <div class="option">
-        <i class="fas fa-home" title="Home"></i>
-        <h4>Home</h4>
-      </div>
-    </a>
+  <div class="options__menu" >
+      <a  [routerLink]="['/home']" [ngClass]="{ selected: isActive('/home') }" >
+        <div class="option" >
+          <i title="Home"><mat-icon>home</mat-icon></i>
+          <h4>Home</h4>
+        </div>
+      </a>
+    <div *ngIf="permissions.Driver == 'True'" >
+      <a
+        [routerLink]="['/drivers']"
+        [ngClass]="{ selected: isActive('/drivers') }"
+      >
+        <div class="option">
+          <i class=""><mat-icon>person</mat-icon></i>
+          <h4>Drivers</h4>
+        </div>
+      </a>
+    </div>
 
-    <a
-      [routerLink]="['/drivers']"
-      [ngClass]="{ selected: isActive('/drivers') }"
-    >
-      <div class="option">
-        <i class="fa-solid fa-users"></i>
-        <h4>Drivers</h4>
-      </div>
-    </a>
+    <div *ngIf="permissions.Admin == 'True'">
+      <a [routerLink]="['/admins']" [ngClass]="{ selected: isActive('/admins') }">
+        <div class="option">
+          <i class=""><mat-icon>supervisor_account</mat-icon> </i>
+          <h4>Admins</h4>
+        </div>
+      </a>
+    </div>
+   <div *ngIf="permissions.Permissionaire== 'True'">
+      <a
+        [routerLink]="['/permission']"
+        [ngClass]="{ selected: isActive('/permission') }"
+      >
+        <div class="option">
+          <i class=""><mat-icon>assignment_ind</mat-icon></i>
+          <h4>Permissionaires</h4>
+        </div>
+      </a>
+   </div>
+    <div *ngIf="permissions.Unit== 'True'">
+      <a [routerLink]="['/units']" [ngClass]="{ selected: isActive('/units') }">
+        <div class="option">
+          <i><mat-icon>local_taxi</mat-icon></i>
+          <h4>Units</h4>
+        </div>
+      </a>
+    </div>
 
-    <a [routerLink]="['/admins']" [ngClass]="{ selected: isActive('/admins') }">
-      <div class="option">
-        <i class="fa-solid fa-user-tie"></i>
-        <h4>Admins</h4>
-      </div>
-    </a>
-
-    <a
-      [routerLink]="['/permission']"
-      [ngClass]="{ selected: isActive('/permission') }"
-    >
-      <div class="option">
-        <i class="fa-regular fa-id-card"></i>
-        <h4>Permissionaires</h4>
-      </div>
-    </a>
-    <a [routerLink]="['/units']" [ngClass]="{ selected: isActive('/units') }">
-      <div class="option">
-        <i class="fa-solid fa-taxi"></i>
-        <h4>Units</h4>
-      </div>
-    </a>
-
-    <a href="#">
-      <div class="option">
-        <i class="fa-solid fa-car-burst"></i>
-        <h4>Sinisters</h4>
-      </div>
-    </a>
+    <div *ngIf="permissions.Sinister== 'True'">
+      <a [routerLink]="['/sinisters']" [ngClass]="{ selected: isActive('/sinisters') }">
+        <div class="option">
+          <i class=""><mat-icon>car_crash</mat-icon>
+          </i>
+          <h4>Sinisters</h4>
+        </div>
+      </a>
+    </div>
+   
+    <div *ngIf="permissions.PDF== 'True'">
+      <a [routerLink]="['/documents']" [ngClass]="{ selected: isActive('/documents') }">
+        <div class="option">
+          <i class=""><mat-icon>picture_as_pdf</mat-icon>
+          </i>
+          <h4>PDF</h4>
+        </div>
+      </a>
+    </div>
+    <div *ngIf="permissions.ExtraData == 'True'">
+      <a [routerLink]="['/extraData']" [ngClass]="{ selected: isActive('/extraData') }">
+        <div class="option">
+          <i class=""><mat-icon> local_library</mat-icon>
+          </i>
+          <h4>Extras</h4>
+        </div>
+      </a>
+    </div>
+    <!-- 
+      <mat-icon> rate_review</mat-icon>
+      <mat-icon> local_library</mat-icon>
+      <mat-icon>grid_on</mat-icon>
+    -->
   </div>
 </div>
+

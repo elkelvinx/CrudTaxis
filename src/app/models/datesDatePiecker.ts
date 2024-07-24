@@ -14,6 +14,17 @@ export class CustomDateAdapter extends NativeDateAdapter {
             return date.toDateString();
         }
     }
+    override parse(value: any): Date | null {
+        if (typeof value === 'string' && value.match(/^(3[01]|[12][0-9]|0?[1-9])\/(1[0-2]|0?[1-9])\/\d{4}$/)) {
+            const str = value.split('/');
+            const year = Number(str[2]);
+            const month = Number(str[1]) - 1; // Los meses en JavaScript son 0-indexados
+            const date = Number(str[0]);
+
+            return new Date(year, month, date);
+        }
+        return super.parse(value); // Delegar al método de análisis predeterminado para otros casos
+    }
 }
 export const CUSTOM_DATE_FORMATS: MatDateFormats = {
     parse: {

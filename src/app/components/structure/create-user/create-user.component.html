@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<div class="backgroundPage">
+  <div class="principal">
+    <!--
+  <mat-icon>keyboard_arrow_left</mat-icon>
+    -->
+    <img
+      src="../../../../assets/images/descarga.png"
+      alt="logo"
+      class="logoLogin"
+    />
+    <form class="principalForm" #logInForm="ngForm" (ngSubmit)="createUser()">
+      <h1 class="titulo">Crear Nuevo Usuario</h1>
+      <mat-form-field class="logInInput">
+        <mat-label>Nombre</mat-label>
+        <input
+          matInput
+          name="name"
+          [(ngModel)]="user.name"
+          placeholder="Usuario a ingresar"
+          required
+          pattern="[a-zA-Z0-9]*"
+          #nameInput="ngModel"
+        />
+      </mat-form-field>
+      <div
+        class="text-danger"
+        *ngIf="nameInput.invalid && (nameInput.dirty || logInForm.submitted)"
+      >
+      <div *ngIf="nameInput.hasError('required')">
+        Nombre de usuario es obligatorio
+     </div>
+     <div *ngIf="nameInput.hasError('pattern')">{{ errorMensaje }}</div>
+      </div>
+      <mat-form-field class="logInInput">
+        <mat-label>Correo electronico</mat-label>
+        <input
+          matInput
+          name="email"
+          [(ngModel)]="user.email"
+          placeholder="elkelvin484@gmail.com"
+          required
+          email
+          pattern="[a-zA-Z0-9 @ . _ -]*"
+          #mailinput="ngModel"
+        />
+      </mat-form-field>
+      <div
+        class="text-danger"
+        *ngIf="mailinput.invalid && (mailinput.dirty || logInForm.submitted)"
+      >
+      <div *ngIf="mailinput.hasError('required')">
+        Correo Electronico es obligatorio
+     </div>
+        <div *ngIf="mailinput.hasError('pattern')">{{ errorMensaje }}</div>
+      </div>
+
+      <mat-form-field class="logInInput">
+        <mat-label>Contraseña</mat-label>
+        <input
+          matInput
+          name="password"
+          [(ngModel)]="user.password"
+          placeholder="Ej.123"
+          pattern="[a-zA-Z0-9 ]*"
+          required
+          #passwordInput="ngModel"
+        />
+      </mat-form-field>
+      <div
+        class="text-danger"
+        *ngIf="
+          passwordInput.invalid && (passwordInput.dirty || logInForm.submitted)
+        "
+      >
+        <div *ngIf="passwordInput.hasError('required')">
+          La contaseña es obligatoria
+        </div>
+        <div *ngIf="passwordInput.hasError('pattern')">{{ errorMensaje }}</div>
+      </div>
+      <button
+        mat-raised-button
+        color="primary"
+        class="text-button-greenFinal"
+        [disabled]="!logInForm.valid"
+        style="
+          width: 100% !important;
+          height: 52px !important;
+          margin-top: 4%;
+          --mat-protected-button-ripple-color: rgb(7 101 37) !important;
+        "
+      >
+        Crear Usuario
+      </button>
+    </form>
+  </div>
+</div>

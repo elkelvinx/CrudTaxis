@@ -1,8 +1,19 @@
 <!DOCTYPE html>
-<button
-  mat-raised-button
-  class="buttonP"
-  (click)="openDialog('300ms', '300ms', text, name)"
->
-  Delete
-</button>
+<!--hacer este if es muy pesado?-->
+<div *ngIf="IconButton == false">
+  <button
+    mat-raised-button
+    color="primary"
+    class="text-button-redFinal"
+    (click)="openDialog('300ms', '300ms', text, name,title)"
+  >
+    Eliminar
+  </button>
+</div>
+<div *ngIf="IconButton == true">
+  <mat-icon
+    style="transform: scale(1.2)"
+    (click)="openDialog('300ms', '300ms', text, name,title)"
+    >delete_outline</mat-icon
+  >
+</div>
