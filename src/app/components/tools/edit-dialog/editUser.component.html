@@ -117,17 +117,6 @@
   style="margin-top: 5%; transform: scale(1.22)"
   >Super Usuario</mat-slide-toggle
 >
-<mat-slide-toggle
-  class="permission_slider"
-  [(ngModel)]="object.User.active"
-  [ngModelOptions]="{ standalone: true }"
-  style="
-    transform: scale(1.22);
-    margin-left: 33%;
-    margin-top: -7%;
-    margin-bottom: 1%;"
-  >Activo</mat-slide-toggle
->
 <div class="permissions_Sliders_Section">
   <mat-slide-toggle
     class="permission_slider"
@@ -178,6 +167,20 @@
     (change)="unToggleSuperUser()"
     >Generador de Pdf's</mat-slide-toggle
   >
+<div class="state_section">
+    <mat-slide-toggle
+    class="state_slider"
+    [(ngModel)]="object.User.active"
+    [ngModelOptions]="{ standalone: true }"
+    >Activo</mat-slide-toggle
+  >
+  <mat-slide-toggle
+    class="state_slider"
+    [(ngModel)]="object.User.active"
+    [ngModelOptions]="{ standalone: true }"
+    >Bloqueado</mat-slide-toggle
+  >
+</div>
 </div>
 <div mat-dialog-actions style="margin-bottom: 2%;">
   <mat-divider></mat-divider>

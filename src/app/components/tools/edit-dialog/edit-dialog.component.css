@@ -145,6 +145,13 @@ form.principalForm {
   margin-bottom: -4%;
   width: 97%;
 }
+.state_section{
+  width: 100%;
+  margin-left: 1%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
 .permissions_Sliders_Section {
   /* margin-top: 30px; */
   margin-bottom: 6%;
@@ -160,6 +167,14 @@ form.principalForm {
   margin-left: 50px;
   display: flex;
   align-items: stretch;
+}
+.state_slider{
+  transform: scale(1.22);
+  width: 30%;
+  height: 50px;
+  margin-left: 50px;
+  display: flex;
+  align-items: center;
 }
 .button_dialog_red_extraCSS {
   height: 46px !important;
