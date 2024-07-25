@@ -1,0 +1,187 @@
+Ambiente de Desarrollo Angular
+
+
+=== Instalación inicial  ===
+
+NodeJS		https://nodejs.org/es/				node-v6.11.0-x86.msi
+
+Google Chrome	https://www.google.es/chrome/browser/desktop/
+
+Typescript	http://www.typescriptlang.org/			npm install -g typescript
+
+Angular CLI	https://cli.angular.io				npm install -g @angular/cli
+		https://github.com/angular/angular-cli
+
+Ionic 2		http://ionicframework.com/getting-started/	npm install -g cordova ionic
+
+Prime NG	https://www.primefaces.org/primeng/#/setup/	npm install primeng --save
+
+Atom		https://atom.io					Descarga instalador
+
+		Plugins:
+			Angular 2 Type Script Snippets
+			Atom Bootstrap 3
+			Atom Typescript
+			File Icons
+			Platformio Ide Terminal
+			V Bootstrap4
+
+con esto puedes evitar tener el github
+	ng new TaxisCrud --skip-git
+para poder agregar el module.ts y que no agarre el server
+	ng new my-app --no-standalone --routing --ssr=false
+bootstrap
+	npm install bootstrap --save
+
+descargar firebase
+	npm i -g firebase-tools firebase
+agregar firebase a el proyecto
+	ng add @angular/fire
+instalar angular material
+	npm i @angular/material  
+   O
+	ng add @angular/material
+=== Actualizar (Bajo su propio riesgo!!!) ===
+
+NodeJs
+	Bajar la última version (https://nodejs.org/es/) e instalar.
+
+NPM en windows, abrimos la consola PowerShell.
+	Set-ExecutionPolicy Unrestricted -Scope CurrentUser -Force
+	npm install -g npm-windows-upgrade
+	npm-windows-upgrade (seleccionar la versión)
+
+	npm install -g npm@latest --save
+	npm cache clean --force	
+
+TypeScript
+	npm install -g typescript --save
+	
+Angular
+	npm uninstall -g angular-cli
+	npm uninstall -g @angular/cli 
+
+	npm cache verify
+	npm cache clean --force
+
+	npm install -g @angular/cli@latest --save
+
+
+
+=== Para Generar un Proyecto Nuevo  ===
+
+1.- Crear una nueva aplicación/proyecto
+
+	ng new (nombre del proyecto)
+
+2.- Ir a la carpeta del proyecto
+
+	cd (nombre de la carpeta del proyecto)
+
+3.-Instalar primeng en el proyecto
+
+	npm install primeng --save
+
+4.- Instalar font-awesome
+
+	npm install font-awesome --save
+
+5.- Instalar jquery
+
+	npm install jquery --save
+
+6.- Instalar popper 
+
+	npm install popper.js --save
+
+7.- Instalar bootstrap
+
+	npm install bootstrap --save
+
+8.- Instalar primeicons
+
+	npm install primeicons--save
+
+9.- Instalar ts-md5
+
+	npm install ts-md5 --save
+
+10.- En el archivo .angular-cli.json
+
+	En la sección "styles" declarar:
+
+	"styles":
+		[
+
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/font-awesome/css/font-awesome.min.css",
+              
+              
+              "node_modules/primeng/resources/themes/nova-dark/theme.css",
+              "node_modules/primeng/resources/primeng.min.css",
+              "node_modules/primeicons/primeicons.css",
+              "src/styles.css"
+		],
+
+	"scripts":
+		[
+
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.min.js"
+		]
+
+11.- Verificar en la carpeta "node_modules" del proyecto que estén las carpetas:
+	*Bootstrap
+	*Primeng
+
+
+12.- en node Poner la Extension auto Import
+
+13.- en Node poner la Extension path autocomplete
+
+
+=== Desarrollo ===
+
+Para arrancar el servidor
+	
+	Abrir una terminal del SO
+		
+		Ubicarse en el folder del proyecto
+
+		ng serve
+
+	@Browser localhost:4200
+
+
+@Atom Para crear un componente
+	
+	Abrir una terminal en atom.
+	
+		Ubicarse en el folder donde se quiere agregar el componente (crearlo si es necesario)
+		
+		ng generate component nombre
+
+
+@Atom Para crear un servicio
+
+	Abrir una terminal en atom.
+
+		Ubicarse en el folder donde se quiere agregar el servicio (crearlo si es necesario)
+		
+		ng generate service nombre
+
+
+@Atom Para crear routes
+
+	Abrir una terminal en atom.
+
+		Ubicarse en el folder donde se quiere agregar el router (normalmente el raiz src/app)
+		
+		ng generate module routes --flat --module=app
+
+			--flat puts the file in src/app instead of its own folder.
+			--module=app tells the CLI to register it in the imports array of the AppModule.
+
+
+npm install ng2-bootstrap-modal
+
