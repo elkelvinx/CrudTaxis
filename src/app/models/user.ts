@@ -32,7 +32,8 @@ export class user {
            //! public password: string = 'de pelos', PELIGROSO TENER ESTE DATO 
            public password: string = '',
            public confirmPassword: string = '',
-           public active: boolean = true
+           public active: boolean = true,
+           public bloqued: boolean = false,
         ) {
 
     }
@@ -51,6 +52,7 @@ export class userPermission{
             public unit: boolean = false,
             public sinister: boolean = false,
             public extraData: boolean = false,
+            public changeLog: string = '',
             public pdf: boolean = false,
         ) {
 
@@ -70,6 +72,7 @@ export class userInsert{
         public unit: boolean = false,
         public sinister: boolean = false,
         public extraData: boolean = false,
+        public changeLog: string = '',
         public pdf: boolean = false,
     ){}
 }

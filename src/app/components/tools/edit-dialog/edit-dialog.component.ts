@@ -327,7 +327,6 @@ export class DialogUpdateUser {
         this.dialogRef.close(true);
         debugger
         console.log(data);
-
       }
     )
   }

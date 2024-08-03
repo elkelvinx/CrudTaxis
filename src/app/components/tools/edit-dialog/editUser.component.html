@@ -41,7 +41,7 @@
       [(ngModel)]="object.User.password"
       placeholder="Ej.3juan"
       pattern="[a-zA-Z0-9]*"
-      required
+      
       #passwordInput="ngModel"
     />
   </mat-form-field>
@@ -53,7 +53,6 @@
       [(ngModel)]="object.User.confirmPassword"
       placeholder="Confirmar"
       pattern="[a-zA-Z0-9]*"
-      required
       #passwordInput2="ngModel"
     />
   </mat-form-field>
@@ -114,7 +113,7 @@
   [(ngModel)]="SuperPermissions"
   [ngModelOptions]="{ standalone: true }"
   (change)="toggleSuperUser()"
-  style="margin-top: 5%; transform: scale(1.22)"
+  style="margin-top: 5%; transform: scale(1.22); margin-left: 6%"
   >Super Usuario</mat-slide-toggle
 >
 <div class="permissions_Sliders_Section">
@@ -162,27 +161,34 @@
   >
   <mat-slide-toggle
     class="permission_slider"
+    [(ngModel)]="object.Permissions.changeLog"
+    [ngModelOptions]="{ standalone: true }"
+    (change)="unToggleSuperUser()"
+    >Historial de cambios</mat-slide-toggle
+  >
+  <mat-slide-toggle
+    class="permission_slider"
     [(ngModel)]="object.Permissions.pdf"
     [ngModelOptions]="{ standalone: true }"
     (change)="unToggleSuperUser()"
     >Generador de Pdf's</mat-slide-toggle
   >
-<div class="state_section">
+  <div class="state_section">
     <mat-slide-toggle
-    class="state_slider"
-    [(ngModel)]="object.User.active"
-    [ngModelOptions]="{ standalone: true }"
-    >Activo</mat-slide-toggle
-  >
-  <mat-slide-toggle
-    class="state_slider"
-    [(ngModel)]="object.User.active"
-    [ngModelOptions]="{ standalone: true }"
-    >Bloqueado</mat-slide-toggle
-  >
+      class="state_slider"
+      [(ngModel)]="object.User.active"
+      [ngModelOptions]="{ standalone: true }"
+      >Activo</mat-slide-toggle
+    >
+    <mat-slide-toggle
+      class="state_slider"
+      [(ngModel)]="object.User.bloqued"
+      [ngModelOptions]="{ standalone: true }"
+      >Bloqueado</mat-slide-toggle
+    >
+  </div>
 </div>
-</div>
-<div mat-dialog-actions style="margin-bottom: 2%;">
+<div mat-dialog-actions style="margin-bottom: 2%">
   <mat-divider></mat-divider>
   <div style="position: absolute">
     <br />
@@ -190,7 +196,8 @@
       mat-raised-button
       mat-dialog-close
       color="primary"
-      class="button_dialog_red_extraCSS">
+      class="button_dialog_red_extraCSS"
+    >
       Cancelar
     </button>
   </div>
@@ -199,7 +206,8 @@
     color="primary"
     (click)="ChangeName()"
     class="text-button-greenFinal"
-    [disabled]="!UserForm.valid">
+    [disabled]="!UserForm.valid"
+  >
     Actualizar
   </button>
 </div>
