@@ -18,6 +18,14 @@ export class AuthService {
       }
       return null;
     }
+    getUserName(): string {
+      const token = this.getToken();
+      if(token) {
+        const decodedToken: any = jwt_decode.jwtDecode(token);
+        return decodedToken.nameid;
+      }
+      return '';
+    }
     // Verifica si el usuario está autenticado
     verifyPermission(section:string): boolean {
       const token = this.getToken();
@@ -32,7 +40,7 @@ export class AuthService {
       }
       else
       debugger
-      this.notificationService.alert("necesita validar que es una persona que tiene permisos para entrar en "+ section, 'Inicie sesion porfavor');
+      
       return false; //no tiene token == no se ha logeado
     }
   

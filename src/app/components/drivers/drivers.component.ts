@@ -140,7 +140,6 @@ export class DriversComponent implements OnInit {
     this.consultarDriver(this.Driver.id);
   }
   consultarDriver(idDriver: any) {
-
     this.serviciosDriver.consultarDriverId(idDriver).subscribe(
       (data: any) => {
         this.Driver = data;

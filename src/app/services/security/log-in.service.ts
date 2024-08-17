@@ -35,7 +35,7 @@ export class LogInService {
     );
   }
   public CreateUser(User: user,Permissions: userPermission) {
-    let Controller = 'logIn'
+    let Controller = 'user'
     let Headers = new HttpHeaders().set("Accept", "application/json")
     debugger
     const userDataToSend = {
