@@ -1,3 +1,10 @@
+html{
+  --mat-menu-item-label-text-color: white;
+  --mat-menu-item-icon-color: #89f795bf!important;
+  --mat-menu-item-hover-state-layer-color: rgba(255, 255, 255, 0.08);
+  --mat-menu-item-focus-state-layer-color: rgba(255, 255, 255, 0.08);
+  --mat-menu-container-color: #424242;
+}
 header {
   /*Modificado de 80 a 50*/
   /*height 50px o 8%*/
@@ -22,34 +29,40 @@ header {
   align-items: center;
   justify-content: space-evenly;
 }
-.image-container{
-  transform: scale(2.9);
-  width: 11px;
-  height: 12px;
-  cursor: pointer;
-  border-radius: 50%;
-  overflow: hidden;
+.mat-mdc-menu-item .mat-icon{
+  margin-left: 4px;
 }
-.Buttons__LogOut img{
-  width: 30px;
-  height: 30px;
-  background-size: cover;
-  cursor: pointer;
-  border-radius: 15px;
+.image-container {
+  display: flex;
+  align-items: center;
+  margin-right: 8%;
+}
+.username {
+  white-space: nowrap; /* Evita que el texto se divida en varias líneas */
+  overflow: hidden;
+  text-overflow: ellipsis; /* Agrega puntos suspensivos al final del texto truncado */
+  max-width: 76px;
+  width: fit-content;
+}
+
+.image-container img {
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+  object-fit: cover;
+  margin-right: 7px;
 }
 .Buttons__LogOut{
-  gap: 10px;
   margin-right: 6.9%;
   font-family: Roboto, sans-serif, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   display: flex;
-  width: 4.7%;
-  justify-content: space-between;
+  width: 7.7%;
   align-items: center;
+  justify-content: space-between;
 }
 .button_menu{
   width: 200px;
   height: 27%;
-  margin-left: 16px;
 }
 /* *menu */
 .mat-mdc-menu-content{

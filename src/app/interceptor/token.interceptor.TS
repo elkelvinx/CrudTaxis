@@ -21,7 +21,6 @@ export class TokenInterceptor implements HttpInterceptor {
         }
         const headers = new HttpHeaders({
             Authorization: token,
-
         })
         const headerClone = req.clone({ headers })
         return next.handle(headerClone).pipe(

@@ -4,19 +4,31 @@
 <header class="header">
   <div class="icon__menu" [style.margin-left]="iconButtonWidth">
     <i class="collapsible" id="btn_open" (click)="toggleMenu()">
-      <mat-icon>menu</mat-icon></i>
+      <mat-icon>menu</mat-icon></i
+    >
   </div>
-  <div class="Buttons__LogOut" [matMenuTriggerFor]="animals">    
-    <img src="../../../../assets/images/perro.jpg" alt="" />
-    <img src="../../../../assets/images/HolyCow.jpg" alt="" />
-    {{ userName }}
+  <div class="Buttons__LogOut" [matMenuTriggerFor]="animals">
+    <div class="image-container">
+      <img src="../../../../assets/images/raiden.jpg" alt="" />
+      <span class="username">{{ userName }}</span>
+    </div>
+    <mat-icon>keyboard_arrow_down</mat-icon>
   </div>
-  <mat-menu #animals="matMenu" >
-    <button mat-menu-item class="button_menu"><mat-icon> insert_photo</mat-icon>Cambiar foto</button>
-    <button mat-menu-item class="button_menu"><mat-icon> settings</mat-icon>Configuracion</button>
+  <mat-menu #animals="matMenu">
+    <button mat-menu-item class="button_menu">
+      <mat-icon> insert_photo</mat-icon>Cambiar foto
+    </button>
+    <button mat-menu-item class="button_menu">
+      <mat-icon> settings</mat-icon>Configuracion
+    </button>
     <mat-divider></mat-divider>
-    <button mat-menu-item class="button_menu" 
-    (click)="openDialog('300ms', '300ms', 'Seguro que ya se quiere ir?')"><mat-icon> logout</mat-icon>Cerrar Sesion</button>
+    <button
+      mat-menu-item
+      class="button_menu"
+      (click)="openDialog('300ms', '300ms', 'Seguro que ya se quiere ir?')"
+    >
+      <mat-icon> logout</mat-icon>Cerrar Sesion
+    </button>
   </mat-menu>
 </header>
 
