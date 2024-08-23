@@ -92,6 +92,7 @@ import { CreateUserComponent } from './components/structure/create-user/create-u
 import { AuthViewComponent } from './AuthView.componet';
 import { RoleNamePipe } from './pipes/role-name.pipe';
 import { TokenInterceptor } from './interceptor/token.interceptor';
+import { LogsComponent } from './components/logs/logs.component';
 @NgModule({
   exports: [
     A11yModule,
@@ -159,6 +160,7 @@ import { TokenInterceptor } from './interceptor/token.interceptor';
     CreateUserComponent,
     AuthViewComponent,
     RoleNamePipe,
+    LogsComponent,
   ],
   imports: [
     BrowserModule,

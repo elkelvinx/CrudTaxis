@@ -109,7 +109,7 @@ section {
   align-content: center;
   justify-content: space-evenly;
   border-radius: 15px;
-  height: 810px;
+  height: fit-content;
   width: 99%;
   margin-top: -5px;
 }
@@ -117,7 +117,7 @@ section {
   font-family: "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji",
     "Segoe UI Emoji", "Segoe UI Symbol";
   width: 49%;
-  height: 800px;
+  height: fit-content;
   background-color: var(--backCards);
   border-radius: 20px;
   display: flex;
@@ -139,7 +139,43 @@ section {
   justify-content: space-between;
 }
 .bodyCard {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
   width: 100%;
   height: 20px;
   height: 100%;
+}
+.inptut_default {
+  width: 97%;
+}
+.inptut_half {
+  width: 48%;
+}
+.text-danger {
+  margin-top: -2.7%;
+  margin-left: 3%;
+  width: 100%;
+  margin-bottom: 2%;
+}
+.renglon1{
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: flex-start;
+  margin-left: 1%;
+  width: 100%;
+  flex-wrap: wrap;
+}
+.renglon2{
+  display: flex;
+  flex-direction: row;
+  gap: 0px;
+  justify-content: space-evenly;
+  margin-left: 1%;
+  width: 100%;
+  flex-wrap: wrap;
+
 }

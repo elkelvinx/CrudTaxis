@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { NotificationService } from '../../components/tools/info-dialog/notification.service';
 import * as jwt_decode from 'jwt-decode';
+import { LogInService } from './log-in.service';
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(private notificationService: NotificationService) { }
+  constructor(private notificationService: NotificationService, private logIn:LogInService) { }
     // Suponiendo que guardas el token JWT en el almacenamiento local del navegador
     getToken(): string | null {
       return localStorage.getItem('token');
@@ -51,6 +52,15 @@ export class AuthService {
   
     // Remover el token JWT del almacenamiento local
     logout(): void {
+      var nameUser = this.getUserName();
+      this.logIn.closeSession(nameUser).subscribe(
+        (data:any) => {
+          this.notificationService.alert("El usuario "+data +" ha cerrado sesion", 'Sesion cerrada');
+        },
+        error => {
+          console.log(error);
+        }
+      )
       localStorage.removeItem('token');
     }
 }
