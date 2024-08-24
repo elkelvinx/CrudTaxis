@@ -294,9 +294,9 @@ td.mat-mdc-cell.mdc-data-table__cell.cdk-cell.cdk-column-actions.mat-column-acti
   border-radius: 4% !important;
   width: 100% !important;
 }
-.cdk-overlay-pane {
+/* .cdk-overlay-pane {
   max-width: 40vw !important;
-}
+} */
 
 .brand .mat-mdc-text-field-wrapper,
 .brand .mdc-text-field--filled:not(.mdc-text-field--disabled) {

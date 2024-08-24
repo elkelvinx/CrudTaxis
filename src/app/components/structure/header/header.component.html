@@ -99,8 +99,7 @@
           <h4>Sinisters</h4>
         </div>
       </a>
-    </div>
-
+    </div>    
     <div *ngIf="permissions.PDF == 'True'">
       <a
         [routerLink]="['/documents']"
@@ -112,6 +111,7 @@
         </div>
       </a>
     </div>
+    <!-- <mat-divider style="margin-left: -24px; width: 114%"></mat-divider> -->
     <a [routerLink]="['/admins']" [ngClass]="{ selected: isActive('/admins') }">
       <div class="option">
         <i class=""><mat-icon>history</mat-icon></i>

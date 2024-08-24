@@ -95,7 +95,7 @@ export class InsertDialogComponent {
 
 openDialogInsertUser(enterAnimationDuration: string, exitAnimationDuration: string, contentDialog: string, name: string, information: string, indicator: string, numIndicator: number, object: any, array:any): void {
   const dialogRef = this.dialog.open(DialogInsertLogicUser, {
-    width: '1620px',
+    width: '920px',
     enterAnimationDuration,
     exitAnimationDuration,
     data: {

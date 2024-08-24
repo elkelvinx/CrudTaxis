@@ -32,14 +32,26 @@ export class Table2 implements OnInit, AfterViewInit {
     this.dataSource = new MatTableDataSource(data);
     this.dataSource.paginator = this.paginator;
   }
+
   @Input() set columns(columns: TableColumn[]) {
     this.tableColumns = columns;
     this.tableDisplayColumns = this.tableColumns.map((col) => col.def);
   }
 
-  @Input() set config(config: TableConfig) {
-    this.setConfig(config);
+ @Input() set config(config: TableConfig) {
+  this.tableConfig = config;
+  if (this.tableConfig.isSelectable) {
+    this.tableDisplayColumns.unshift('select');
   }
+  if(this.tableConfig.showStateUser){
+    this.tableDisplayColumns.push('state');
+  }
+  if (this.tableConfig.showActions) {
+    this.tableDisplayColumns.push('actions');
+  }
+ 
+}
+
 
   @Output() select: EventEmitter<any> = new EventEmitter();
   @Output() action: EventEmitter<TableActionExtraData> = new EventEmitter();
