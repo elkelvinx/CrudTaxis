@@ -8,33 +8,48 @@
   }}
 </div>
 
-<form class="example-form">
-  <mat-form-field class="example-full-width">
+<form class="principalForm" #form="ngForm">
+  <mat-form-field class="example-full-width" style="width: 90%;">
     <mat-label>Nombre</mat-label>
     <input
       matInput
+      name="name"
       [(ngModel)]="object.name"
-      [ngModelOptions]="{ standalone: true }"
       placeholder="introducza el nuevo dato"
+      required
+      pattern="[a-zA-Z0-9 ]*"
+      #nameInput="ngModel"
     />
   </mat-form-field>
+  <div
+    class="text-danger-singleInputs"
+    style="margin-top: -3.7%"
+    *ngIf="nameInput.invalid && (nameInput.dirty || form.submitted)"
+  >
+    <div *ngIf="nameInput.hasError('required')">
+      Nombre de usuario es obligatorio
+    </div>
+    <div *ngIf="nameInput.hasError('pattern')">
+      No se permiten caracteres especiales
+    </div>
+  </div>
+  <div mat-dialog-actions class="actions-section" >
+    <div  style="width: 39%;">
+      <button mat-raised-button mat-dialog-close color="primary" class="buttonred_new">
+        Cancelar</button
+      ><br />
+    </div>
+    <div style="width: 39%;">
+      <button
+        mat-raised-button
+        mat-dialog-close
+        color="primary"
+        [disabled]="!form.valid"
+        class="button-green"
+        (click)="ChangeName()"
+      >
+        Guardar
+      </button>
+    </div>
+  </div>
 </form>
-
-<div mat-dialog-actions>
-  <div style="margin-top: -5%; margin-left: 59px; position: absolute">
-    <button mat-button mat-dialog-close class="text-button-red">Cancelar</button
-    ><br />
-  </div>
-  <div style="margin-top: -5%; margin-left: 73%">
-    <button
-      mat-button
-      mat-dialog-close
-      cdkFocusInitial
-      color="primary"
-      class="text-button-green"
-      (click)="ChangeName()"
-    >
-      Guardar
-    </button>
-  </div>
-</div>

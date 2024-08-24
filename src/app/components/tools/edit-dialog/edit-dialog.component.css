@@ -1,161 +1,236 @@
+form.example-form {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: -2%;
+}
 .example-full-width {
-    width: 93%;
-    margin-top: 10px;
-    margin-bottom: 26px;
-  }
-  .text-danger {
-    margin-top: -2.7%;
-    margin-left: 6%;
-    width: 100%;
-    margin-bottom: 2%;
-  }
-  .text-dangerPassword {
-    margin-top: -2.7%;
-    margin-left: 6%;
-    width: 100%;
-    margin-bottom: 1%;
-  }
-  form.example-form {
-    display: flex;
-    justify-content: space-around;
-    margin-bottom: -2%;
-  }
-  .buttonP {
-    margin-right: 8px !important;
-    background-color: red !important;
-    width: 100px !important;
-  }
-  .dialog {
-    width: 100px !important;
-    background-color: rgb(247, 247, 247) !important;
-  }
-  .text {
-    font-size: 20px !important;
-    font-weight: 500 !important;
-    color: rgb(250, 250, 250) !important;
-    margin-right: 10px;
-  }
-  .mat-icon:active {
-    color: #de0404 !important;
-  }
-  .cdk-overlay-pane {
-    position: absolute !important;
-    pointer-events: auto;
-    box-sizing: border-box;
-    z-index: 1000;
-    display: flex;
-    width: 410.517px !important;
-    max-width: 100% !important;
-  }
-  .dialog-a #cdk-overlay-10::before {
-    position: absolute;
-    width: 410.517px;
-    max-width: 100%;
-  }
-  .mat-icon:active {
-    transform: scale(
-      1.5
-    ) !important; /* Escala el ícono ligeramente al hacer clic */
-    color: #d5f600;
-  }
-  .autocomplete{
-  /* background-color: red!important; */
+  width: 93%;
+  margin-top: 10px;
+  margin-bottom: 26px;
+}
+.input-edit-short {
+  width: 93%;
+  margin-top: 10px;
+  margin-bottom: 1%;
+}
+.text-button-greenFinal {
+  position: absolute;
+  margin-top: -27px;
+  margin-left: 55%;
+  width: 38% !important;
+  height: 46px !important;
+  --mat-protected-button-ripple-color: rgb(7 101 37) !important;
+}
+.text-danger {
+  margin-top: -2.7%;
+  margin-left: 6%;
+  width: 100%;
+  margin-bottom: 2%;
+}
+.text-danger-singleInputs {
+  margin-top: -5.7%;
+  margin-left: 6%;
+  width: 100%;
+  margin-bottom: 4%;
+  color: rgb(183, 10, 10);
+}
+.text-dangerPassword {
+  margin-top: -2.7%;
+  margin-left: 6%;
+  width: 100%;
+  margin-bottom: 1%;
+}
+.buttonP {
+  margin-right: 8px !important;
+  background-color: red !important;
+  width: 100px !important;
+}
+.dialog {
+  width: 100px !important;
+  background-color: rgb(247, 247, 247) !important;
+}
+.text {
+  font-size: 20px !important;
+  font-weight: 500 !important;
+  color: rgb(250, 250, 250) !important;
+  margin-right: 10px;
+}
+.mat-icon:active {
+  color: #de0404 !important;
+}
+.cdk-overlay-pane {
+  position: absolute !important;
+  pointer-events: auto;
+  box-sizing: border-box;
+  z-index: 1000;
+  display: flex;
+  width: 410.517px !important;
+  max-width: 100% !important;
+}
+.dialog-a #cdk-overlay-10::before {
+  position: absolute;
+  width: 410.517px;
+  max-width: 100%;
+}
+.mat-icon:active {
+  transform: scale(
+    1.5
+  ) !important; /* Escala el ícono ligeramente al hacer clic */
+  color: #d5f600;
+}
+/* .autocomplete {
   margin-left: 3.5%;
   margin-right: 3.5%;
-  margin-bottom: 3%;}
-  /* ! esto es del update dialog */
-  .password_input {
-    width: 45.5%;
-  }
-  .default_input_css {
-    width: 93%;
-  }
-  form.principalForm {
-    display: flex;
-    margin-bottom: -2%;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-  }
-  .buttonP {
-    margin-right: 8px !important;
-    background-color: red !important;
-    width: 100px !important;
-  }
-  .dialog {
-    width: 100px !important;
-    background-color: rgb(247, 247, 247) !important;
-  }
-  .text {
-    font-size: 20px !important;
-    font-weight: 500 !important;
-    color: rgb(250, 250, 250) !important;
-    margin-right: 10px;
-  }
-  .mat-icon:active {
-    color: #de0404 !important;
-  }
-  .cdk-overlay-pane {
-    position: absolute !important;
-    pointer-events: auto;
-    box-sizing: border-box;
-    z-index: 1000;
-    display: flex;
-    width: 410.517px !important;
-    max-width: 100% !important;
-  }
-  .dialog-a #cdk-overlay-10::before {
-    position: absolute;
-    width: 410.517px;
-    max-width: 100%;
-  }
-  .mat-icon:active {
-    transform: scale(1.5);
-    color: #d5f600;
-  }
-  .autocomplete {
-    margin-left: 3.5%;
-    margin-right: 3.5%;
-    margin-bottom: -4%;
-    width: 97%;
-  }
-  .permissions_Sliders_Section {
-    /* margin-top: 30px; */
-    margin-bottom: 6%;
-    width: 97%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    flex-wrap: wrap;
-  }
-  .permission_slider {
-    width: 30%;
-    height: 50px;
-    margin-left: 50px;
-    display: flex;
-    align-items: stretch;
-  }
-  .button_dialog_red_extraCSS {
-    height: 46px !important;
-    width: 270% !important;
-    margin-top: -39px !important;
-    margin-bottom: 12px;
-    margin-left: 40%;
-    --mdc-protected-button-label-text-color: #9e0d0d !important;
-    --mdc-protected-button-outline-color: rgba(0, 255, 81, 0) !important;
-    --mat-protected-button-state-layer-color: #f70909bd !important;
-    --mat-protected-button-ripple-color: rgb(157 4 4) !important;
-    --mat-text-button-state-layer-color: #e36f6f !important;
-    --mdc-protected-button-outline-color: rgb(10 137 247) !important;
-    color: #ffffff !important;
-    --mdc-protected-button-container-color: #b3041e !important;
-    border-radius: 10px !important;
-    --mat-protected-button-hover-state-layer-opacity: 0.68 !important;
-    --mat-protected-button-focus-state-layer-opacity: 0.24 !important;
-    --mat-protected-button-pressed-state-layer-opacity: 0.24 !important;
-    box-shadow: -5px 7px 18px 1px rgba(0, 0, 0, 0.2),
-      0px 2px 2px 0px rgb(32 61 10 / 79%), 3px 4px 12px 0px rgb(1 9 5 / 34%) !important;
-  }
-  :root {
-    --mat-slide-toggle-label-text-size: 20px !important;
-  }
-  
+  margin-bottom: 3%;
+} */
+/* ! esto es del update dialog */
+.password_input {
+  width: 45.5%;
+}
+.default_input_css {
+  width: 93%;
+}
+form.principalForm {
+  display: flex;
+  margin-bottom: 2%;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+.buttonP {
+  margin-right: 8px !important;
+  background-color: red !important;
+  width: 100px !important;
+}
+.dialog {
+  width: 100px !important;
+  background-color: rgb(247, 247, 247) !important;
+}
+.text {
+  font-size: 20px !important;
+  font-weight: 500 !important;
+  color: rgb(250, 250, 250) !important;
+  margin-right: 10px;
+}
+.text-danger-Big {
+  margin-top: -3%;
+  margin-left: 6%;
+  width: 100%;
+  margin-bottom: 1.5%;
+  color: rgb(183, 10, 10);
+}
+.mat-icon:active {
+  color: #de0404 !important;
+}
+.cdk-overlay-pane {
+  position: absolute !important;
+  pointer-events: auto;
+  box-sizing: border-box;
+  z-index: 1000;
+  display: flex;
+  width: 410.517px !important;
+  max-width: 100% !important;
+}
+.dialog-a #cdk-overlay-10::before {
+  position: absolute;
+  width: 410.517px;
+  max-width: 100%;
+}
+.mat-icon:active {
+  transform: scale(1.5);
+  color: #d5f600;
+}
+.autocomplete {
+  margin-left: 3.5%;
+  margin-right: 3.5%;
+  margin-bottom: -4%;
+  width: 97%;
+}
+.state_section{
+  width: 100%;
+  margin-left: 1%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.permissions_Sliders_Section {
+  /* margin-top: 30px; */
+  margin-bottom: 6%;
+  width: 97%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.permission_slider {
+  width: 30%;
+  height: 50px;
+  margin-left: 50px;
+  display: flex;
+  align-items: stretch;
+}
+.state_slider{
+  transform: scale(1.22);
+  width: 30%;
+  height: 50px;
+  margin-left: 3.7%;
+  display: flex;
+  align-items: center;
+  margin-right: 50%;
+}
+.button_dialog_red_extraCSS {
+  height: 46px !important;
+  width: 270% !important;
+  margin-top: -39px !important;
+  margin-bottom: 12px;
+  margin-left: 40%;
+  --mdc-protected-button-label-text-color: #9e0d0d !important;
+  --mdc-protected-button-outline-color: rgba(0, 255, 81, 0) !important;
+  --mat-protected-button-state-layer-color: #f70909bd !important;
+  --mat-protected-button-ripple-color: rgb(157 4 4) !important;
+  --mat-text-button-state-layer-color: #e36f6f !important;
+  --mdc-protected-button-outline-color: rgb(10 137 247) !important;
+  color: #ffffff !important;
+  --mdc-protected-button-container-color: #b3041e !important;
+  border-radius: 10px !important;
+  --mat-protected-button-hover-state-layer-opacity: 0.68 !important;
+  --mat-protected-button-focus-state-layer-opacity: 0.24 !important;
+  --mat-protected-button-pressed-state-layer-opacity: 0.24 !important;
+  box-shadow: -5px 7px 18px 1px rgba(0, 0, 0, 0.2),
+    0px 2px 2px 0px rgb(32 61 10 / 79%), 3px 4px 12px 0px rgb(1 9 5 / 34%) !important;
+}
+.buttonred_new {
+  height: 46px !important;
+  width: 100% !important;
+  --mdc-protected-button-label-text-color: #9e0d0d !important;
+  --mdc-protected-button-outline-color: rgba(0, 255, 81, 0) !important;
+  --mat-protected-button-state-layer-color: #f70909bd !important;
+  --mat-protected-button-ripple-color: rgb(157 4 4) !important;
+  --mat-text-button-state-layer-color: #e36f6f !important;
+  --mdc-protected-button-outline-color: rgb(10 137 247) !important;
+  color: #ffffff !important;
+  --mdc-protected-button-container-color: #b3041e !important;
+  border-radius: 10px !important;
+  --mat-protected-button-hover-state-layer-opacity: 0.68 !important;
+  --mat-protected-button-focus-state-layer-opacity: 0.24 !important;
+  --mat-protected-button-pressed-state-layer-opacity: 0.24 !important;
+  box-shadow: -5px 7px 18px 1px rgba(0, 0, 0, 0.2),
+    0px 2px 2px 0px rgb(32 61 10 / 79%), 3px 4px 12px 0px rgb(1 9 5 / 34%) !important;
+}
+.button-green{
+  width: 100% !important;
+  height: 46px !important;
+  border-radius: 10px !important;
+  --mat-protected-button-ripple-color: rgb(7 101 37) !important;
+  box-shadow: -5px 7px 18px 1px rgba(0, 0, 0, 0.2),
+  0px 2px 2px 0px rgb(32 61 10 / 79%), 3px 4px 12px 0px rgb(1 9 5 / 34%) !important;
+}
+.actions-section{
+  width: 98%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+:root {
+  --mat-slide-toggle-label-text-size: 20px !important;
+}

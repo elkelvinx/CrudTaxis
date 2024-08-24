@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { userLogIn } from '../../models/user';
-import { user,userPermission } from '../../models/user';
+import { user, userPermission } from '../../models/user';
 @Injectable({
   providedIn: 'root'
 })
@@ -11,6 +11,19 @@ export class LogInService {
   constructor(
     private Http: HttpClient
   ) { }
+  public closeSession(nameUser: string) {
+    debugger
+     this.urlApi = "https://localhost:44319/api/login";
+    let Controller = '';
+    let Headers = new HttpHeaders().set("Content-Type", "application/json");
+                                   console.log("headers "+ Headers.get("Content-Type"));
+                                   debugger
+    return this.Http.post(this.urlApi + Controller,{ nameUser: nameUser }, {
+        headers: Headers,
+        responseType: 'json'
+    });
+}
+
   public LogIn(user: userLogIn) {
     this.urlApi = "https://localhost:44319/Api/login/";
     let Controller = 'enter'
@@ -34,13 +47,13 @@ export class LogInService {
       }
     );
   }
-  public CreateUser(User: user,Permissions: userPermission) {
-    let Controller = 'logIn'
+  public CreateUser(User: user, Permissions: userPermission) {
+    let Controller = 'user'
     let Headers = new HttpHeaders().set("Accept", "application/json")
     debugger
     const userDataToSend = {
-        User: User,
-        Permissions: Permissions
+      User: User,
+      Permissions: Permissions
     };
     return this.Http.post(this.urlApi + Controller, userDataToSend,
       {
@@ -49,13 +62,13 @@ export class LogInService {
       }
     )
   }
-  public UpdateUser(User: user,Permissions: userPermission) {
+  public UpdateUser(User: user, Permissions: userPermission) {
     let Controller = 'user'
     let Headers = new HttpHeaders().set("Accept", "application/json")
     debugger
     const userDataToSend = {
-        User: User,
-        Permissions: Permissions
+      User: User,
+      Permissions: Permissions
     };
     return this.Http.put(this.urlApi + Controller, userDataToSend,
       {

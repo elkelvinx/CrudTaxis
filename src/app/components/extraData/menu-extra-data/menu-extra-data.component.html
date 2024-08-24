@@ -1,5 +1,13 @@
 <!DOCTYPE html>
-<button mat-stroked-button class="text-button-greenFinal" (click)="openDialog('300ms', '300ms','Seguro que quiere crear un nuevo usuario?')">Crear Usuario</button>
+<button
+  mat-stroked-button
+  class="text-button-greenFinal"
+  (click)="
+    openDialog('300ms', '300ms', 'Seguro que quiere crear un nuevo usuario?')
+  "
+>
+  Crear Usuario
+</button>
 <mat-tab-group>
   <mat-tab label="Colonias">
     <ng-template matTabContent>
@@ -91,28 +99,28 @@
   <mat-tab label="Status de los Chofereres">
     <ng-template matTabContent>
       <div class="tablaData">
-      <app-tableExtraData
-        [indicator]="'Status del Chofer'"
-        [data]="status"
-        [columns]="tableColumns.columns"
-        [config]="tableConfig"
-        [numIndicator]="6"
-        (action)="onTableAction($event)"
-      ></app-tableExtraData>
+        <app-tableExtraData
+          [indicator]="'Status del Chofer'"
+          [data]="status"
+          [columns]="tableColumns.columns"
+          [config]="tableConfig"
+          [numIndicator]="6"
+          (action)="onTableAction($event)"
+        ></app-tableExtraData>
       </div>
     </ng-template>
   </mat-tab>
   <mat-tab label="Tipos de Siniestros">
-    <ng-template matTabContent
-      >
-      <div class="tablaData"><app-tableExtraData
-        [indicator]="'Tipos de Siniestros'"
-        [data]="typeSinister"
-        [columns]="tableColumns.columns"
-        [config]="tableConfig"
-        [numIndicator]="7"
-        (action)="onTableAction($event)"
-      ></app-tableExtraData>
+    <ng-template matTabContent>
+      <div class="tablaData">
+        <app-tableExtraData
+          [indicator]="'Tipos de Siniestros'"
+          [data]="typeSinister"
+          [columns]="tableColumns.columns"
+          [config]="tableConfig"
+          [numIndicator]="7"
+          (action)="onTableAction($event)"
+        ></app-tableExtraData>
       </div>
     </ng-template>
   </mat-tab>
@@ -133,7 +141,7 @@
     </ng-template>
   </mat-tab>
 </mat-tab-group>
-
+<span class="badge badge-success">A</span>
 <ul>
   <li><strong>brandCar</strong></li>
   <li><strong>modelCar</strong></li>

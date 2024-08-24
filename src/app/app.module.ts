@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/structure/header/header.component';
@@ -14,8 +14,6 @@ import { ErrorComponent } from './components/structure/error/error.component';
 import { FooterComponent } from './components/structure/footer/footer.component';
 import { YesNoDialogComponent } from './components/tools/yes-no-dialog/yes-no-dialog.component';
 import { SinistersComponent } from './components/sinisters/sinisters.component';
-import { TableComponent } from './components/tools/table/table.component';
-
 import { DatePipe } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 //estos no se
@@ -93,7 +91,8 @@ import { NotificationService } from './components/tools/info-dialog/notification
 import { CreateUserComponent } from './components/structure/create-user/create-user.component';
 import { AuthViewComponent } from './AuthView.componet';
 import { RoleNamePipe } from './pipes/role-name.pipe';
-
+import { TokenInterceptor } from './interceptor/token.interceptor';
+import { LogsComponent } from './components/logs/logs.component';
 @NgModule({
   exports: [
     A11yModule,
@@ -139,6 +138,7 @@ import { RoleNamePipe } from './pipes/role-name.pipe';
     MatTreeModule,
     PortalModule,
     ScrollingModule,
+    RoleNamePipe
   ],
   
   declarations: [
@@ -160,6 +160,7 @@ import { RoleNamePipe } from './pipes/role-name.pipe';
     CreateUserComponent,
     AuthViewComponent,
     RoleNamePipe,
+    LogsComponent,
   ],
   imports: [
     BrowserModule,
@@ -190,10 +191,16 @@ import { RoleNamePipe } from './pipes/role-name.pipe';
     Tables2,
     EditDialogComponent,
     InsertDialogComponent,
-
+    MatMenuModule,
   ],
   // entryComponents: [YesNoDialogComponent ],
-  providers: [DatePipe,NotificationService],
+  providers: [DatePipe,NotificationService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AuthViewComponent]
 })
 export class AppModule { }

@@ -9,25 +9,39 @@
   <br />
 </div>
 
-<form class="principalForm" #logInForm="ngForm">
+<form class="principalForm" #UserForm="ngForm" (ngSubmit)="ChangeName()">
   <mat-form-field class="default_input_css">
     <mat-label>Nombre</mat-label>
     <input
       matInput
+      name="name"
       [(ngModel)]="object.User.name"
-      [ngModelOptions]="{ standalone: true }"
       placeholder="Nueva Informacion"
+      required
+      pattern="[a-zA-Z0-9]*"
+      #nameInput="ngModel"
     />
   </mat-form-field>
+  <div
+    class="text-danger"
+    *ngIf="nameInput.invalid && (nameInput.dirty || UserForm.submitted)"
+  >
+    <div *ngIf="nameInput.hasError('required')">
+      Nombre de usuario es obligatorio
+    </div>
+    <div *ngIf="nameInput.hasError('pattern')">
+      No se permiten caracteres especiales ni espacios
+    </div>
+  </div>
   <mat-form-field class="password_input">
     <mat-label>Contraseña</mat-label>
     <input
       matInput
+      name="password"
       [(ngModel)]="object.User.password"
-      [ngModelOptions]="{ standalone: true }"
       placeholder="Ej.3juan"
       pattern="[a-zA-Z0-9]*"
-      required
+      
       #passwordInput="ngModel"
     />
   </mat-form-field>
@@ -35,41 +49,59 @@
     <mat-label>Confirme Contraseña</mat-label>
     <input
       matInput
+      name="confirmPassword"
       [(ngModel)]="object.User.confirmPassword"
-      [ngModelOptions]="{ standalone: true }"
       placeholder="Confirmar"
       pattern="[a-zA-Z0-9]*"
-      required
       #passwordInput2="ngModel"
     />
   </mat-form-field>
   <div
     class="text-danger"
-    *ngIf="hasPasswordError(passwordInput, passwordInput2) && (passwordInput.dirty || passwordInput2.dirty || logInForm.submitted)"
+    *ngIf="
+      hasPasswordError(passwordInput, passwordInput2) &&
+      (passwordInput.dirty || passwordInput2.dirty || UserForm.submitted)
+    "
   >
-  <div *ngIf="!object.User.password && !object.User.confirmPassword">
-    Introduzca la contraseña en ambos inputs
+    <div *ngIf="!object.User.password && !object.User.confirmPassword">
+      Introduzca la contraseña en ambos inputs
+    </div>
+    <div
+      *ngIf="
+        passwordInput.hasError('pattern') || passwordInput2.hasError('pattern')
+      "
+    >
+      No se permiten caracteres especiales ni espacios
+    </div>
+    <div *ngIf="!passwordsMatch()">Las contraseñas no coinciden</div>
   </div>
-  <div *ngIf="passwordInput.hasError('pattern') || passwordInput2.hasError('pattern')">
-    No se permiten caracteres especiales ni espacios
-  </div>
-  <div *ngIf="!passwordsMatch()">
-    Las contraseñas no coinciden
-  </div>
-</div>
   <mat-form-field class="default_input_css">
     <mat-label>Correo Electronico</mat-label>
     <input
       matInput
+      name="email"
       [(ngModel)]="object.User.email"
-      [ngModelOptions]="{ standalone: true }"
-      placeholder="Nueva Informacion"
+      placeholder="Ej.user868@gmail.com"
+      required
+      pattern="[a-zA-Z0-9 @ .]*"
+      #mailInput="ngModel"
     />
   </mat-form-field>
+  <div
+    class="text-danger"
+    *ngIf="mailInput.invalid && (mailInput.dirty || UserForm.submitted)"
+  >
+    <div *ngIf="mailInput.hasError('required')">
+      Correo electronico es obligatorio
+    </div>
+    <div *ngIf="mailInput.hasError('pattern')">
+      No se permiten caracteres especiales ni espacios
+    </div>
+  </div>
   <div class="autocomplete">
     <app-auto-complete
       className="brand"
-      [text]="information" 
+      [text]="information"
       [arrays]="arrayRolName"
       (data)="insertData($event)"
       style="width: 97%"
@@ -81,9 +113,7 @@
   [(ngModel)]="SuperPermissions"
   [ngModelOptions]="{ standalone: true }"
   (change)="toggleSuperUser()"
-  style="margin-bottom: 1%; margin-top: 5%;transform: scale(
-  1.12
-); "
+  style="margin-top: 5%; transform: scale(1.22); margin-left: 6%"
   >Super Usuario</mat-slide-toggle
 >
 <div class="permissions_Sliders_Section">
@@ -131,15 +161,34 @@
   >
   <mat-slide-toggle
     class="permission_slider"
+    [(ngModel)]="object.Permissions.changeLog"
+    [ngModelOptions]="{ standalone: true }"
+    (change)="unToggleSuperUser()"
+    >Historial de cambios</mat-slide-toggle
+  >
+  <mat-slide-toggle
+    class="permission_slider"
     [(ngModel)]="object.Permissions.pdf"
     [ngModelOptions]="{ standalone: true }"
     (change)="unToggleSuperUser()"
     >Generador de Pdf's</mat-slide-toggle
   >
-  <!-- <mat-slide-toggle class="permission_slider" ngModel name="enableWifi">Enable Wifi</mat-slide-toggle> -->
- 
+  <div class="state_section">
+    <mat-slide-toggle
+      class="state_slider"
+      [(ngModel)]="object.User.active"
+      [ngModelOptions]="{ standalone: true }"
+      >Activo</mat-slide-toggle
+    >
+    <mat-slide-toggle
+      class="state_slider"
+      [(ngModel)]="object.User.bloqued"
+      [ngModelOptions]="{ standalone: true }"
+      >Bloqueado</mat-slide-toggle
+    >
+  </div>
 </div>
-<div mat-dialog-actions>
+<div mat-dialog-actions style="margin-bottom: 2%">
   <mat-divider></mat-divider>
   <div style="position: absolute">
     <br />
@@ -157,14 +206,7 @@
     color="primary"
     (click)="ChangeName()"
     class="text-button-greenFinal"
-    style="
-      position: absolute;
-      margin-top: -27px;
-      margin-left: 55%;
-      width: 38% !important;
-      height: 46px !important;
-      --mat-protected-button-ripple-color: rgb(7 101 37) !important;
-    "
+    [disabled]="!UserForm.valid"
   >
     Actualizar
   </button>

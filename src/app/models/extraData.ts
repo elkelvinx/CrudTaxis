@@ -18,7 +18,7 @@ export class structureExtraData {
         public name: string = '',
         public settlement: number = 0,
         public secondS: string = '',
-        public idBrand: number = 0,
+        public idBrand: number = -1,
     ) { }
 };
 export class extructureModel{
@@ -63,6 +63,7 @@ export class TableColumnsStructure {
          { label: 'Nombres', def: 'name', dataKey: 'name' },
          { label: 'Email', def: 'email', dataKey: 'email' },
          { label: 'F-Creacion', def: 'dateCreated', dataKey: 'dateCreated' },
+        // { label: 'Estado', def: 'active', dataKey: 'active' },
         // { label: 'F-Baja', def: 'dateOut', dataKey: 'dateOut' },
         // { label: 'AdminPerm', def: 'ExtraData', dataKey: 'ExtraData' },
         

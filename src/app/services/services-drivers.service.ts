@@ -1,20 +1,24 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { AuthService } from './security/authService.service';
 import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
 export class ServicesDriversService {
   urlApi = "https://localhost:44319/Api/";
+  Jwt: string | null = this.authService.getToken();
+  
   constructor(
-    private Http: HttpClient
+    private Http: HttpClient,
+    private authService: AuthService
   ) { }
 
   public consultarDriverId(id: number) {
     //se crean las variables para poder recibir la info del servidor
     let controller = "Driver";
     let params = new HttpParams().set("id", id);
-    let Headers = new HttpHeaders().set("Accept", "aplication/json");
+    let Headers = new HttpHeaders().set("Authorization", `${this.Jwt}`).set("Accept", "aplication/json");
     //estos son los parametros del get que se envian al servidor
     //esta la URL de la api, ademas que su headers,parametros y el tipo de respuesta
     return this.Http.get(
@@ -27,9 +31,11 @@ export class ServicesDriversService {
     )
   }
 
-  public consultarDrivers(): Observable<any[]> {
+  public consultarDrivers(): Observable<any[]> { 
+    console.log("Token:", this.Jwt);
     let controller = "Driver";
     let Headers = new HttpHeaders().set("Accept", "aplication/json");
+   // debugger
     return this.Http.get<any[]>(
       `${this.urlApi}${encodeURIComponent(controller)}`,
       {

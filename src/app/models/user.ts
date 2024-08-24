@@ -32,7 +32,8 @@ export class user {
            //! public password: string = 'de pelos', PELIGROSO TENER ESTE DATO 
            public password: string = '',
            public confirmPassword: string = '',
-           public active: boolean = true
+           public active: boolean = true,
+           public bloqued: boolean = false,
         ) {
 
     }
@@ -43,7 +44,7 @@ export class userPermission{
         (
             public id: number = 0,
             public idUser: number = 0,
-            public idRole: number = 1,
+            public idRole: number = 4,
             public roleName: string = '',
             public driver: boolean = false,
             public admin: boolean = false,
@@ -51,6 +52,7 @@ export class userPermission{
             public unit: boolean = false,
             public sinister: boolean = false,
             public extraData: boolean = false,
+            public changeLog: string = '',
             public pdf: boolean = false,
         ) {
 
@@ -63,13 +65,14 @@ export class userInsert{
         public name: string = 'leo',
         public email: string = 'elkelvin484@gmail.com',
         public dateCreated: Date = new Date('2024-01-01'),
-        public idRole: number = 0,
+        public idRole: number = 4,
         public driver: boolean = false,
         public admin: boolean = false,
         public permissionaire: boolean = false,
         public unit: boolean = false,
         public sinister: boolean = false,
         public extraData: boolean = false,
+        public changeLog: string = '',
         public pdf: boolean = false,
     ){}
 }

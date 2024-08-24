@@ -1,3 +1,10 @@
+html{
+  --mat-menu-item-label-text-color: white;
+  --mat-menu-item-icon-color: #89f795bf!important;
+  --mat-menu-item-hover-state-layer-color: rgba(255, 255, 255, 0.08);
+  --mat-menu-item-focus-state-layer-color: rgba(255, 255, 255, 0.08);
+  --mat-menu-container-color: #424242;
+}
 header {
   /*Modificado de 80 a 50*/
   /*height 50px o 8%*/
@@ -12,9 +19,66 @@ header {
   /* margin-left: 70px; */
   justify-content: space-between;
 }
+.icon__menu {
+  width: 250px;
+  display: flex;
+  transform: translateX(10px);
+  transition: all 300ms cubic-bezier(0.785, 0.135, 0.15, 0.86);
+  flex-wrap: nowrap;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.mat-mdc-menu-item .mat-icon{
+  margin-left: 4px;
+}
+.image-container {
+  display: flex;
+  align-items: center;
+  margin-right: 8%;
+}
+.username {
+  white-space: nowrap; /* Evita que el texto se divida en varias líneas */
+  overflow: hidden;
+  text-overflow: ellipsis; /* Agrega puntos suspensivos al final del texto truncado */
+  max-width: 76px;
+  width: fit-content;
+}
+
+.image-container img {
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+  object-fit: cover;
+  margin-right: 7px;
+}
 .Buttons__LogOut{
-  margin-right: 3.5%;
-  margin-bottom: 0.1%;
+  margin-right: 6.9%;
+  font-family: Roboto, sans-serif, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  display: flex;
+  width: 7.7%;
+  align-items: center;
+  justify-content: space-between;
+}
+.button_menu{
+  width: 200px;
+  height: 27%;
+}
+/* *menu */
+.mat-mdc-menu-content{
+  border-radius: 16px;
+  width: 196px;
+  background-color: green;
+}
+div#mat-menu-panel-0{
+  border-radius: 16px;
+  width: 196px;
+}
+.Buttons__LogOut .mat-icon{
+  font-size: 25px;
+  height: 25px;
+  width: 25px;
+    --mat-icon-hover-color: red;
 }
 .text-button-greenFinal{
   --mat-outlined-button-state-layer-color: #ea1111!important;
@@ -45,7 +109,8 @@ width: fit-content;
 }
 
 .header{
-  transition: all 300ms cubic-bezier(0.785, 0.135, 0.15, 0.86);}
+  transition: all 300ms cubic-bezier(0.785, 0.135, 0.15, 0.86);
+}
 .options__menu a:hover {
   color: #ccf070;
 }
@@ -86,17 +151,14 @@ a.selected {
   scale: 1.14;
   width: 26px;
   box-shadow: none!important;
-  
 }
 .collapsible:before, .collapsible:before {
   content: "";
-  /* margin-left: 370px; */
 }
 .logo{
   margin-top: 7px;
   scale: 1.2 !important;
 }
-
 
 /*  */
 .body_move {

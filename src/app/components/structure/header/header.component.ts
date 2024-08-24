@@ -4,23 +4,25 @@ import { AuthService } from '../../../services/security/authService.service';
 import { Router } from '@angular/router';
 import {DialogAnimationsExampleDialog} from '../../tools/yes-no-dialog/yes-no-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
-
+import {MatMenuModule} from '@angular/material/menu';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })
 export class HeaderComponent implements OnInit{
+  userName: string = '';
   selectedOption: string = 'home';
   permissions: any;
   isMenuOpen = false;
   menuWidth = '70px'; // Ancho inicial
   headerWidth = '3.7%'; // Ancho inicial
-  iconButtonWidth = '1%'; //Ancho del icono
+  iconButtonWidth = '0%'; //Ancho del icono
   constructor(private router: Router,private auth:AuthService,private dialog: MatDialog) { }
  ngOnInit(): void {
    this.permissions=this.auth.getDecodedToken();  
-  //  console.log(this.permissions);
+    this.userName=this.auth.getUserName();
+    console.log(this.userName+" Niggers");
  }
   isActive(path: string): boolean {
     const currentRoute = this.router.url;
@@ -43,14 +45,14 @@ closeSession(){
     else {
     this.menuWidth = '270px'; // abre el menu
     this.headerWidth = '270px'
-    this.iconButtonWidth = '12%'; 
+    this.iconButtonWidth = '10%'; 
     this.isMenuOpen = true;
     }
   }
   closeMenu() {
     this.menuWidth = '70px'; // cierra el menu
     this.headerWidth = '3.7%'
-    this.iconButtonWidth = '1%'; 
+    this.iconButtonWidth = '0%'; 
     this.isMenuOpen = false;
   }
   openDialog(enterAnimationDuration: string, exitAnimationDuration: string, contentDialog: string): void {

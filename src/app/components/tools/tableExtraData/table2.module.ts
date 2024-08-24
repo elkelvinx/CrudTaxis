@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgIf } from '@angular/common';
 import { Table2 } from './table.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -26,7 +26,8 @@ import { InsertDialogComponent } from '../edit-dialog/insert-dialog/insert-dialo
     MatPaginatorModule,
     MatDialogModule,
     EditDialogComponent,
-    InsertDialogComponent
+    InsertDialogComponent,
+    NgIf
   ],
   exports: [Table2],
 })

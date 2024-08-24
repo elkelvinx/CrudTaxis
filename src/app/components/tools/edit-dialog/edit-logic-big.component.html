@@ -1,51 +1,66 @@
 <!DOCTYPE html>
-<h1 mat-dialog-title>Editar datos de {{indicator}}</h1>
+<h1 mat-dialog-title>Editar datos de Modelo del Carro</h1>
 <div mat-dialog-content>
   {{
     contentDialog === ""
       ? "¿Desea modificar a " + indicator + " " + nameObj + "?"
       : contentDialog + indicator + " " + nameObj
   }}
-  {{ information  }}
   <br />
 </div>
 
-<form class="example-form">
-  <mat-form-field class="example-full-width">
+<form class="principalForm" #form="ngForm">
+  <mat-form-field class="input-edit-short" style="width: 93%">
     <mat-label>Nombre</mat-label>
     <input
       matInput
+      cdkFocusInitial
+      name="name"
       [(ngModel)]="object.name"
-      [ngModelOptions]="{ standalone: true }"
       placeholder="informacion a cambiar"
+      required
+      pattern="[a-zA-Z0-9 ]*"
+      #nameInput="ngModel"
     />
   </mat-form-field>
+  <div
+    class="text-danger-Big"
+    *ngIf="nameInput.invalid && (nameInput.dirty || form.submitted)"
+  >
+    <div *ngIf="nameInput.hasError('required')">
+      Nombre de usuario es obligatorio
+    </div>
+    <div *ngIf="nameInput.hasError('pattern')">
+      No se permiten caracteres especiales
+    </div>
+  </div>
+  <div class="autocomplete" style="margin-bottom: 1% !important">
+    <app-auto-complete
+      className="brand"
+      [text]="indicator"
+      [info]="information"
+      [arrays]="arrayName"
+      (data)="insertData($event)"
+    ></app-auto-complete>
+  </div>
+  <div mat-dialog-actions class="actions-section">
+    <div style="width: 39%">
+      <button mat-raised-button mat-dialog-close class="buttonred_new">
+        Cancelar</button
+      ><br />
+    </div>
+    <div style="width: 39%">
+      <button
+        mat-raised-button
+        mat-dialog-close
+        cdkFocusInitial
+        color="primary"
+        [disabled]="!form.valid"
+        class="button-green"
+        (click)="ChangeName()"
+      >
+        Actualizar
+      </button>
+    </div>
+  </div>
 </form>
-<div class="autocomplete">
-  <app-auto-complete
-    className="brand"
-    [text]="indicator"
-    [info]="information"
-    [arrays]="arrayName"
-    (data)="insertData($event)"
-    style="width: 97%"
-  ></app-auto-complete>
-</div>
-<div mat-dialog-actions>
-  <div style="margin-top: -5%; margin-left: 59px; position: absolute">
-    <button mat-button mat-dialog-close class="text-button-red">Cancelar</button
-    ><br />
-  </div>
-  <div style="margin-top: -5%; margin-left: 73%">
-    <button
-      mat-button
-      mat-dialog-close
-      cdkFocusInitial
-      color="primary"
-      class="text-button-green"
-      (click)="ChangeName()"
-    >
-      Actualizar
-    </button>
-  </div>
-</div>
