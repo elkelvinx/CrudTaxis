@@ -16,6 +16,7 @@ import { AuthGuardService } from './services/security/auth-guard.service';
 import { AuthViewComponent } from './AuthView.componet';
 import { AppModule } from './app.module';
 import { AppComponent } from './app.component';
+import { LogsComponent } from './components/logs/logs.component';
 const routes: Routes = [
   {
     path: '',
@@ -40,6 +41,8 @@ const routes: Routes = [
   { path: 'sinisters', component: SinistersComponent, canActivate: [AuthGuardService],data: { section: 'Sinister' } },
   { path: 'documents', component: DocumentsPDFComponent, canActivate: [AuthGuardService],data: { section: 'PDF' } },
   { path: 'extraData', component: MenuExtraDataComponent, canActivate: [AuthGuardService],data: { section: 'ExtraData' } },
+  { path: 'logs', component: LogsComponent, canActivate: [AuthGuardService],data: { section: 'Logs' } },
+   
 ]
 },
   //ruta para cuando no se encuentre la url

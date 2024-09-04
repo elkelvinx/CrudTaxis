@@ -93,6 +93,8 @@ import { AuthViewComponent } from './AuthView.componet';
 import { RoleNamePipe } from './pipes/role-name.pipe';
 import { TokenInterceptor } from './interceptor/token.interceptor';
 import { LogsComponent } from './components/logs/logs.component';
+import {ReactiveFormsModule} from '@angular/forms';
+import {MatTableDataSource } from '@angular/material/table';
 @NgModule({
   exports: [
     A11yModule,
@@ -138,7 +140,9 @@ import { LogsComponent } from './components/logs/logs.component';
     MatTreeModule,
     PortalModule,
     ScrollingModule,
-    RoleNamePipe
+    RoleNamePipe,
+    ReactiveFormsModule,
+    
   ],
   
   declarations: [
@@ -161,6 +165,8 @@ import { LogsComponent } from './components/logs/logs.component';
     AuthViewComponent,
     RoleNamePipe,
     LogsComponent,
+    
+    
   ],
   imports: [
     BrowserModule,
@@ -192,6 +198,8 @@ import { LogsComponent } from './components/logs/logs.component';
     EditDialogComponent,
     InsertDialogComponent,
     MatMenuModule,
+    ReactiveFormsModule,
+    MatTableModule,    
   ],
   // entryComponents: [YesNoDialogComponent ],
   providers: [DatePipe,NotificationService,
