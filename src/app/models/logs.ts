@@ -12,7 +12,7 @@ export class InfoHistoryLog {
   export class ChangeLog {
     constructor(
       public id: number,
-      public UserName: string,
+      public userName: string,
       public idUser: number,
       public roleName: string,
       public nameTable: string,
@@ -24,7 +24,7 @@ export class InfoHistoryLog {
   export class ErrorLog {
     constructor(
       public id: number,
-      public UserName: string,
+      public userName: string,
       public idUser: number,
       public nameTable: string,
       public MessageError: string,

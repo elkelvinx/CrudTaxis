@@ -21,6 +21,7 @@ redirrecionar(){
   this.router.navigate(['/home']);
 }
 public grabar(user: userLogIn) {
+  debugger
   this.logInservice.LogIn(user).subscribe(
     (data: any) => {
       this.JWT = data;
@@ -37,6 +38,7 @@ public grabar(user: userLogIn) {
     error => {
       debugger
      // const errorMessage = error.error.ExceptionMessage || error.Message|| "Error desconocido"; // Accede al mensaje de error
+      console.log(error);
       this.notificationService.displayMessageError("Error interno al Logearse"," "+error.error);
     }
   )

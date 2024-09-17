@@ -2,9 +2,6 @@
 <div class="log-viewer-container">
   <!-- <mat-sidenav-content> -->
   <div class="content-container">
-    <h1>Logs</h1>
-    <h3>Buenos dias esta funcionando el Logs</h3>
-
     <div class="PrincipalDiv">
       <mat-tab-group (selectedTabChange)="onTabChange($event)">
         <mat-tab label="History Log In">
@@ -19,14 +16,6 @@
               class="form"
             >
               <div class="form-row">
-                <!-- <mat-form-field>
-                  <mat-label>ID</mat-label>
-                  <input matInput type="number" formControlName="id" />
-                </mat-form-field>
-                <mat-form-field>
-                  <mat-label>User ID</mat-label>
-                  <input matInput type="number" formControlName="idUser" />
-                </mat-form-field> -->
                 <mat-form-field>
                   <mat-label>User Name</mat-label>
                   <input matInput formControlName="userName" />
@@ -35,7 +24,6 @@
                   <mat-label>Role Name</mat-label>
                   <input matInput formControlName="roleName" />
                 </mat-form-field>
-               
               </div>
               <div class="form-row">
                 <mat-form-field>
@@ -73,42 +61,44 @@
               >
                 Apply Filter
               </button>
+              <button
+                mat-raised-button
+                color="primary"
+                type="submit"
+                (click)="MostrarObj()"
+              >
+                Reload
+              </button>
             </form>
 
             <table
               mat-table
               #table1
+              matSort
+              (matSortChange)="announceSortChange($event)"
               [dataSource]="historyLogs"
               class="mat-elevation-z8"
             >
-              <ng-container matColumnDef="id">
-                <th mat-header-cell *matHeaderCellDef>ID</th>
-                <td mat-cell *matCellDef="let element">{{ element.id }}</td>
-              </ng-container>
-              <ng-container matColumnDef="idUser">
-                <th mat-header-cell *matHeaderCellDef>User ID</th>
-                <td mat-cell *matCellDef="let element">{{ element.idUser }}</td>
-              </ng-container>
               <ng-container matColumnDef="userName">
-                <th mat-header-cell *matHeaderCellDef>User Name</th>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>User Name</th>
                 <td mat-cell *matCellDef="let element">
                   {{ element.userName }}
                 </td>
               </ng-container>
               <ng-container matColumnDef="roleName">
-                <th mat-header-cell *matHeaderCellDef>Role Name</th>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Role Name</th>
                 <td mat-cell *matCellDef="let element">
                   {{ element.roleName }}
                 </td>
               </ng-container>
               <ng-container matColumnDef="entry">
-                <th mat-header-cell *matHeaderCellDef>Entry</th>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Entry</th>
                 <td mat-cell *matCellDef="let element">
                   {{ element.entry | date : "medium" }}
                 </td>
               </ng-container>
               <ng-container matColumnDef="exits">
-                <th mat-header-cell *matHeaderCellDef>Exit</th>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Exit</th>
                 <td mat-cell *matCellDef="let element">
                   {{ element.exits | date : "medium" }}
                 </td>
@@ -116,27 +106,13 @@
 
               <tr
                 mat-header-row
-                *matHeaderRowDef="[
-                  'id',
-                  'idUser',
-                  'userName',
-                  'roleName',
-                  'entry',
-                  'exits'
-                ]"
+                *matHeaderRowDef="['userName', 'roleName', 'entry', 'exits']"
               ></tr>
               <tr
                 mat-row
                 *matRowDef="
                   let row;
-                  columns: [
-                    'id',
-                    'idUser',
-                    'userName',
-                    'roleName',
-                    'entry',
-                    'exits'
-                  ]
+                  columns: ['userName', 'roleName', 'entry', 'exits']
                 "
               ></tr>
             </table>
@@ -168,9 +144,9 @@
                 <mat-form-field>
                   <mat-label>Table Name</mat-label>
                   <input matInput formControlName="nameTable" />
-                </mat-form-field>      
+                </mat-form-field>
               </div>
-              <div class="form-row">                
+              <div class="form-row">
                 <mat-form-field>
                   <mat-label>Fecha de inicio</mat-label>
                   <input
@@ -199,8 +175,7 @@
                   <mat-datepicker #modDatePickerEnd></mat-datepicker>
                 </mat-form-field>
               </div>
-              <div class="form-row">
-              </div>
+              <div class="form-row"></div>
               <button
                 mat-raised-button
                 color="primary"
@@ -210,21 +185,17 @@
                 Apply Filter
               </button>
             </form>
-
-            <table mat-table class="mat-elevation-z8">
-              <ng-container matColumnDef="id">
-                <th mat-header-cell *matHeaderCellDef>ID</th>
-                <td mat-cell *matCellDef="let element">{{ element.id }}</td>
-              </ng-container>
-              <ng-container matColumnDef="UserName">
+            <table
+              mat-table
+              #table2
+              [dataSource]="changelogs"
+              class="mat-elevation-z8"
+            >
+              <ng-container matColumnDef="userName">
                 <th mat-header-cell *matHeaderCellDef>User Name</th>
                 <td mat-cell *matCellDef="let element">
-                  {{ element.UserName }}
+                  {{ element.userName }}
                 </td>
-              </ng-container>
-              <ng-container matColumnDef="idUser">
-                <th mat-header-cell *matHeaderCellDef>User ID</th>
-                <td mat-cell *matCellDef="let element">{{ element.idUser }}</td>
               </ng-container>
               <ng-container matColumnDef="roleName">
                 <th mat-header-cell *matHeaderCellDef>Role Name</th>
@@ -248,17 +219,28 @@
                 <th mat-header-cell *matHeaderCellDef>DML</th>
                 <td mat-cell *matCellDef="let element">{{ element.DML }}</td>
               </ng-container>
+              <ng-container matColumnDef="query">
+                <th mat-header-cell *matHeaderCellDef>Query</th>
+                <td mat-cell *matCellDef="let element">
+                  <button
+                    mat-raised-button
+                    color="primary"
+                    (click)="openInfoDialog(element.query)"
+                  >
+                    Query
+                  </button>
+                </td></ng-container
+              >
 
               <tr
                 mat-header-row
                 *matHeaderRowDef="[
-                  'id',
-                  'UserName',
-                  'idUser',
+                  'userName',
                   'roleName',
                   'nameTable',
                   'modDate',
-                  'DML'
+                  'DML',
+                  'query'
                 ]"
               ></tr>
               <tr
@@ -266,13 +248,12 @@
                 *matRowDef="
                   let row;
                   columns: [
-                    'id',
-                    'UserName',
-                    'idUser',
+                    'userName',
                     'roleName',
                     'nameTable',
                     'modDate',
-                    'DML'
+                    'DML',
+                    'query'
                   ]
                 "
               ></tr>
@@ -287,29 +268,24 @@
             </h2>
             <form [formGroup]="errorLogForm" (ngSubmit)="applyErrorLogFilter()">
               <div class="form-row">
-      
                 <mat-form-field>
                   <mat-label>User Name</mat-label>
                   <input matInput formControlName="UserName" />
-                </mat-form-field>             
+                </mat-form-field>
                 <app-auto-complete
-                [text]="'Action'"
-                [arrays]="DMLs"
-                (data)="guardarStatus($event)"
-                className="brand"
-                style="width: 48%"
-              >
-              </app-auto-complete>
+                  [text]="'Action'"
+                  [arrays]="DMLs"
+                  (data)="guardarStatus($event)"
+                  className="brand"
+                  style="width: 48%"
+                >
+                </app-auto-complete>
               </div>
               <div class="form-row">
                 <mat-form-field>
                   <mat-label>Table Name</mat-label>
                   <input matInput formControlName="nameTable" />
                 </mat-form-field>
-                <!-- <mat-form-field>
-                  <mat-label>Error Message</mat-label>
-                  <input matInput formControlName="MessageError" />
-                </mat-form-field> -->
                 <mat-form-field>
                   <mat-label>First Date</mat-label>
                   <input
@@ -339,47 +315,35 @@
                   <mat-datepicker #modDatePickerEnd></mat-datepicker>
                 </mat-form-field>
               </div>
-              <div class="form-row">
-                <!-- <mat-form-field>
-                  <mat-label>DML</mat-label>
-                  <mat-select formControlName="DML">
-                    <mat-option value="">All</mat-option>
-                    <mat-option value="INSERT">INSERT</mat-option>
-                    <mat-option value="UPDATE">UPDATE</mat-option>
-                    <mat-option value="DELETE">DELETE</mat-option>
-                  </mat-select>
-                </mat-form-field> -->
-              </div>
+              <div class="form-row"></div>
               <button mat-raised-button color="primary" type="submit">
                 Apply Filter
               </button>
             </form>
 
-            <table mat-table [dataSource]="errorLogs" class="mat-elevation-z8">
-              <ng-container matColumnDef="id">
-                <th mat-header-cell *matHeaderCellDef>ID</th>
-                <td mat-cell *matCellDef="let element">{{ element.id }}</td>
-              </ng-container>
-              <ng-container matColumnDef="UserName">
-                <th mat-header-cell *matHeaderCellDef>User Name</th>
+            <table
+              mat-table
+              [dataSource]="errorLogs"
+              class="mat-elevation-z8"
+              matSort
+           
+            >
+              <ng-container matColumnDef="userName">
+                <th
+                  mat-header-cell
+                  *matHeaderCellDef
+                  mat-sort-header
+                >
+                  User Name
+                </th>
                 <td mat-cell *matCellDef="let element">
-                  {{ element.UserName }}
+                  {{ element.userName }}
                 </td>
-              </ng-container>
-              <ng-container matColumnDef="idUser">
-                <th mat-header-cell *matHeaderCellDef>User ID</th>
-                <td mat-cell *matCellDef="let element">{{ element.idUser }}</td>
               </ng-container>
               <ng-container matColumnDef="nameTable">
                 <th mat-header-cell *matHeaderCellDef>Table Name</th>
                 <td mat-cell *matCellDef="let element">
                   {{ element.nameTable }}
-                </td>
-              </ng-container>
-              <ng-container matColumnDef="MessageError">
-                <th mat-header-cell *matHeaderCellDef>Error Message</th>
-                <td mat-cell *matCellDef="let element">
-                  {{ element.MessageError }}
                 </td>
               </ng-container>
               <ng-container matColumnDef="DateError">
@@ -392,17 +356,26 @@
                 <th mat-header-cell *matHeaderCellDef>DML</th>
                 <td mat-cell *matCellDef="let element">{{ element.DML }}</td>
               </ng-container>
-
+              <ng-container matColumnDef="MessageError">
+                <th mat-header-cell *matHeaderCellDef>Error</th>
+                <td mat-cell *matCellDef="let element">
+                  <button
+                    mat-raised-button
+                    color="primary"
+                    (click)="openErroMensaje(element.query)"
+                  >
+                    Info
+                  </button>
+                </td></ng-container
+              >
               <tr
                 mat-header-row
                 *matHeaderRowDef="[
-                  'id',
-                  'UserName',
-                  'idUser',
+                  'userName',
                   'nameTable',
                   'MessageError',
-                  'DateError',
-                  'DML'
+                  'DML',
+                  'DateError'
                 ]"
               ></tr>
               <tr
@@ -410,13 +383,11 @@
                 *matRowDef="
                   let row;
                   columns: [
-                    'id',
-                    'UserName',
-                    'idUser',
+                    'userName',
                     'nameTable',
                     'MessageError',
-                    'DateError',
-                    'DML'
+                    'DML',
+                    'DateError'
                   ]
                 "
               ></tr>
@@ -425,6 +396,5 @@
         </mat-tab>
       </mat-tab-group>
     </div>
-    <!-- </mat-sidenav-content> -->
   </div>
 </div>

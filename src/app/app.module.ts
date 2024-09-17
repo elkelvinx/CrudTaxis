@@ -94,7 +94,7 @@ import { RoleNamePipe } from './pipes/role-name.pipe';
 import { TokenInterceptor } from './interceptor/token.interceptor';
 import { LogsComponent } from './components/logs/logs.component';
 import {ReactiveFormsModule} from '@angular/forms';
-import {MatTableDataSource } from '@angular/material/table';
+
 @NgModule({
   exports: [
     A11yModule,
