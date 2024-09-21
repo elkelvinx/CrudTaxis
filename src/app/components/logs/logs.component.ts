@@ -11,6 +11,7 @@ import { ChangeLogPipe } from '../../pipes/changeLog.pipe';
 import { DatePipe } from '@angular/common';
 import { DomSanitizer } from '@angular/platform-browser';
 
+
 @Component({
   selector: 'app-logs',
   templateUrl: './logs.component.html',

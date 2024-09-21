@@ -16,7 +16,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule, NgForm } from '@angular/forms';
 import { LoginComponent } from '../../../structure/login/login.component';
-import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 @Component({
   selector: 'app-insert-dialog',
   templateUrl: './insert-dialog.component.html',
@@ -32,8 +32,8 @@ export class InsertDialogComponent {
   @Input() information: string;
   @Input() indicator: string;
   @Input() numIndicator: number;
-  @Input() object: any=[];
-  @Input() array: any=[];
+  @Input() object: any = [];
+  @Input() array: any = [];
   //bool que devolvemos al padre
   @Output() data = new EventEmitter<any>();
   constructor(public dialog: MatDialog) { }
@@ -60,18 +60,18 @@ export class InsertDialogComponent {
       }
     });
   }
-   /**
-    ** Este metodo es para MARCA De auto y USUARIO
-   * Uso de cada parametro
-   * @param contentDialog Message to display
-   * @param name Name of the object
-   * @param information nombre dato a insertar,es title dialog
-   * @param indicator Indicator to display
-   * @param numIndicator saber si es street o un model
-   * @param object Object to insert
-   * @param array Datos a mostrar en el autocomplete
-   */
-  openDialogInsertBig(enterAnimationDuration: string, exitAnimationDuration: string, contentDialog: string, name: string, information: string, indicator: string, numIndicator: number, object: any, array:any): void {
+  /**
+   ** Este metodo es para MARCA De auto y USUARIO
+  * Uso de cada parametro
+  * @param contentDialog Message to display
+  * @param name Name of the object
+  * @param information nombre dato a insertar,es title dialog
+  * @param indicator Indicator to display
+  * @param numIndicator saber si es street o un model
+  * @param object Object to insert
+  * @param array Datos a mostrar en el autocomplete
+  */
+  openDialogInsertBig(enterAnimationDuration: string, exitAnimationDuration: string, contentDialog: string, name: string, information: string, indicator: string, numIndicator: number, object: any, array: any): void {
     const dialogRef = this.dialog.open(DialogInsertLogicBig, {
       width: '920px',
       enterAnimationDuration,
@@ -93,27 +93,27 @@ export class InsertDialogComponent {
     });
   }
 
-openDialogInsertUser(enterAnimationDuration: string, exitAnimationDuration: string, contentDialog: string, name: string, information: string, indicator: string, numIndicator: number, object: any, array:any): void {
-  const dialogRef = this.dialog.open(DialogInsertLogicUser, {
-    width: '920px',
-    enterAnimationDuration,
-    exitAnimationDuration,
-    data: {
-      contentDialog: contentDialog,
-      nameObj: name,
-      information: information,
-      indicator: indicator,
-      numIndicator: numIndicator,
-      object: object,
-      array: array,
-    },
-  });
-  dialogRef.afterClosed().subscribe(result => {
-    if (result) {
-      this.ChangeName();
-    }
-  });
-}
+  openDialogInsertUser(enterAnimationDuration: string, exitAnimationDuration: string, contentDialog: string, name: string, information: string, indicator: string, numIndicator: number, object: any, array: any): void {
+    const dialogRef = this.dialog.open(DialogInsertLogicUser, {
+      width: '920px',
+      enterAnimationDuration,
+      exitAnimationDuration,
+      data: {
+        contentDialog: contentDialog,
+        nameObj: name,
+        information: information,
+        indicator: indicator,
+        numIndicator: numIndicator,
+        object: object,
+        array: array,
+      },
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.ChangeName();
+      }
+    });
+  }
 }
 
 import { ReadService } from '../../../../services/crudDataArray/extra-Read.service';
@@ -122,7 +122,7 @@ import { insertClass } from '../switchCRUD/insert';
 @Component({
   selector: 'dialog-animations-example-dialog',
   templateUrl: 'insert-logic.component.html',
-  styleUrl:'./insertUser.component.css',
+  styleUrl: './insertUser.component.css',
   standalone: true,
   imports: [MatButtonModule, MatDialogActions, MatDialogClose, MatDialogTitle, MatDialogContent, MatFormFieldModule, CommonModule, MatInputModule, FormsModule],
 })
@@ -160,7 +160,7 @@ export class DialogInsertLogic {
 //! Insert GRANDE///////////////////////
 import { AutoCompleteComponent } from '../../auto-complete/auto-complete.component';
 import { PRUEBAService } from '../../../../services/cud_ZIP.service';
-import { structureExtraData,structureData,extructureStreet, extructureModel } from '../../../../models/extraData';
+import { structureExtraData, structureData, extructureStreet, extructureModel } from '../../../../models/extraData';
 @Component({
   selector: 'dialog-animations-example-dialog',
   templateUrl: 'insert-logic-big.component.html',
@@ -186,13 +186,13 @@ export class DialogInsertLogicBig {
   public indicator: string;
   public numIndicator: number;
   public array: any;
-  public arrayName:string[];
+  public arrayName: string[];
   public secondId: number;
 
   public object: structureExtraData;
- 
+
   //public objectStreet: extructureStreet={name:'',settlement:0};
-  public objectBrand: extructureModel={name:'',idBrand:-1};
+  public objectBrand: extructureModel = { name: '', idBrand: -1 };
   constructor(
     public dialogRef: MatDialogRef<DialogInsertLogic>,
     public CommonModule: CommonModule,
@@ -212,13 +212,9 @@ export class DialogInsertLogicBig {
     this.array = data.array;
     this.arrayName = this.array.map((array: any) => array.name);
   }
-  insertData(event:Event)
-  {
-    debugger
+  insertData(event: Event) {
     this.secondId = this.service.guardarStreetExtraData(event, this.array);
-    //this.object.settlement = this.secondId;
-    this.object.idBrand= this.secondId;
-    
+    this.object.idBrand = this.secondId;
   }
   //usado cuando son dos datos
   ChangeName() {
@@ -230,9 +226,9 @@ export class DialogInsertLogicBig {
         this.objectBrand.idBrand = this.secondId;
         dataToInsert = this.objectBrand;
         break;
-        case 9:
-                // ... otros casos
-          break;
+      case 9:
+        // ... otros casos
+        break;
     }
 
     if (dataToInsert) {
@@ -241,7 +237,7 @@ export class DialogInsertLogicBig {
       this.dialogRef.close(true);
       console.log(dataToInsert);
     }
-    else {  
+    else {
       console.log('Error: no se encontró el caso para numIndicator ' + this.numIndicator);
     }
   }
@@ -249,8 +245,9 @@ export class DialogInsertLogicBig {
 //! Insert para los users
 import { RolesNames, UserModification, user, userPermission } from '../../../../models/user';
 import { RoleNamePipe } from '../../../../pipes/role-name.pipe';
-import { MatDivider, MatDividerModule } from '@angular/material/divider';
+import { MatDividerModule } from '@angular/material/divider';
 import { LogInService } from '../../../../services/security/log-in.service';
+import { rolesNames } from '../../../../../enviroment/enviroment';
 @Component({
   selector: 'dialog-User-Insert',
   templateUrl: 'insertUser-dialog.component.html',
@@ -279,16 +276,12 @@ export class DialogInsertLogicUser {
   public indicator: string;
   public numIndicator: number;
   public array: UserModification[];
-  public arrayRolName:string[];
+  public arrayRolName: string[];
   public object: UserModification;
   public isChecked: boolean = false;
   //array con los roles disponibles
-  public rolesNames : RolesNames[] = [
-    { id: 1, name: 'Admin' },
-    { id: 2, name: 'User' },
-    { id: 3, name: 'Guest' }
-];
-public SuperPermissions:boolean=false;
+  public rolesNames= rolesNames;
+  public SuperPermissions: boolean = false;
   public pipeRole2: RoleNamePipe;
   constructor(
     public dialogRef: MatDialogRef<DialogInsertLogic>,
@@ -309,38 +302,38 @@ public SuperPermissions:boolean=false;
     this.indicator = data.indicator;
     this.numIndicator = data.numIndicator;
     this.object = data.object;
-    this.object.User= new user();
-    this.object.Permissions= new userPermission();
-    this.array = data.array;  
-      this.arrayRolName = this.rolesNames.map(
-      array => array.name);  
-      console.log(this.rolesNames) 
-      debugger
+    this.object.User = new user();
+    this.object.Permissions = new userPermission();
+    this.array = data.array;
+    this.arrayRolName = this.rolesNames.map(
+      array => array.name);
+    console.log(this.rolesNames)
+    debugger
   }
- insertData(data:Event){
-  this.object.Permissions.idRole = this.extraSerive.guardarStreetExtraData(data,this.rolesNames);
- }
- toggleSuperUser(): void {
-  this.object.Permissions.driver = this.object.Permissions.admin = this.object.Permissions.permissionaire =
-  this.object.Permissions.extraData=this.object.Permissions.sinister=
-  this.object.Permissions.unit=this.object.Permissions.pdf = this.SuperPermissions;
-}
-unToggleSuperUser(): void {
-  this.SuperPermissions = false;
-}
-passwordsMatch(): boolean {
-  return this.object.User.password === this.object.User.confirmPassword;
-}
-hasPasswordError(passwordInput: any, passwordInput2: any): boolean {
-  return passwordInput.invalid || passwordInput2.invalid || this.passwordsMatch();
-}
- ChangeName(){
-  console.log(this.object)
-  debugger
-  this.serviceLogIn.CreateUser(this.object.User,this.object.Permissions).subscribe(
-  (data)=> {
-    console.log(data);
+  insertData(data: Event) {
+    this.object.Permissions.idRole = this.extraSerive.guardarStreetExtraData(data, this.rolesNames);
   }
-  )
- }
+  toggleSuperUser(): void {
+    this.object.Permissions.driver = this.object.Permissions.admin = this.object.Permissions.permissionaire =
+      this.object.Permissions.extraData = this.object.Permissions.sinister =
+      this.object.Permissions.unit = this.object.Permissions.pdf = this.SuperPermissions;
+  }
+  unToggleSuperUser(): void {
+    this.SuperPermissions = false;
+  }
+  passwordsMatch(): boolean {
+    return this.object.User.password === this.object.User.confirmPassword;
+  }
+  hasPasswordError(passwordInput: any, passwordInput2: any): boolean {
+    return passwordInput.invalid || passwordInput2.invalid || this.passwordsMatch();
+  }
+  ChangeName() {
+    console.log(this.object)
+    debugger
+    this.serviceLogIn.CreateUser(this.object.User, this.object.Permissions).subscribe(
+      (data) => {
+        console.log(data);
+      }
+    )
+  }
 }
