@@ -1,45 +1,96 @@
-<!DOCTYPE html>
 <div class="mat-app-background basic-container">
-    <app-info-dialog>LOADING</app-info-dialog>
+  <!-- Título de la sección -->
+  <h1>Subir Documentos</h1>
+  <mat-divider></mat-divider>
+  
+  <!-- Formulario para subir archivos -->
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="upload-form">
+      <!-- Selección de tipo de documento -->
+      <mat-form-field appearance="fill">
+          <mat-label>Tipo de Documento *</mat-label>
+          <mat-select formControlName="documentType" required>
+              <mat-option value="insurance">Póliza de Seguro</mat-option>
+              <mat-option value="license">Licencia de Conducir</mat-option>
+              <mat-option value="accident">Reporte de Accidente</mat-option>
+              <mat-option value="vehicle">Documentación del Vehículo</mat-option>
+              <mat-option value="other">Otro Documento</mat-option>
+          </mat-select>
+          <!-- Mensaje de error si no se selecciona nada -->
+          <mat-error *ngIf="form.get('documentType')?.hasError('required')">
+              Debes seleccionar un tipo de documento
+          </mat-error>
+      </mat-form-field>
+
+      <!-- Campo para descripción del documento -->
+      <mat-form-field appearance="fill">
+          <mat-label>Descripción (Opcional)</mat-label>
+          <textarea matInput 
+                   formControlName="description" 
+                   maxlength="500"
+                   placeholder="Ej: Póliza de seguro vigente para el taxi #123">
+          </textarea>
+          <!-- Contador de caracteres -->
+          <mat-hint align="end">
+              {{ form.get('description')?.value?.length || 0 }}/500
+          </mat-hint>
+      </mat-form-field>
+
+      <!-- Sección para selección de archivo -->
+      <div class="file-upload-section">
+          <!-- Input file oculto pero vinculado al botón -->
+          <input type="file" 
+                 id="fileInput" 
+                 (change)="onFileChange($event)" 
+                 accept=".jpg,.jpeg,.png,.pdf"
+                 hidden>
+          
+          <!-- Botón personalizado para seleccionar archivo -->
+          <label for="fileInput" mat-raised-button color="primary">
+              <mat-icon>attach_file</mat-icon>
+              Seleccionar Archivo
+          </label>
+          
+          <!-- Información del archivo seleccionado -->
+          <div class="file-info" *ngIf="selectedFile">
+              <mat-icon>description</mat-icon>
+              <span class="file-name">{{ selectedFile.name }}</span>
+              <span class="file-size">
+                  ({{ (selectedFile.size / 1024 / 1024).toFixed(2) }} MB)
+              </span>
+          </div>
+          
+          <!-- Mensaje si no hay archivo seleccionado -->
+          <div class="no-file" *ngIf="!selectedFile">
+              Ningún archivo seleccionado
+          </div>
+      </div>
+
+      <!-- Barra de progreso (visible solo durante la subida) -->
+      <mat-progress-bar 
+          *ngIf="isUploading"
+          mode="determinate" 
+          [value]="uploadProgress">
+      </mat-progress-bar>
+      
+      <!-- Porcentaje de progreso -->
+      <div class="progress-info" *ngIf="isUploading">
+          Subiendo: {{ uploadProgress }}%
+      </div>
+
+      <!-- Botón de enviar -->
+      <button mat-raised-button 
+              color="accent" 
+              type="submit" 
+              [disabled]="!form.valid || isUploading">
+          <mat-icon>cloud_upload</mat-icon>
+          Subir Documento
+      </button>
+      
+      <!-- Mensaje de requisitos -->
+      <div class="requirements">
+          <small>
+              Formatos aceptados: JPG, PNG, PDF. Tamaño máximo: 5MB
+          </small>
+      </div>
+  </form>
 </div>
-hola
-<mat-divider></mat-divider> 
-Pagina de PDF's
-
-<table mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)"
-       class="mat-elevation-z8">
-  <!-- Position Column -->
-  <ng-container matColumnDef="position">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by number">
-      No.
-    </th>
-    <td mat-cell *matCellDef="let element"> {{element.position}} </td>
-  </ng-container>
-
-  <!-- Name Column -->
-  <ng-container matColumnDef="name">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by name">
-      Name
-    </th>
-    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-  </ng-container>
-
-  <!-- Weight Column -->
-  <ng-container matColumnDef="weight">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by weight">
-      Weight
-    </th>
-    <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
-  </ng-container>
-
-  <!-- Symbol Column -->
-  <ng-container matColumnDef="symbol">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by symbol">
-      Symbol
-    </th>
-    <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
-  </ng-container>
-
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-</table>

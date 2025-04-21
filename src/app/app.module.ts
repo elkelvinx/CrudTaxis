@@ -148,6 +148,7 @@ import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
         ScrollingModule,
         RoleNamePipe,
         ReactiveFormsModule,
+        
     ],
     declarations: [
         AppComponent,
@@ -169,6 +170,7 @@ import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
         AuthViewComponent,
         RoleNamePipe,
         LogsComponent,
+        
     ],
     bootstrap: [AuthViewComponent],
 

@@ -1,56 +1,150 @@
-import {LiveAnnouncer} from '@angular/cdk/a11y';
-import {AfterViewInit, Component, ViewChild, inject} from '@angular/core';
-import {MatSort, Sort, MatSortModule} from '@angular/material/sort';
-import {MatTableDataSource, MatTableModule} from '@angular/material/table';
-import { SortEvent } from '../../directives/SortableSort';
-  
-export interface PeriodicElement {  
-  name: string;  
-  position: number;  
-  weight: number;  
-  symbol: string;  
-}  
-  
-const ELEMENT_DATA: PeriodicElement[] = [  
-  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},  
-  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},  
-  {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},  
-  {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},  
-  {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},  
-  {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},  
-  {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},  
-  {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},  
-  {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},  
-  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},  
-];   
-  
+import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { HttpEventType, HttpResponse } from '@angular/common/http';
+import { MatProgressBar } from '@angular/material/progress-bar';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+
 @Component({
   selector: 'app-documents-pdf',
   templateUrl: './documents-pdf.component.html',
-  styleUrl: './documents-pdf.component.css'
+  styleUrls: ['./documents-pdf.component.css']
 })
-export class DocumentsPDFComponent implements AfterViewInit{
-  private _liveAnnouncer = inject(LiveAnnouncer);
+export class DocumentsPDFComponent {
+  // Grupo de formulario para manejar los campos
+  form: FormGroup;
+  
+  // Variables para controlar el estado
+  selectedFile: File | null = null;
+  uploadProgress: number = 0;
+  isUploading: boolean = false;
+  allowedFileTypes = ['image/jpeg', 'image/png', 'application/pdf'];
+  maxFileSize = 5 * 1024 * 1024; // 5MB en bytes
 
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = new MatTableDataSource(ELEMENT_DATA);
-
-  @ViewChild(MatSort) sort: MatSort;
-
-  ngAfterViewInit() {
-    this.dataSource.sort = this.sort;
+  constructor(
+    private fb: FormBuilder,
+    private snackBar: MatSnackBar
+  ) {
+    // Inicialización del formulario con validaciones
+    this.form = this.fb.group({
+      file: [null, Validators.required],
+      description: ['', [Validators.maxLength(500)]],
+      documentType: ['', Validators.required]
+    });
   }
 
-  /** Announce the change in sort state for assistive technology. */
-  announceSortChange(sortState: any) {
-    // This example uses English messages. If your application supports
-    // multiple language, you would internationalize these strings.
-    // Furthermore, you can customize the message to add additional
-    // details about the values being sorted.
-    if (sortState.direction) {
-      this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
-    } else {
-      this._liveAnnouncer.announce('Sorting cleared');
+  /**
+   * Método que se ejecuta cuando se selecciona un archivo
+   * @param event - Evento del input file
+   */
+  onFileChange(event: any): void {
+    // Reiniciamos el estado previo
+    this.selectedFile = null;
+    this.form.patchValue({ file: null });
+
+    // Verificamos si hay archivos seleccionados
+    if (event.target.files && event.target.files.length > 0) {
+      const file = event.target.files[0];
+
+      // Validación 1: Tipo de archivo permitido
+      if (!this.allowedFileTypes.includes(file.type)) {
+        this.showError('Tipo de archivo no permitido. Solo se aceptan JPEG, PNG o PDF.');
+        return;
+      }
+
+      // Validación 2: Tamaño máximo del archivo
+      if (file.size > this.maxFileSize) {
+        this.showError(`El archivo es demasiado grande. Máximo permitido: ${this.maxFileSize / 1024 / 1024}MB`);
+        return;
+      }
+
+      // Si pasa las validaciones, asignamos el archivo
+      this.selectedFile = file;
+      this.form.patchValue({ file: file });
+    }
+  }
+
+  /**
+   * Método para mostrar mensajes de error
+   * @param message - Mensaje a mostrar
+   */
+  private showError(message: string): void {
+    this.snackBar.open(message, 'Cerrar', {
+      duration: 5000,
+      panelClass: ['error-snackbar']
+    });
+    // Limpiamos el input file
+    const fileInput = document.getElementById('fileInput') as HTMLInputElement;
+    if (fileInput) {
+      fileInput.value = '';
+    }
+  }
+
+  /**
+   * Método que se ejecuta al enviar el formulario
+   */
+  onSubmit(): void {
+    // Verificamos si el formulario es válido
+    if (!this.form.valid || !this.selectedFile) {
+      this.showError('Por favor complete todos los campos requeridos.');
+      return;
+    }
+
+    // Preparamos los datos para enviar
+    this.isUploading = true;
+    this.uploadProgress = 0;
+
+    // Creamos FormData para enviar el archivo y los metadatos
+    const formData = new FormData();
+    formData.append('file', this.selectedFile);
+    formData.append('description', this.form.get('description')?.value);
+    formData.append('documentType', this.form.get('documentType')?.value);
+    formData.append('uploadDate', new Date().toISOString());
+
+    // Aquí iría la llamada al servicio para subir el archivo
+    // this.imagenService.subirDocumento(formData).subscribe(...);
+    
+    // Simulamos una subida para demostración
+    this.simulateUpload(formData);
+  }
+
+  /**
+   * Método para simular la subida de archivos (solo para demo)
+   * @param formData - Datos a enviar
+   */
+  private simulateUpload(formData: FormData): void {
+    console.log('Datos preparados para enviar:', {
+      fileName: this.selectedFile?.name,
+      size: this.selectedFile?.size,
+      type: this.selectedFile?.type,
+      formData: formData
+    });
+
+    // Simulamos progreso de subida
+    const interval = setInterval(() => {
+      this.uploadProgress += Math.random() * 10;
+      if (this.uploadProgress >= 100) {
+        clearInterval(interval);
+        this.isUploading = false;
+        this.snackBar.open('Archivo subido exitosamente!', 'Cerrar', {
+          duration: 3000,
+          panelClass: ['success-snackbar']
+        });
+        this.resetForm();
+      }
+    }, 300);
+  }
+
+  /**
+   * Método para resetear el formulario después de una subida exitosa
+   */
+  private resetForm(): void {
+    this.form.reset();
+    this.selectedFile = null;
+    this.uploadProgress = 0;
+    const fileInput = document.getElementById('fileInput') as HTMLInputElement;
+    if (fileInput) {
+      fileInput.value = '';
     }
   }
 }
