@@ -22,7 +22,9 @@ Sistema web para administrar documentos (PDFs, imágenes) asociados a entidades 
 
 ## 📁 Funcionalidad principal
 
-- Subida de documentos desde Angular a Firebase Storage
+- Subida de documentos o imagenes desde Angular a la nube
+-   El sistema está diseñado para usar servicios de almacenamiento modernos como Firebase o Cloudinary. La actual integración utiliza Cloudinary por facilidad de 
+    demostración, pero puede adaptarse a Firebase Storage o AWS S3.
 - Almacenamiento de metadatos en SQL Server
 - Relación de documentos con conductores, permissionarios, unidades o siniestros
 - Visualización de documentos por entidad
