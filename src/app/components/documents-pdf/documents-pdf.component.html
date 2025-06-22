@@ -1,96 +1,68 @@
-<div class="mat-app-background basic-container">
-  <!-- Título de la sección -->
+
+<!DOCTYPE html>
+<!--
+     Dropdown 1: Tipo de entidad (driver, permissionaire, unit, sinister, etc.) 
+
+     Dropdown 2: Lista de registros según el tipo anterior
+      Si eliges "Driver" → cargas todos los drivers con su nombre/ID
+      
+     Dropdown 3: Tipo de documento (desde tu tabla DocumentTypes) 
+-->
+<div class="container">
   <h1>Subir Documentos</h1>
-  <mat-divider></mat-divider>
-  
-  <!-- Formulario para subir archivos -->
-  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="upload-form">
-      <!-- Selección de tipo de documento -->
-      <mat-form-field appearance="fill">
-          <mat-label>Tipo de Documento *</mat-label>
-          <mat-select formControlName="documentType" required>
-              <mat-option value="insurance">Póliza de Seguro</mat-option>
-              <mat-option value="license">Licencia de Conducir</mat-option>
-              <mat-option value="accident">Reporte de Accidente</mat-option>
-              <mat-option value="vehicle">Documentación del Vehículo</mat-option>
-              <mat-option value="other">Otro Documento</mat-option>
-          </mat-select>
-          <!-- Mensaje de error si no se selecciona nada -->
-          <mat-error *ngIf="form.get('documentType')?.hasError('required')">
-              Debes seleccionar un tipo de documento
-          </mat-error>
-      </mat-form-field>
 
-      <!-- Campo para descripción del documento -->
-      <mat-form-field appearance="fill">
-          <mat-label>Descripción (Opcional)</mat-label>
-          <textarea matInput 
-                   formControlName="description" 
-                   maxlength="500"
-                   placeholder="Ej: Póliza de seguro vigente para el taxi #123">
-          </textarea>
-          <!-- Contador de caracteres -->
-          <mat-hint align="end">
-              {{ form.get('description')?.value?.length || 0 }}/500
-          </mat-hint>
-      </mat-form-field>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form-section">
+    <!-- Dropdown 1: Tipo de Entidad -->
+    <mat-form-field appearance="fill">
+      <mat-label>Tipo de Entidad</mat-label>
+      <mat-select formControlName="entityType" required>
+        <mat-option *ngFor="let type of entityTypes" [value]="type">
+          {{ type | titlecase }}
+        </mat-option>
+      </mat-select>
+      <!-- Esto es para mostrar el error -->
+      <mat-error *ngIf="form.get('entityType')?.hasError('required')">
+        Este campo es obligatorio
+      </mat-error>
+    </mat-form-field>
 
-      <!-- Sección para selección de archivo -->
-      <div class="file-upload-section">
-          <!-- Input file oculto pero vinculado al botón -->
-          <input type="file" 
-                 id="fileInput" 
-                 (change)="onFileChange($event)" 
-                 accept=".jpg,.jpeg,.png,.pdf"
-                 hidden>
-          
-          <!-- Botón personalizado para seleccionar archivo -->
-          <label for="fileInput" mat-raised-button color="primary">
-              <mat-icon>attach_file</mat-icon>
-              Seleccionar Archivo
-          </label>
-          
-          <!-- Información del archivo seleccionado -->
-          <div class="file-info" *ngIf="selectedFile">
-              <mat-icon>description</mat-icon>
-              <span class="file-name">{{ selectedFile.name }}</span>
-              <span class="file-size">
-                  ({{ (selectedFile.size / 1024 / 1024).toFixed(2) }} MB)
-              </span>
-          </div>
-          
-          <!-- Mensaje si no hay archivo seleccionado -->
-          <div class="no-file" *ngIf="!selectedFile">
-              Ningún archivo seleccionado
-          </div>
-      </div>
+    <!-- Dropdown 2: Entidad específica -->
+ <app-auto-complete
+  [text]="'Entidad Relacionada'"
+  [arrays]="entityNames"
+  (data)="handleSelectedEntity($event)"
+  className="brand"
+  style="width: 97%"
+></app-auto-complete>
 
-      <!-- Barra de progreso (visible solo durante la subida) -->
-      <mat-progress-bar 
-          *ngIf="isUploading"
-          mode="determinate" 
-          [value]="uploadProgress">
-      </mat-progress-bar>
-      
-      <!-- Porcentaje de progreso -->
-      <div class="progress-info" *ngIf="isUploading">
-          Subiendo: {{ uploadProgress }}%
-      </div>
+    <!-- Dropdown 3: Tipo de documento -->
+    <mat-form-field appearance="fill">
+      <mat-label>Tipo de Documento</mat-label>
+      <mat-select formControlName="documentType">
+        <mat-option *ngFor="let doc of documentTypes" [value]="doc.code">
+          {{ doc.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
 
-      <!-- Botón de enviar -->
-      <button mat-raised-button 
-              color="accent" 
-              type="submit" 
-              [disabled]="!form.valid || isUploading">
-          <mat-icon>cloud_upload</mat-icon>
-          Subir Documento
-      </button>
-      
-      <!-- Mensaje de requisitos -->
-      <div class="requirements">
-          <small>
-              Formatos aceptados: JPG, PNG, PDF. Tamaño máximo: 5MB
-          </small>
-      </div>
+    <!-- Descripción -->
+    <mat-form-field appearance="fill">
+      <mat-label>Descripción</mat-label>
+      <textarea matInput formControlName="description" rows="3"></textarea>
+    </mat-form-field>
+
+    <!-- Archivo -->
+    <input type="file" id="file" hidden (change)="onFileSelected($event)" />
+    <label mat-raised-button color="primary" for="file"  accept=".pdf,image/*">
+      Seleccionar Archivo
+    </label>
+    <span *ngIf="form.get('file')?.value">
+      {{ form.get('file')?.value?.name }}
+    </span>
+
+    <!-- Botón enviar -->
+    <button mat-raised-button color="accent" type="submit" [disabled]="form.invalid">
+      Subir Documento
+    </button>
   </form>
 </div>

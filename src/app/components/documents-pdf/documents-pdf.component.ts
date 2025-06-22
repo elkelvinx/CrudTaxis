@@ -1,150 +1,156 @@
-import { Component } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { HttpEventType, HttpResponse } from '@angular/common/http';
-import { MatProgressBar } from '@angular/material/progress-bar';
-import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { UploadPhotosService } from '../../services/upload-photos.service';
+import { ReadService } from '../../services/crudDataArray/extra-Read.service';
 
+interface Entity {
+  id: number;
+  name: string;
+}
 @Component({
   selector: 'app-documents-pdf',
   templateUrl: './documents-pdf.component.html',
   styleUrls: ['./documents-pdf.component.css']
 })
-export class DocumentsPDFComponent {
-  // Grupo de formulario para manejar los campos
+export class DocumentsPdfComponent implements OnInit {
   form: FormGroup;
-  
-  // Variables para controlar el estado
-  selectedFile: File | null = null;
-  uploadProgress: number = 0;
-  isUploading: boolean = false;
-  allowedFileTypes = ['image/jpeg', 'image/png', 'application/pdf'];
-  maxFileSize = 5 * 1024 * 1024; // 5MB en bytes
+
+  drivers: any[] = [];
+  driverName: string[] = [];
+public entityNames: string[] = []; // ← nombres filtrados para autocomplete
+  //? Opciones fijas para tipo de entidad
+  entityTypes = ['driver','administrador', 'permissionaire', 'unit', 'sinister'];
+
+  //SIMULACION
+  //? Simulación de registros para cada tipo
+  entities: Entity[] = [];
+  allEntities: { [key: string]: Entity[] } = {
+    driver: [
+      { id: 1, name: 'Juan Pérez' },
+      { id: 2, name: 'María García' }
+    ],
+    permissionaire: [
+      { id: 3, name: 'Transportes Gómez' },
+      { id: 4, name: 'Taxi Express' }
+    ],
+    unit: [
+      { id: 5, name: 'Unidad 123' },
+      { id: 6, name: 'Unidad 456' }
+    ],
+    sinister: [
+      { id: 7, name: 'Siniestro #2024-A' },
+      { id: 8, name: 'Siniestro #2024-B' }
+    ]
+  };
+
+  //? Simulación de tipos de documento desde la BD
+  documentTypes = [
+    { code: 'driver_license', name: 'Licencia de Conducir' },
+    { code: 'insurance_policy', name: 'Póliza de Seguro' },
+    { code: 'vehicle_registration', name: 'Tarjeta de Circulación' },
+    { code: 'accident_report', name: 'Reporte de Siniestro' }
+  ];
 
   constructor(
-    private fb: FormBuilder,
-    private snackBar: MatSnackBar
-  ) {
-    // Inicialización del formulario con validaciones
+    private fb: FormBuilder, 
+    private uploadService: UploadPhotosService,
+    private servicioApp: ReadService
+  ) { }
+
+  //! no comprendo el uso de la propiedad "entityType" en el formulario, ya que no se encuentra en la interfaz Entity. ¿Es un error o es intencional? 
+
+  ngOnInit(): void {
+    this.consultarDriverName();
     this.form = this.fb.group({
-      file: [null, Validators.required],
-      description: ['', [Validators.maxLength(500)]],
-      documentType: ['', Validators.required]
+      entityType: ['', Validators.required],
+      entityId: ['', Validators.required],
+      documentType: ['', Validators.required],
+      description: [''],
+      file: [null, Validators.required]
+    });
+
+    // Cargar tipos desde API
+    this.loadEntities();
+
+    // Cuando cambie el tipo de entidad, actualizamos los registros disponibles
+    this.form.get('entityType')?.valueChanges.subscribe(type => {
+      this.entities = this.allEntities[type] || [];
+      const entityIdControl = this.form.get('entityId');
+      entityIdControl?.setValue(''); // limpia la selección anterior
+
+      if (this.entities.length) {
+        entityIdControl?.enable();   // ← habilita si hay entidades
+        this.form.get('entityId')?.setValue(''); // Reinicia el valor seleccionado
+      } else {
+        entityIdControl?.disable();  // ← deshabilita si no hay
+      }
     });
   }
 
-  /**
-   * Método que se ejecuta cuando se selecciona un archivo
-   * @param event - Evento del input file
-   */
-  onFileChange(event: any): void {
-    // Reiniciamos el estado previo
-    this.selectedFile = null;
-    this.form.patchValue({ file: null });
+  loadEntities() {
 
-    // Verificamos si hay archivos seleccionados
-    if (event.target.files && event.target.files.length > 0) {
-      const file = event.target.files[0];
 
-      // Validación 1: Tipo de archivo permitido
-      if (!this.allowedFileTypes.includes(file.type)) {
-        this.showError('Tipo de archivo no permitido. Solo se aceptan JPEG, PNG o PDF.');
-        return;
-      }
-
-      // Validación 2: Tamaño máximo del archivo
-      if (file.size > this.maxFileSize) {
-        this.showError(`El archivo es demasiado grande. Máximo permitido: ${this.maxFileSize / 1024 / 1024}MB`);
-        return;
-      }
-
-      // Si pasa las validaciones, asignamos el archivo
-      this.selectedFile = file;
-      this.form.patchValue({ file: file });
+  }
+  onFileSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (input.files?.length) {
+      this.form.get('file')?.setValue(input.files[0]);
     }
   }
 
-  /**
-   * Método para mostrar mensajes de error
-   * @param message - Mensaje a mostrar
-   */
-  private showError(message: string): void {
-    this.snackBar.open(message, 'Cerrar', {
-      duration: 5000,
-      panelClass: ['error-snackbar']
-    });
-    // Limpiamos el input file
-    const fileInput = document.getElementById('fileInput') as HTMLInputElement;
-    if (fileInput) {
-      fileInput.value = '';
-    }
+  onFileChange(event: Event) {
+    const file = (event.target as HTMLInputElement).files?.[0];
   }
 
-  /**
-   * Método que se ejecuta al enviar el formulario
-   */
   onSubmit(): void {
-    // Verificamos si el formulario es válido
-    if (!this.form.valid || !this.selectedFile) {
-      this.showError('Por favor complete todos los campos requeridos.');
-      return;
-    }
-
-    // Preparamos los datos para enviar
-    this.isUploading = true;
-    this.uploadProgress = 0;
-
-    // Creamos FormData para enviar el archivo y los metadatos
-    const formData = new FormData();
-    formData.append('file', this.selectedFile);
-    formData.append('description', this.form.get('description')?.value);
-    formData.append('documentType', this.form.get('documentType')?.value);
-    formData.append('uploadDate', new Date().toISOString());
-
-    // Aquí iría la llamada al servicio para subir el archivo
-    // this.imagenService.subirDocumento(formData).subscribe(...);
-    
-    // Simulamos una subida para demostración
-    this.simulateUpload(formData);
-  }
-
-  /**
-   * Método para simular la subida de archivos (solo para demo)
-   * @param formData - Datos a enviar
-   */
-  private simulateUpload(formData: FormData): void {
-    console.log('Datos preparados para enviar:', {
-      fileName: this.selectedFile?.name,
-      size: this.selectedFile?.size,
-      type: this.selectedFile?.type,
-      formData: formData
-    });
-
-    // Simulamos progreso de subida
-    const interval = setInterval(() => {
-      this.uploadProgress += Math.random() * 10;
-      if (this.uploadProgress >= 100) {
-        clearInterval(interval);
-        this.isUploading = false;
-        this.snackBar.open('Archivo subido exitosamente!', 'Cerrar', {
-          duration: 3000,
-          panelClass: ['success-snackbar']
-        });
-        this.resetForm();
+    if (this.form.valid) {
+      const formData = this.form.value;
+      this.uploadService.uploadDocument({
+        entityType: formData.entityType,
+        entityId: formData.entityId,
+        documentType: formData.documentType,
+        description: formData.description,
+        file: formData.file
+      }).subscribe({
+        next: res => {
+          console.log('Respuesta de la API:', res);
+          // Notifica éxito con tu NotificationService si deseas
+        },
+        error: err => {
+          console.error('Error al subir:', err);
+          // Muestra error en UI si lo deseas
+        }
       }
-    }, 300);
-  }
+      );
 
-  /**
-   * Método para resetear el formulario después de una subida exitosa
-   */
-  private resetForm(): void {
-    this.form.reset();
-    this.selectedFile = null;
-    this.uploadProgress = 0;
-    const fileInput = document.getElementById('fileInput') as HTMLInputElement;
-    if (fileInput) {
-      fileInput.value = '';
+      console.log('Datos a enviar:', formData);
+      // Aquí se puede construir un FormData para enviarlo al backend con el archivo
+    } else {
+      this.form.markAllAsTouched();
     }
   }
+//! GET ALL CATALOGS
+  consultarDriverName() {
+    this.servicioApp.consultarDriverName().subscribe(
+      (data: any[]) => {
+        this.drivers = data;
+        this.driverName = this.drivers.map(driver => driver.name);
+        this.entityNames = this.driverName
+        console.log(this.drivers);
+      },
+        error => {
+          console.log(error);
+        }
+    )
+  }
+handleSelectedEntity(selectedName: string) {
+  const match = this.entities.find(e => e.name === selectedName);
+  if (match) {
+    this.form.get('entityId')?.setValue(match.id);
+  } else {
+    this.form.get('entityId')?.reset();
+  }
+}
+
 }

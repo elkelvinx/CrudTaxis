@@ -52,7 +52,6 @@ tableConfig: TableConfig = {
 
   constructor(
     private serviceSinister: SinisterService,
-    private number: ExtraDataService,
     private pruebaService: PRUEBAService<Sinister>,
     private servicioApp: ReadService
   ) { }

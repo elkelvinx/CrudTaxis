@@ -1,12 +1,12 @@
 export const environment = {
   production: false,
-  firebase: {
-    apiKey: "AIzaSyC2uRXe_fZdUzNpcwyqhbNjz-gngSbjwqA",
-    authDomain: "taxisimages.firebaseapp.com",
-    projectId: "taxisimages",
-    storageBucket: "taxisimages.appspot.com",
-    messagingSenderId: "734716401955",
-    appId: "1:734716401955:web:a210b06cdca5e00c635496"
+  firebaseConfig: {
+  apiKey: "AIzaSyC2uRXe_fZdUzNpcwyqhbNjz-gngSbjwqA",
+  authDomain: "taxisimages.firebaseapp.com",
+  projectId: "taxisimages",
+  storageBucket: "taxisimages.firebasestorage.app",
+  messagingSenderId: "734716401955",
+  appId: "1:734716401955:web:a210b06cdca5e00c635496"
   }
 };
   export const rolesNames = [

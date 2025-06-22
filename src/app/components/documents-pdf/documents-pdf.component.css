@@ -1,7 +1,41 @@
-table {
-  width: 100%;
+.container {
+  max-width: 600px;
+  margin: auto;
+  padding: 1rem;
+  background: #302d2d;
+  border-radius: 15px;
+  box-shadow: -11px 14px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
 }
 
-th.mat-sort-header-sorted {
-  color: black;
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  height: 10%;
+}
+.color {
+  color: #fff!important;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+}
+.form-section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+button {
+  align-self: flex-end;
+}
+text{
+color : #ff0000!important;
+}
+
+@media screen and (min-width: 760px) {
+*{
+font-size: large;
+}
 }

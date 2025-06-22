@@ -32,10 +32,8 @@ export class ServicesDriversService {
   }
 
   public consultarDrivers(): Observable<any[]> { 
-    console.log("Token:", this.Jwt);
     let controller = "Driver";
     let Headers = new HttpHeaders().set("Accept", "aplication/json");
-   // debugger
     return this.Http.get<any[]>(
       `${this.urlApi}${encodeURIComponent(controller)}`,
       {

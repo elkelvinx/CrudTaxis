@@ -2,6 +2,9 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 
+
+
+
 import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -38,12 +41,13 @@ import { TableModule } from './components/tools/table/table.module';
 import { Tables2 } from './components/tools/tableExtraData/table2.module';
 import { MatIconModule } from '@angular/material/icon';
 import { carAutoCompleteComponent } from './components/tools/car_auto-complete/car-auto-complete.component';
-import { DocumentsPDFComponent } from './components/documents-pdf/documents-pdf.component';
+import { DocumentsPdfComponent } from './components/documents-pdf/documents-pdf.component';
 import { MenuExtraDataComponent } from './components/extraData/menu-extra-data/menu-extra-data.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { InsertDialogComponent } from './components/tools/edit-dialog/insert-dialog/insert-dialog.component';
 import { EditDialogComponent } from './components/tools/edit-dialog/edit-dialog.component';
 import { InfoDialogComponent } from './components/tools/info-dialog/info-dialog.component';
+
 
 /////////////////////////////////////////////////
 
@@ -93,13 +97,16 @@ import { AuthViewComponent } from './AuthView.componet';
 import { RoleNamePipe } from './pipes/role-name.pipe';
 import { TokenInterceptor } from './interceptor/token.interceptor';
 import { LogsComponent } from './components/logs/logs.component';
+import {FormControlName} from '@angular/forms';
 
 //Firebase
 import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
-import { provideStorage, getStorage } from '@angular/fire/storage';
-import { environment } from '../enviroment/enviroment';
+import { provideStorage, getStorage } from '@angular/fire/storage'; // ← ¡ESTO es Firebase Storage!
 import { getFirestore } from "firebase/firestore";
 // import { NgbdSortableHeader } from './directives/sortable.directive';
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFireStorageModule } from '@angular/fire/compat/storage';
+import { environment } from '../enviroment/enviroment';
 import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
 @NgModule({
     exports: [
@@ -138,7 +145,6 @@ import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
         MatSliderModule,
         MatSlideToggleModule,
         MatSnackBarModule,
-        MatSortModule,
         MatTableModule,
         MatTabsModule,
         MatToolbarModule,
@@ -148,6 +154,8 @@ import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
         ScrollingModule,
         RoleNamePipe,
         ReactiveFormsModule,
+        FormControlName,
+        
         
     ],
     declarations: [
@@ -162,7 +170,6 @@ import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
         UnitsComponent,
         ContactDialogComponent,
         SinistersComponent,
-        DocumentsPDFComponent,
         MenuExtraDataComponent,
         InfoDialogComponent,
         LoginComponent,
@@ -170,6 +177,8 @@ import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
         AuthViewComponent,
         RoleNamePipe,
         LogsComponent,
+        DocumentsPdfComponent,
+        
         
     ],
     bootstrap: [AuthViewComponent],
@@ -205,10 +214,11 @@ import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
         MatMenuModule,
         ReactiveFormsModule,
         MatTableModule,
-        
-        // provideFirebaseApp(() => initializeApp(environment.firebase)),
-        // provideStorage(() => getStorage())
-        
+        //!esto es nuevo
+        MatSelectModule,
+        MatSortModule,
+        AngularFireModule.initializeApp(environment.firebaseConfig),
+        AngularFireStorageModule,
     ],
     providers: [DatePipe, NotificationService,
         {
@@ -216,5 +226,5 @@ import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
             useClass: TokenInterceptor,
             multi: true
         }, provideHttpClient(withInterceptorsFromDi())]
-})
+    })
 export class AppModule { }
