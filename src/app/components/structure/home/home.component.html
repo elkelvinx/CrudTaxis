@@ -1,53 +1,34 @@
 <!DOCTYPE html>
-<h1 style="text-align: center; text-shadow: 0px 0px 5px #2e2c2c">
-  Bienvenido a la pagina oficial de la <br />
-  <h1>
-    <strong>Union de trabajadores al volante del norte de Sinaloa</strong>
-  </h1>
-</h1>
+<div class="home-container">
+  <div class="header-section">
+    <h1 class="title">¡Bienvenido al sistema de taxis UTVNS!</h1>
+    <p class="subtitle">
+      Gestiona conductores, unidades, accidentes y documentos en un solo lugar.
+    </p>
+  </div>
 
-<div id="slider" class="slider" style="position: absolute; margin-left: 19%">
-  <h2 class="h4">
-    Los mochis <br />
-    Total de servicios <br />
-    <strong><i>500,000</i></strong
-    ><br />
-    <a href="#" class="linkS">Investigar</a>
-  </h2>
-</div>
-<img
-  src="./../../../assets/images/TaxiLogo.png"
-  alt="LoGo"
-  style="position: absolute; margin-left: 46%"
-/>
+  <div class="carousel-container">
+    <button mat-icon-button class="nav-button" (click)="prev()" [disabled]="currentIndex === 0">
+      <mat-icon>chevron_left</mat-icon>
+    </button>
 
-<div id="slider" class="slider2">
-  <h2 class="h4">
-    Culiacan <br />
-    Total de servicios <br /><strong><i>30,000</i></strong
-    ><br />
-    <a href="#" class="linkS">Negro</a>
-  </h2>
+    <div class="carousel-slides">
+      <mat-card *ngFor="let slide of visibleSlides" class="carousel-card mat-elevation-z8">
+        <div class="image-container">
+          <img mat-card-image [src]="slide.image" alt="{{slide.title}}" loading="lazy">
+        </div>
+        <mat-card-header>
+          <mat-card-title>{{slide.title}}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p>{{slide.description}}</p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <button mat-icon-button class="nav-button" (click)="next()" [disabled]="currentIndex + visibleCards >= slides.length">
+      <mat-icon>chevron_right</mat-icon>
+    </button>
+  </div>
+  Este sistema de gestión de taxis está diseñado para trabajar en conjunto con una aplicación móvil futura, la cual permitirá a conductores actualizar sus datos, subir documentos y reportar siniestros desde su celular. Esta integración está prevista en la siguiente fase del proyecto.
 </div>
-<br />
-<br />
-<app-yes-no-dialog [name]="'Kevin2'">p</app-yes-no-dialog>
-<br />
-<br />
-<app-yes-no-dialog [text]="'you must be ames arent you?'" [name]="'Kevin'"
-  >p</app-yes-no-dialog
->
-<button
-mat-raised-button
-(click)="redirecionar()"
-color="primary"
-class="text-button-greenFinal"
-style="
-  /* position: absolute; */
-  width: 21% !important;
-  height: 46px !important;
-  --mat-protected-button-ripple-color: rgb(7 101 37) !important;
-"
->
-Ir a el login
-</button>

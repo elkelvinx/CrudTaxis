@@ -18,13 +18,13 @@ export class DocumentsPdfComponent implements OnInit {
 
   drivers: any[] = [];
   driverName: string[] = [];
-public entityNames: string[] = []; // ← nombres filtrados para autocomplete
+  entities: Entity[] = [];
+  public entityNames: string[] = []; // ← nombres filtrados para autocomplete
   //? Opciones fijas para tipo de entidad
-  entityTypes = ['driver','administrador', 'permissionaire', 'unit', 'sinister'];
+  entityTypes = ['driver', 'administrador', 'permissionaire', 'unit', 'sinister'];
 
   //SIMULACION
   //? Simulación de registros para cada tipo
-  entities: Entity[] = [];
   allEntities: { [key: string]: Entity[] } = {
     driver: [
       { id: 1, name: 'Juan Pérez' },
@@ -53,7 +53,7 @@ public entityNames: string[] = []; // ← nombres filtrados para autocomplete
   ];
 
   constructor(
-    private fb: FormBuilder, 
+    private fb: FormBuilder,
     private uploadService: UploadPhotosService,
     private servicioApp: ReadService
   ) { }
@@ -76,14 +76,22 @@ public entityNames: string[] = []; // ← nombres filtrados para autocomplete
     // Cuando cambie el tipo de entidad, actualizamos los registros disponibles
     this.form.get('entityType')?.valueChanges.subscribe(type => {
       this.entities = this.allEntities[type] || [];
-      const entityIdControl = this.form.get('entityId');
-      entityIdControl?.setValue(''); // limpia la selección anterior
+      this.entityNames = [];
+      this.form.get('entityId')?.reset();
 
-      if (this.entities.length) {
-        entityIdControl?.enable();   // ← habilita si hay entidades
-        this.form.get('entityId')?.setValue(''); // Reinicia el valor seleccionado
-      } else {
-        entityIdControl?.disable();  // ← deshabilita si no hay
+      switch (type) {
+        case 'driver':
+          this.servicioApp.consultarDriverName().subscribe(data => {
+            this.entities = data;
+            this.entityNames = data.map(d => d.name);
+          });
+          break;
+        case 'unit':
+          // this.servicioApp.consultarUnits().subscribe(...)
+          break;
+        case 'sinister':
+          // ...
+          break;
       }
     });
   }
@@ -130,7 +138,7 @@ public entityNames: string[] = []; // ← nombres filtrados para autocomplete
       this.form.markAllAsTouched();
     }
   }
-//! GET ALL CATALOGS
+  //! GET ALL CATALOGS
   consultarDriverName() {
     this.servicioApp.consultarDriverName().subscribe(
       (data: any[]) => {
@@ -139,18 +147,18 @@ public entityNames: string[] = []; // ← nombres filtrados para autocomplete
         this.entityNames = this.driverName
         console.log(this.drivers);
       },
-        error => {
-          console.log(error);
-        }
+      error => {
+        console.log(error);
+      }
     )
   }
-handleSelectedEntity(selectedName: string) {
-  const match = this.entities.find(e => e.name === selectedName);
-  if (match) {
-    this.form.get('entityId')?.setValue(match.id);
-  } else {
-    this.form.get('entityId')?.reset();
+  handleSelectedEntity(selectedName: string) {
+    const match = this.entities.find(e => e.name === selectedName);
+    if (match) {
+      this.form.get('entityId')?.setValue(match.id);
+    } else {
+      this.form.get('entityId')?.reset();
+    }
   }
-}
 
 }

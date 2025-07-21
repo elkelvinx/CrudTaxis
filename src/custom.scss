@@ -159,7 +159,7 @@ $my-dark-theme: mat.m2-define-dark-theme((
 @include mat.all-component-colors($my-dark-theme);
 //**************************Global colors*****************************//
 :root{
-  --backCards: #2a2d28;
+  --backCards: #7ab94f;
   --cards: $my-dark-background,400;
   // --errorTabla: rgb(255 117 117);
   --error: #ff0000;
