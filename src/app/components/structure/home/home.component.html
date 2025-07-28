@@ -1,21 +1,26 @@
 <!DOCTYPE html>
+<!-- Modern Carousel for Taxi System -->
 <div class="home-container">
   <div class="header-section">
-    <h1 class="title">¡Bienvenido al sistema de taxis UTVNS!</h1>
+    <h1 class="title">Bienvenido al sistema de taxis UTVNS</h1>
     <p class="subtitle">
-      Gestiona conductores, unidades, accidentes y documentos en un solo lugar.
+      Administra conductores, unidades, accidentes y documentos en un solo lugar.
     </p>
+    <!-- <p class="vision">
+    </p> -->
   </div>
 
-  <div class="carousel-container">
+  <div class="carousel-wrapper">
     <button mat-icon-button class="nav-button" (click)="prev()" [disabled]="currentIndex === 0">
       <mat-icon>chevron_left</mat-icon>
     </button>
 
-    <div class="carousel-slides">
+    <div class="carousel-track">
       <mat-card *ngFor="let slide of visibleSlides" class="carousel-card mat-elevation-z8">
         <div class="image-container">
-          <img mat-card-image [src]="slide.image" alt="{{slide.title}}" loading="lazy">
+          <!-- <mat-icon>home</mat-icon><  -->
+          <mat-icon class="icon" style="">{{slide.icon}}</mat-icon>
+          <img mat-card-image [src]="slide.image" alt="slide.icon" loading="lazy">
         </div>
         <mat-card-header>
           <mat-card-title>{{slide.title}}</mat-card-title>
@@ -30,5 +35,5 @@
       <mat-icon>chevron_right</mat-icon>
     </button>
   </div>
-  Este sistema de gestión de taxis está diseñado para trabajar en conjunto con una aplicación móvil futura, la cual permitirá a conductores actualizar sus datos, subir documentos y reportar siniestros desde su celular. Esta integración está prevista en la siguiente fase del proyecto.
 </div>
+

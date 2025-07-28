@@ -107,7 +107,7 @@ import { getFirestore } from "firebase/firestore";
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { environment } from '../enviroment/enviroment';
-import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
+import { CarrouselComponent } from './components/tools/carrousel/carrousel/carrousel.component';
 @NgModule({
     exports: [
         A11yModule,
@@ -178,6 +178,7 @@ import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
         RoleNamePipe,
         LogsComponent,
         DocumentsPdfComponent,
+        CarrouselComponent,
         
         
     ],

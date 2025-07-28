@@ -12,7 +12,7 @@
   box-sizing: border-box;
   text-decoration: none;
   font-family: "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji",
-    "Segoe UI Emoji", "Segoe UI Symbol";
+    "Segoe UI Emoji",'Montserrat', "Segoe UI Symbol";
 }
 
 body {

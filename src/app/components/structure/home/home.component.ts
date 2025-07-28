@@ -18,6 +18,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   slides = [
     {
       title: 'Unidades',
+      icon: 'person',
       image: "../../../../assets/images/home_Carrousel/Unit_S.jpg",
       description: 'Registro de placas, modelo, color y pólizas de las unidades de taxi.'
     },
@@ -45,7 +46,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     // C:\Archivos_progr-\ANGULAR\Teodoro programa\taxissqlteo\src\assets\images\home_Carrousel
     {
       title: 'PDF / Documentos',
-      image: 'assets/img/docs.jpg',
+      icon: 'picture_as_pdf',
       description: 'Subida de licencias, seguros y otros archivos importantes para cada entidad.'
     },
     {
