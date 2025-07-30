@@ -17,46 +17,49 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   slides = [
     {
-      title: 'Unidades',
+      title: 'Conductores',
       icon: 'person',
-      image: "../../../../assets/images/home_Carrousel/Unit_S.jpg",
-      description: 'Registro de placas, modelo, color y pólizas de las unidades de taxi.'
+      description: 'Gestión completa de los datos personales y documentación de los taxistas.'
     },
     {
       title: 'Permisionarios',
-      image: "../../../../assets/images/home_Carrousel/Permissionaires_S.jpg",
+      icon: 'assignment_ind',
       description: 'Administración de los propietarios de concesiones y permisos.'
     },
     {
+      title: 'Unidades',
+      icon: 'local_taxi',
+      description: 'Registro de placas, modelo, color y pólizas de las unidades de taxi.'
+    },
+    {
       title: 'Siniestros',
-      image: "../../../../assets/images/home_Carrousel/Sinister_S.jpg",
+      icon: 'car_crash',
       description: 'Control de accidentes y reportes de incidentes relacionados a los taxis.'
     },
     {
-      title: 'Conductores',
-      image: "../../../../assets/images/home_Carrousel/driver.jpg",
-      description: 'Gestión completa de los datos personales y documentación de los taxistas.'
-    },
-    
-    {
       title: 'Administradores',
-       image: "../../../../assets/images/home_Carrousel/Administrator_S.jpg",
+      icon: 'supervisor_account',
       description: 'Usuarios con privilegios especiales para modificar el sistema.'
     },
-    // C:\Archivos_progr-\ANGULAR\Teodoro programa\taxissqlteo\src\assets\images\home_Carrousel
     {
       title: 'PDF / Documentos',
       icon: 'picture_as_pdf',
-      description: 'Subida de licencias, seguros y otros archivos importantes para cada entidad.'
+      description: 'Subida de licencias, seguros y otros archivos importantes.'
     },
     {
       title: 'Historial y Logs',
-      image: 'assets/img/history.jpg',
-      description: 'Solo para administradores: cambios en el sistema y errores del backend.'
+      icon: 'history',
+      description: 'Visualiza cambios en el sistema y errores del backend.'
+    },
+    {
+      title: 'Extras Admin',
+      icon: 'local_library',
+      description: 'Funciones avanzadas para administradores del sistema.'
     }
   ];
 
-  constructor(private breakpointObserver: BreakpointObserver) {}
+
+  constructor(private breakpointObserver: BreakpointObserver) { }
 
   ngOnInit(): void {
     this.setupResponsiveBehavior();
@@ -94,22 +97,22 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   next(): void {
-    if (this.currentIndex + this.visibleCards < this.slides.length) {
-      this.currentIndex++;
-    } else {
-      this.currentIndex = 0;
-    }
+    this.currentIndex = (this.currentIndex + 1) % this.slides.length;
   }
 
   prev(): void {
-    if (this.currentIndex > 0) {
-      this.currentIndex--;
-    } else {
-      this.currentIndex = Math.max(0, this.slides.length - this.visibleCards);
-    }
+    this.currentIndex =
+      (this.currentIndex - 1 + this.slides.length) % this.slides.length;
   }
 
+
   get visibleSlides() {
-    return this.slides.slice(this.currentIndex, this.currentIndex + this.visibleCards);
+    const visible = [];
+    for (let i = 0; i < this.visibleCards; i++) {
+      const index = (this.currentIndex + i) % this.slides.length;
+      visible.push(this.slides[index]);
+    }
+    return visible;
   }
+
 }
