@@ -9,13 +9,14 @@ import { AdminsComponent } from './components/admins/admins.component';
 import { PermissionairesComponent } from './components/permissionaires/permissionaires.component';
 import { UnitsComponent } from './components/units/units.component';
 import { SinistersComponent } from './components/sinisters/sinisters.component';
-import { DocumentsPDFComponent } from './components/documents-pdf/documents-pdf.component';
+import { DocumentsPdfComponent } from './components/documents-pdf/documents-pdf.component';
 import { MenuExtraDataComponent } from './components/extraData/menu-extra-data/menu-extra-data.component';
 import { CreateUserComponent } from './components/structure/create-user/create-user.component';
 import { AuthGuardService } from './services/security/auth-guard.service';
 import { AuthViewComponent } from './AuthView.componet';
 import { AppModule } from './app.module';
 import { AppComponent } from './app.component';
+import { LogsComponent } from './components/logs/logs.component';
 const routes: Routes = [
   {
     path: '',
@@ -38,8 +39,10 @@ const routes: Routes = [
   { path: 'permission', component: PermissionairesComponent, canActivate: [AuthGuardService],data: { section: 'Permissionaire' } },
   { path: 'units', component: UnitsComponent, canActivate: [AuthGuardService],data: { section: 'Unit' } },
   { path: 'sinisters', component: SinistersComponent, canActivate: [AuthGuardService],data: { section: 'Sinister' } },
-  { path: 'documents', component: DocumentsPDFComponent, canActivate: [AuthGuardService],data: { section: 'PDF' } },
+  { path: 'documents', component: DocumentsPdfComponent, canActivate: [AuthGuardService],data: { section: 'PDF' } },
   { path: 'extraData', component: MenuExtraDataComponent, canActivate: [AuthGuardService],data: { section: 'ExtraData' } },
+  { path: 'logs', component: LogsComponent, canActivate: [AuthGuardService],data: { section: 'Logs' } },
+   
 ]
 },
   //ruta para cuando no se encuentre la url

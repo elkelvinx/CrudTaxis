@@ -51,6 +51,13 @@ export class MenuExtraDataComponent implements OnInit {
     showActions: true,
     showFilter: true,
   };
+  tableConfigUser: TableConfig = {
+    isSelectable: false,
+    isPaginable: true,
+    showActions: true,
+    showFilter: true,
+    showStateUser: true,
+  }
   onTableAction(tableAction: TableActionExtraData) {
     debugger;
     if (tableAction.action == 1) {
@@ -238,6 +245,8 @@ export class MenuExtraDataComponent implements OnInit {
           dateCreated: this.pipeRole2.transformDateIn(data.User.dateCreated),
           roleName: this.pipeRole2.transformRolName(data.Permissions.idRole),
           active:this.pipeRole2.transformActiveBadge(data.User.active),
+          block:this.pipeRole2.transformBlockBadge(data.User.bloqued),
+          // active: data.User.active,
         }));
         debugger
       },

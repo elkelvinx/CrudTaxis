@@ -13,7 +13,7 @@ export class TokenInterceptor implements HttpInterceptor {
         this.isJWTExpiredDialog = false;
         const token = `Bearer ${this.authService.getToken()}`;
         const urlNow = this.router.url;
-        console.log(urlNow);
+        // console.log(urlNow);
         //Verificar que no se envíe el encabezado de autorización en LogIn
         if (this.router.url === '/login') {
             const headerClone = req.clone();

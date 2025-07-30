@@ -1,5 +1,68 @@
+
 <!DOCTYPE html>
-<div class="mat-app-background basic-container">
-    <app-info-dialog>LOADING</app-info-dialog>
+<!--
+     Dropdown 1: Tipo de entidad (driver, permissionaire, unit, sinister, etc.) 
+
+     Dropdown 2: Lista de registros según el tipo anterior
+      Si eliges "Driver" → cargas todos los drivers con su nombre/ID
+      
+     Dropdown 3: Tipo de documento (desde tu tabla DocumentTypes) 
+-->
+<div class="container">
+  <h1>Subir Documentos</h1>
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form-section">
+    <!-- Dropdown 1: Tipo de Entidad -->
+    <mat-form-field appearance="fill">
+      <mat-label>Tipo de Entidad</mat-label>
+      <mat-select formControlName="entityType" required>
+        <mat-option *ngFor="let type of entityTypes" [value]="type">
+          {{ type | titlecase }}
+        </mat-option>
+      </mat-select>
+      <!-- Esto es para mostrar el error -->
+      <mat-error *ngIf="form.get('entityType')?.hasError('required')">
+        Este campo es obligatorio
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Dropdown 2: Entidad específica -->
+ <app-auto-complete
+  [text]="'Entidad Relacionada'"
+  [arrays]="entityNames"
+  (data)="handleSelectedEntity($event)"
+  className="brand"
+  style="width: 97%"
+></app-auto-complete>
+
+    <!-- Dropdown 3: Tipo de documento -->
+    <mat-form-field appearance="fill">
+      <mat-label>Tipo de Documento</mat-label>
+      <mat-select formControlName="documentType">
+        <mat-option *ngFor="let doc of documentTypes" [value]="doc.code">
+          {{ doc.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <!-- Descripción -->
+    <mat-form-field appearance="fill">
+      <mat-label>Descripción</mat-label>
+      <textarea matInput formControlName="description" rows="3"></textarea>
+    </mat-form-field>
+
+    <!-- Archivo -->
+    <input type="file" id="file" hidden (change)="onFileSelected($event)" />
+    <label mat-raised-button color="primary" for="file"  accept=".pdf,image/*">
+      Seleccionar Archivo
+    </label>
+    <span *ngIf="form.get('file')?.value">
+      {{ form.get('file')?.value?.name }}
+    </span>
+
+    <!-- Botón enviar -->
+    <button mat-raised-button color="accent" type="submit" [disabled]="form.invalid">
+      Subir Documento
+    </button>
+  </form>
 </div>
-Pagina de PDF's

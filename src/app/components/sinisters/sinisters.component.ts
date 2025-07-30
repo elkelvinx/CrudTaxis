@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { TableConfig } from '../tools/table/models/table-config';
 import { TABLE_ACTION } from '../tools/table/enums/action.enum';
 import { TableAction } from '../tools/table/models/table-actions';
-import { ExtraDataService } from '../tools/car_auto-complete/services/extra-data.service';
 import { Sinister } from '../../models/sinister';
 import { SinisterService } from '../../services/sinister.service';
 import { sinisterData } from '../../models/sinister';
@@ -52,7 +51,6 @@ tableConfig: TableConfig = {
 
   constructor(
     private serviceSinister: SinisterService,
-    private number: ExtraDataService,
     private pruebaService: PRUEBAService<Sinister>,
     private servicioApp: ReadService
   ) { }

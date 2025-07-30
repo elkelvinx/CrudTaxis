@@ -12,7 +12,6 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatDialogModule } from '@angular/material/dialog';
 import { EditDialogComponent } from '../edit-dialog/edit-dialog.component'
 import { InsertDialogComponent } from '../edit-dialog/insert-dialog/insert-dialog.component';
-
 @NgModule({
   declarations: [Table2, ColumnValuePipe],
   imports: [
@@ -27,7 +26,8 @@ import { InsertDialogComponent } from '../edit-dialog/insert-dialog/insert-dialo
     MatDialogModule,
     EditDialogComponent,
     InsertDialogComponent,
-    NgIf
+    NgIf,
+  
   ],
   exports: [Table2],
 })

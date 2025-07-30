@@ -1,12 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
-
+.mat-mdc-tab-body-content {
+  overflow: hidden !important;  ;
+  margin-bottom: 2%;
+}
+.mat-mdc-tab-body.mat-mdc-tab-body-active{
+  overflow-y: hidden !important;
+}
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   text-decoration: none;
   font-family: "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji",
-    "Segoe UI Emoji", "Segoe UI Symbol";
+    "Segoe UI Emoji",'Montserrat', "Segoe UI Symbol";
 }
 
 body {
@@ -294,9 +300,9 @@ td.mat-mdc-cell.mdc-data-table__cell.cdk-cell.cdk-column-actions.mat-column-acti
   border-radius: 4% !important;
   width: 100% !important;
 }
-.cdk-overlay-pane {
+/* .cdk-overlay-pane {
   max-width: 40vw !important;
-}
+} */
 
 .brand .mat-mdc-text-field-wrapper,
 .brand .mdc-text-field--filled:not(.mdc-text-field--disabled) {
@@ -342,8 +348,13 @@ div.mat-mdc-autocomplete-panel {
   box-shadow: -4px 3px 11px 1px rgba(0, 0, 0, 0.2),
     0px 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12);
 }
+.mat-mdc-raised-button:not(:disabled) {
+  color: white !important;
+}
 
 :root {
+  /* color de el texto de los botones */
+  --mdc-protected-button-label-text-color: white!important;
   /* error en el input sin actividad*/
   --mdc-filled-text-field-error-label-text-color: #ea9696;
   --mdc-filled-text-field-error-active-indicator-color: #f67d74;

@@ -5,6 +5,9 @@ table {
   font-size: 14px;
   width: 100%;
 }
+.badge-danger{
+  background-color: #0bd40f;
+}
 .input-filtro {
   width: 93%;
   margin-left: 0.3%;

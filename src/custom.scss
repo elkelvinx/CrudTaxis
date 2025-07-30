@@ -79,14 +79,14 @@ $achieve-red: (
     A700: $light-primary-text,
   )
 );
-$primary-palette: mat.define-palette($achieve-primary);
-$accent-palette: mat.define-palette($achieve-primary);
-$error-palette: mat.define-palette($achieve-red);
+$primary-palette: mat.m2-define-palette($achieve-primary);
+$accent-palette: mat.m2-define-palette($achieve-primary);
+$error-palette: mat.m2-define-palette($achieve-red);
 
 $primary1: map-get($primary-palette, 300);
 $success2: map-get($accent-palette, A200, A100, A400);
 $error3: map-get($error-palette,400);
-//////****************** Clases Para colores de los dialogs y snackBars*******************/////////
+/////__<<ngM2ThemingMigrationEscapedComment0>>__////////
 .basic-container {
   padding: 5px;
 }
@@ -110,18 +110,18 @@ $error3: map-get($error-palette,400);
   --mat-snack-bar-button-color: rgb(223 255 0);
 }
 
-// //**************************Light Theme*****************************//
-$green-palette: mat.$pink-palette;
+// /__<<ngM2ThemingMigrationEscapedComment1>>__/
+$green-palette: mat.$m2-pink-palette;
 $green-palette: map.merge($green-palette, (400: #167319));
 
-$my-primary: mat.define-palette($green-palette, 400);
-$my-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
-$my-warn: mat.define-palette(mat.$blue-palette, 900);
+$my-primary: mat.m2-define-palette($green-palette, 400);
+$my-accent: mat.m2-define-palette(mat.$m2-pink-palette, A200, A100, A400);
+$my-warn: mat.m2-define-palette(mat.$m2-blue-palette, 900);
 
 $my-background: #f5f5f5; // Color de fondo para el tema claro
 $my-card: #ffffff; // Color de las tarjetas para el tema claro
 
-$my-theme: mat.define-light-theme((
+$my-theme: mat.m2-define-light-theme((
  color: (
    primary: $my-primary,
    accent: $my-accent,
@@ -130,12 +130,12 @@ $my-theme: mat.define-light-theme((
     extra2: $success2,
     extra3: $error3,
  ),
- typography: mat.define-typography-config(),
+ typography: mat.m2-define-typography-config(),
  density: 0,
 ));
-$my-primary: mat.define-palette($green-palette, 400);
-$my-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
-$my-warn: mat.define-palette(mat.$blue-palette, 900);
+$my-primary: mat.m2-define-palette($green-palette, 400);
+$my-accent: mat.m2-define-palette(mat.$m2-pink-palette, A200, A100, A400);
+$my-warn: mat.m2-define-palette(mat.$m2-blue-palette, 900);
 
 @include mat.all-component-themes($my-theme);
 
@@ -144,7 +144,7 @@ $my-warn: mat.define-palette(mat.$blue-palette, 900);
 $my-dark-background: #ea0000; // Color de fondo para el tema oscuro
 $my-dark-card: #424242; // Color de las tarjetas para el tema oscuro
 
-$my-dark-theme: mat.define-dark-theme((
+$my-dark-theme: mat.m2-define-dark-theme((
  color: (
    primary: $my-primary,
    accent: $my-accent,
@@ -152,7 +152,7 @@ $my-dark-theme: mat.define-dark-theme((
    background: $my-dark-background,
    card: $my-dark-card,
  ),
- typography: mat.define-typography-config(),
+ typography: mat.m2-define-typography-config(),
  density: 0,
 ));
 

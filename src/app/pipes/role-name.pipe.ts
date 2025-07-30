@@ -29,15 +29,19 @@ export class RoleNamePipe  {
     const formattedDate = this.datePipe.transform(dateIn, 'dd MMM yyyy hh:mm a');
     return formattedDate || ''; // Asegúrate de que siempre devuelva una cadena
   }
-  // transformActiveBadge(active: boolean): SafeHtml {
-  //   const badge = active
-  //     ? '<span class="badge badge-success">A</span>'
-  //     : '<span class="badge badge-danger">X</span>';
-  //   return this.sanitizer.bypassSecurityTrustHtml(badge);
-  // }
-  transformActiveBadge(active: boolean): string {
-    return active
+  transformActiveBadge(active: boolean): SafeHtml {
+    const html = active
       ? '<span class="badge badge-success">A</span>'
-      : '<span class="badge badge-danger">X</span>';
+      : '<span class="badge badge-danger">D</span>';
+    return this.sanitizer.bypassSecurityTrustHtml(html);
   }
+  transformBlockBadge(block: boolean): SafeHtml {
+    if (block === true) {
+      const html = '<span class="badge badge-dark">B</span>';
+      return this.sanitizer.bypassSecurityTrustHtml(html);
+    } else {
+      return this.sanitizer.bypassSecurityTrustHtml('');
+    }
+  }
+  
 }

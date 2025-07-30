@@ -45,17 +45,23 @@
       </mat-checkbox>
     </td>
   </ng-container>
- <!-- <div *ngIf="numIndicator!= 9"> 
-      <ng-container matColumnDef="active">
-        <th mat-header-cell *matHeaderCellDef>Estado</th>
-        <td mat-cell *matCellDef="let row">
-       ??    <ng-container *ngIf="row.active; else noActive">{{ row.active }}</ng-container>
-       ??   <ng-template #noActive>N</ng-template> 
-          <span class="badge badge-success">A</span>
-        </td>
-      </ng-container>
- </div> -->
-  
+
+    <ng-container matColumnDef="state">
+      <div style="background-color: red;">
+      <th mat-header-cell *matHeaderCellDef>Estado</th>
+      <td mat-cell *matCellDef="let row">
+        <ng-container *ngIf="row.active; else noActive">
+          <div [innerHTML]="row.active"></div>
+        </ng-container>
+        <ng-template #noActive>
+          <span class="badge badge-danger">N</span>
+        </ng-template>
+        <ng-container *ngIf="row.block">
+          <div [innerHTML]="row.block"></div>
+        </ng-container>
+      </td>
+    </div>
+    </ng-container>  
   <ng-container matColumnDef="actions">
     <th mat-header-cell *matHeaderCellDef>Acciones</th>
     <td mat-cell *matCellDef="let row">

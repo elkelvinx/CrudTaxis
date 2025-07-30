@@ -1,16 +1,16 @@
-import { Component,OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AppRoutingModule } from '../../../app-routing.module';
 import { AuthService } from '../../../services/security/authService.service';
 import { Router } from '@angular/router';
-import {DialogAnimationsExampleDialog} from '../../tools/yes-no-dialog/yes-no-dialog.component';
+import { DialogAnimationsExampleDialog } from '../../tools/yes-no-dialog/yes-no-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
-import {MatMenuModule} from '@angular/material/menu';
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })
-export class HeaderComponent implements OnInit{
+export class HeaderComponent implements OnInit {
   userName: string = '';
   selectedOption: string = 'home';
   permissions: any;
@@ -18,24 +18,23 @@ export class HeaderComponent implements OnInit{
   menuWidth = '70px'; // Ancho inicial
   headerWidth = '3.7%'; // Ancho inicial
   iconButtonWidth = '0%'; //Ancho del icono
-  constructor(private router: Router,private auth:AuthService,private dialog: MatDialog) { }
- ngOnInit(): void {
-   this.permissions=this.auth.getDecodedToken();  
-    this.userName=this.auth.getUserName();
-    console.log(this.userName+" Niggers");
- }
+  constructor(private router: Router, private auth: AuthService, private dialog: MatDialog) { }
+  ngOnInit(): void {
+    this.permissions = this.auth.getDecodedToken();
+    this.userName = this.auth.getUserName();
+  }
   isActive(path: string): boolean {
     const currentRoute = this.router.url;
     return currentRoute.startsWith(path);
   }
-logOut(){
-this.auth.logout();
-}
-closeSession(){
-  debugger
-  this.auth.logout();
-  this.router.navigate(['/login']);
-}
+  logOut() {
+    this.auth.logout();
+  }
+  closeSession() {
+    debugger
+    this.auth.logout();
+    this.router.navigate(['/login']);
+  }
 
   toggleMenu() {
     debugger
@@ -43,16 +42,16 @@ closeSession(){
       this.closeMenu();
     }
     else {
-    this.menuWidth = '270px'; // abre el menu
-    this.headerWidth = '270px'
-    this.iconButtonWidth = '10%'; 
-    this.isMenuOpen = true;
+      this.menuWidth = '270px'; // abre el menu
+      this.headerWidth = '270px'
+      this.iconButtonWidth = '10%';
+      this.isMenuOpen = true;
     }
   }
   closeMenu() {
     this.menuWidth = '70px'; // cierra el menu
     this.headerWidth = '3.7%'
-    this.iconButtonWidth = '0%'; 
+    this.iconButtonWidth = '0%';
     this.isMenuOpen = false;
   }
   openDialog(enterAnimationDuration: string, exitAnimationDuration: string, contentDialog: string): void {

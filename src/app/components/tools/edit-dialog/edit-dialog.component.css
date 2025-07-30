@@ -3,6 +3,9 @@ form.example-form {
   justify-content: space-around;
   margin-bottom: -2%;
 }
+.cdk-overlay-pane {
+  max-width: 40vw !important;
+}
 .example-full-width {
   width: 93%;
   margin-top: 10px;

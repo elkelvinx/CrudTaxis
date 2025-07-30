@@ -82,7 +82,7 @@ export class EditDialogComponent {
   }
   openDialogUpdateUser(enterAnimationDuration: string, exitAnimationDuration: string, contentDialog: string, name: string, information: string, indicator: string, numIndicator: number, object: any, array: any): void {
     const dialogRef = this.dialog.open(DialogUpdateUser, {
-      width: '1520px',
+      width: '920px',
       enterAnimationDuration,
       exitAnimationDuration,
       data: {

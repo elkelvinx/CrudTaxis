@@ -1,1 +1,400 @@
 <!DOCTYPE html>
+<div class="log-viewer-container">
+  <!-- <mat-sidenav-content> -->
+  <div class="content-container">
+    <div class="PrincipalDiv">
+      <mat-tab-group (selectedTabChange)="onTabChange($event)">
+        <mat-tab label="History Log In">
+          <ng-template matTabContent>
+            <h2 class="subTitle">
+              Historial de cambios hasta la fecha:
+              {{ getTimeLoaded(0) | date : "medium" }}
+            </h2>
+            <form
+              [formGroup]="historyLogForm"
+              (ngSubmit)="applyHistoryLogFilter()"
+              class="form"
+            >
+              <div class="form-row">
+                <mat-form-field>
+                  <mat-label>User Name</mat-label>
+                  <input matInput formControlName="userName" />
+                </mat-form-field>
+                <mat-form-field>
+                  <mat-label>Role Name</mat-label>
+                  <input matInput formControlName="roleName" />
+                </mat-form-field>
+              </div>
+              <div class="form-row">
+                <mat-form-field>
+                  <mat-label>Entry Date</mat-label>
+                  <input
+                    matInput
+                    [matDatepicker]="entryPicker"
+                    formControlName="entry"
+                  />
+                  <mat-datepicker-toggle
+                    matSuffix
+                    [for]="entryPicker"
+                  ></mat-datepicker-toggle>
+                  <mat-datepicker #entryPicker></mat-datepicker>
+                </mat-form-field>
+                <mat-form-field>
+                  <mat-label>Exit Date</mat-label>
+                  <input
+                    matInput
+                    [matDatepicker]="exitPicker"
+                    formControlName="exits"
+                  />
+                  <mat-datepicker-toggle
+                    matSuffix
+                    [for]="exitPicker"
+                  ></mat-datepicker-toggle>
+                  <mat-datepicker #exitPicker></mat-datepicker>
+                </mat-form-field>
+              </div>
+              <button
+                mat-raised-button
+                color="primary"
+                type="submit"
+                (click)="MostrarObj()"
+              >
+                Apply Filter
+              </button>
+              <button
+                mat-raised-button
+                color="primary"
+                type="submit"
+                (click)="MostrarObj()"
+              >
+                Reload
+              </button>
+            </form>
+
+            <table
+              mat-table
+              #table1
+              matSort
+              (matSortChange)="announceSortChange($event)"
+              [dataSource]="historyLogs"
+              class="mat-elevation-z8"
+            >
+              <ng-container matColumnDef="userName">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>User Name</th>
+                <td mat-cell *matCellDef="let element">
+                  {{ element.userName }}
+                </td>
+              </ng-container>
+              <ng-container matColumnDef="roleName">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Role Name</th>
+                <td mat-cell *matCellDef="let element">
+                  {{ element.roleName }}
+                </td>
+              </ng-container>
+              <ng-container matColumnDef="entry">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Entry</th>
+                <td mat-cell *matCellDef="let element">
+                  {{ element.entry | date : "medium" }}
+                </td>
+              </ng-container>
+              <ng-container matColumnDef="exits">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Exit</th>
+                <td mat-cell *matCellDef="let element">
+                  {{ element.exits | date : "medium" }}
+                </td>
+              </ng-container>
+
+              <tr
+                mat-header-row
+                *matHeaderRowDef="['userName', 'roleName', 'entry', 'exits']"
+              ></tr>
+              <tr
+                mat-row
+                *matRowDef="
+                  let row;
+                  columns: ['userName', 'roleName', 'entry', 'exits']
+                "
+              ></tr>
+            </table>
+          </ng-template>
+        </mat-tab>
+
+        <mat-tab label="Change Log">
+          <ng-template matTabContent>
+            <h2>
+              Change Log - Loaded: {{ getTimeLoaded(1) | date : "medium" }}
+            </h2>
+            <form
+              [formGroup]="changeLogForm"
+              (ngSubmit)="applyChangeLogFilter()"
+            >
+              <div class="form-row">
+                <mat-form-field>
+                  <mat-label>User Name</mat-label>
+                  <input matInput formControlName="UserName" />
+                </mat-form-field>
+                <app-auto-complete
+                  [text]="'Action'"
+                  [arrays]="DMLs"
+                  (data)="guardarStatus($event)"
+                  className="brand"
+                  style="width: 30%"
+                >
+                </app-auto-complete>
+                <mat-form-field>
+                  <mat-label>Table Name</mat-label>
+                  <input matInput formControlName="nameTable" />
+                </mat-form-field>
+              </div>
+              <div class="form-row">
+                <mat-form-field>
+                  <mat-label>Fecha de inicio</mat-label>
+                  <input
+                    matInput
+                    [matDatepicker]="modDatePickerStart"
+                    formControlName="StartModDate"
+                  />
+                  <mat-datepicker-toggle
+                    matSuffix
+                    [for]="modDatePickerStart"
+                  ></mat-datepicker-toggle>
+                  <!--Input De Fechas-->
+                  <mat-datepicker #modDatePickerStart></mat-datepicker>
+                </mat-form-field>
+                <mat-form-field>
+                  <mat-label>Fecha de fin</mat-label>
+                  <input
+                    matInput
+                    [matDatepicker]="modDatePickerEnd"
+                    formControlName="EndModDate"
+                  />
+                  <mat-datepicker-toggle
+                    matSuffix
+                    [for]="modDatePickerEnd"
+                  ></mat-datepicker-toggle>
+                  <mat-datepicker #modDatePickerEnd></mat-datepicker>
+                </mat-form-field>
+              </div>
+              <div class="form-row"></div>
+              <button
+                mat-raised-button
+                color="primary"
+                type="submit"
+                (click)="MostrarObj()"
+              >
+                Apply Filter
+              </button>
+            </form>
+            <table
+              mat-table
+              #table2
+              [dataSource]="changelogs"
+              class="mat-elevation-z8"
+            >
+              <ng-container matColumnDef="userName">
+                <th mat-header-cell *matHeaderCellDef>User Name</th>
+                <td mat-cell *matCellDef="let element">
+                  {{ element.userName }}
+                </td>
+              </ng-container>
+              <ng-container matColumnDef="roleName">
+                <th mat-header-cell *matHeaderCellDef>Role Name</th>
+                <td mat-cell *matCellDef="let element">
+                  {{ element.roleName }}
+                </td>
+              </ng-container>
+              <ng-container matColumnDef="nameTable">
+                <th mat-header-cell *matHeaderCellDef>Table Name</th>
+                <td mat-cell *matCellDef="let element">
+                  {{ element.nameTable }}
+                </td>
+              </ng-container>
+              <ng-container matColumnDef="modDate">
+                <th mat-header-cell *matHeaderCellDef>Mod Date</th>
+                <td mat-cell *matCellDef="let element">
+                  {{ element.modDate | date : "medium" }}
+                </td>
+              </ng-container>
+              <ng-container matColumnDef="DML">
+                <th mat-header-cell *matHeaderCellDef>DML</th>
+                <td mat-cell *matCellDef="let element">{{ element.DML }}</td>
+              </ng-container>
+              <ng-container matColumnDef="query">
+                <th mat-header-cell *matHeaderCellDef>Query</th>
+                <td mat-cell *matCellDef="let element">
+                  <button
+                    mat-raised-button
+                    color="primary"
+                    (click)="openInfoDialog(element.query)"
+                  >
+                    Query
+                  </button>
+                </td></ng-container
+              >
+
+              <tr
+                mat-header-row
+                *matHeaderRowDef="[
+                  'userName',
+                  'roleName',
+                  'nameTable',
+                  'modDate',
+                  'DML',
+                  'query'
+                ]"
+              ></tr>
+              <tr
+                mat-row
+                *matRowDef="
+                  let row;
+                  columns: [
+                    'userName',
+                    'roleName',
+                    'nameTable',
+                    'modDate',
+                    'DML',
+                    'query'
+                  ]
+                "
+              ></tr>
+            </table>
+          </ng-template>
+        </mat-tab>
+
+        <mat-tab label="Error Log">
+          <ng-template matTabContent>
+            <h2>
+              Error Log - Loaded: {{ getTimeLoaded(2) | date : "medium" }}
+            </h2>
+            <form [formGroup]="errorLogForm" (ngSubmit)="applyErrorLogFilter()">
+              <div class="form-row">
+                <mat-form-field>
+                  <mat-label>User Name</mat-label>
+                  <input matInput formControlName="UserName" />
+                </mat-form-field>
+                <app-auto-complete
+                  [text]="'Action'"
+                  [arrays]="DMLs"
+                  (data)="guardarStatus($event)"
+                  className="brand"
+                  style="width: 48%"
+                >
+                </app-auto-complete>
+              </div>
+              <div class="form-row">
+                <mat-form-field>
+                  <mat-label>Table Name</mat-label>
+                  <input matInput formControlName="nameTable" />
+                </mat-form-field>
+                <mat-form-field>
+                  <mat-label>First Date</mat-label>
+                  <input
+                    matInput
+                    [matDatepicker]="modDatePickerStart"
+                    formControlName="StartDateError"
+                  />
+                  <mat-datepicker-toggle
+                    matSuffix
+                    [for]="modDatePickerStart"
+                  ></mat-datepicker-toggle>
+                  <!--Input De Fechas-->
+                  <mat-datepicker #modDatePickerStart></mat-datepicker>
+                </mat-form-field>
+                <mat-form-field>
+                  <mat-label>Second Date</mat-label>
+                  <input
+                    matInput
+                    [matDatepicker]="modDatePickerEnd"
+                    formControlName="EndDateError"
+                  />
+                  <mat-datepicker-toggle
+                    matSuffix
+                    [for]="modDatePickerEnd"
+                  ></mat-datepicker-toggle>
+                  <!--Input De Fechas-->
+                  <mat-datepicker #modDatePickerEnd></mat-datepicker>
+                </mat-form-field>
+              </div>
+              <div class="form-row"></div>
+              <button mat-raised-button color="primary" type="submit">
+                Apply Filter
+              </button>
+            </form>
+
+            <table
+              mat-table
+              [dataSource]="errorLogs"
+              class="mat-elevation-z8"
+              matSort
+           
+            >
+              <ng-container matColumnDef="userName">
+                <th
+                  mat-header-cell
+                  *matHeaderCellDef
+                  mat-sort-header
+                >
+                  User Name
+                </th>
+                <td mat-cell *matCellDef="let element">
+                  {{ element.userName }}
+                </td>
+              </ng-container>
+              <ng-container matColumnDef="nameTable">
+                <th mat-header-cell *matHeaderCellDef>Table Name</th>
+                <td mat-cell *matCellDef="let element">
+                  {{ element.nameTable }}
+                </td>
+              </ng-container>
+              <ng-container matColumnDef="DateError">
+                <th mat-header-cell *matHeaderCellDef>Error Date</th>
+                <td mat-cell *matCellDef="let element">
+                  {{ element.DateError | date : "medium" }}
+                </td>
+              </ng-container>
+              <ng-container matColumnDef="DML">
+                <th mat-header-cell *matHeaderCellDef>DML</th>
+                <td mat-cell *matCellDef="let element">{{ element.DML }}</td>
+              </ng-container>
+              <ng-container matColumnDef="MessageError">
+                <th mat-header-cell *matHeaderCellDef>Error</th>
+                <td mat-cell *matCellDef="let element">
+                  <button
+                    mat-raised-button
+                    color="primary"
+                    (click)="openErroMensaje(element.query)"
+                  >
+                    Info
+                  </button>
+                </td></ng-container
+              >
+              <tr
+                mat-header-row
+                *matHeaderRowDef="[
+                  'userName',
+                  'nameTable',
+                  'MessageError',
+                  'DML',
+                  'DateError'
+                ]"
+              ></tr>
+              <tr
+                mat-row
+                *matRowDef="
+                  let row;
+                  columns: [
+                    'userName',
+                    'nameTable',
+                    'MessageError',
+                    'DML',
+                    'DateError'
+                  ]
+                "
+              ></tr>
+            </table>
+          </ng-template>
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+  </div>
+</div>

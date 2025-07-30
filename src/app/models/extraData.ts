@@ -1,6 +1,6 @@
 export class structureData {
     constructor(
-        public id:number =0,
+        public id: number = 0,
         public name: string = '',
     ) { }
 };
@@ -21,21 +21,21 @@ export class structureExtraData {
         public idBrand: number = -1,
     ) { }
 };
-export class extructureModel{
+export class extructureModel {
     constructor(
         public name: string = '',
         public idBrand: number = 0,
     ) { }
 }
-export class extructureStreet{
+export class extructureStreet {
     constructor(
         public name: string = '',
         public settlement: number = 0,
     ) { }
 }
-export class structureUserTable{
+export class structureUserTable {
     constructor(
-        public id:number =0,
+        public id: number = 0,
         public name: string = '',
         public IdRole: string = '',
     ) { }
@@ -59,18 +59,14 @@ export class TableColumnsStructure {
     ];
     static tableColumns4: TableColumn[] = [
         { label: 'Identificador', def: 'id', dataKey: 'id' },
-         { label: 'Rol', def: 'roleName', dataKey: 'roleName' },
-         { label: 'Nombres', def: 'name', dataKey: 'name' },
-         { label: 'Email', def: 'email', dataKey: 'email' },
-         { label: 'F-Creacion', def: 'dateCreated', dataKey: 'dateCreated' },
-        // { label: 'Estado', def: 'active', dataKey: 'active' },
-        // { label: 'F-Baja', def: 'dateOut', dataKey: 'dateOut' },
-        // { label: 'AdminPerm', def: 'ExtraData', dataKey: 'ExtraData' },
-        
+        { label: 'Rol', def: 'roleName', dataKey: 'roleName' },
+        { label: 'Nombres', def: 'name', dataKey: 'name' },
+        { label: 'Email', def: 'email', dataKey: 'email' },        
+        { label: 'F-Creacion', def: 'dateCreated', dataKey: 'dateCreated' },
     ];
     columns: TableColumn[];
     constructor(numberOfColumns: number) {
-        switch(numberOfColumns){
+        switch (numberOfColumns) {
             case 1:
                 this.columns = TableColumnsStructure.tableColumns;
                 break;

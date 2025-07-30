@@ -110,7 +110,7 @@ export class NotificationService {
   alert(message: string, title = 'Notice', okCallback: () => void = () => { }) {
 
     const dialogRef = this.dialog.open(AlertDialog, {
-      width: '1450px',
+      width: '915px',
       height: '290px',
       data: { message: message, title: title },
       disableClose: true
