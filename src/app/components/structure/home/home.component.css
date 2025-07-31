@@ -7,6 +7,7 @@
   margin-right: 10px;
   transition: all 0.3s ease;
 }
+
 .div-Info {
   background-color: aquamarine;
 }
@@ -94,14 +95,52 @@
   text-align: center;
   font-size: 30px;
 }
+@media (max-width: 497px) {
+  #header {
+    min-height: 130px;
+    overflow: hidden;
+  }
 
+  #menu,
+  #menu ul {
+    line-height: 50px;
+  }
+
+  #menu ul li {
+    margin-left: 7px;
+    margin-right: 7px;
+  }
+
+  #slider {
+    height: 180px;
+  }
+
+  #slider h1 {
+    font-size: 19px;
+    padding-top: 30px;
+  }
+
+  #slider .btn-white {
+    margin-top: 20px;
+  }
+
+  #slider.slider-small {
+    height: 100px;
+  }
+
+  #slider.slider-small h1 {
+    padding-top: 35px;
+  }
+}
 /*! NUEVO */
 /*?Estilos para el icono */
 .icon-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100px;
+  height: fit-content;
+  display: flex;
+  justify-content: space-evenly;
 }
 
 .icon {
@@ -111,8 +150,8 @@
   width: 89px;
   font-size: 5.6rem;
   color: #4caf50;
-  margin-left: 32%;
-  margin-top: 3%;
+  margin-left: 0vw;
+  margin-top: 3.8%;
   box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.2) !important;
 }
 
@@ -175,8 +214,8 @@
 .image-container {
   height: 100px;
   overflow: hidden;
-  /* display: flex;
-  justify-content: center; */
+  display: flex;
+  justify-content: center;
 }
 
 .nav-button {
@@ -263,8 +302,7 @@
 }
 @media (min-width: 750px) and (max-width: 1200px) {
   .icon:hover {
-    transform: scale(1.047);
-    background-color: rebeccapurple;
+    transform: scale(1.347);
   }
 }
 @media (max-width: 768px) {
@@ -301,47 +339,9 @@
     margin-left: 0vw;
   }
   .image-container {
-    /* height: 80px; */
+    height: fit-content;
     display: flex;
     justify-content: space-evenly;
-  }
-}
-
-@media (max-width: 497px) {
-  #header {
-    min-height: 130px;
-    overflow: hidden;
-  }
-
-  #menu,
-  #menu ul {
-    line-height: 50px;
-  }
-
-  #menu ul li {
-    margin-left: 7px;
-    margin-right: 7px;
-  }
-
-  #slider {
-    height: 180px;
-  }
-
-  #slider h1 {
-    font-size: 19px;
-    padding-top: 30px;
-  }
-
-  #slider .btn-white {
-    margin-top: 20px;
-  }
-
-  #slider.slider-small {
-    height: 100px;
-  }
-
-  #slider.slider-small h1 {
-    padding-top: 35px;
   }
 }
 
@@ -365,8 +365,7 @@
     justify-content: space-evenly;
   }
   .icon:hover {
-    transform: scale(1.1) !important;
-    background-color: rgb(157, 235, 0);
+    transform: scale(1.129) !important;
     height: 170px;
     width: 89px;
   }

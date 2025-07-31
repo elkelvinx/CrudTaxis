@@ -38,19 +38,6 @@ td.mat-cell {
   font-size: large;
   padding: 8px;
 }
-/* header {
-  /*Modificado de 80 a 50*/
-/*agregue el margin left a -10*
-  width: 120%;
-  height: 50px;
-  background: #1b1e18d6;
-  display: flex;
-  align-items: center;
-  position: fixed;
-  top: 0;
-  z-index: 200;
-  margin-left: 70px;
-} */
 
 #close {
   position: absolute;
