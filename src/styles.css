@@ -315,7 +315,8 @@ td.mat-mdc-cell.mdc-data-table__cell.cdk-cell.cdk-column-actions.mat-column-acti
 
 .mat-icon:hover {
   color: #1bea00ad;
-  transform: scale(1.3) !important;
+  /*!!ESTO NO DEBERIA LLEVAR IMPORTANTtransform: scale(1.3) !important;*/
+  transform: scale(1.3);
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
 }
 .mat-icon {
@@ -323,9 +324,9 @@ td.mat-mdc-cell.mdc-data-table__cell.cdk-cell.cdk-column-actions.mat-column-acti
 }
 
 .mat-icon:active {
-  transform: scale(
-    1.5
-  ) !important; /* Escala el ícono ligeramente al hacer clic */
+ /*!!ESTO NO DEBERIA LLEVAR IMPORTANT transform: scale(1.5) !important;*/ 
+        /* Escala el ícono ligeramente al hacer clic */
+  transform: scale(1.5); /* Escala el ícono ligeramente al hacer clic */
   color: #d5f600;
 }
 .mat-icon {
