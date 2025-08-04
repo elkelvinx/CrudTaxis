@@ -4,34 +4,17 @@
   <div class="header-section">
     <h1 class="title">Bienvenido al sistema de taxis UTVNS</h1>
     <p class="subtitle">
-      Administra conductores, unidades, accidentes y documentos en un solo lugar.
+      Administra conductores, unidades, accidentes y documentos en un solo
+      lugar.
     </p>
-    <!-- <p class="vision">
-    </p> -->
   </div>
 
   <div class="carousel-wrapper">
-    <button mat-icon-button class="nav-button" (click)="prev()" [disabled]="currentIndex === 0">
-      <mat-icon>chevron_left</mat-icon>
-    </button>
+    <app-carrousel></app-carrousel>
+    <app-img-techs></app-img-techs>
 
-    <div class="carousel-track">
-      <mat-card *ngFor="let slide of visibleSlides" class="carousel-card mat-elevation-z8">
-        <div class="image-container">
-          <mat-icon class="icon">{{slide.icon}}</mat-icon>
-        </div>
-        <mat-card-header>
-          <mat-card-title>{{slide.title}}</mat-card-title>
-        </mat-card-header>
-        <mat-card-content>
-          <p>{{slide.description}}</p>
-        </mat-card-content>
-      </mat-card>
+    <div class="footer-section">
+      <p class="footer-text">© 2023 UTVNS. Todos los derechos reservados.</p>
     </div>
-
-    <button mat-icon-button class="nav-button" (click)="next()">
-      <mat-icon>chevron_right</mat-icon>
-    </button>
   </div>
 </div>
-
