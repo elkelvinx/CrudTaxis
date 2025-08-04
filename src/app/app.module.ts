@@ -108,6 +108,7 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { environment } from '../enviroment/enviroment';
 import { CarrouselComponent } from './components/tools/carrousel/carrousel/carrousel.component';
+import { ImgTechsComponent } from './components/tools/img-techs/img-techs.component';
 @NgModule({
     exports: [
         A11yModule,
@@ -179,6 +180,7 @@ import { CarrouselComponent } from './components/tools/carrousel/carrousel/carro
         LogsComponent,
         DocumentsPdfComponent,
         CarrouselComponent,
+        ImgTechsComponent,
         
         
     ],

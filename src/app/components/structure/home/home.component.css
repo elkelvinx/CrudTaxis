@@ -132,41 +132,9 @@
     padding-top: 35px;
   }
 }
-/*! NUEVO */
-/*?Estilos para el icono */
-.icon-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: fit-content;
-  display: flex;
-  justify-content: space-evenly;
-}
 
-.icon {
-  border: none !important; /* por si un global style lo pone */
-  background: none;
-  height: 90px;
-  width: 89px;
-  font-size: 5.6rem;
-  color: #4caf50;
-  margin-left: 0vw;
-  margin-top: 3.8%;
-  box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.2) !important;
-}
 
-.home-container {
-  padding: 3rem;
-  /* background-color: #1e2b30; /* Gris verdoso oscuro */
-  color: #e0f2f1; /* Verde claro pastel */
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-}
-
-.header-section {
-  text-align: center;
-  margin-bottom: 2.5rem;
-}
-
+/* ** En veremos */
 .title {
   font-size: 2.7rem;
   color: #8bc34a; /* Verde vibrante */
@@ -178,107 +146,9 @@
   color: #cfd8dc;
   margin-bottom: 0.7rem;
 }
-
-.carousel-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  /* !! wtf por que falla */
-  overflow-x: visible;
-}
-
-.carousel-track {
-  display: flex;
-  transition: transform 0.4s ease-in-out;
-  gap: 1.2rem;
-  width: 100%;
-  max-width: 1000px;
-  justify-content: center;
-}
-
-.carousel-card {
-  width: 300px;
-  min-width: 250px;
-  background-color: #263238; /* Fondo tarjeta oscuro */
-  color: #ffffff;
-  border-radius: 10px;
-  overflow: hidden;
-  transition: transform 0.3s ease;
-}
-
-.carousel-card:hover {
-  transform: translateY(-6px);
-}
-
-.image-container {
-  height: 100px;
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-}
-
-.nav-button {
-  background-color: rgba(139, 195, 74, 0.1);
-  color: #8bc34a;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-}
-
-.nav-button:hover {
-  background-color: rgba(246, 0, 0, 0.3);
-}
-
-/* ddd */
-.carousel-card {
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: 0 4px 20px rgba(36, 91, 15, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  background: rgba(99, 89, 89, 0.85);
-  backdrop-filter: blur(6px);
-}
-
-.carousel-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-}
-
-/************ Estilos para el encabezado de la tarjeta del carrusel color verde*/
-.carousel-card mat-card-header {
-  background: transparent;
-  justify-content: center;
-  align-items: center;
-}
-
-.carousel-card mat-card-title {
-  font-weight: 600;
-  color: #1fbb00d9; /* verde obscuro para titulares */
-}
-/* ************** estilo para descripcion de la tarjeta */
-.description {
+.header-section {
   text-align: center;
-}
-/* Estilos adicionales para la tarjeta del carrusel */
-.nav-button {
-  background: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(8px);
-  border-radius: 50%;
-  width: 48px;
-  height: 48px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  transition: background 0.3s ease, transform 0.3s ease;
-}
-
-.nav-button:hover {
-  background: rgba(255, 255, 255, 0.35);
-  transform: scale(1.1);
-}
-
-.nav-button[disabled] {
-  opacity: 0.4;
-  cursor: not-allowed;
+  margin-bottom: 2.5rem;
 }
 .home-container {
   padding: 2rem;
@@ -293,96 +163,15 @@
   color: #049b02;
   line-height: 2.5rem;
 }
-
-/************ Transiciones generales*/
-*,
-*::before,
-*::after {
-  transition: all 0.3s ease;
-}
-@media (min-width: 750px) and (max-width: 1200px) {
-  .icon:hover {
-    transform: scale(1.347);
+/* Estilos para telefonos S o muy pequeños */
+@media (max-width: 320px) {
+  .header-section .title {
+    font-size: 2.2rem;
   }
-}
-@media (max-width: 768px) {
-  .carousel-track {
-    flex-direction: column;
-    align-items: center;
+  .header-section {
+  margin-bottom: 1rem;
   }
-
-  .carousel-card {
-    width: 90vw;
-    max-width: 500px;
+  .home-container {
+    padding: 0.7rem;
   }
-
-  .nav-button {
-    display: none;
-  }
-}
-@media (max-width: 768px) {
-  .carousel-container {
-    flex-direction: column;
-    align-items: center;
-  }
-  .carousel-card {
-    width: 100%;
-    max-width: 360px;
-    margin: 1rem 0;
-    min-width: 100%;
-    background: rgba(99, 89, 89, 0.85);
-  }
-  .nav-button {
-    margin: 1rem 0;
-  }
-  .icon {
-    margin-left: 0vw;
-  }
-  .image-container {
-    height: fit-content;
-    display: flex;
-    justify-content: space-evenly;
-  }
-}
-
-/* ****************** Vista para telefonos */
-@media (max-width: 575px) {
-  .icon {
-    /* background-color: tomato; */
-    margin-left: 0vw;
-    font-size: 5rem;
-    height: 100px;
-    width: 89px;
-  }
-  .carousel-card {
-    width: 100%;
-    max-width: 90vw;
-    background: rgba(99, 89, 89, 0.85);
-  }
-  .image-container {
-    height: 80px;
-    display: flex;
-    justify-content: space-evenly;
-  }
-  .icon:hover {
-    transform: scale(1.129) !important;
-    height: 170px;
-    width: 89px;
-  }
-}
-
-/* ********************** animacion fluida */
-@keyframes fadeSlideUp {
-  from {
-    opacity: 0;
-    transform: translateY(15px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.carousel-card {
-  animation: fadeSlideUp 0.6s ease-in-out;
 }
