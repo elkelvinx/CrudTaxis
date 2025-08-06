@@ -17,7 +17,7 @@
   align-items: center;
   gap: 2rem;
   flex-wrap: wrap;
-} 
+}
 
 .tech-logos img:hover {
   transform: scale(1.1);
@@ -27,19 +27,19 @@
   width: 220px;
   height: 180px;
   object-fit: contain;
-  filter: drop-shadow(2px 2px 5px rgba(0, 0, 0, 0.3));
+  filter: drop-shadow(1px 2px 20px rgba(123, 255, 0, 0.138));
   transition: transform 0.3s ease;
-}
-@media (max-width: 768px) {
-  .tech-logos img {
-    width: 70px;
-    height: 70px;
-  }
 }
 
 @media (max-width: 768px) {
   .tech-logos img {
-    width: 80px;
+    /* width: 70px;
+    height: 70px; */
+    width: 220px;
+    height: 180px;
+    object-fit: contain;
+    filter: drop-shadow(1px 2px 20px rgba(123, 255, 0, 0.229));
+    transition: transform 0.3s ease;
   }
 
   .tech-title {
@@ -50,10 +50,11 @@
 @media (max-width: 480px) {
   .tech-logos {
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 2.5rem;
   }
 
   .tech-logos img {
-    width: 70px;
+     width: 180px;
+    height: 140px;
   }
 }
