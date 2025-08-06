@@ -6,6 +6,44 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
+
+# Sistema de Gestión de Documentos para Taxis
+
+Sistema web para administrar documentos (PDFs, imágenes) asociados a entidades como conductores, unidades, siniestros y más.
+
+## 🔧 Tecnologías utilizadas
+
+- Angular
+- .NET Framework API
+- SQL Server
+- Firebase Storage (solo para archivos)
+- JWT para autenticación
+- Angular Material para UI
+
+## 📁 Funcionalidad principal
+
+- Subida de documentos o imagenes desde Angular a la nube
+-   El sistema está diseñado para usar servicios de almacenamiento modernos como Firebase o Cloudinary. La actual integración utiliza Cloudinary por facilidad de 
+    demostración, pero puede adaptarse a Firebase Storage o AWS S3.
+- Almacenamiento de metadatos en SQL Server
+- Relación de documentos con conductores, permissionarios, unidades o siniestros
+- Visualización de documentos por entidad
+- Autenticación con roles y permisos
+
+## 🧪 Próximas funciones (pendientes)
+- [ ] Imagen de perfil por usuario
+- [ ] Personalización de colores del sistema
+- [ ] Cambio de contraseña por parte del usuario
+
+## 📸 Capturas de pantalla
+
+## 🚀 Cómo correr localmente
+
+## 📦 Cómo desplegar
+
+## 📄 Licencia
+MIT
+*****************TRASH******************
 ## Code scaffolding
 
 Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
