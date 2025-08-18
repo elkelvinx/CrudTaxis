@@ -77,4 +77,14 @@ export class ServicesDriversService {
       }
     )
   }
+  public ReducirContadorTabla(Entidad: any) {
+    let Controller = 'Driver'
+    let Headers = new HttpHeaders().set("Accept", "application/json")
+    return this.Http.post(this.urlApi + Controller + '/ReducirContador', null,
+      {
+        headers: Headers,
+        responseType: 'json'
+      }
+    )
+  }
 }

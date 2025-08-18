@@ -210,6 +210,7 @@ export class DriversComponent implements OnInit {
       (data) => {
         console.log("Eliminado correctamente" + data)
         this.consultarDrivers();
+        
         console.log(data)
       },
       error => {

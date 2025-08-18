@@ -58,3 +58,29 @@
     height: 140px;
   }
 }
+
+
+/* Tarjeta de tecnología */
+.tech-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 220px;
+}
+
+.tech-name {
+  font-size: 1.2rem;
+  margin-top: 0.6rem;
+  color: #8bc34a;
+  font-weight: 600;
+}
+
+.tech-desc {
+  font-size: 0.95rem;
+  color: #e0f2f1;
+  margin-top: 0.3rem;
+  line-height: 1.5;
+  padding: 0 0.5rem;
+  font-weight: 600;
+}
