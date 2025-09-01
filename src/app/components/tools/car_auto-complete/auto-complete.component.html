@@ -11,9 +11,8 @@
       [matAutocomplete]="auto"
       [value]="info"
       (focus)="brandModified ? changeBrand() : changeModel()"
-      (ngModelChange)="brandModified ? changeBrand() : changeModel()"
+      (input)="brandModified ? changeBrand() : changeModel()"
       class="{{ className }}"
-      [disabled]="isDisabled"
     />
     <mat-autocomplete
       autoActiveFirstOption

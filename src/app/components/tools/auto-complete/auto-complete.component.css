@@ -3,9 +3,8 @@
   width: 100%;
 }
 .example-full-width {
-  min-width: 70% !important;
-  /* max-width: 100% !important; */
-  width: 100% !important;
+  min-width: 70%;
+  width: 100% ;
 }
 
 .name {
@@ -13,12 +12,13 @@
   width: 500px !important;
   background-color: #940e0e59 !important;
 }
+
 /* Establece la variable CSS */
 :root {
   --my-custom-color: var(
     --color,
     #eb1e1e
-  ); /* Valor predeterminado o valor de la variable 'color' */
+  );
 }
 
 /* Utiliza la variable en tu estilo */

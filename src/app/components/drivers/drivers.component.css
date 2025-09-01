@@ -169,6 +169,11 @@ section {
   width: 100%;
   flex-wrap: wrap;
 }
+/* Autcomplete de renglon 1 apellido paterno y materno */
+.renglon1 app-auto-complete {
+  width: 48%;
+}
+
 .renglon2{
   display: flex;
   flex-direction: row;
@@ -178,4 +183,14 @@ section {
   width: 100%;
   flex-wrap: wrap;
 
+}
+@media (min-width: 300px) and (max-width: 1024px) {
+   .renglon1 app-auto-complete  {
+    flex-direction: column;
+    width: 97%;
+  }
+
+  .renglon2 {
+    flex-direction: column;
+  }
 }

@@ -2,11 +2,12 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { AuthService } from './security/authService.service';
 import { Observable } from 'rxjs';
+import { URL as APIBASEURL } from '../../enviroment/enviroment';
 @Injectable({
   providedIn: 'root'
 })
 export class ServicesDriversService {
-  urlApi = "https://localhost:44319/Api/";
+  URL = APIBASEURL;
   Jwt: string | null = this.authService.getToken();
   
   constructor(
@@ -22,7 +23,7 @@ export class ServicesDriversService {
     //estos son los parametros del get que se envian al servidor
     //esta la URL de la api, ademas que su headers,parametros y el tipo de respuesta
     return this.Http.get(
-      this.urlApi + controller,
+       this.URL + controller,
       {
         headers: Headers,
         params: params,
@@ -35,7 +36,8 @@ export class ServicesDriversService {
     let controller = "Driver";
     let Headers = new HttpHeaders().set("Accept", "aplication/json");
     return this.Http.get<any[]>(
-      `${this.urlApi}${encodeURIComponent(controller)}`,
+      `${this.URL}${encodeURIComponent(controller)}`,
+      // `${this.urlApi}}`,
       {
         headers: Headers,
         responseType: 'json'
@@ -47,7 +49,7 @@ export class ServicesDriversService {
 
     let Controller = 'Driver'
     let Headers = new HttpHeaders().set("Accept", "application/json")
-    return this.Http.post(this.urlApi + Controller, Entidad,
+    return this.Http.post(this.URL + Controller, Entidad,
       {
         headers: Headers,
         responseType: 'json'
@@ -57,7 +59,7 @@ export class ServicesDriversService {
   public Actualizar(Entidad: any) {
     let Controller = 'Driver'
     let Headers = new HttpHeaders().set("Accept", "application/json")
-    return this.Http.put(this.urlApi + Controller, Entidad,
+    return this.Http.put(this.URL + Controller, Entidad,
       {
         headers: Headers,
         responseType: 'json'
@@ -69,7 +71,7 @@ export class ServicesDriversService {
     let Controller = 'Driver'
     let Headers = new HttpHeaders().set("Accept", "application/json")
     let Params = new HttpParams().set('id', id);
-    return this.Http.delete(this.urlApi + Controller,
+    return this.Http.delete(this.URL + Controller,
       {
         headers: Headers,
         params: Params,
@@ -80,7 +82,7 @@ export class ServicesDriversService {
   public ReducirContadorTabla(Entidad: any) {
     let Controller = 'Driver'
     let Headers = new HttpHeaders().set("Accept", "application/json")
-    return this.Http.post(this.urlApi + Controller + '/ReducirContador', null,
+    return this.Http.post(this.URL + Controller + '/ReducirContador', null,
       {
         headers: Headers,
         responseType: 'json'

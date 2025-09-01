@@ -175,3 +175,13 @@
     padding: 0.7rem;
   }
 }
+
+/* KPI CARDS AND GRAPHS */
+/* for ngx-charts texts (SVG) */
+ngx-charts, .ngx-charts text {
+  color: #e0f2f1;
+}
+.ngx-charts text { fill: #e0f2f1 !important; }
+
+/* asegúrate de que mat-card text no quede negro */
+.mat-card, .kpi-card { color: #e0f2f1; }

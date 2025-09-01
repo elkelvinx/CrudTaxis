@@ -37,7 +37,8 @@ export class carAutoCompleteComponent {
   @Input() arrays: string[] = [];
   //arreglo por si es el model
   @Input() arrays2: string[] = [];
-  @Input() isDisabled: boolean = true;
+  // @Input() isDisabled: boolean = true;
+   private _isDisabled = false;
   //devuelve el valor nuevo
   @Output() data = new EventEmitter<any>();
   myControl = new FormControl('');

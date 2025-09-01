@@ -35,16 +35,7 @@
         </div>
         <div
           class="renglon1"
-          style="
-            display: flex;
-            flex-direction: row;
-            gap: 10px;
-            align-items: center;
-            justify-content: flex-start;
-            margin-left: 1%;
-            width: 100%;
-            flex-wrap: wrap;
-          "
+          
         >
           <!-- este es uno -->
           <app-auto-complete
@@ -52,14 +43,14 @@
             [info]="Driver.lm1"
             (data)="Driver.lm1 = $event"
             className="brand"
-            style="width: 48%"
+            
           ></app-auto-complete>
           <app-auto-complete
             [text]="'Apellido Materno'"
             [info]="Driver.lm2"
             (data)="Driver.lm2 = $event"
             className="brand"
-            style="width: 48%"
+            
           ></app-auto-complete>
         </div>
         <div

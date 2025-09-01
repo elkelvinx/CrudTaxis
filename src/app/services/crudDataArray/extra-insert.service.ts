@@ -2,12 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { structureData } from '../../models/extraData';
+import { URL as APIBASEURL } from '../../../enviroment/enviroment';
+
 @Injectable({
   providedIn: 'root'
 })
 export class ExtraInsertService {
 
-  urlApi = "https://localhost:44319/Api/";
+  urlApi = APIBASEURL;
   public Controller: string = 'DataArray'
   private objeto: structureData = new structureData();
   constructor(

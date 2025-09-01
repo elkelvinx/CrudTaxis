@@ -55,3 +55,5 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+
+export const URL= "https://apitaxi-h8ggbzarbkacf0e2.centralus-01.azurewebsites.net/api/";

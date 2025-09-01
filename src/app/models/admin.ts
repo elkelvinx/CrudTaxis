@@ -28,7 +28,7 @@ export class TableColumnsStructure {
       { label: 'Apellido paterno', def: 'lm1', dataKey: 'lm1' },
       { label: 'Apellido materno', def: 'lm2', dataKey: 'lm2' },
       { label: 'Numero de telefono', def: 'phone', dataKey: 'phone' },
-      { label: 'Correo Electronico', def: 'mail', dataKey: 'mail' },
+      // { label: 'Correo Electronico', def: 'mail', dataKey: 'mail' },
       { label: 'Numero Exterior', def: 'extNumber', dataKey: 'extNumber' },
       { label: 'Fecha de registro', def: 'registerD', dataKey: 'registerD', dataType: 'date', formatt: 'dd MMM yyyy' },
     ]

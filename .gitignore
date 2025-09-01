@@ -42,6 +42,9 @@ testem.log
 Thumbs.db
 src/app/app.component.spec.ts
 
+#environments
+/environments
+
 # Firebase
 .firebase
 *-debug.log

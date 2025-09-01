@@ -87,7 +87,7 @@ export class TableColumnsStructure {
         { label: 'Aseguradora', def: 'insuranceS', dataKey: 'insuranceS' },
         { label: 'Fecha', def: 'dateEvent', dataKey: 'dateEvent', dataType: 'date', formatt: 'dd MMM yyyy' },
         { label: 'Typo de siniestro', def: 'typeSinisterS', dataKey: 'typeSinisterS' },
-        { label: 'Estado', def: 'winOrLooseS', dataKey: 'winOrLooseS' },
+        // { label: 'Estado', def: 'winOrLooseS', dataKey: 'winOrLooseS' },
         { label: 'Nombre Chocado', def: 'crashCounterPart', dataKey: 'crashCounterPart' },
     ];
     static tableColumnsCase2: TableColumn[] = [

@@ -3,6 +3,12 @@ form.example-form {
   justify-content: space-around;
   margin-bottom: -2%;
 }
+h1#mat-mdc-dialog-title-0 {
+  margin-bottom: -1vh;
+}
+.mat-mdc-dialog-content.mdc-dialog__content {
+  margin-bottom: -1.5vh;
+}
 .cdk-overlay-pane {
   max-width: 40vw !important;
 }
@@ -89,9 +95,11 @@ form.example-form {
 /* ! esto es del update dialog */
 .password_input {
   width: 45.5%;
+  margin-bottom: -2vh;
 }
 .default_input_css {
   width: 93%;
+  margin-bottom: -2vh;
 }
 form.principalForm {
   display: flex;
@@ -145,10 +153,10 @@ form.principalForm {
 .autocomplete {
   margin-left: 3.5%;
   margin-right: 3.5%;
-  margin-bottom: -4%;
+  margin-bottom: -6%;
   width: 97%;
 }
-.state_section{
+.state_section {
   width: 100%;
   margin-left: 1%;
   display: flex;
@@ -157,7 +165,7 @@ form.principalForm {
 }
 .permissions_Sliders_Section {
   /* margin-top: 30px; */
-  margin-bottom: 6%;
+  margin-bottom: 1.5%;
   width: 97%;
   display: flex;
   flex-direction: row;
@@ -170,8 +178,9 @@ form.principalForm {
   margin-left: 50px;
   display: flex;
   align-items: stretch;
+  background-color: red;
 }
-.state_slider{
+.state_slider {
   transform: scale(1.22);
   width: 30%;
   height: 50px;
@@ -219,15 +228,15 @@ form.principalForm {
   box-shadow: -5px 7px 18px 1px rgba(0, 0, 0, 0.2),
     0px 2px 2px 0px rgb(32 61 10 / 79%), 3px 4px 12px 0px rgb(1 9 5 / 34%) !important;
 }
-.button-green{
+.button-green {
   width: 100% !important;
   height: 46px !important;
   border-radius: 10px !important;
   --mat-protected-button-ripple-color: rgb(7 101 37) !important;
   box-shadow: -5px 7px 18px 1px rgba(0, 0, 0, 0.2),
-  0px 2px 2px 0px rgb(32 61 10 / 79%), 3px 4px 12px 0px rgb(1 9 5 / 34%) !important;
+    0px 2px 2px 0px rgb(32 61 10 / 79%), 3px 4px 12px 0px rgb(1 9 5 / 34%) !important;
 }
-.actions-section{
+.actions-section {
   width: 98%;
   display: flex;
   flex-direction: row;
@@ -236,4 +245,12 @@ form.principalForm {
 }
 :root {
   --mat-slide-toggle-label-text-size: 20px !important;
+}
+@media screen and (max-width: 600px) {
+  .cdk-overlay-pane {
+    width: 90% !important;
+  }
+  .dialog-a #cdk-overlay-10::before {
+    width: 90% !important;
+  }
 }

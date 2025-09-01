@@ -15,7 +15,7 @@ import { TableColumnsStructure } from '../../models/permissionaire';
   styleUrl: './permissionaires.component.css'
 })
 export class PermissionairesComponent {
-  public tableColumns = new TableColumnsStructure(1);
+  public tableColumns = new TableColumnsStructure(2);
   public permissionaire = new permissionaire();
   public settlements: any[] = [];
   public streets: any[] = [];

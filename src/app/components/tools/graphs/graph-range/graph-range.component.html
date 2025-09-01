@@ -1,0 +1,26 @@
+<div #chartContainer class="graphics-range-container">
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Selecciona rango de meses</mat-label>
+    <mat-date-range-input [formGroup]="range" [rangePicker]="picker">
+      <input matStartDate formControlName="start" placeholder="Inicio (MM/YYYY)">
+      <input matEndDate formControlName="end" placeholder="Fin (MM/YYYY)">
+    </mat-date-range-input>
+    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-date-range-picker #picker startView="multi-year" touchUi></mat-date-range-picker>
+  </mat-form-field>
+
+  <div class="actions">
+    <button mat-raised-button color="primary" (click)="onRangeChange()">Aplicar</button>
+  </div>
+
+  <ngx-charts-line-chart
+    [view]="view"
+    [scheme]="colorScheme"
+    [results]="data"
+    [legend]="true"
+    [xAxis]="true"
+    [yAxis]="true"
+    [showGridLines]="false"
+    [autoScale]="true">
+  </ngx-charts-line-chart>
+</div>

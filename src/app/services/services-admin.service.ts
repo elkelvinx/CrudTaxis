@@ -1,20 +1,21 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { URL as APIBASEURL } from '../../enviroment/enviroment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ServicesAdminService {
-  urlApi = "https://localhost:44319/Api/";
+  urlApi = APIBASEURL;
+  controller = "Admin";
   constructor(private Http: HttpClient
   ) { }
   public consultarAdminId(id: number) {
-    let controller = "Admin";
     let params = new HttpParams().set("id", id);
     let Headers = new HttpHeaders().set("Accept", "aplication/json");
     return this.Http.get(
-      this.urlApi + controller,
+      this.urlApi + this.controller,
       {
         headers: Headers,
         params: params,
@@ -23,10 +24,9 @@ export class ServicesAdminService {
     )
   }
   public consultarAdmins(): Observable<any[]> {
-    let controller = "Admin";
     let Headers = new HttpHeaders().set("Accept", "aplication/json");
     return this.Http.get<any[]>(
-      `${this.urlApi}${encodeURIComponent(controller)}`,
+      `${this.urlApi}${encodeURIComponent(this.controller)}`,
       {
         headers: Headers,
         responseType: 'json'
@@ -34,10 +34,8 @@ export class ServicesAdminService {
     );
   }
   public Grabar(Entidad: any) {
-    let Controller = 'Admin'
-    debugger
     let Headers = new HttpHeaders().set("Accept", "application/json")
-    return this.Http.post(this.urlApi + Controller, Entidad,
+    return this.Http.post(this.urlApi + this.controller, Entidad,
       {
         headers: Headers,
         responseType: 'json'
@@ -45,9 +43,8 @@ export class ServicesAdminService {
     )
   }
   public Actualizar(Entidad: any) {
-    let Controller = 'Admin'
     let Headers = new HttpHeaders().set("Accept", "application/json")
-    return this.Http.put(this.urlApi + Controller, Entidad,
+    return this.Http.put(this.urlApi + this.controller, Entidad,
       {
         headers: Headers,
         responseType: 'json'
@@ -55,10 +52,9 @@ export class ServicesAdminService {
     )
   }
   public Eliminar(id: any) {
-    let Controller = 'Admin'
     let Headers = new HttpHeaders().set("Accept", "application/json")
     let Params = new HttpParams().set('id', id);
-    return this.Http.delete(this.urlApi + Controller,
+    return this.Http.delete(this.urlApi + this.controller,
       {
         headers: Headers,
         params: Params,

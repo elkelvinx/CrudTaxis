@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { URL as APIBASEURL } from '../../../enviroment/enviroment';
 @Injectable({
   providedIn: 'root'
 })
 export class ExtraDeleteService {
 
-  urlApi = "https://localhost:44319/Api/";
+  urlApi = APIBASEURL;
   public Controller:string='DataArray'
   constructor(
     private Http: HttpClient

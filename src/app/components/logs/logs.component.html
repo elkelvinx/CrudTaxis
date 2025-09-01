@@ -76,6 +76,7 @@
               #table1
               matSort
               (matSortChange)="announceSortChange($event)"
+              #historySort="matSort"
               [dataSource]="historyLogs"
               class="mat-elevation-z8"
             >
@@ -188,39 +189,42 @@
             <table
               mat-table
               #table2
+              matSort
+              (matSortChange)="announceSortChange($event)"
+              #changeSort="matSort"
               [dataSource]="changelogs"
               class="mat-elevation-z8"
             >
               <ng-container matColumnDef="userName">
-                <th mat-header-cell *matHeaderCellDef>User Name</th>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>User Name</th>
                 <td mat-cell *matCellDef="let element">
                   {{ element.userName }}
                 </td>
               </ng-container>
               <ng-container matColumnDef="roleName">
-                <th mat-header-cell *matHeaderCellDef>Role Name</th>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Role Name</th>
                 <td mat-cell *matCellDef="let element">
                   {{ element.roleName }}
                 </td>
               </ng-container>
               <ng-container matColumnDef="nameTable">
-                <th mat-header-cell *matHeaderCellDef>Table Name</th>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Table Name</th>
                 <td mat-cell *matCellDef="let element">
                   {{ element.nameTable }}
                 </td>
               </ng-container>
               <ng-container matColumnDef="modDate">
-                <th mat-header-cell *matHeaderCellDef>Mod Date</th>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Mod Date</th>
                 <td mat-cell *matCellDef="let element">
                   {{ element.modDate | date : "medium" }}
                 </td>
               </ng-container>
               <ng-container matColumnDef="DML">
-                <th mat-header-cell *matHeaderCellDef>DML</th>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>DML</th>
                 <td mat-cell *matCellDef="let element">{{ element.DML }}</td>
               </ng-container>
               <ng-container matColumnDef="query">
-                <th mat-header-cell *matHeaderCellDef>Query</th>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Query</th>
                 <td mat-cell *matCellDef="let element">
                   <button
                     mat-raised-button
@@ -323,9 +327,10 @@
 
             <table
               mat-table
+              matSort
+              #errorSort="matSort"
               [dataSource]="errorLogs"
               class="mat-elevation-z8"
-              matSort
            
             >
               <ng-container matColumnDef="userName">
@@ -341,19 +346,19 @@
                 </td>
               </ng-container>
               <ng-container matColumnDef="nameTable">
-                <th mat-header-cell *matHeaderCellDef>Table Name</th>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Table Name</th>
                 <td mat-cell *matCellDef="let element">
                   {{ element.nameTable }}
                 </td>
               </ng-container>
               <ng-container matColumnDef="DateError">
-                <th mat-header-cell *matHeaderCellDef>Error Date</th>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Error Date</th>
                 <td mat-cell *matCellDef="let element">
                   {{ element.DateError | date : "medium" }}
                 </td>
               </ng-container>
               <ng-container matColumnDef="DML">
-                <th mat-header-cell *matHeaderCellDef>DML</th>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>DML</th>
                 <td mat-cell *matCellDef="let element">{{ element.DML }}</td>
               </ng-container>
               <ng-container matColumnDef="MessageError">

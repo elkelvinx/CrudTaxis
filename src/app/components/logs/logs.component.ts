@@ -18,7 +18,7 @@ import { DomSanitizer } from '@angular/platform-browser';
   styleUrl: './logs.component.css'
 })
 export class LogsComponent implements OnInit {
-  @ViewChild(MatSort) sort: MatSort;
+  // @ViewChild(MatSort) sort: MatSort;
   private _liveAnnouncer = inject(LiveAnnouncer);
   DMLs: string[] = DMLs;
   dataSource: MatTableDataSource<any> = new MatTableDataSource<any>([]);
@@ -47,13 +47,17 @@ export class LogsComponent implements OnInit {
     new ErrorLog(2, 'Jane Smith', 102, 'Inventory', 'Insufficient stock', '2023-05-01T16:20:00', 'DELETE')
   ];
 
-
+  
   constructor(private fb: FormBuilder, private serviceLog: ServiceLogsService,
     private notificationService: NotificationService,private datePipe: DatePipe, private sanitazer: DomSanitizer) {
       this.pipeLog = new ChangeLogPipe(datePipe,sanitazer);
-     }
+    }
+    
+    @ViewChild('historySort') historySort: MatSort;
+    @ViewChild('changeSort') changeSort: MatSort;
+    @ViewChild('errorSort') errorSort: MatSort;
 
-  ngOnInit() {
+    ngOnInit() {
     this.historyLogForm = this.fb.group({
       id: [''],
       idUser: [''],
@@ -89,16 +93,14 @@ export class LogsComponent implements OnInit {
     this.errorLogs = new MatTableDataSource<any>([]);
   }
 
-  ngAfterViewInit() {
-    this.dataSource.sort = this.sort;
-  }
-
+  
   GetAllLoadPage() {
     this.serviceLog.GetHistoryLogIn().subscribe(
       (data:any) => {
         data = this.pipeLog.mixNameIdLoop(data);
         console.log(data);
         this.historyLogs = new MatTableDataSource<any>(data);
+        this.historyLogs.sort = this.historySort; 
       }
     );
     this.serviceLog.GetChangeLog().subscribe(
@@ -106,12 +108,14 @@ export class LogsComponent implements OnInit {
        data= this.pipeLog.mixNameIdLoop(data);
         console.log(data);
         this.changelogs = new MatTableDataSource<any>(data);
+        this.changelogs.sort = this.changeSort;
       }
     );
     this.serviceLog.GetErrorLog().subscribe(
       (data) => {
         data = this.pipeLog.mixNameIdLoop(data);        
         this.errorLogs = new MatTableDataSource<any>(data);
+        this.errorLogs.sort = this.errorSort;
       }
     );
   }
@@ -135,9 +139,21 @@ export class LogsComponent implements OnInit {
       this._liveAnnouncer.announce('Sorting cleared');
     }
   }
+
   onTabChange(event: MatTabChangeEvent) {
-    this.getTimeLoaded(event.index);
+  this.getTimeLoaded(event.index);
+
+  if (event.index === 0 && this.historyLogs) {
+    this.historyLogs.sort = this.historySort;
   }
+  if (event.index === 1 && this.changelogs) {
+    this.changelogs.sort = this.changeSort;
+  }
+  if (event.index === 2 && this.errorLogs) {
+    this.errorLogs.sort = this.errorSort;
+  }
+}
+
 
   applyHistoryLogFilter() {
     console.log(this.historyLogForm.value);
