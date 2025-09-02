@@ -3,21 +3,21 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { userLogIn } from '../../models/user';
 import { user, userPermission } from '../../models/user';
+import { URL } from '../../../enviroment/enviroment';
 @Injectable({
   providedIn: 'root'
 })
 export class LogInService {
-  urlApi = "https://localhost:44319/Api/";
+  urlApi = URL+"login/";
   constructor(
     private Http: HttpClient
   ) { }
   public closeSession(nameUser: string) {
     debugger
-     this.urlApi = "https://localhost:44319/api/login";
+     this.urlApi = this.urlApi;
     let Controller = '';
     let Headers = new HttpHeaders().set("Content-Type", "application/json");
-                                   console.log("headers "+ Headers.get("Content-Type"));
-                                   debugger
+    console.log("headers "+ Headers.get("Content-Type"));
     return this.Http.post(this.urlApi + Controller,{ nameUser: nameUser }, {
         headers: Headers,
         responseType: 'json'
@@ -25,7 +25,6 @@ export class LogInService {
 }
 
   public LogIn(user: userLogIn) {
-    this.urlApi = "https://localhost:44319/Api/login/";
     let Controller = 'enter'
     let Headers = new HttpHeaders().set("Accept", "application/json")
     return this.Http.post(this.urlApi + Controller, user,
@@ -36,11 +35,10 @@ export class LogInService {
     )
   }
   public consultarUsers(): Observable<any[]> {
-    debugger;
     let controller = "user";
     let Headers = new HttpHeaders().set("Accept", "aplication/json");
     return this.Http.get<any[]>(
-      `${this.urlApi}${encodeURIComponent(controller)}`,
+      `${URL}${encodeURIComponent(controller)}`,
       {
         headers: Headers,
         responseType: 'json'

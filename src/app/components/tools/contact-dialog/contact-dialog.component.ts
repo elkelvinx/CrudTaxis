@@ -1,6 +1,6 @@
 import { OnInit, Component } from '@angular/core';
 import { Input } from '@angular/core'; import { Inject } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { YesNoDialogComponent } from '../yes-no-dialog/yes-no-dialog.component';
 import {
   MatDialog,
@@ -46,6 +46,7 @@ export class ContactDialogComponent {
 import { contactDriver } from '../../../models/contactDriver';
 import { ServicesContactService } from '../../../services/contactDialog-service.service';
 import { debounce, debounceTime } from 'rxjs';
+import { NotificationService } from '../info-dialog/notification.service';
 
 @Component({
   selector: 'app-ContactDialog',
@@ -66,6 +67,8 @@ export class DialogElementsExampleDialog implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA) data: any,
     private serviciosContact: ServicesContactService,
+    public notificationService: NotificationService,
+    public dialogRef: MatDialogRef<DialogElementsExampleDialog>
   ) {
     this.streets = data.street;
     this.settlements = data.settlement;
@@ -84,8 +87,8 @@ export class DialogElementsExampleDialog implements OnInit {
   consultarContactDriver(idAdmin: any) {
     this.serviciosContact.consultarContactId(idAdmin).subscribe(
       (data: any) => {
-        debugger
-        this.contactDriver = data;
+        this.contactDriver = data;       
+         this.notificationService.successInfo("Contacto Cargado");   
       },
       error => {
         console.log(error);
@@ -96,6 +99,8 @@ export class DialogElementsExampleDialog implements OnInit {
     this.serviciosContact.Grabar(this.contactDriver).subscribe(
       (data: any) => {
         console.log("Guardado correctamente" + data)
+        this.notificationService.success("Guardado correctamente");
+        this.dialogRef.close(true);
       },
       error => {
         console.log(error);
@@ -107,7 +112,8 @@ export class DialogElementsExampleDialog implements OnInit {
     this.serviciosContact.Actualizar(this.contactDriver).subscribe(
       (data) => {
         console.log("Actualizado correctamente" + data)
-
+        this.notificationService.success("Actualizado correctamente");
+        this.dialogRef.close(true);
       },
       error => {
         console.log(error);

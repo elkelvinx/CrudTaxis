@@ -150,7 +150,6 @@ export class DriversComponent implements OnInit {
         this.consultarSettleName();
         this.consultarStreetName();
         this.consultarAdminName();
-        this.consultarSettleName();
         if (this.Driver.id != 0) {
           this.ActSave = false;
         }
@@ -210,6 +209,7 @@ export class DriversComponent implements OnInit {
       (data) => {
         console.log("Eliminado correctamente" + data)
         this.consultarDrivers();
+        
         console.log(data)
       },
       error => {

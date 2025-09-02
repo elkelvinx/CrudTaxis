@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { AuthService } from './security/authService.service';
 import { Observable } from 'rxjs';
+import { URL as APIBASEURL } from '../../enviroment/enviroment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ServiceLogsService {
-  urlApi = "https://localhost:44319/Api/login/";
+  urlApi = APIBASEURL+"login/";
   constructor(
     private Http: HttpClient
   ) { }

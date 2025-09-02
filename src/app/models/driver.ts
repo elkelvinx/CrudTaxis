@@ -54,9 +54,9 @@ export class TableColumnsStructure {
         { label: 'Apellido materno', def: 'lm2', dataKey: 'lm2' },
         { label: 'Numero de telefono', def: 'phone', dataKey: 'phone' },
         { label: 'Administrador', def: 'adminName', dataKey: 'adminName' },
-        { label: 'Vencimiento licencia', def: 'licenseEx', dataKey: 'licenseEx', dataType: 'date', formatt: 'dd MMM yyyy' },
         { label: 'Fecha de ingreso', def: 'hireDate', dataKey: 'hireDate', dataType: 'date', formatt: 'dd MMM yyyy' },
-        { label: 'Colonia', def: 'settlementS', dataKey: 'settlementS' },
+        // { label: 'Colonia', def: 'settlementS', dataKey: 'settlementS' },
+        // { label: 'Vencimiento licencia', def: 'licenseEx', dataKey: 'licenseEx', dataType: 'date', formatt: 'dd MMM yyyy' },
     ];
     columns: TableColumn[];
     constructor(numberOfColumns: number = 1) {

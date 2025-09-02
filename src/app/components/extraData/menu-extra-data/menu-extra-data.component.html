@@ -9,6 +9,22 @@
   Crear Usuario
 </button>
 <mat-tab-group>
+  <mat-tab label="Usuarios">
+    <ng-template matTabContent>
+      <div class="tablaData">
+        <app-tableExtraData
+          [indicator]="'Usuarios'"
+          [data]="UserTable"
+          [columns]="columnsUsers.columns"
+          [config]="tableConfigUser"
+          [typeDialog]="false"
+          [numIndicator]="9"
+          [array]="user"
+          (action)="onTableAction($event)"
+        ></app-tableExtraData>
+      </div>
+    </ng-template>
+  </mat-tab>
   <mat-tab label="Colonias">
     <ng-template matTabContent>
       <div class="tablaData">
@@ -85,7 +101,6 @@
   </mat-tab>
   <mat-tab label="Relaciones Personales">
     <ng-template matTabContent>
-      Contenido de relationShip
       <app-tableExtraData
         [indicator]="'Relaciones Personales'"
         [data]="relationships"
@@ -119,22 +134,6 @@
           [columns]="tableColumns.columns"
           [config]="tableConfig"
           [numIndicator]="7"
-          (action)="onTableAction($event)"
-        ></app-tableExtraData>
-      </div>
-    </ng-template>
-  </mat-tab>
-  <mat-tab label="Usuarios">
-    <ng-template matTabContent>
-      <div class="tablaData">
-        <app-tableExtraData
-          [indicator]="'Usuarios'"
-          [data]="UserTable"
-          [columns]="columnsUsers.columns"
-          [config]="tableConfigUser"
-          [typeDialog]="false"
-          [numIndicator]="9"
-          [array]="user"
           (action)="onTableAction($event)"
         ></app-tableExtraData>
       </div>

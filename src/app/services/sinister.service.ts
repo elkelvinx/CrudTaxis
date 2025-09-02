@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { URL as APIBASEURL } from '../../enviroment/enviroment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SinisterService {
-  urlApi = "https://localhost:44319/Api/";
+  urlApi = APIBASEURL;
+  controller = "Sinister";
   constructor(
     private Http: HttpClient
   ) { }
@@ -25,10 +27,9 @@ export class SinisterService {
   }
 
   public consultarSinister(): Observable<any[]> {
-    let controller = "Sinister";
     let Headers = new HttpHeaders().set("Accept", "aplication/json");
     return this.Http.get<any[]>(
-      `${this.urlApi}${encodeURIComponent(controller)}`,
+      `${this.urlApi}${encodeURIComponent(this.controller)}`,
       {
         headers: Headers,
         responseType: 'json'
@@ -37,10 +38,8 @@ export class SinisterService {
   }
 
   public Grabar(Entidad: any) {
-    let Controller = 'Sinister'
-    debugger
     let Headers = new HttpHeaders().set("Accept", "application/json")
-    return this.Http.post(this.urlApi + Controller, Entidad,
+    return this.Http.post(this.urlApi + this.controller, Entidad,
       {
         headers: Headers,
         responseType: 'json'
@@ -49,9 +48,8 @@ export class SinisterService {
   }
 
   public Actualizar(Entidad: any) {
-    let Controller = 'Sinister'
     let Headers = new HttpHeaders().set("Accept", "application/json")
-    return this.Http.put(this.urlApi + Controller, Entidad,
+    return this.Http.put(this.urlApi + this.controller, Entidad,
       {
         headers: Headers,
         responseType: 'json'
@@ -60,10 +58,9 @@ export class SinisterService {
   }
 
   public Eliminar(id: any) {
-    let Controller = 'Sinister'
     let Headers = new HttpHeaders().set("Accept", "application/json")
     let Params = new HttpParams().set('id', id);
-    return this.Http.delete(this.urlApi + Controller,
+    return this.Http.delete(this.urlApi + this.controller,
       {
         headers: Headers,
         params: Params,

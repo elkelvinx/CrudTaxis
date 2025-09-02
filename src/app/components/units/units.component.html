@@ -1,53 +1,15 @@
 <!DOCTYPE html>
 <!--FINAL-->
 <div class="ContainerDivs">
-  <div
-    class="CardSerch"
-    style="
-      width: 42%;
-      height: 800px;
-      background-color: var(--backCards);
-      border-radius: 20px;
-      display: flex;
-      flex-direction: column;
-      flex-wrap: nowrap;
-      padding-left: 0.5%;
-      padding-right: 0.5%;
-    "
-  >
-    <div
-      class="headerCard"
-      style="
-        color: rgba(255, 255, 255, 0.7);
-        font-family: Roboto, sans-serif;
-        letter-spacing: 2px;
-        padding-left: 4%;
-        padding-right: 3%;
-        padding-top: 3%;
-        padding-bottom: 2%;
-        display: flex;
-        justify-content: space-between;
-      "
-    >
+  <div class="CardSerch">
+    <div class="headerCard">
       Unidades automovilisticas
       <mat-icon (click)="consultarUnit(0)" class="button-search"
         >add_circle_outline</mat-icon
       >
     </div>
-    <div class="bodyCard" style="width: 100%; height: 20px; height: 100%">
-      <div
-        class="renglon2"
-        style="
-          display: flex;
-          flex-direction: row;
-          gap: 10px;
-          align-items: center;
-          justify-content: flex-start;
-          margin-left: 1%;
-          width: 100%;
-          flex-wrap: wrap;
-        "
-      >
+    <div class="bodyCard">
+      <div class="renglon2">
         <app-auto-complete
           className="brand"
           [text]="'Numero'"
@@ -64,7 +26,7 @@
           [arrays]="brandsName"
           [typeinput]="1"
           (data)="changeSelection($event, 'brand')"
-          *ngIf="loadBr"
+          *ngIf="brands.length > 0"
           style="width: 30.2%"
         ></car-autoComplete>
         <!-- [arrays]="modelsName"  -->
@@ -76,9 +38,9 @@
           [brandSelected]="units.idBrand"
           [typeinput]="2"
           (data)="changeSelection($event, 'model')"
-          *ngIf="loadMd"
+          *ngIf="models.length > 0"
           style="width: 41.2%"
-          [isDisabled]="false"
+          
         ></car-autoComplete>
       </div>
       <div class="renglon1">

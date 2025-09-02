@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { URL as APIBASEURL } from '../../enviroment/enviroment';
+
 @Injectable({
   providedIn: 'root'
 })
 export class ServicesPermissionaireService {
-  urlApi = "https://localhost:44319/Api/";
+  urlApi = APIBASEURL;
   constructor(
     private Http: HttpClient
   ) { }

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -97,7 +97,7 @@ import { AuthViewComponent } from './AuthView.componet';
 import { RoleNamePipe } from './pipes/role-name.pipe';
 import { TokenInterceptor } from './interceptor/token.interceptor';
 import { LogsComponent } from './components/logs/logs.component';
-import {FormControlName} from '@angular/forms';
+import { FormControlName } from '@angular/forms';
 
 //Firebase
 import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
@@ -109,6 +109,11 @@ import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { environment } from '../enviroment/enviroment';
 import { CarrouselComponent } from './components/tools/carrousel/carrousel/carrousel.component';
 import { ImgTechsComponent } from './components/tools/img-techs/img-techs.component';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { GraphsComponent } from './components/tools/graphs/graphs.component';
+import { GraphRangeComponent } from './components/tools/graphs/graph-range/graph-range.component';
+import { DatePickerHomeComponent } from './components/tools/date-picker-home/date-picker-home.component';
+import { KpiCardsComponent } from './components/tools/kpi-cards/kpi-cards.component';
 @NgModule({
     exports: [
         A11yModule,
@@ -156,8 +161,8 @@ import { ImgTechsComponent } from './components/tools/img-techs/img-techs.compon
         RoleNamePipe,
         ReactiveFormsModule,
         FormControlName,
-        
-        
+
+
     ],
     declarations: [
         AppComponent,
@@ -181,13 +186,17 @@ import { ImgTechsComponent } from './components/tools/img-techs/img-techs.compon
         DocumentsPdfComponent,
         CarrouselComponent,
         ImgTechsComponent,
-        
-        
+        GraphsComponent,
+        GraphRangeComponent,
+        DatePickerHomeComponent,
+        KpiCardsComponent,
+
+
     ],
     bootstrap: [AuthViewComponent],
 
     imports: [
-        BrowserModule,    
+        BrowserModule,
         BrowserAnimationsModule,
         FormsModule,
         AppRoutingModule,
@@ -222,6 +231,8 @@ import { ImgTechsComponent } from './components/tools/img-techs/img-techs.compon
         MatSortModule,
         AngularFireModule.initializeApp(environment.firebaseConfig),
         AngularFireStorageModule,
+        NgxChartsModule,
+        MatNativeDateModule,
     ],
     providers: [DatePipe, NotificationService,
         {
@@ -229,5 +240,5 @@ import { ImgTechsComponent } from './components/tools/img-techs/img-techs.compon
             useClass: TokenInterceptor,
             multi: true
         }, provideHttpClient(withInterceptorsFromDi())]
-    })
+})
 export class AppModule { }

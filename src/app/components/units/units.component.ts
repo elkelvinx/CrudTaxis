@@ -9,13 +9,14 @@ import { TableAction } from '../tools/table/models/table-actions';
 import { ReadService } from '../../services/crudDataArray/extra-Read.service';
 import { TableColumn } from '../tools/table/models/table-column';
 import { ExtraDataService } from '../tools/car_auto-complete/services/extra-data.service';
-
+import { NotificationService } from '../tools/info-dialog/notification.service';
 @Component({
   selector: 'app-units',
   templateUrl: './units.component.html',
   styleUrl: './units.component.scss'
 })
 export class UnitsComponent implements OnInit {
+  private isloading = false; // ✅ Bandera para prevenir múltiples peticiones
   tableColumns: TableColumn[] = [];
 
   units = new Unit2();
@@ -48,24 +49,38 @@ export class UnitsComponent implements OnInit {
     private AppComponent: AppComponent,
     private servicioApp: ReadService,
     private number: ExtraDataService,
+    private notificationService: NotificationService // ✅ Asegurar que está inyectado
   ) { }
 
   ngOnInit() {
-    this.consultarUnits();
-    this.consultarUnit(0);
     this.setTableColumns();
+    this.loadAllData();
 
+  }
+  async loadAllData() {
+    try {
+      await Promise.all([
+        this.consultarUnits(),
+        this.consultarAdminName(),
+        this.consultarBrandName(),
+        this.consultarModelName()
+      ]);
+      this.consultarUnit(0);
+    } catch (error) {
+      console.error('Error loading data:', error);
+      this.notificationService.error('Error al cargar los datos');
+    }
   }
   public setTableColumns() {
     this.tableColumns = [
-      { label: 'Numero Economico', def: 'ecoNumber', dataKey: 'ecoNumber' },
+      { label: 'Numero', def: 'ecoNumber', dataKey: 'ecoNumber' },
       { label: 'Administrador', def: 'adminName', dataKey: 'adminName' },
       { label: 'Año', def: 'yearModel', dataKey: 'yearModel' },
-      { label: 'Serie', def: 'serie', dataKey: 'serie' },
       { label: 'Vencimiento del seguro', def: 'expInsurance', dataKey: 'expInsurance', dataType: 'date', formatt: 'dd MMM yyyy' },
-      { label: 'Color del carro', def: 'color', dataKey: 'color' },
       { label: 'Modelo', def: 'modelName', dataKey: 'modelName' },
       { label: 'Marca', def: 'brandName', dataKey: 'brandName' },
+      // { label: 'Color del carro', def: 'color', dataKey: 'color' },
+      // { label: 'Serie', def: 'serie', dataKey: 'serie' },
     ]
   }
   onDelete(customer: Unit2) {
@@ -90,6 +105,8 @@ export class UnitsComponent implements OnInit {
   }
 
   public consultarUnits() {
+    if (this.isloading) return; // ✅ Prevenir múltiples llamadas
+    this.isloading = true;
     this.serviceUnit.consularUnits().subscribe(
       (data: any) => {
         this.listUnits = data;
@@ -100,9 +117,8 @@ export class UnitsComponent implements OnInit {
         console.log(error);
       }
     )
-    this.consultarAdminName();
-    this.consultarBrandName();
     this.consultarModelName();
+    this.loadAllData();
   }
   searchDriver() {
     this.consultarUnit(this.units.id);
@@ -192,11 +208,12 @@ export class UnitsComponent implements OnInit {
         this.brands = data;
         this.brandsName = this.brands.map(brands => brands.name);
         //cambio del flag para que se muestre el html
-        if (this.units.brandName !== null)
-          this.loadBr = true;
+        // if (this.units.brandName !== null)
+        //   this.loadBr = true;
       },
       error => {
         console.log(error);
+        this.notificationService.error('Error al cargar marcas');
       }
     )
   }
@@ -209,8 +226,9 @@ export class UnitsComponent implements OnInit {
           name: models.name,
           idBrand: models.idBrand
         }));
-        if (this.units.modelName !== null)
-          this.loadMd = true;
+        this.number.models = this.models;
+        // if (this.units.modelName !== null)
+        //   this.loadMd = true;
       },
       error => {
         console.log(error);

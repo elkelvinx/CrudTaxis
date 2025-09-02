@@ -59,7 +59,6 @@ export class MenuExtraDataComponent implements OnInit {
     showStateUser: true,
   }
   onTableAction(tableAction: TableActionExtraData) {
-    debugger;
     if (tableAction.action == 1) {
       this.deleteSearch(tableAction);
     }
@@ -67,7 +66,6 @@ export class MenuExtraDataComponent implements OnInit {
       this.actualizarTabla(tableAction);
   }
   deleteSearch(tableAction: TableActionExtraData) {
-    debugger;
     switch (tableAction.numIndicator) {
       case 1:
         this.deleteService.deleteData(1, tableAction.row.id);
@@ -103,7 +101,6 @@ export class MenuExtraDataComponent implements OnInit {
     }
   }
   actualizarTabla(tableAction: TableActionExtraData) {
-    debugger;
     switch (tableAction.numIndicator) {
       case 1:
         this.consultarSettleName();
@@ -248,7 +245,6 @@ export class MenuExtraDataComponent implements OnInit {
           block:this.pipeRole2.transformBlockBadge(data.User.bloqued),
           // active: data.User.active,
         }));
-        debugger
       },
       error => {
         console.log(error);

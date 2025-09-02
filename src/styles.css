@@ -1,8 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 .mat-mdc-tab-body-content {
-  overflow: hidden !important;  ;
+  /* overflow: hidden !important;  ; */
   margin-bottom: 2%;
 }
+/* Esto evita que las tablas tengan scroll visualmente feo */
 .mat-mdc-tab-body.mat-mdc-tab-body-active{
   overflow-y: hidden !important;
 }
@@ -207,8 +208,9 @@ button {
   margin-top: 15px !important;
 } */
 button.text-button-redFinal.mdc-button.mdc-button--raised.mat-mdc-raised-button.mat-primary.mat-mdc-button-base {
-  height: 46px !important;
-  margin-top: -39px !important;
+    height: 6vh !important;
+    /* margin-top: -39px !important; */
+    width: 10vw !important;
 }
 
 .text-button-redFinal {

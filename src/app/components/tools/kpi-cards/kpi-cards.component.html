@@ -1,0 +1,30 @@
+<div class="graphics-container">
+    <div class="kpis-row">
+  <mat-card class="kpi-card mat-elevation-z8">
+    <div class="kpi-top">
+      <mat-icon class="kpi-icon">person_pin</mat-icon>
+      <span class="kpi-title">Conductores</span>
+    </div>
+    <div class="kpi-value">{{ driversKpi?.CurrentMonth }}</div>
+    <div class="kpi-footer">
+      <span>Anterior: {{ driversKpi?.PreviousMonth }}</span>
+      <span [ngClass]="driversKpi?.Percentage >= 0 ? 'percent pos' : 'percent neg'">
+        {{ driversKpi?.Percentage }}%
+      </span>
+    </div>
+  </mat-card>
+
+  <mat-card class="kpi-card mat-elevation-z8">
+    <div class="kpi-top">
+      <mat-icon class="kpi-icon">local_car_wash</mat-icon>
+      <span class="kpi-title">Siniestros</span>
+    </div>
+    <div class="kpi-value">{{ sinistersKpi?.CurrentMonth }}</div>
+    <div class="kpi-footer">
+      <span>Anterior: {{ sinistersKpi?.PreviousMonth }}</span>
+      <span [ngClass]="sinistersKpi?.Percentage >= 0 ? 'percent pos' : 'percent neg'">
+        {{ sinistersKpi?.Percentage }}%
+      </span>
+    </div>
+  </mat-card>
+</div>

@@ -34,7 +34,8 @@ export class TokenInterceptor implements HttpInterceptor {
                         this.isJWTExpiredDialog = true;
                     }
                 }
-                return throwError(() => new Error('test'));
+               return throwError(() => err); // ← Cambiado de new Error('test') a err
+
             })
         );
     }

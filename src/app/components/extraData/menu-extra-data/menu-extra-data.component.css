@@ -1,5 +1,5 @@
 .tablaData {
-  width: 98%;
+  width: 97%;
   margin-left: 14px;
   background-color: rgba(91, 213, 4, 0.215);
   margin-top: 15px; 
@@ -7,6 +7,13 @@
   padding-left: 5px;
   padding-right: 5px;
 }
+/* clase para que en pantallas pequeñas  la tabla principal quede visible*/
+@media (max-width: 600px) {
+  .tablaData {
+    width: fit-content;
+  }
+}
+/*  */
 .mat-icon {
   font-family: "Material Icons" !important;
   transition: transform 0.2s ease;
