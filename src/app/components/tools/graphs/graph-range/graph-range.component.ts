@@ -102,27 +102,3 @@ export class GraphRangeComponent {
     });
   }
 }
-// loadData(start: Date, end: Date) {
-//   this.dates = { StartDate: start, EndDate: end };
-//   Promise.all([
-//     this.homeService.getDriversRange(this.dates).toPromise(),
-//     this.homeService.getSinistersRange(this.dates).toPromise()
-//   ]).then(([drivers, sinisters]) => {
-//     this.data = [
-//       {
-//         name: 'Drivers',
-//         series: drivers.map((d: any) => ({
-//           name: `${String(d.Month).padStart(2, '0')}/${d.Year}`,
-//           value: d.Total
-//         }))
-//       },
-//       {
-//         name: 'Siniestros',
-//         series: sinisters.map((d: any) => ({
-//           name: `${String(d.Month).padStart(2, '0')}/${d.Year}`,
-//           value: d.Total
-//         }))
-//       }
-//     ];
-//   });
-// }

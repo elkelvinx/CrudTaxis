@@ -204,7 +204,7 @@ export class ConfirmationDialog {
   imports:
     [MatInputModule,
       MatDialogActions,
-      MatDialogClose,
+      // MatDialogClose,
       MatDialogTitle,
       MatDialogContent,
       MatButtonModule,

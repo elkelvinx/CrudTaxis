@@ -93,7 +93,7 @@ export class CarrouselComponent {
   private startAutoSlide(): void {
     this.autoSlideInterval = setInterval(() => {
       this.next();
-    }, 500000);
+    }, 50000);
   }
 
   next(): void {
