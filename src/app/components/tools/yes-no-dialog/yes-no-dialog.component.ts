@@ -23,6 +23,11 @@ import { DialogRef } from '@angular/cdk/dialog';
   imports: [MatButtonModule, MatIconModule, CommonModule],
 })
 export class YesNoDialogComponent {
+  // variante de input
+@Input() variant: 'default' | 'danger' | 'compact' = 'default';
+
+
+
   //pregunta que hara el dialog
   @Input() text: string = '';
   @Input() title: string = '';

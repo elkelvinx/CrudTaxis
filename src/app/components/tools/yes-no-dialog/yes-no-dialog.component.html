@@ -1,19 +1,30 @@
 <!DOCTYPE html>
+
 <!--hacer este if es muy pesado?-->
 <div *ngIf="IconButton == false">
-  <button
+  <!-- <button
     mat-raised-button
     color="primary"
     class="text-button-redFinal"
-    (click)="openDialog('300ms', '300ms', text, name,title)"
+    (click)="openDialog('300ms', '300ms', text, name, title)"
   >
     Eliminar
+  </button> -->
+  <button
+    mat-raised-button
+    [ngClass]="{
+      'text-button-redFinal': variant === 'danger',
+      'text-button-redFinal2': variant === 'default'
+    }"
+    (click)="openDialog('300ms', '300ms', text, name, title)"
+  >
+    {{ variant === "danger" ? "Eliminar" : "Eliminar" }}
   </button>
 </div>
 <div *ngIf="IconButton == true">
   <mat-icon
     style="transform: scale(1.2)"
-    (click)="openDialog('300ms', '300ms', text, name,title)"
+    (click)="openDialog('300ms', '300ms', text, name, title)"
     >delete_outline</mat-icon
   >
 </div>

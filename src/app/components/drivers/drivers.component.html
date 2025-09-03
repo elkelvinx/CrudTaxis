@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <main>
   <div class="ContainerDivs">
     <!-- Tarjeta de formulario -->
@@ -117,7 +118,7 @@
         <!-- Status / Número de casa / Pago de ingreso -->
         <div class="renglon">
           <app-auto-complete
-            class="input-half"
+            class="input-third"
             [text]="'Status'"
             [arrays]="statusName"
             [info]="Driver.statusS"
@@ -134,7 +135,7 @@
           ></app-auto-complete>
 
           <app-auto-complete
-            class="input-third"
+            class="input-smaill"
             [text]="'Pago de ingreso'"
             [info]="Driver.ingressPay"
             (data)="Driver.ingressPay = $event"
@@ -195,35 +196,25 @@
       <!-- Footer -->
       <div class="footerCard">
         <mat-divider></mat-divider>
-        <mat-card-actions class="actions">
+
+        <!-- Acciones principales -->
+        <mat-card-actions class="actions">     
           <app-yes-no-dialog
-            (data)="eliminarDialog(Driver.id)"
+            variant="danger"
             [title]="'Borrar conductor'"
-            [text]="'Borrar el registro del conductor'"
+            [text]="'¿Seguro que deseas borrar?'"
             [name]="nombreCompleto"
             [IconButton]="false"
+            (data)="eliminarDialog(Driver.id)"
           ></app-yes-no-dialog>
-        </mat-card-actions>
-
-        <mat-card-actions class="actions">
-          <button
-            mat-raised-button
-            (click)="grabar()"
-            *ngIf="ActSave"
-            color="primary"
-            class="text-button-greenFinal"
-          >
-            Guardar
-          </button>
 
           <button
             mat-raised-button
+            (click)="ActSave ? grabar() : actualizar()"
             color="primary"
-            (click)="actualizar()"
-            *ngIf="!ActSave"
             class="text-button-greenFinal"
           >
-            Actualizar
+            {{ ActSave ? "Guardar" : "Actualizar" }}
           </button>
         </mat-card-actions>
       </div>
