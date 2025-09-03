@@ -1,257 +1,187 @@
-<!DOCTYPE html>
 <main>
   <div class="ContainerDivs">
+    <!-- Tarjeta de formulario -->
     <div class="CardSerch">
+      <!-- Header -->
       <div class="headerCard">
         Conductores
-        <mat-icon (click)="consultarDriver(0)" class="button-search"
-          >add_circle_outline</mat-icon
-        >
+        <mat-icon (click)="consultarDriver(0)" class="button-search">
+          add_circle_outline
+        </mat-icon>
       </div>
+
+      <!-- Body -->
       <div class="bodyCard">
-        <div
-          class="renglon2"
-          style="
-            display: flex;
-            flex-direction: row;
-            gap: 10px;
-            align-items: center;
-            justify-content: flex-start;
-            margin-left: 1%;
-            width: 100%;
-            flex-wrap: wrap;
-          "
-        >
-          <!-- este es uno -->
+        <!-- Nombre -->
+        <div class="renglon">
           <app-auto-complete
+            class="input-full"
             [text]="'Nombres'"
             [info]="Driver.name"
             (data)="Driver.name = $event"
             className="brand"
-            style="width: 97%"
             required
             pattern="[a-zA-Z0-9 ]*"
           ></app-auto-complete>
         </div>
-        <div
-          class="renglon1"
-          
-        >
-          <!-- este es uno -->
+
+        <!-- Apellidos -->
+        <div class="renglon">
           <app-auto-complete
+            class="input-half"
             [text]="'Apellido Paterno'"
             [info]="Driver.lm1"
             (data)="Driver.lm1 = $event"
             className="brand"
-            
           ></app-auto-complete>
+
           <app-auto-complete
+            class="input-half"
             [text]="'Apellido Materno'"
             [info]="Driver.lm2"
             (data)="Driver.lm2 = $event"
             className="brand"
-            
           ></app-auto-complete>
         </div>
-        <div
-          class="renglon3"
-          style="
-            display: flex;
-            flex-direction: row;
-            gap: 10px;
-            align-items: center;
-            justify-content: flex-start;
-            margin-left: 1%;
-            width: 100%;
-            flex-wrap: wrap;
-          "
-        >
-          <!-- este es uno -->
+
+        <!-- Contraseña / Teléfono / Colonia -->
+        <div class="renglon">
           <app-auto-complete
+            class="input-half"
             [text]="'Contraseña'"
             [info]="Driver.password"
             (data)="Driver.password = $event"
             className="brand"
-            style="width: 48%"
           ></app-auto-complete>
+
           <app-auto-complete
+            class="input-small"
             [text]="'Telefono'"
             [info]="Driver.phone"
             (data)="Driver.phone = $event"
             className="brand"
-            style="width: 17%"
           ></app-auto-complete>
+
           <app-auto-complete
+            class="input-third"
             [text]="'Colonia'"
             [info]="Driver.settlementS"
             [arrays]="settlementName"
             (data)="guardarDireccion($event)"
             className="brand"
-            style="width: 30%"
           ></app-auto-complete>
         </div>
-        <div
-          class="renglon2"
-          style="
-            display: flex;
-            flex-direction: row;
-            gap: 10px;
-            align-items: center;
-            justify-content: flex-start;
-            margin-left: 1%;
-            width: 100%;
-            flex-wrap: wrap;
-          "
-        >
-          <!-- este es uno -->
+
+        <!-- Calles -->
+        <div class="renglon">
           <app-auto-complete
+            class="input-third"
             [text]="'Calle principal'"
             [info]="Driver.street1"
             [arrays]="streetName"
             (data)="guardarStreet($event, 1)"
             className="brand"
-            style="width: 35%"
           ></app-auto-complete>
 
           <app-auto-complete
+            class="input-third"
             [text]="'Entre la calle'"
             [info]="Driver.street2"
             [arrays]="streetName"
             (data)="guardarStreet($event, 2)"
             className="brand"
-            style="width: 30%"
           ></app-auto-complete>
 
           <app-auto-complete
+            class="input-third"
             [text]="'y la Calle'"
             [info]="Driver.street3"
             [arrays]="streetName"
             (data)="guardarStreet($event, 3)"
             className="brand"
-            style="width: 30%"
           ></app-auto-complete>
         </div>
-        <div
-          class="renglon2"
-          style="
-            display: flex;
-            flex-direction: row;
-            gap: 10px;
-            align-items: center;
-            justify-content: flex-start;
-            margin-left: 1%;
-            width: 100%;
-            flex-wrap: wrap;
-          "
-        >
+
+        <!-- Administrador -->
+        <div class="renglon">
           <app-auto-complete
-            className="brand"
-            [text]="'administrador'"
+            class="input-full"
+            [text]="'Administrador'"
             [info]="Driver.adminName"
             [arrays]="adminsName"
             (data)="guardarAdmin($event)"
-            style="width: 97%"
+            className="brand"
           ></app-auto-complete>
         </div>
-        <div
-          class="renglon3"
-          style="
-            display: flex;
-            flex-direction: row;
-            gap: 10px;
-            align-items: center;
-            justify-content: flex-start;
-            margin-left: 1%;
-            width: 100%;
-            flex-wrap: wrap;
-          "
-        >
+
+        <!-- Status / Número de casa / Pago de ingreso -->
+        <div class="renglon">
           <app-auto-complete
+            class="input-half"
             [text]="'Status'"
             [arrays]="statusName"
             [info]="Driver.statusS"
             (data)="guardarStatus($event)"
             className="brand"
-            style="width: 48%"
           ></app-auto-complete>
 
           <app-auto-complete
-            [text]="'Numero de casa'"
+            class="input-small"
+            [text]="'Número de casa'"
             [info]="Driver.extNumber"
             (data)="Driver.extNumber = $event"
             className="brand"
-            style="width: 17%"
           ></app-auto-complete>
+
           <app-auto-complete
+            class="input-third"
             [text]="'Pago de ingreso'"
             [info]="Driver.ingressPay"
             (data)="Driver.ingressPay = $event"
             className="brand"
-            style="width: 30%"
           ></app-auto-complete>
         </div>
-        <div
-          class="renglon1"
-          style="
-            display: flex;
-            flex-direction: row;
-            gap: 5px;
-            align-items: center;
-            justify-content: flex-start;
-            margin-left: 1%;
-            width: 100%;
-            flex-wrap: wrap;
-          "
-        >
+
+        <!-- Fechas -->
+        <div class="renglon">
           <app-datepicker-date
+            class="input-half"
             [isDisabled]="false"
             [actualDate]="Driver.birth"
             (date)="Driver.birth = $event"
             [text]="'Fecha de nacimiento'"
             className="brand"
-            style="width: 48%"
           ></app-datepicker-date>
-          <br />
+
           <app-datepicker-date
+            class="input-half"
             [isDisabled]="false"
             [actualDate]="Driver.licenseEx"
             (date)="Driver.licenseEx = $event"
             [text]="'Vencimiento de licencia'"
             className="brand"
-            style="width: 48%"
           ></app-datepicker-date>
-          <br />
-
-          <br />
         </div>
-        <div
-          class="renglon1"
-          style="
-            display: flex;
-            flex-direction: row;
-            gap: 10px;
-            align-items: center;
-            justify-content: flex-start;
-            margin-left: 1%;
-            width: 100%;
-            flex-wrap: wrap;
-          "
-        >
+
+        <div class="renglon">
           <app-datepicker-date
+            class="input-half"
             [isDisabled]="true"
             [actualDate]="Driver.hireDate"
             [text]="'Fecha de ingreso'"
             className="brand"
-            style="width: 48%"
           ></app-datepicker-date>
+
           <app-datepicker-date
+            class="input-half"
             [isDisabled]="true"
             [actualDate]="Driver.lastModD"
-            [text]="'Fecha de ultima modificacion'"
+            [text]="'Fecha de última modificación'"
             className="brand"
-            style="width: 48%"
           ></app-datepicker-date>
         </div>
+
+        <!-- Contacto -->
         <app-contact-dialog
           [arraySt]="streets"
           [arrayCol]="settlements"
@@ -261,32 +191,11 @@
           className="brand"
         ></app-contact-dialog>
       </div>
-      <div
-        class="footerCard"
-        style="
-          align-self: flex-end;
-          width: 100%;
-          height: 60px;
-          margin-top: auto;
-          margin-bottom: 2%;
-        "
-      >
-        <br />
-        <mat-divider
-          style="margin-left: 1%; width: 98%; margin-top: -3%"
-        ></mat-divider>
-        <mat-card-actions
-          align="start"
-          style="
-            display: flex;
-            flex-direction: row;
-            flex-wrap: wrap;
-            justify-content: flex-start;
-            align-items: center;
-            margin-top: 40px;
-            margin-left: 4%;
-          "
-        >
+
+      <!-- Footer -->
+      <div class="footerCard">
+        <mat-divider></mat-divider>
+        <mat-card-actions class="actions">
           <app-yes-no-dialog
             (data)="eliminarDialog(Driver.id)"
             [title]="'Borrar conductor'"
@@ -294,57 +203,34 @@
             [name]="nombreCompleto"
             [IconButton]="false"
           ></app-yes-no-dialog>
-          <br />
         </mat-card-actions>
-        <mat-card-actions align="end" class="buttons-actionDelete">
+
+        <mat-card-actions class="actions">
           <button
             mat-raised-button
             (click)="grabar()"
             *ngIf="ActSave"
             color="primary"
             class="text-button-greenFinal"
-            style="
-              position: absolute;
-              margin-top: -55px;
-              margin-left: 32%;
-              width: 10% !important;
-              height: 46px !important;
-              --mat-protected-button-ripple-color: rgb(7 101 37) !important;
-            "
           >
             Guardar
           </button>
+
           <button
             mat-raised-button
             color="primary"
             (click)="actualizar()"
             *ngIf="!ActSave"
             class="text-button-greenFinal"
-            style="
-              position: absolute;
-              margin-top: -54px;
-              margin-left: 32%;
-              width: 10%;
-              --mat-protected-button-ripple-color: rgb(7 101 37) !important;
-            "
           >
             Actualizar
           </button>
-          <br />
-          <br />
         </mat-card-actions>
       </div>
     </div>
-    <div
-      class="div-table"
-      style="
-        background-color: rgba(0, 0, 0, 0.179);
-        width: 49.7%;
-        height: 800px;
-        max-height: 800px;
-        border-radius: 12px;
-      "
-    >
+
+    <!-- Tabla -->
+    <div class="div-table">
       <div class="tabla-dataPRUEBA">
         <app-table
           [data]="listDriver"

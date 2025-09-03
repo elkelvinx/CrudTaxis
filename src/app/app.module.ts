@@ -99,14 +99,7 @@ import { TokenInterceptor } from './interceptor/token.interceptor';
 import { LogsComponent } from './components/logs/logs.component';
 import { FormControlName } from '@angular/forms';
 
-//Firebase
-import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
-import { provideStorage, getStorage } from '@angular/fire/storage'; // ← ¡ESTO es Firebase Storage!
-import { getFirestore } from "firebase/firestore";
 // import { NgbdSortableHeader } from './directives/sortable.directive';
-import { AngularFireModule } from '@angular/fire/compat';
-import { AngularFireStorageModule } from '@angular/fire/compat/storage';
-import { environment } from '../enviroment/enviroment';
 import { CarrouselComponent } from './components/tools/carrousel/carrousel/carrousel.component';
 import { ImgTechsComponent } from './components/tools/img-techs/img-techs.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
@@ -229,8 +222,6 @@ import { KpiCardsComponent } from './components/tools/kpi-cards/kpi-cards.compon
         //!esto es nuevo
         MatSelectModule,
         MatSortModule,
-        AngularFireModule.initializeApp(environment.firebaseConfig),
-        AngularFireStorageModule,
         NgxChartsModule,
         MatNativeDateModule,
     ],
