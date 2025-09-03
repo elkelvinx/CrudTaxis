@@ -18,7 +18,7 @@
       [(ngModel)]="object.User.name"
       placeholder="Nueva Informacion"
       required
-      pattern="[a-zA-Z0-9]*"
+      pattern="[a-zA-Z0-9 @ . ñ áíéó]*"
       #nameInput="ngModel"
     />
   </mat-form-field>
@@ -40,7 +40,7 @@
       name="password"
       [(ngModel)]="object.User.password"
       placeholder="Ej.3juan"
-      pattern="[a-zA-Z0-9]*"
+      pattern="[a-zA-Z0-9 ]*"
       
       #passwordInput="ngModel"
     />
@@ -181,31 +181,27 @@
       >Activo</mat-slide-toggle
     >
     <mat-slide-toggle
-      class="state_slider"
+      class="state_slideBloqued"
       [(ngModel)]="object.User.bloqued"
       [ngModelOptions]="{ standalone: true }"
       >Bloqueado</mat-slide-toggle
     >
   </div>
 </div>
-<div mat-dialog-actions style="margin-bottom: 2%">
-  <mat-divider></mat-divider>
-  <div style="position: absolute">
-    <br />
-    <button
-      mat-raised-button
-      mat-dialog-close
-      color="primary"
-      class="button_dialog_red_extraCSS"
-    >
-      Cancelar
-    </button>
-  </div>
+<div mat-dialog-actions class="actions-section">
+  <button
+    mat-raised-button
+    mat-dialog-close
+    class="buttonred_new"
+  >
+    Cancelar
+  </button>
+
   <button
     mat-raised-button
     color="primary"
     (click)="ChangeName()"
-    class="text-button-greenFinal"
+    class="button-green"
     [disabled]="!UserForm.valid"
   >
     Actualizar
