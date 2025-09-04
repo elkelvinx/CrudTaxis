@@ -24,7 +24,7 @@ export class GraphRangeComponent {
     name: 'myScheme',
     selectable: true,
     group: ScaleType.Ordinal, // use ScaleType enum/value
-    domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
+    domain: ['#2ecc71', '#e74c3c','#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
   };
   constructor(private homeService: HomeService) { }
 
@@ -93,9 +93,16 @@ export class GraphRangeComponent {
 
       // Reemplazar la referencia (evita duplicados)
       this.data = [
-        { name: 'Conductores', series: seriesDrivers },
-        { name: 'Siniestros', series: seriesSinisters }
+        {
+          name: 'Conductores',
+          series: seriesDrivers.map(d => ({ name: d.name, value: d.value }))
+        },
+        {
+          name: 'Siniestros',
+          series: seriesSinisters.map(s => ({ name: s.name, value: s.value }))
+        }
       ];
+      
       this.updateView();
     }, (error: any) => {
       console.error('Error cargando series', error);
