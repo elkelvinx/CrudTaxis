@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <h1 mat-dialog-title>
   {{ (title === '') ? "Borrar el registro" : title }}
 </h1>
@@ -6,7 +7,7 @@
   {{ (contentDialog === '') ? "¿Desea borrar a " + nameObj + "?" : contentDialog + " " + nameObj }}
 </div>
 
-<div mat-dialog-actions class="dialog-actions">
+<div mat-dialog-actions class="dialog-actions" align="end">
   <button
     mat-raised-button
     mat-dialog-close

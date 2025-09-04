@@ -221,6 +221,28 @@ button.text-button-redFinal.mdc-button.mdc-button--raised.mat-mdc-raised-button.
   --mat-text-button-state-layer-color: #e36f6f !important;
   --mdc-protected-button-outline-color: rgb(10 137 247) !important;
   /* text-shadow: -2px 3px 8px #000; */
+  --mdc-protected-button-container-color: #b3041e !important;
+  --mat-protected-button-hover-state-layer-opacity: 0.68 !important;
+  --mat-protected-button-focus-state-layer-opacity: 0.24 !important;
+  --mat-protected-button-pressed-state-layer-opacity: 0.24 !important;
+  color: #ffffff !important;
+  border-radius: 10px !important;
+  /* margin-top: -44px;
+  margin-left: 31%; */
+  width: 100% !important;
+  height: 2.8rem!important;
+  box-shadow: -1px 12px 9px 1px rgba(0, 0, 0, 0.2),
+    0px 2px 2px 0px rgb(32 61 10 / 79%), 3px 4px 12px 0px rgb(1 9 5 / 34%) !important;
+}
+/* MADE FOR THE YES NO VARIANT DEFAULT */
+.text-button-redFinal2 {
+  --mdc-protected-button-label-text-color: #9e0d0d !important;
+  --mdc-protected-button-outline-color: rgba(0, 255, 81, 0) !important;
+  --mat-protected-button-state-layer-color: #f70909bd !important;
+  --mat-protected-button-ripple-color: rgb(157 4 4) !important;
+  --mat-text-button-state-layer-color: #e36f6f !important;
+  --mdc-protected-button-outline-color: rgb(10 137 247) !important;
+  /* text-shadow: -2px 3px 8px #000; */
   color: #ffffff !important;
   --mdc-protected-button-container-color: #b3041e !important;
   border-radius: 10px !important;
@@ -229,11 +251,11 @@ button.text-button-redFinal.mdc-button.mdc-button--raised.mat-mdc-raised-button.
   --mat-protected-button-pressed-state-layer-opacity: 0.24 !important;
   margin-top: -44px;
   margin-left: 31%;
-  width: 200% !important;
+  width: 150% !important;
+  height: 2.8rem!important;
   box-shadow: -1px 12px 9px 1px rgba(0, 0, 0, 0.2),
     0px 2px 2px 0px rgb(32 61 10 / 79%), 3px 4px 12px 0px rgb(1 9 5 / 34%) !important;
 }
-
 .text-button-greenFinal {
   --mdc-protected-button-container-color: #3e673f !important;
   --mdc-protected-button-outline-color: rgba(0, 255, 81, 0) !important;

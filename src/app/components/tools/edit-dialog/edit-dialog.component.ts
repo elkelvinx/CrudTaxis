@@ -309,7 +309,7 @@ export class DialogUpdateUser {
   toggleSuperUser(): void {
     this.object.Permissions.driver = this.object.Permissions.admin = this.object.Permissions.permissionaire =
       this.object.Permissions.extraData = this.object.Permissions.sinister =
-      this.object.Permissions.unit = this.object.Permissions.pdf = this.SuperPermissions;
+      this.object.Permissions.unit = this.object.Permissions.pdf = this.object.User.active = this.SuperPermissions;
   }
   unToggleSuperUser(): void {
     this.SuperPermissions = false;

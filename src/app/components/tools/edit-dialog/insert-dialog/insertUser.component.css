@@ -172,3 +172,16 @@ form.principalForm {
 :root {
   --mat-slide-toggle-label-text-size: 20px !important;
 }
+
+@media screen and (max-width: 600px) {
+  .permission_slider {
+    width: 100%;
+    margin-left: 0px;
+    margin-bottom: 10px;
+  }
+  .permissions_Sliders_Section {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+}

@@ -51,7 +51,6 @@ h1#mat-mdc-dialog-title-0 {
   background-color: #1b5e20 !important;
 }
 
-
 .text-danger {
   margin-top: -1%;
   margin-left: 6%;
@@ -128,7 +127,7 @@ form.principalForm {
   margin-bottom: 2%;
   flex-wrap: wrap;
   justify-content: space-evenly;
-  row-gap: 1vh;
+  row-gap: 0.5vh;
   column-gap: 0vh;
 }
 .buttonP {
@@ -188,13 +187,14 @@ form.principalForm {
   justify-content: space-between;
 }
 .permissions_Sliders_Section {
-  /* margin-top: 30px; */
-  margin-bottom: 1.5%;
   width: 97%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   flex-wrap: wrap;
+  margin-bottom: 1.5%;
+  margin-top: -2%;
+  margin-left: 2%;
 }
 .permission_slider {
   width: 30%;
@@ -273,9 +273,10 @@ form.principalForm {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  gap: 16px;
   flex-wrap: nowrap;
   padding: 3%;
+  column-gap: 18%;
+  margin-top: -3%;
 }
 :root {
   --mat-slide-toggle-label-text-size: 20px !important;
@@ -290,7 +291,7 @@ form.principalForm {
 
   .actions-section button {
     width: 80% !important; /* que ocupen casi todo el ancho */
-margin-left: 1%;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
+    margin-left: 1%;
   }
   .state_slideBloqued {
     transform: scale(1.22);
@@ -298,4 +299,19 @@ margin-left: 1%;
     height: 50px;
     margin-left: -27.7%;
   }
+  .permissions_Sliders_Section {
+    margin-bottom: 1%;
+    width: 97%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    column-gap: 17vw;
+  }
+  .permission_slider {
+    margin-left: 8px;
+  }
+}
+h1#mat-mdc-dialog-title-1 {
+  margin-bottom: -1.3%;
 }
