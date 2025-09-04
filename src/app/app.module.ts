@@ -107,6 +107,7 @@ import { GraphsComponent } from './components/tools/graphs/graphs.component';
 import { GraphRangeComponent } from './components/tools/graphs/graph-range/graph-range.component';
 import { DatePickerHomeComponent } from './components/tools/date-picker-home/date-picker-home.component';
 import { KpiCardsComponent } from './components/tools/kpi-cards/kpi-cards.component';
+import { DemoDialogComponent } from './components/tools/demo-dialog/demo-dialog.component';
 @NgModule({
     exports: [
         A11yModule,
@@ -183,6 +184,7 @@ import { KpiCardsComponent } from './components/tools/kpi-cards/kpi-cards.compon
         GraphRangeComponent,
         DatePickerHomeComponent,
         KpiCardsComponent,
+        DemoDialogComponent,
 
 
     ],
