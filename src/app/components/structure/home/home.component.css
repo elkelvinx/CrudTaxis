@@ -154,7 +154,7 @@
   padding: 2rem;
   /* padding-top: .5rem; */
   margin-top: -2%!important;
-  max-width: 1300px;
+  max-width: 1400px;
   margin: 0 auto;
   /* background: #1c1d1d; */
 }
@@ -245,9 +245,10 @@ ngx-charts, .ngx-charts text {
 }
 .carousel-section{
 display: flex;
+margin-left: -5%;
 }
 .graphs-section {
-  margin: 2rem 0;
+  margin: 1.5rem 0;
   /* margin-left: -10%; */
 }
 @media (max-width: 575px) {
@@ -258,4 +259,10 @@ display: flex;
   .carousel-section{
     display: flex;
     }
+}
+
+@media (max-width: 785px) {
+  .carousel-section {
+    justify-content: center;
+  }
 }
