@@ -199,23 +199,23 @@
 
         <!-- Acciones principales -->
         <mat-card-actions class="actions">     
-          <app-yes-no-dialog
-            variant="danger"
-            [title]="'Borrar conductor'"
-            [text]="'¿Seguro que deseas borrar?'"
-            [name]="nombreCompleto"
-            [IconButton]="false"
-            (data)="eliminarDialog(Driver.id)"
-          ></app-yes-no-dialog>
-
           <button
-            mat-raised-button
-            (click)="ActSave ? grabar() : actualizar()"
-            color="primary"
-            class="text-button-greenFinal"
+          mat-raised-button
+          (click)="ActSave ? grabar() : actualizar()"
+          color="primary"
+          class="text-button-greenFinal"
           >
-            {{ ActSave ? "Guardar" : "Actualizar" }}
-          </button>
+          {{ ActSave ? "Guardar" : "Actualizar" }}
+        </button>
+        
+        <app-yes-no-dialog
+          variant="danger"
+          [title]="'Borrar conductor'"
+          [text]="'¿Seguro que deseas borrar?'"
+          [name]="nombreCompleto"
+          [IconButton]="false"
+          (data)="eliminarDialog(Driver.id)"
+        ></app-yes-no-dialog>
         </mat-card-actions>
       </div>
     </div>

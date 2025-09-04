@@ -172,6 +172,13 @@
       (change)="unToggleSuperUser()"
       >Generador de Pdf's</mat-slide-toggle
     >
+    <mat-slide-toggle
+      class="permission_slider"
+      [(ngModel)]="object.Permissions.changeLog"
+      [ngModelOptions]="{ standalone: true }"
+      (change)="unToggleSuperUser()"
+      >Logs del Sistema</mat-slide-toggle
+    >
   </div>
   <div mat-dialog-actions style="width: 100%">
     <mat-divider></mat-divider>

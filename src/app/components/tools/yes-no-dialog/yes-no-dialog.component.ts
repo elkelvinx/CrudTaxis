@@ -24,7 +24,7 @@ import { DialogRef } from '@angular/cdk/dialog';
 })
 export class YesNoDialogComponent {
   // variante de input
-@Input() variant: 'default' | 'danger' | 'compact' = 'default';
+  @Input() variant: 'default' | 'danger' | 'compact' = 'default';
 
 
 
@@ -40,10 +40,12 @@ export class YesNoDialogComponent {
   ChangeName() {
     this.data.emit(true);
   }
-  openDialog(enterAnimationDuration: string, exitAnimationDuration: string, contentDialog: string, name: string,title:string): void {
+  openDialog(enterAnimationDuration: string, exitAnimationDuration: string, contentDialog: string, name: string, title: string): void {
     const dialogRef = this.dialog.open(DialogAnimationsExampleDialog, {
-      width: '520px',
-      height: '200px',
+      width: '400px',   // ancho fijo
+      height: 'auto',   // ajusta a contenido
+      maxWidth: '90vw', // máximo 90% del viewport
+      maxHeight: '80vh',
       enterAnimationDuration,
       exitAnimationDuration,
       data: {

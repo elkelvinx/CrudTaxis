@@ -52,7 +52,7 @@ export class userPermission{
             public unit: boolean = false,
             public sinister: boolean = false,
             public extraData: boolean = false,
-            public changeLog: string = '',
+            public changeLog: boolean = false,
             public pdf: boolean = false,
         ) {
 
