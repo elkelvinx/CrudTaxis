@@ -8,7 +8,7 @@ import { URL } from '../../../enviroment/enviroment';
   providedIn: 'root'
 })
 export class LogInService {
-  urlApi = URL+"login/";
+  urlApi = URL;
   constructor(
     private Http: HttpClient
   ) { }
@@ -35,7 +35,8 @@ export class LogInService {
     )
   }
   public consultarUsers(): Observable<any[]> {
-    let controller = "user";
+    debugger
+    let controller = "User";
     let Headers = new HttpHeaders().set("Accept", "aplication/json");
     return this.Http.get<any[]>(
       `${URL}${encodeURIComponent(controller)}`,
@@ -46,7 +47,7 @@ export class LogInService {
     );
   }
   public CreateUser(User: user, Permissions: userPermission) {
-    let Controller = 'user'
+    let Controller = 'User'
     let Headers = new HttpHeaders().set("Accept", "application/json")
     debugger
     const userDataToSend = {
@@ -61,7 +62,7 @@ export class LogInService {
     )
   }
   public UpdateUser(User: user, Permissions: userPermission) {
-    let Controller = 'user'
+    let Controller = 'User'
     let Headers = new HttpHeaders().set("Accept", "application/json")
     debugger
     const userDataToSend = {
