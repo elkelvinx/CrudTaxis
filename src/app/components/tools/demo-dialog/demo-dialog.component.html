@@ -1,0 +1,34 @@
+<h2 mat-dialog-title>Demo del sistema</h2>
+
+<mat-dialog-content class="demo-dialog-content">
+  <mat-tab-group>
+    <!-- Tab Español -->
+    <mat-tab label="🎥 Español">
+      <div class="tab-section">
+        <p>Video en español explicando el sistema:</p>
+        <button mat-raised-button color="primary" (click)="openVideo('es')">
+          ▶ Reproducir Español
+        </button>
+      </div>
+    </mat-tab>
+
+    <!-- Tab Inglés -->
+    <mat-tab label="🎥 English">
+      <div class="tab-section">
+        <p>Video in English explaining the system:</p>
+        <button mat-raised-button color="accent" (click)="openVideo('en')">
+          ▶ Play English
+        </button>
+      </div>
+    </mat-tab>
+
+    <!-- Tab Credenciales -->
+    <mat-tab label="🔑 Credenciales">
+      <div class="tab-section">
+        <h3>Credenciales de prueba</h3>
+        <p><b>Admin:</b> adminemo.com / 12345</p>
+        <p><b>User:</b> userdemo.com / 12345</p>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</mat-dialog-content>

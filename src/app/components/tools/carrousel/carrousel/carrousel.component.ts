@@ -82,7 +82,7 @@ export class CarrouselComponent {
         if (result.breakpoints[Breakpoints.Handset]) {
           this.visibleCards = 1;
         } else if (result.breakpoints[Breakpoints.Tablet]) {
-          this.visibleCards = 2;
+          this.visibleCards = 1;
         } else {
           this.visibleCards = 3;
         }

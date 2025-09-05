@@ -2,8 +2,8 @@
   display: flex;
   gap: 1.5rem;
   justify-content: center;
-  margin-bottom: 2rem;
-  margin-top: 2rem;
+  margin-bottom: 1.3rem;
+  margin-top:1rem;
   flex-wrap: wrap;
 }
 
@@ -70,10 +70,28 @@
 *::after {
   transition: all 0.3s ease;
 }
-.kpi-card:hover {
+.kpi-card:hover {                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
   transform: translateY(-8px);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
 }
 .nav-button:hover {
   background-color: rgba(246, 0, 0, 0.3);
+}
+
+@media (max-width: 575px) {
+  .kpis-row {
+    align-items: flex-end;
+    flex-direction: column;
+  }
+  .kpi-card {                                 
+    background: rgba(99, 89, 89, 0.85); /* similar al carrusel */
+    color: #e0f2f1;
+    border-radius: 12px;
+    padding: 16px;
+    width: 215px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
 }

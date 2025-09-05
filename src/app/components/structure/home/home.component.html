@@ -1,30 +1,43 @@
-<!DOCTYPE html>
-<!-- Modern Carousel for Taxi System -->
 <div class="home-container">
+  <!-- HEADER -->
   <div class="header-section">
     <h1 class="title">Bienvenido al sistema de taxis UTVNS</h1>
     <p class="subtitle">
-      Administra conductores, unidades, accidentes y documentos en un solo
-      lugar.
+      Administra conductores, unidades, accidentes y documentos en un solo lugar.
     </p>
   </div>
 
-  <div class="carousel-wrapper">
+  <!-- CARRUSEL DE MÓDULOS -->
+  <section class="carousel-section">
     <app-carrousel></app-carrousel>
-      <!-- Aquí cargamos solo el módulo de gráficas -->
-    <app-graphs></app-graphs>
-    <app-img-techs></app-img-techs>
-    
-    <!-- Aqui iran las imagenes del corporativo -->
-    <div class="corporate-images">
-      UTVNS trabajando para llevarte a tus destinos.
-      <img src="assets/images/home_image.jpeg" alt="Imagen Corporativa 1" class="img-asamblea">
-      <img src="assets/images/home_image2.jpg" alt="Imagen Corporativa 2" class="img-agradecimiento">
-    </div>
-    En agradecimiento a Rigoberto el cual me apoyo dandome la oportunidad de trabajar en este proyecto.
+  </section>
 
-    <div class="footer-section">
-      <p class="footer-text">© 2023 UTVNS. Todos los derechos reservados.</p>
-    </div>
-  </div>
+  <!-- KPIs Y GRÁFICAS -->
+  <section class="graphs-section">
+    <app-graphs></app-graphs>
+  </section>
+  
+  <!-- FOTO CORPORATIVA -->
+  <section class="corporate-section">
+    <h3 class="corporate-title">UTVNS trabajando para llevarte a tus destinos</h3>
+    <img src="assets/images/home_image.jpeg" alt="Asamblea UTVNS" class="corporate-img">
+  </section>
+
+  <!-- TECNOLOGÍAS -->
+  <section class="techs-section">
+    <app-img-techs></app-img-techs>
+  </section>
+
+  <!-- AGRADECIMIENTO -->
+  <section class="thankyou-section">
+    <img src="assets/images/home_image2.jpg" alt="Agradecimiento" class="thankyou-img">
+    <p class="thankyou-text">
+      En agradecimiento a Rigoberto por su apoyo en este proyecto.
+    </p>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p>© {{ currentYear }} UTVNS. Todos los derechos reservados.</p>
+  </footer>
 </div>

@@ -117,3 +117,36 @@ margin-left: 0px;
         margin-left: -2%;
     }
 }
+
+
+/* Botón verde principal (ya lo tienes) */
+.text-button-greenFinal {
+    width: 100% !important;
+    height: 52px !important;
+    margin-top: 4%;
+    background: linear-gradient(135deg, #2e7d32, #1b5e20);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    color: #fff !important;
+  }
+  
+  /* Botón demo (otro color pero con mismo estilo) */
+  .text-button-demo {
+    width: 100% !important;
+    height: 48px !important;
+    margin-top: 1rem;
+    background: linear-gradient(135deg, #455a64, #263238);
+    color: #e0e0e0 !important;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    border-radius: 6px;
+  }
+  
+  .text-button-demo:hover {
+    background: linear-gradient(135deg, #546e7a, #37474f);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.5);
+  }
+  .login-actions{
+    width: 100%;
+  }
+  .login-demo{
+    width: 100%;
+  }
