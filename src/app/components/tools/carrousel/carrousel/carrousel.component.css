@@ -49,7 +49,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 1rem;
+  gap: 6rem;
   /* !! wtf por que falla */
   overflow-x: visible;
 }
@@ -57,15 +57,15 @@
 .carousel-track {
   display: flex;
   transition: transform 0.4s ease-in-out;
-  gap: 1.2rem;
+  gap: 4rem;
   width: 100%;
-  max-width: 1000px;
+  max-width: 1200px;
   justify-content: center;
 }
 
 .carousel-card {
-  width: 300px;
-  min-width: 250px;
+  width: 340px;
+  min-width: 320px;
   background-color: #263238; /* Fondo tarjeta oscuro */
   color: #ffffff;
   border-radius: 10px;
@@ -174,6 +174,7 @@
   .carousel-track {
     flex-direction: column;
     align-items: center;
+    gap: 0.8rem;
   }
 
   .carousel-card {

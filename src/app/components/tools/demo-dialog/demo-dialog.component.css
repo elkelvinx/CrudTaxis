@@ -1,0 +1,30 @@
+.demo-dialog-content {
+    min-width: 400px;
+    background: #1e1e1e;
+    color: #e0e0e0;
+  }
+  
+  ::ng-deep .mat-tab-label {
+    color: #8bc34a !important;
+  }
+  
+  .tab-section {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+  }
+  
+  .tab-section h3 {
+    color: #8bc34a;
+  }
+  button{
+      width: fit-content;
+    }
+  @media (max-width: 600px) {
+    .demo-dialog-content {
+      min-width: 80%;
+      max-width: 100%;
+    }
+  }

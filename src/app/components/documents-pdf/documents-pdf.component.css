@@ -39,3 +39,21 @@ color : #ff0000!important;
 font-size: large;
 }
 }
+mat-form-field app-auto-complete {
+  width: 100%!important;
+  margin-left: 1%!important;
+}
+
+button {
+  align-self: flex-end;
+  width: 100%!important;
+}
+
+.PDFClass .defaultClass{
+  max-width: 100%!important;
+  background-color: red!important;
+}
+
+.defaultClass .mat-mdc-text-field-wrapper, .defaultClass .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+width: 100%!important;
+}

@@ -96,6 +96,8 @@ export class InsertDialogComponent {
   openDialogInsertUser(enterAnimationDuration: string, exitAnimationDuration: string, contentDialog: string, name: string, information: string, indicator: string, numIndicator: number, object: any, array: any): void {
     const dialogRef = this.dialog.open(DialogInsertLogicUser, {
       width: '920px',
+      height: 'auto',   // ajusta a contenido
+      maxHeight: '95vh',
       enterAnimationDuration,
       exitAnimationDuration,
       data: {
@@ -248,6 +250,7 @@ import { RoleNamePipe } from '../../../../pipes/role-name.pipe';
 import { MatDividerModule } from '@angular/material/divider';
 import { LogInService } from '../../../../services/security/log-in.service';
 import { rolesNames } from '../../../../../enviroment/enviroment';
+import { NotificationService } from '../../info-dialog/notification.service';
 @Component({
   selector: 'dialog-User-Insert',
   templateUrl: 'insertUser-dialog.component.html',
@@ -283,6 +286,7 @@ export class DialogInsertLogicUser {
   public rolesNames= rolesNames;
   public SuperPermissions: boolean = false;
   public pipeRole2: RoleNamePipe;
+
   constructor(
     public dialogRef: MatDialogRef<DialogInsertLogic>,
     public CommonModule: CommonModule,
@@ -293,6 +297,7 @@ export class DialogInsertLogicUser {
     //en duda este servicio
     public service: PRUEBAService<any>,
     private datePipe: DatePipe,
+    private notificationService: NotificationService,
     @Inject(MAT_DIALOG_DATA) data: any,
   ) {
     //this.pipeRole2= new RoleNamePipe(datePipe);
@@ -311,12 +316,14 @@ export class DialogInsertLogicUser {
     debugger
   }
   insertData(data: Event) {
+    console.log(data+", User"+ this.object.User);
+    debugger
     this.object.Permissions.idRole = this.extraSerive.guardarStreetExtraData(data, this.rolesNames);
   }
   toggleSuperUser(): void {
     this.object.Permissions.driver = this.object.Permissions.admin = this.object.Permissions.permissionaire =
       this.object.Permissions.extraData = this.object.Permissions.sinister =
-      this.object.Permissions.unit = this.object.Permissions.pdf = this.SuperPermissions;
+      this.object.Permissions.unit = this.object.Permissions.pdf = this.object.Permissions.changeLog = this.SuperPermissions;
   }
   unToggleSuperUser(): void {
     this.SuperPermissions = false;
@@ -328,12 +335,18 @@ export class DialogInsertLogicUser {
     return passwordInput.invalid || passwordInput2.invalid || this.passwordsMatch();
   }
   ChangeName() {
-    console.log(this.object)
+    console.log("User: "+ this.object.User);
     debugger
     this.serviceLogIn.CreateUser(this.object.User, this.object.Permissions).subscribe(
       (data) => {
         console.log(data);
+        this.dialogRef.close(true);
+        this.notificationService.success("El Admin ha sido guardado");
       }
+      
     )
+  }
+  else (error: any) {
+    this.notificationService.displayMessageError("Error al guardar el registro");
   }
 }

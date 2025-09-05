@@ -1,46 +1,137 @@
-* {
-  font-family: "Roboto", sans-serif;
-  font-weight: 400;
-  color: var(--errorTabla);
-  margin: 0;
-  padding: 0;
-}
-input {
-  border-radius: 10px;
-  border-style: groove;
-}
-.tabla-data {
-  position: absolute;
-  width: 100%;
-  margin-top: 27px;
-  height: 500px;
-  margin-left: 900px;
-}
-.mat-icon:hover {
-  color: #1bea00ad;
-  transform: scale(1.3);
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-}
-.mat-icon {
-  font-family: "Material Icons" !important;
-  transition: transform 0.2s ease;
-  box-shadow: none;
-  border: none;
-  border-radius: 35px;
-  color: white;
-  margin-right: 4%;
-  font-size: 160%;
-  height: 27px;
+/* === LAYOUT PRINCIPAL === */
+.ContainerDivs {
+  /* Flex principal para colocar formulario y tabla lado a lado */
+  display: flex;
+  flex-wrap: nowrap; /* No permite que los elementos salten de línea */
+  justify-content: flex-start; /* Alinea elementos al inicio */
+  background-color: rgba(182, 174, 174, 0.079);
+  border-radius: 15px;
+  width: 99%;
+  margin-top: -5px;
+  gap: 2rem; /* Espacio entre formulario y tabla */
 }
 
-.mat-icon:active {
-  transform: scale(1.7);
-  color: #d5f600;
+/* === Tarjeta formulario === */
+.CardSerch {
+  width: 45%; /* Toma casi la mitad de la pantalla */
+  background-color: var(--backCards);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem;
 }
-root {
-  --mdc-text-button-label-text-size: 19px !important;
+
+/* === Header de la tarjeta === */
+.headerCard {
+  color: rgba(255, 255, 255, 0.7);
+  letter-spacing: 2px;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
-.mat-mdc-button {
-  --mdc-text-button-label-text-size: 19px !important;
-  font-size: var(--mdc-text-button-label-text-size);
+
+/* === Body === */
+.bodyCard {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem; /* Espaciado entre filas */
+  width: 100%;
+}
+
+/* === Renglones de inputs === */
+.renglon {
+  display: flex;
+  flex-wrap: wrap; /* Permite que los inputs bajen en pantallas pequeñas */
+  gap: 10px; /* Espaciado entre inputs */
+  width: 100%;
+  justify-content: flex-start;
+}
+
+/* === Inputs responsivos === */
+.input-full {
+  flex: 1 1 100%;
+}
+
+.input-half {
+  flex: 1 1 48%; /* Ocupan la mitad */
+  min-width: 220px; /* Nunca se hacen más pequeños que esto */
+}
+
+.input-third {
+  flex: 1 1 30%; /* Tres por fila */
+  min-width: 180px;
+}
+
+.input-small {
+  flex: 1 1 17%; /* Campos pequeños como teléfono */
+  min-width: 120px;
+}
+
+/* === Footer === */
+.footerCard {
+  margin-top: auto; /* Empuja footer hacia abajo */
+  padding: 1rem 0;
+}
+
+.footerCard mat-divider {
+  margin: 0 1% 1rem;
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between; /* Botón a la izq, eliminar a la derecha */
+  gap: 12px;
+  flex-wrap: wrap; /* Si no cabe, se baja */
+  flex-direction: row-reverse;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+/* === Tabla === */
+.div-table {
+  background-color: rgba(0, 0, 0, 0.179);
+  width: 52%;
+  height: 800px;
+  max-height: 800px;
+  border-radius: 12px;
+}
+
+.tabla-dataPRUEBA {
+  position: relative;
+  width: 100%;
+  margin-top: 0.5rem;
+}
+
+/* === Responsive para pantallas chicas === */
+@media (max-width: 1024px) {
+  .CardSerch,
+  .div-table {
+    width: 100%; /* Ocupan todo el ancho */
+  }
+
+  .input-half,
+  .input-third,
+  .input-small {
+    flex: 1 1 100%; /* Se apilan */
+  }
+
+  .actions {
+    justify-content: center;
+    
+    margin-left: 0;
+    margin-right: 0;
+    gap: 1.5rem;
+  }
+
+  .actions app-yes-no-dialog,
+  .actions button {
+    min-width: 100%;
+  }
+}
+button.text-button-greenFinal.mdc-button.mdc-button--raised.mat-mdc-raised-button.mat-primary.mat-mdc-button-base {
+  height: auto!important;
+}
+mat-icon.mat-icon.notranslate.button-search.material-icons.mat-ligature-font.mat-icon-no-color{
+  border: none;
 }

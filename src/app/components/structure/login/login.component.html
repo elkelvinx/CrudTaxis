@@ -1,13 +1,17 @@
-<!DOCTYPE html>
 <div class="backgroundPage">
   <div class="principal">
+    <!-- Logo -->
     <img
       src="../../../../assets/images/descarga.png"
       alt="logo"
       class="logoLogin"
     />
+
+    <!-- Formulario -->
     <form class="principalForm" #logInForm="ngForm" (ngSubmit)="logIn()">
       <h1 class="titulo">Iniciar Sesion</h1>
+
+      <!-- Nombre -->
       <mat-form-field class="logInInput">
         <mat-label>Nombre</mat-label>
         <input
@@ -16,7 +20,7 @@
           [(ngModel)]="user.name"
           placeholder="Usuario a ingresar"
           required
-          pattern="[a-zA-Z0-9 ñ Ñ]*"
+          pattern="[a-zA-Z0-9 ñÑ]*"
           #nameInput="ngModel"
         />
       </mat-form-field>
@@ -25,21 +29,24 @@
         *ngIf="nameInput.invalid && (nameInput.dirty || logInForm.submitted)"
       >
         <div *ngIf="nameInput.hasError('required')">
-           Nombre de usuario es obligatorio
+          Nombre de usuario es obligatorio
         </div>
         <div *ngIf="nameInput.hasError('pattern')">
           No se permiten caracteres especiales ni espacios
         </div>
       </div>
+
+      <!-- Contraseña -->
       <mat-form-field class="logInInput">
         <mat-label>Contraseña</mat-label>
         <input
           matInput
+          type="password"
           name="password"
           [(ngModel)]="user.password"
           placeholder="Ej.123"
-          pattern="[a-zA-Z0-9 ñ Ñ]*"
           required
+          pattern="[a-zA-Z0-9 ñÑ]*"
           #passwordInput="ngModel"
         />
       </mat-form-field>
@@ -50,19 +57,36 @@
         "
       >
         <div *ngIf="passwordInput.hasError('required')">
-          La contaseña es obligatoria
+          La contraseña es obligatoria
         </div>
         <div *ngIf="passwordInput.hasError('pattern')">
           No se permiten caracteres especiales ni espacios
         </div>
       </div>
-      <button
-        mat-raised-button
-        class="text-button-greenFinal"
-        [disabled]="!logInForm.valid"
-      >
-        Confirmar
-      </button>
+      
+      <!-- Botón Demo (abajo, con estilo diferenciado) -->
+      <div class="login-demo">
+        <button
+          mat-raised-button
+          class="text-button-demo"
+          type="button"
+          (click)="openDemoDialog()"
+        >
+          🎬 Ver demos
+        </button>
+      </div>
+      
+            <!-- Acciones -->
+            <div class="login-actions">
+              <!-- Botón Confirmar (arriba, igual que siempre) -->
+              <button
+                mat-raised-button
+                class="text-button-greenFinal"
+                [disabled]="!logInForm.valid"
+              >
+                Confirmar
+              </button>
+            </div>
       
     </form>
   </div>

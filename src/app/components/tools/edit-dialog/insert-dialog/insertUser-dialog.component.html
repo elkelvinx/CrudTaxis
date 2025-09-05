@@ -18,7 +18,7 @@
       [(ngModel)]="object.User.name"
       placeholder="Ej.Kevin"
       required
-      pattern="[a-zA-Z0-9]*"
+      pattern="[a-zA-Z0-9  _]*"
       #nameInput="ngModel"
     />
   </mat-form-field>
@@ -171,6 +171,13 @@
       [ngModelOptions]="{ standalone: true }"
       (change)="unToggleSuperUser()"
       >Generador de Pdf's</mat-slide-toggle
+    >
+    <mat-slide-toggle
+      class="permission_slider"
+      [(ngModel)]="object.Permissions.changeLog"
+      [ngModelOptions]="{ standalone: true }"
+      (change)="unToggleSuperUser()"
+      >Logs del Sistema</mat-slide-toggle
     >
   </div>
   <div mat-dialog-actions style="width: 100%">

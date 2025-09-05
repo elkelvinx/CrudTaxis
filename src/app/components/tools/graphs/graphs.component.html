@@ -1,10 +1,13 @@
-<!DOCTYPE html>
 <div class="graphics-container">
-  <app-kpi-cards></app-kpi-cards>
-    <!-- <app-date-picker-home
-        (rangeSelected)="loadDataFromPayload($event)"
-    ></app-date-picker-home> -->
-  <app-graph-range (rangeChanged)="onRangeChanged($event)"></app-graph-range>
-  <div class="kpis-row">
+  <div class="graph-layout">
+    <!-- Gráfica -->
+    <div class="graph-side">
+      <app-graph-range (rangeChanged)="onRangeChanged($event)"></app-graph-range>
+    </div>
+
+    <!-- KPI Cards -->
+    <div class="kpi-side">
+      <app-kpi-cards></app-kpi-cards>
+    </div>
   </div>
 </div>

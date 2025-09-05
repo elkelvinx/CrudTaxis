@@ -1,13 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { URL as APIBASEURL } from '../../enviroment/enviroment';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class UploadPhotosService {
-  private apiUrl = 'https://tu-api.com/api/documents'; // reemplaza con tu endpoint real
+  private apiUrl = APIBASEURL+'upload/document'; // Asegúrate de que esta URL sea correcta
+  apiUrl2 = "https://localhost:44319/api/upload/document"; // Asegúrate de que esta URL sea correcta
   constructor(private http: HttpClient) { }
 
   uploadDocument(data: {
