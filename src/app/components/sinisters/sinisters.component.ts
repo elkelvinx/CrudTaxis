@@ -172,6 +172,7 @@ tableConfig: TableConfig = {
     )
   }
   public grabar() {
+    debugger
     this.serviceSinister.Grabar(this.sinister).subscribe(
       (data) => {
         console.log("Guardado correctamente" + data)

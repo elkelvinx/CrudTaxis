@@ -11,5 +11,6 @@ import { HomeService } from '../../../services/home.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
- 
+  currentYear = new Date().getFullYear();
+
 }

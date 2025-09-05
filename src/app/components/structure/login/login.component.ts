@@ -5,6 +5,9 @@ import { NotificationService } from '../../tools/info-dialog/notification.servic
 import { LogInService } from '../../../services/security/log-in.service';
 import { userResponse } from '../../../models/user';
 import { AuthService } from '../../../services/security/authService.service';
+import { MatDialog } from '@angular/material/dialog';
+import { DemoDialogComponent } from '../../tools/demo-dialog/demo-dialog.component';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -13,12 +16,18 @@ import { AuthService } from '../../../services/security/authService.service';
 export class LoginComponent {
 public user= new userLogIn();
 public JWT= new userResponse();
-constructor(private router: Router,private notificationService: NotificationService, private logInservice:LogInService,private authService:AuthService) { }
+constructor(private router: Router,private notificationService: NotificationService, private logInservice:LogInService,private authService:AuthService,private dialog: MatDialog) { }
 logIn(){
   this.grabar(this.user);
 }
 redirrecionar(){
   this.router.navigate(['/home']);
+}
+openDemoDialog() {
+  this.dialog.open(DemoDialogComponent, {
+    width: '500px',
+    disableClose: false
+  });
 }
 public grabar(user: userLogIn) {
   debugger

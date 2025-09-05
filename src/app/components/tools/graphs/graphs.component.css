@@ -1,0 +1,29 @@
+.graph-layout {
+    display: flex;
+    flex-wrap: wrap;
+    /* gap: 1.5rem; */
+    align-items: flex-start;
+  }
+  
+  /* Gráfica grande */
+  .graph-side {
+    flex: 2;
+    min-width: 60%;
+  }
+  
+  /* KPI Cards columna a la derecha */
+  .kpi-side {
+    flex: 1;
+    min-width: 280px;
+  }
+  
+  /* Responsivo para móviles */
+  @media (max-width: 768px) {
+    .graph-layout {
+      flex-direction: column;
+    }
+    .graph-side, .kpi-side {
+      min-width: 100%;
+    }
+  }
+  
