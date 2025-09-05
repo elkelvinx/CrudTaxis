@@ -2,12 +2,16 @@
   display: flex;
   justify-content: space-around;
   gap: 16px;
-  margin-top: 16px;
+
   flex-direction: row;
   flex-wrap: wrap;
   margin-bottom: 3%;
 }
 
+h1{
+margin: 0;
+
+}
 /* Botón rojo */
 .text-button-redFinal {
   background-color: #bf2020 !important;

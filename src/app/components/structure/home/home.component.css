@@ -197,7 +197,7 @@ ngx-charts, .ngx-charts text {
 .corporate-section {
   text-align: center;
     margin: 1rem auto;
-    background: rgba(255, 255, 255, 0.05);
+    /* background: rgba(255, 255, 255, 0.05); */
     border-radius: 12px;
     padding: 1rem;
     display: flex;
@@ -212,10 +212,12 @@ ngx-charts, .ngx-charts text {
   margin-bottom: 1rem;
 }
 .corporate-img {
-  width: 40%;
+  width: 57%;
   max-width: 800px;
   border-radius: 10px;
   box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+  margin-top: 3%;
+  margin-bottom: 4%;
 }
 .thankyou-section {
   text-align: center;
