@@ -25,3 +25,6 @@
 .mdc-text-field--filled:not(.mdc-text-field--disabled) {
   background-color: var(--my-custom-color) !important;
 }
+.defaultClass .mat-mdc-text-field-wrapper, .defaultClass .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+width: 100%!important;
+}
