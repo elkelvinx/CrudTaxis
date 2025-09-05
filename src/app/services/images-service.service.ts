@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { URL as APIBASEURL } from '../../enviroment/enviroment';
 
@@ -7,20 +7,15 @@ import { URL as APIBASEURL } from '../../enviroment/enviroment';
   providedIn: 'root'
 })
 export class ImagesServiceService {
-  private apiUrl = APIBASEURL+'upload/document'; // Asegúrate de que esta URL sea correcta
+  private apiUrl = 'https://localhost:44319/Api/guardarImagen';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
-  subirImagen(payload: any): Observable<any> {
-    const formData = new FormData();
-    formData.append('file', payload.file); // archivo obligatorio
+  subirImagen(archivo: File, categoriaId: number): Observable<any> {
+    const formData: FormData = new FormData();
+    formData.append('Archivo', archivo, archivo.name);
+    formData.append('categoriaId', categoriaId.toString());
 
-    // Puedes incluir metadata si quieres
-    formData.append('entityType', payload.entityType);
-    formData.append('entityId', payload.entityId);
-    formData.append('documentType', payload.documentType);
-    formData.append('description', payload.description);
-
-    return this.http.post(this.apiUrl, formData);
+    return this.http.post(`${this.apiUrl}/GuardarImagen`, formData);
   }
 }

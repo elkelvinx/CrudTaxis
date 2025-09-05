@@ -1,3 +1,13 @@
+
+<!DOCTYPE html>
+<!--
+     Dropdown 1: Tipo de entidad (driver, permissionaire, unit, sinister, etc.) 
+
+     Dropdown 2: Lista de registros según el tipo anterior
+      Si eliges "Driver" → cargas todos los drivers con su nombre/ID
+      
+     Dropdown 3: Tipo de documento (desde tu tabla DocumentTypes) 
+-->
 <div class="container">
   <h1>Subir Documentos</h1>
 
@@ -10,19 +20,20 @@
           {{ type | titlecase }}
         </mat-option>
       </mat-select>
+      <!-- Esto es para mostrar el error -->
       <mat-error *ngIf="form.get('entityType')?.hasError('required')">
         Este campo es obligatorio
       </mat-error>
     </mat-form-field>
 
     <!-- Dropdown 2: Entidad específica -->
-    <app-auto-complete      
-      class="PDFcomponent"
-      [text]="'Entidad Relacionada'"
-      [arrays]="entityNames"
-      (data)="handleSelectedEntity($event)"
-      style="width: 100%!important;"
-    ></app-auto-complete>
+ <app-auto-complete
+  [text]="'Entidad Relacionada'"
+  [arrays]="entityNames"
+  (data)="handleSelectedEntity($event)"
+  className="brand"
+  style="width: 97%"
+></app-auto-complete>
 
     <!-- Dropdown 3: Tipo de documento -->
     <mat-form-field appearance="fill">
@@ -42,20 +53,15 @@
 
     <!-- Archivo -->
     <input type="file" id="file" hidden (change)="onFileSelected($event)" />
-    <label mat-raised-button color="primary" for="file" accept=".pdf,image/*">
+    <label mat-raised-button color="primary" for="file"  accept=".pdf,image/*">
       Seleccionar Archivo
     </label>
     <span *ngIf="form.get('file')?.value">
-      {{ form.get("file")?.value?.name }}
+      {{ form.get('file')?.value?.name }}
     </span>
 
     <!-- Botón enviar -->
-    <button
-      mat-raised-button
-      color="primary"
-      type="submit"
-      [disabled]="form.invalid"
-    >
+    <button mat-raised-button color="accent" type="submit" [disabled]="form.invalid">
       Subir Documento
     </button>
   </form>

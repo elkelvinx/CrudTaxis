@@ -2,31 +2,26 @@
 
 <mat-dialog-content class="demo-dialog-content">
   <mat-tab-group>
-    
     <!-- Tab Español -->
     <mat-tab label="🎥 Español">
       <div class="tab-section">
-        <mat-dialog-content>
-          <video width="100%" height="auto" controls>
-            <source [src]="videoUrl" type="video/mp4" />
-            Tu navegador no soporta video.
-          </video>
-        </mat-dialog-content>
+        <p>Video en español explicando el sistema:</p>
+        <button mat-raised-button color="primary" (click)="openVideo('es')">
+          ▶ Reproducir Español
+        </button>
       </div>
     </mat-tab>
-    
+
     <!-- Tab Inglés -->
     <mat-tab label="🎥 English">
       <div class="tab-section">
-        <mat-dialog-content>
-          <video width="100%" height="auto" controls>
-            <source [src]="videoUrlEnglish" type="video/mp4" />
-            Tu navegador no soporta video.
-          </video>
-        </mat-dialog-content>
+        <p>Video in English explaining the system:</p>
+        <button mat-raised-button color="accent" (click)="openVideo('en')">
+          ▶ Play English
+        </button>
       </div>
     </mat-tab>
-    
+
     <!-- Tab Credenciales -->
     <mat-tab label="🔑 Credenciales">
       <div class="tab-section">

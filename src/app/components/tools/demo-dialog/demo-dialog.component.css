@@ -19,12 +19,4 @@
   .tab-section h3 {
     color: #8bc34a;
   }
-  button{
-      width: fit-content;
-    }
-  @media (max-width: 600px) {
-    .demo-dialog-content {
-      min-width: 80%;
-      max-width: 100%;
-    }
-  }
+  

@@ -212,11 +212,6 @@ button.text-button-redFinal.mdc-button.mdc-button--raised.mat-mdc-raised-button.
     /* margin-top: -39px !important; */
     width: 10vw !important;
 }
-app-auto-complete .PDFcomponent  {
-  width: 100%!important;
-  margin-left: 1%!important;
-  background-color: red!important;
-}
 
 .text-button-redFinal {
   --mdc-protected-button-label-text-color: #9e0d0d !important;
