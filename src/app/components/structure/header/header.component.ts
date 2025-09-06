@@ -37,14 +37,13 @@ export class HeaderComponent implements OnInit {
   }
 
   toggleMenu() {
-    debugger
     if (this.isMenuOpen) {
       this.closeMenu();
     }
     else {
-      this.menuWidth = '270px'; // abre el menu
+      this.menuWidth = '220px'; // abre el menu
       this.headerWidth = '270px'
-      this.iconButtonWidth = '10%';
+      this.iconButtonWidth = '220px';
       this.isMenuOpen = true;
     }
   }
