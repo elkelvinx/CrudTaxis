@@ -86,7 +86,7 @@ export class CarrouselComponent {
         } else {
           this.visibleCards = 3;
         }
-        this.currentIndex = 0; // Reset index on resize
+       
       });
   }
 
