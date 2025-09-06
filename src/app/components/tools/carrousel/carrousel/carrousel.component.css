@@ -196,10 +196,11 @@ mat-icon:hover {
         margin: 1rem 0;
   }
   .carousel-wrapper {
+    margin-top: 4rem;
     display: flex;
     flex-direction: column-reverse; /* botones arriba, track, botones abajo */
     align-items: center;
-    gap: 1rem;
+    gap: 0rem;
   }
 }
 @media (max-width: 768px) {
