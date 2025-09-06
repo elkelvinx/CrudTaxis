@@ -1,6 +1,6 @@
 
 import { Component } from '@angular/core';
-
+import {KpiCardsComponent} from '../../tools/kpi-cards/kpi-cards.component'
 @Component({
   selector: 'app-graphs',
   standalone: false,
