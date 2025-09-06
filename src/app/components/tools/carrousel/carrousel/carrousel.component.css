@@ -196,7 +196,7 @@ mat-icon:hover {
         margin: 1rem 0;
   }
   .carousel-wrapper {
-    margin-top: 4rem;
+    margin-top: 10%;
     display: flex;
     flex-direction: column-reverse; /* botones arriba, track, botones abajo */
     align-items: center;
