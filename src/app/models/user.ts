@@ -2,8 +2,8 @@
 export class userLogIn {
     constructor
         (
-            public name: string = 'leo',
-            public password: string = 'prueba',
+            public name: string = '',
+            public password: string = '',
         ) {
     }
 }
