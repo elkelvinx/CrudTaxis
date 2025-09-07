@@ -10,6 +10,7 @@ import { ReadService } from '../../services/crudDataArray/extra-Read.service';
 import { TableColumn } from '../tools/table/models/table-column';
 import { ExtraDataService } from '../tools/car_auto-complete/services/extra-data.service';
 import { NotificationService } from '../tools/info-dialog/notification.service';
+
 @Component({
   selector: 'app-units',
   templateUrl: './units.component.html',
@@ -127,6 +128,7 @@ export class UnitsComponent implements OnInit {
     this.serviceUnit.consularUnit(idUnit).subscribe(
       (data: any) => {
         this.units = data;
+        this.notificationService.successInfo("Unidad cargada");
         if (this.units.id !== 0)
           this.ActSave = false;
         else {
@@ -139,7 +141,8 @@ export class UnitsComponent implements OnInit {
         // console.log(this.number.selectedBrandId + " IDbrand general");
       },
       error => {
-        console.log(error);
+        const errorMessage = error.error.ExceptionMessage || "Error desconocido, posiblemente falla de la API o BD";
+        this.notificationService.displayMessageError("Error al cargar la unidad", errorMessage);
       }
     )
   }
@@ -150,11 +153,12 @@ export class UnitsComponent implements OnInit {
       this.serviceUnit.Grabar(this.units).subscribe(
         (data) => {
           debugger
-          console.log("Guardado correctamente")
-          this.consultarUnits();  
+          this.notificationService.success("El Siniestro ha sido guardado");
+          this.consultarUnits();
         },
         error => {
-          console.log(error);
+          const errorMessage = error.error.ExceptionMessage || "Error desconocido, posiblemente falla de la API o BD";
+          this.notificationService.displayMessageError("Error al guardar la unidad", errorMessage);
         }
       )
 
@@ -163,16 +167,15 @@ export class UnitsComponent implements OnInit {
   }
   public actualizar() {
     console.log(this.units.id + " ACTUALIZANDO " + this.units.expInsurance);
-    if (this.ActSave === false) {
-      debugger
+    if (this.ActSave === false) {      
       this.serviceUnit.Actualizar(this.units).subscribe(
         (data) => {
-          debugger
-          console.log("Actualizado correctamente")
+          this.notificationService.success("El Siniestro ha sido actualizado");
           this.consultarUnits();
         },
         error => {
-          console.log(error);
+          const errorMessage = error.error.ExceptionMessage || "Error desconocido, posiblemente falla de la API o BD";
+          this.notificationService.displayMessageError("Error al actualizar la unidad", errorMessage);
         }
       )
     }
@@ -180,12 +183,12 @@ export class UnitsComponent implements OnInit {
   public eliminar() {
     this.serviceUnit.Eliminar(this.units.id).subscribe(
       (data) => {
-        console.log("Eliminado correctamente")
+        this.notificationService.success("El Siniestro ha sido eliminado");
         this.consultarUnits();
-        console.log(data)
       },
       error => {
-        console.log(error);
+        const errorMessage = error.error.ExceptionMessage || "Error desconocido, posiblemente falla de la API o BD";
+        this.notificationService.displayMessageError("Error al eliminar la unidad", errorMessage);
       }
     )
   }

@@ -97,7 +97,8 @@ export class InsertDialogComponent {
     const dialogRef = this.dialog.open(DialogInsertLogicUser, {
       width: '920px',
       height: 'auto',   // ajusta a contenido
-      maxHeight: '95vh',
+      maxHeight: '87vh',
+      
       enterAnimationDuration,
       exitAnimationDuration,
       data: {
