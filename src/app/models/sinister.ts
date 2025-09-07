@@ -78,6 +78,46 @@ export class sinisterData{
       }
 }
 
+export interface IdName {
+    id: number;
+    name: string;
+}
+
+export interface IdName2 {
+    id: number;
+    name: string;
+    description?: string; // Add more fields as needed
+}
+
+export class SinistersWithID {
+    personInvolvedName: IdName2[];
+    winOrLoose: IdName2[];
+    insuranceAplication: IdName[];
+    typeInsurance: IdName[];
+
+    constructor() {
+        this.personInvolvedName = [
+            { id: 1, name: 'Conductor' },
+            { id: 2, name: 'Administrador' },
+            { id: 3, name: 'Otros' }
+        ];
+        this.winOrLoose = [
+            { id: 1, name: 'Ganado', description: 'El caso fue ganado' },
+            { id: 2, name: 'Perdido', description: 'El caso fue perdido' }
+        ];
+        this.typeInsurance = [
+            { id: 1, name: 'Responsabilidad Civil' },
+            { id: 2, name: 'Amplia' },
+            { id: 3, name: 'Otros' }
+        ];
+        this.insuranceAplication = [
+            { id: 1, name: 'No Aplica' },
+            { id: 2, name: 'Aplica' },
+            { id: 3, name: 'Acuerdo' }
+        ];
+    }
+}
+
 import { TableColumn } from '../components/tools/table/models/table-column';
 export class TableColumnsStructure {
     static tableColumnsCase1: TableColumn[] = [

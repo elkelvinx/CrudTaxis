@@ -9,7 +9,7 @@ import { TableColumnsStructure } from '../../models/sinister';
 import { SERVICE_TOKEN, PRUEBAService, IGenericService } from '../../services/cud_ZIP.service';
 import { ReadService } from '../../services/crudDataArray/extra-Read.service';
 import { NotificationService } from "../tools/info-dialog/notification.service";
-import { Admin } from '../../models/admin';
+import { SinistersWithID } from '../../models/sinister';
 
 @Component({
   selector: 'app-sinisters',
@@ -33,7 +33,9 @@ export class SinistersComponent implements OnInit {
   public drivers: any[] = [];
   public insurances: any[] = [];
   public typeSinister: any[] = [];
+  public idUnits: any[] = [];
 
+  public unitIdList: any[] = [];
   public driverName: any[] = [];
   public adminsName: any[] = [];
   public settlementName: any[] = [];
@@ -41,6 +43,7 @@ export class SinistersComponent implements OnInit {
   public insuranceName: any[] = [];
   public typeSinisterName: any[] = [];
   public ActSave: boolean = true;
+  public sinistersWithID = new SinistersWithID();
 
 
 
@@ -58,6 +61,7 @@ export class SinistersComponent implements OnInit {
     private notificationService: NotificationService
   ) { }
   ngOnInit(): void {
+    this.consultarIdUnits();
     this.consultarSettleName();
     this.consultarStreetName();
     this.consultarAdminName();
@@ -138,6 +142,20 @@ export class SinistersComponent implements OnInit {
       }
     )
   }
+  consultarIdUnits() {
+    this.servicioApp.consularUnits().subscribe(
+      (data: any[]) => {
+        this.unitIdList = data;
+        this.idUnits = this.unitIdList.map(u => String(u.ecoNumber)); // 👈 convertir a string
+        this.unitIdList = this.unitIdList.map(u => ({ id: u.id, name: String(u.ecoNumber) })); // 👈 convertir a string
+        console.log('econumbers:' + this.idUnits);
+        console.log('unitIdList:' + this.unitIdList);
+      },
+      error => {
+        console.error(error);
+      }
+    );
+  }
   //
   searchDriver() {
     this.consultarSinister(this.sinister.id);
@@ -174,6 +192,8 @@ export class SinistersComponent implements OnInit {
       }
     )
   }
+
+
   public grabar() {
     // Print the current sinister object as JSON for API testing
     console.log('Sinister payload for API:', JSON.stringify(this.sinister, null, 2));
@@ -256,6 +276,7 @@ export class SinistersComponent implements OnInit {
     }
   }
   public guardarAdmin(event: Event) {
+    debugger
     // console.log(event + "y el valor es ");
     for (let i = 0; i < this.admins.length; i++) {
       if (this.admins[i].name == event) {
@@ -264,7 +285,43 @@ export class SinistersComponent implements OnInit {
       }
     }
   }
- 
+  public guardarDefault(event: Event, obj: any[], type: string) {
+    debugger
+    for (let i = 0; i < obj.length; i++) {
+      debugger
+      if (obj[i].name == event) {
+        switch (type) {
+          case 'idUnit':
+            this.sinister.idUnit = obj[i].id;
+            break;
+          case 'driver':
+            this.sinister.driver = obj[i].id;
+            break;
+          case 'insurance':
+            this.sinister.insurance = obj[i].id;
+            break;
+          case 'typeSinister':
+            this.sinister.typeSinister = obj[i].id;
+            break;
+          case 'personInvolved':
+            this.sinister.personInvolved = obj[i].id;
+            break;
+          case 'winOrLoose':
+            this.sinister.winOrLoose = obj[i].id;
+            break;
+          case 'typeInsurance':
+            this.sinister.typeInsurance = obj[i].name;
+            break;
+          case 'insuranceAplication':
+            this.sinister.insuranceAplication = obj[i].id;
+            break;
+          // Agregar más casos según sea necesario
+        }
+        break;
+        return;
+      }
+    }
+  }
   onDelete(object: Sinister) {
     this.eliminarDialog(object.id);
   }

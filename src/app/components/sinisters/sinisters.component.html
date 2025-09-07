@@ -19,7 +19,8 @@
             class="input-small"
             [text]="'Número económico'"
             [info]="sinister.ecoNumber"
-            (data)="sinister.idUnit = sinister.ecoNumber = $event"
+            [arrays]="idUnits"
+            (data)="guardarDefault($event,unitIdList,'idUnit')"
           >
           </app-auto-complete>
 
@@ -28,7 +29,7 @@
             [text]="'Aseguradora'"
             [info]="sinister.insuranceS"
             [arrays]="insuranceName"
-            (data)="sinister.insuranceS = $event"
+            (data)="guardarDefault($event,insurances,'insurance')"
           >
           </app-auto-complete>
 
@@ -37,7 +38,7 @@
             [text]="'Tipo de seguro'"
             [info]="sinister.typeInsurance"
             [arrays]="arrays.typeInsurance"
-            (data)="sinister.typeInsurance = $event"
+            (data)="guardarDefault($event,sinistersWithID.typeInsurance,'typeInsurance')"
           >
           </app-auto-complete>
         </div>
@@ -77,7 +78,7 @@
             [text]="'Conductor'"
             [info]="sinister.driverS"
             [arrays]="driverName"
-            
+            (data)="guardarDefault($event,drivers,'driver')"
           >
           </app-auto-complete>
         </div>
@@ -89,7 +90,7 @@
             [text]="'Tipo de siniestro'"
             [info]="sinister.typeSinisterS"
             [arrays]="typeSinisterName"
-            (data)="sinister.typeSinister = $event"
+            (data)="guardarDefault($event,typeSinister,'typeSinister')"
           >
           </app-auto-complete>
 
@@ -140,6 +141,7 @@
             [text]="'Ganado o Perdido'"
             [info]="sinister.winOrLooseS"
             [arrays]="arrays.winOrLoose"
+            (data)="guardarDefault($event,sinistersWithID.winOrLoose,'winOrLoose')"
           >
           </app-auto-complete>
 
@@ -148,7 +150,7 @@
             [text]="'Aplicación de seguro'"
             [info]="sinister.insuranceAplicationS"
             [arrays]="arrays.insuranceAplication"
-            
+            (data)="guardarDefault($event,sinistersWithID.insuranceAplication,'insuranceAplication')"
           >
           </app-auto-complete>
 
@@ -157,7 +159,7 @@
             [text]="'Conductor o Administrador'"
             [info]="sinister.personInvolvedS"
             [arrays]="arrays.personInvolvedName"
-            
+            (data)="guardarDefault($event,sinistersWithID.personInvolvedName,'personInvolved')"
           >
           </app-auto-complete>
         </div>
