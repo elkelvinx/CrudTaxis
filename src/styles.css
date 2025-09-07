@@ -296,7 +296,7 @@ td.mat-mdc-cell.mdc-data-table__cell.cdk-cell.cdk-column-actions.mat-column-acti
 
 .defaultClass .mat-mdc-text-field-wrapper,
 .defaultClass .mdc-text-field--filled:not(.mdc-text-field--disabled) {
-  width: 120%;
+  width: 100%;
 }
 .PDFcomponent .mat-mdc-text-field-wrapper,
 .PDFcomponent .mdc-text-field--filled:not(.mdc-text-field--disabled) {

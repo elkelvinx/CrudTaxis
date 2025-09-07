@@ -1,398 +1,221 @@
 <!DOCTYPE html>
-<div
-  class="ContainerDivs"
-  style="
-    background-color: rgba(182, 174, 174, 0.079);
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-content: center;
-    justify-content: space-between;
-    align-items: stretch;
-    border-radius: 15px;
-    height: 810px;
-    width: 99%;
-    margin-top: -5px;
-  "
->
-  <div
-    class="CardSerch"
-    style="
-      width: 42%;
-      height: 800px;
-      background-color: var(--backCards);
-      border-radius: 20px;
-      display: flex;
-      flex-direction: column;
-      flex-wrap: nowrap;
-      padding-left: 0.5%;
-      padding-right: 0.5%;
-    "
-  >
-    <div
-      class="headerCard"
-      style="
-        color: rgba(255, 255, 255, 0.7);
-        font-family: Roboto, sans-serif;
-        letter-spacing: 2px;
-        padding-left: 4%;
-        padding-right: 3%;
-        padding-top: 3%;
-        padding-bottom: 2%;
-        display: flex;
-        justify-content: space-between;
-      "
-    >
-      Unidades automovilisticas
-      <mat-icon (click)="formatearInput()" class="button-search"
-        >add_circle_outline</mat-icon
-      >
-    </div>
-    <div class="bodyCard" style="width: 100%; height: 20px; height: 100%">
-      <div
-        class="renglon2"
-        style="
-          display: flex;
-          flex-direction: row;
-          gap: 10px;
-          align-items: center;
-          justify-content: flex-start;
-          margin-left: 1%;
-          width: 100%;
-          flex-wrap: wrap;
-        "
-      >
-        <app-auto-complete
-          className="brand"
-          [text]="'Numero economico'"
-          [info]="sinister.ecoNumber"
-          (data)="sinister.ecoNumber = $event"
-          style="width: 25%"
-          #inputname
-        ></app-auto-complete>
-        <app-auto-complete
-          [text]="'Aseguradora'"
-          [info]="sinister.insuranceS"
-          (data)="sinister.insuranceS = $event"
-          [arrays]="insuranceName"
-          className="brand"
-          style="width: 30%"
-        ></app-auto-complete>
-        <app-auto-complete
-          [text]="'tipo de seguro'"
-          [info]="sinister.typeInsurance"
-          (data)="sinister.typeInsurance = $event"
-          [arrays]="arrays.typeInsurance"
-          className="brand"
-          style="width: 41%"
-        ></app-auto-complete>
-      </div>
-      <div
-        class="renglon3"
-        style="
-          display: flex;
-          flex-direction: row;
-          gap: 10px;
-          align-items: center;
-          justify-content: flex-start;
-          margin-left: 1%;
-          width: 100%;
-          flex-wrap: wrap;
-        "
-      >
-        <app-auto-complete
-          [text]="'Nombre del otro afectado'"
-          [info]="sinister.crashCounterPart"
-          (data)="sinister.crashCounterPart = $event"
-          className="brand"
-          style="width: 56.2%"
-        ></app-auto-complete>
-        <app-auto-complete
-          [text]="'Mecanico'"
-          [info]="sinister.workShop"
-          (data)="sinister.workShop = $event"
-          className="brand"
-          style="width: 40.6%"
-        ></app-auto-complete>
-      </div>
-      <div
-        class="renglon2"
-        style="
-          display: flex;
-          flex-direction: row;
-          gap: 10px;
-          align-items: center;
-          justify-content: flex-start;
-          margin-left: 1%;
-          width: 100%;
-          flex-wrap: wrap;
-        "
-      >
-        <!-- (data)="guardarAdmin($event)" -->
-        <app-auto-complete
-          className="brand"
-          [text]="'Administrador'"
-          [info]="sinister.adminS"
-          [arrays]="adminsName"
-          className="brand"
-          style="width: 48%"
-        ></app-auto-complete>
-
-        <app-auto-complete
-          className="brand"
-          [text]="'Conductor'"
-          [info]="sinister.driverS"
-          [arrays]="driverName"
-          className="brand"
-          style="width: 49%"
-        ></app-auto-complete>
-      </div>
-      <div
-        class="renglon3"
-        style="
-          display: flex;
-          flex-direction: row;
-          gap: 10px;
-          align-items: center;
-          justify-content: flex-start;
-          margin-left: 1%;
-          width: 100%;
-          flex-wrap: wrap;
-        "
-      >
-        <!-- este es uno -->
-        <app-auto-complete
-          [text]="'Tipo de siniestro'"
-          [info]="sinister.typeSinisterS"
-          (data)="sinister.typeSinister = $event"
-          [arrays]="typeSinisterName"
-          className="brand"
-          style="width: 60%"
-        ></app-auto-complete>
-        <app-auto-complete
-          [text]="'Colonia'"
-          [info]="sinister.settlementS"
-          [arrays]="settlementName"
-          (data)="guardarStreet($event, 8)"
-          className="brand"
-          style="width: 37.2%"
-        ></app-auto-complete>
-      </div>
-      <div
-        class="renglon2"
-        style="
-          display: flex;
-          flex-direction: row;
-          gap: 10px;
-          align-items: center;
-          justify-content: flex-start;
-          margin-left: 1%;
-          width: 100%;
-          flex-wrap: wrap;
-        "
-      >
-        <!-- este es uno -->
-        <app-auto-complete
-          [text]="'Calle principal'"
-          [info]="sinister.street1"
-          [arrays]="streetName"
-          (data)="guardarStreet($event, 1)"
-          className="brand"
-          style="width: 35%"
-        ></app-auto-complete>
-
-        <app-auto-complete
-          [text]="'Entre la calle'"
-          [info]="sinister.street2"
-          [arrays]="streetName"
-          (data)="guardarStreet($event, 2)"
-          className="brand"
-          style="width: 30%"
-        ></app-auto-complete>
-
-        <app-auto-complete
-          [text]="'y la Calle'"
-          [info]="sinister.street3"
-          [arrays]="streetName"
-          (data)="guardarStreet($event, 3)"
-          className="brand"
-          style="width: 30.9%"
-        ></app-auto-complete>
+<main>
+  <div class="ContainerDivs">
+    <!-- Card de formulario -->
+    <div class="CardSerch">
+      <!-- Header -->
+      <div class="headerCard">
+        Siniestros
+        <mat-icon (click)="formatearInput()" class="button-search">
+          add_circle_outline
+        </mat-icon>
       </div>
 
-      <div
-        class="renglon1"
-        style="
-          display: flex;
-          flex-direction: row;
-          gap: 10px;
-          align-items: center;
-          justify-content: flex-start;
-          margin-left: 1%;
-          width: 100%;
-          flex-wrap: wrap;
-        "
-      >
-        <app-auto-complete
-          className="brand"
-          [text]="'Ganado o Perdido'"
-          [info]="sinister.winOrLooseS"
-          [arrays]="arrays.winOrLoose"
-          className="brand"
-          style="width: 35%"
-        ></app-auto-complete>
-        <app-auto-complete
-          className="brand"
-          [text]="'Aplicacion de seguro'"
-          [info]="sinister.insuranceAplicationS"
-          [arrays]="arrays.insuranceAplication"
-          className="brand"
-          style="width: 30%"
-        ></app-auto-complete>
-        <app-auto-complete
-          className="brand"
-          [text]="'Conductor o Administrador'"
-          [info]="sinister.personInvolvedS"
-          [arrays]="arrays.personInvolvedName"
-          className="brand"
-          style="width: 30.9%"
-        ></app-auto-complete>
-      </div>
-      <div
-        class="renglon2"
-        style="
-          display: flex;
-          flex-direction: row;
-          gap: 10px;
-          align-items: center;
-          justify-content: flex-start;
-          margin-left: 1%;
-          width: 100%;
-          flex-wrap: wrap;
-        "
-      ></div>
-      <div
-        class="renglon2"
-        style="
-          display: flex;
-          flex-direction: row;
-          gap: 10px;
-          align-items: center;
-          justify-content: flex-start;
-          margin-left: 1%;
-          width: 100%;
-          flex-wrap: wrap;
-        "
-      >
-        <app-datepicker-date
-          [isDisabled]="false"
-          [actualDate]="sinister.dateEvent"
-          (date)="sinister.dateEvent = $event"
-          [text]="'Vencimiento de seguro'"
-          style="width: 98.4%"
-        ></app-datepicker-date>
+      <!-- Body -->
+      <div class="bodyCard">
+        <!-- Número económico / Aseguradora / Tipo de seguro -->
+        <div class="renglon">
+          <app-auto-complete
+            class="input-small"
+            [text]="'Número económico'"
+            [info]="sinister.ecoNumber"
+            (data)="sinister.idUnit = sinister.ecoNumber = $event"
+          >
+          </app-auto-complete>
 
-        <mat-form-field class="example-full-width">
-          <mat-label>Observaciones del choque</mat-label>
-          <textarea
-          cdkTextareaAutosize
-            matInput
-            [(ngModel)]="sinister.observations"
-            placeholder="Ex. It makes me feel..."
-          ></textarea>
-        </mat-form-field>
+          <app-auto-complete
+            class="input-third"
+            [text]="'Aseguradora'"
+            [info]="sinister.insuranceS"
+            [arrays]="insuranceName"
+            (data)="sinister.insuranceS = $event"
+          >
+          </app-auto-complete>
+
+          <app-auto-complete
+            class="input-third"
+            [text]="'Tipo de seguro'"
+            [info]="sinister.typeInsurance"
+            [arrays]="arrays.typeInsurance"
+            (data)="sinister.typeInsurance = $event"
+          >
+          </app-auto-complete>
+        </div>
+
+        <!-- Otro afectado / Mecánico -->
+        <div class="renglon">
+          <app-auto-complete
+            class="input-half"
+            [text]="'Nombre del otro afectado'"
+            [info]="sinister.crashCounterPart"
+            (data)="sinister.crashCounterPart = $event"
+          >
+          </app-auto-complete>
+
+          <app-auto-complete
+            class="input-half"
+            [text]="'Mecánico'"
+            [info]="sinister.workShop"
+            (data)="sinister.workShop = $event"
+          >
+          </app-auto-complete>
+        </div>
+
+        <!-- Administrador / Conductor -->
+        <div class="renglon">
+          <app-auto-complete
+            class="input-half"
+            [text]="'Administrador'"
+            [info]="sinister.adminS"
+            [arrays]="adminsName"
+            (data)="guardarAdmin($event)"
+          >
+          </app-auto-complete>
+
+          <app-auto-complete
+            class="input-half"
+            [text]="'Conductor'"
+            [info]="sinister.driverS"
+            [arrays]="driverName"
+            
+          >
+          </app-auto-complete>
+        </div>
+
+        <!-- Tipo siniestro / Colonia -->
+        <div class="renglon">
+          <app-auto-complete
+            class="input-half"
+            [text]="'Tipo de siniestro'"
+            [info]="sinister.typeSinisterS"
+            [arrays]="typeSinisterName"
+            (data)="sinister.typeSinister = $event"
+          >
+          </app-auto-complete>
+
+          <app-auto-complete
+            class="input-half"
+            [text]="'Colonia'"
+            [info]="sinister.settlementS"
+            [arrays]="settlementName"
+            (data)="guardarDireccion($event)"
+          >
+          </app-auto-complete>
+        </div>
+
+        <!-- Calles -->
+        <div class="renglon">
+          <app-auto-complete
+            class="input-third"
+            [text]="'Calle principal'"
+            [info]="sinister.street1"
+            [arrays]="streetName"
+            (data)="guardarStreet($event, 1)"
+          >
+          </app-auto-complete>
+
+          <app-auto-complete
+            class="input-third"
+            [text]="'Entre la calle'"
+            [info]="sinister.street2"
+            [arrays]="streetName"
+            (data)="guardarStreet($event, 2)"
+          >
+          </app-auto-complete>
+
+          <app-auto-complete
+            class="input-third"
+            [text]="'y la Calle'"
+            [info]="sinister.street3"
+            [arrays]="streetName"
+            (data)="guardarStreet($event, 3)"
+          >
+          </app-auto-complete>
+        </div>
+
+        <!-- Ganado o Perdido / Aplicación seguro / Persona involucrada -->
+        <div class="renglon">
+          <app-auto-complete
+            class="input-third"
+            [text]="'Ganado o Perdido'"
+            [info]="sinister.winOrLooseS"
+            [arrays]="arrays.winOrLoose"
+          >
+          </app-auto-complete>
+
+          <app-auto-complete
+            class="input-third"
+            [text]="'Aplicación de seguro'"
+            [info]="sinister.insuranceAplicationS"
+            [arrays]="arrays.insuranceAplication"
+            
+          >
+          </app-auto-complete>
+
+          <app-auto-complete
+            class="input-third"
+            [text]="'Conductor o Administrador'"
+            [info]="sinister.personInvolvedS"
+            [arrays]="arrays.personInvolvedName"
+            
+          >
+          </app-auto-complete>
+        </div>
+
+        <!-- Fecha evento -->
+        <div class="renglon">
+          <app-datepicker-date
+            class="input-half"
+            [isDisabled]="false"
+            [actualDate]="sinister.dateEvent"
+            (date)="sinister.dateEvent = $event"
+            [text]="'Fecha del evento'"
+          >
+          </app-datepicker-date>
+
+          <mat-form-field class="input-half">
+            <mat-label>Observaciones del choque</mat-label>
+            <textarea matInput [(ngModel)]="sinister.observations"> </textarea>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div class="footerCard">
+        <mat-divider></mat-divider>
+        <mat-card-actions class="actions">
+          <button
+            mat-raised-button
+            (click)="ActSave ? grabar() : actualizar()"
+            color="primary"
+            class="text-button-greenFinal"
+          >
+            {{ ActSave ? "Guardar" : "Actualizar" }}
+          </button>
+
+          <app-yes-no-dialog
+            variant="danger"
+            (data)="onDelete(sinister)"
+            [text]="'¿Deseas borrar el registro del siniestro?'"
+            [name]="sinister.ecoNumber || 'sin número'"
+            [IconButton]="false"
+          >
+          </app-yes-no-dialog>
+        </mat-card-actions>
       </div>
     </div>
-    <div
-      class="footerCard"
-      style="
-        align-self: flex-end;
-        width: 100%;
-        height: 60px;
-        margin-top: auto;
-        margin-bottom: 2%;
-      "
-    >
-      <br />
-      <mat-divider
-        style="margin-left: 1%; width: 98%; margin-top: -3%"
-      ></mat-divider>
-      <mat-card-actions
-        align="start"
-        style="
-          display: flex;
-          flex-direction: row;
-          flex-wrap: wrap;
-          justify-content: flex-start;
-          align-items: center;
-          margin-top: 40px;
-          margin-left: 4%;
-        "
-      >
-        <app-yes-no-dialog
-          (data)="onDelete(sinister)"
-          [text]="'Desea borrar el registro de la unidad'"
-          [name]="sinister.ecoNumber + '?'"
-          [IconButton]="false"
-        ></app-yes-no-dialog>
-        <br />
-      </mat-card-actions>
 
-      <mat-card-actions align="end" class="buttons-actionDelete">
-        <button
-        mat-raised-button
-        (click)="grabar()"
-        *ngIf="ActSave"
-        color="primary"
-        class="text-button-greenFinal"
-        style="
-          position: absolute;
-          margin-top: -55px;
-          margin-left: 28%;
-          width: 10% !important;
-          height: 46px !important;
-          --mat-protected-button-ripple-color: rgb(7 101 37) !important;
-        "
-      >
-        Guardar
-      </button>
-        <button
-          mat-raised-button
-          color="primary"
-          (click)="actualizar()"
-          *ngIf="!ActSave"
-          class="text-button-greenFinal"
-          style="
-            position: absolute;
-            margin-top: -54px;
-            margin-left: 26%;
-            width: 10%;
-            height: 46px !important;
-            --mat-protected-button-ripple-color: rgb(7 101 37) !important;
-          "
+    <!-- Tabla -->
+    <div class="div-table">
+      <div class="tabla-dataPRUEBA">
+        <app-table
+          [data]="listSinisters"
+          [columns]="tableColumns.columns"
+          [config]="tableConfig"
+          (action)="onTableAction($event)"
         >
-          Actualizar
-        </button></mat-card-actions
-      >
+        </app-table>
+      </div>
     </div>
   </div>
-  <div
-    class="div-table"
-    style="
-      background-color: rgba(0, 0, 0, 0.179);
-      width: 56%;
-      height: 800px;
-      max-height: 800px;
-      border-radius: 12px;
-    "
-  >
-    <div class="tabla-dataPRUEBA">
-      <app-table
-        [data]="listSinisters"
-        [columns]="tableColumns.columns"
-        [config]="tableConfig"
-        (action)="onTableAction($event)"
-      ></app-table>
-    </div>
-  </div>
-</div>
+</main>

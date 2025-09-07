@@ -8,6 +8,8 @@ import { sinisterData } from '../../models/sinister';
 import { TableColumnsStructure } from '../../models/sinister';
 import { SERVICE_TOKEN, PRUEBAService, IGenericService } from '../../services/cud_ZIP.service';
 import { ReadService } from '../../services/crudDataArray/extra-Read.service';
+import { NotificationService } from "../tools/info-dialog/notification.service";
+import { Admin } from '../../models/admin';
 
 @Component({
   selector: 'app-sinisters',
@@ -16,43 +18,44 @@ import { ReadService } from '../../services/crudDataArray/extra-Read.service';
   providers: [{ provide: SERVICE_TOKEN, useClass: SinisterService }]
 
 })
-export class SinistersComponent implements OnInit{
-//public sinister = new Sinister();
-public sinister: Sinister = new Sinister();
-public listSinisters: Sinister[] = [];
-public tableColumns = new TableColumnsStructure(1);
-//! ESTA FALLANDO ESTE service public service: IGenericService<Sinister>;   
+export class SinistersComponent implements OnInit {
+  //public sinister = new Sinister();
+  public sinister: Sinister = new Sinister();
+  public listSinisters: Sinister[] = [];
+  public tableColumns = new TableColumnsStructure(1);
+  //! ESTA FALLANDO ESTE service public service: IGenericService<Sinister>;   
 
 
-public arrays = new sinisterData();
-public settlements: any[] = [];
-public streets: any[] = [];
-public admins: any[] = [];
-public drivers: any[] = [];
-public insurances: any[] = [];
-public typeSinister: any[] = [];
+  public arrays = new sinisterData();
+  public settlements: any[] = [];
+  public streets: any[] = [];
+  public admins: any[] = [];
+  public drivers: any[] = [];
+  public insurances: any[] = [];
+  public typeSinister: any[] = [];
 
-public driverName: any[] = [];
-public adminsName: any[] = [];
-public settlementName: any[] = [];
-public streetName: any[] = [];
-public insuranceName: any[] = [];
-public typeSinisterName: any[] = [];
-public ActSave: boolean = true;
+  public driverName: any[] = [];
+  public adminsName: any[] = [];
+  public settlementName: any[] = [];
+  public streetName: any[] = [];
+  public insuranceName: any[] = [];
+  public typeSinisterName: any[] = [];
+  public ActSave: boolean = true;
 
 
 
-tableConfig: TableConfig = {
-  isSelectable: false,
-  isPaginable: true,
-  showActions: true,
-  showFilter: true,
-};
+  tableConfig: TableConfig = {
+    isSelectable: false,
+    isPaginable: true,
+    showActions: true,
+    showFilter: true,
+  };
 
   constructor(
     private serviceSinister: SinisterService,
     private pruebaService: PRUEBAService<Sinister>,
-    private servicioApp: ReadService
+    private servicioApp: ReadService,
+    private notificationService: NotificationService
   ) { }
   ngOnInit(): void {
     this.consultarSettleName();
@@ -94,9 +97,9 @@ tableConfig: TableConfig = {
         this.admins = data;
         this.adminsName = this.admins.map(admins => admins.name);
       },
-        error => {
-          console.log(error);
-        }
+      error => {
+        console.log(error);
+      }
     )
   }
   consultarDriverName() {
@@ -106,9 +109,9 @@ tableConfig: TableConfig = {
         this.driverName = this.drivers.map(driver => driver.name);
         console.log(this.drivers);
       },
-        error => {
-          console.log(error);
-        }
+      error => {
+        console.log(error);
+      }
     )
   }
   consultarInsuranceName() {
@@ -118,9 +121,9 @@ tableConfig: TableConfig = {
         this.insuranceName = this.insurances.map(insurers => insurers.name);
         console.log(this.insuranceName);
       },
-        error => {
-          console.log(error);
-        }
+      error => {
+        console.log(error);
+      }
     )
   }
   consultarTypeSinister() {
@@ -130,9 +133,9 @@ tableConfig: TableConfig = {
         this.typeSinisterName = this.typeSinister.map(typeSinister => typeSinister.name);
         console.log(this.typeSinisterName);
       },
-        error => {
-          console.log(error);
-        }
+      error => {
+        console.log(error);
+      }
     )
   }
   //
@@ -141,23 +144,23 @@ tableConfig: TableConfig = {
   }
   formatearInput() {
     this.sinister.resetProperties();
-  }  
+  }
   consultarSinister(idDriver: any) {
     this.serviceSinister.consultarSinisterId(idDriver).subscribe(
       (data: any) => {
-        this.sinister = data;       
+        this.sinister = data;
         if (this.sinister.id != 0) {
           this.ActSave = false;
           this.sinister.dateEvent = new Date(this.sinister.dateEvent);
-         
-          debugger;
-        }
-        else {
-          this.sinister.dateEvent= new Date();
+          this.notificationService.successInfo("Siniestro cargado");
+        } else {
+          this.sinister.dateEvent = new Date();
+          this.ActSave = true;
         }
       },
       error => {
-        console.log(error);
+        const errorMessage = error.error.ExceptionMessage || "Error desconocido, posiblemente falla de la API o BD";
+        this.notificationService.displayMessageError("Error al cargar el siniestro", errorMessage);
       }
     )
   }
@@ -172,39 +175,51 @@ tableConfig: TableConfig = {
     )
   }
   public grabar() {
-    debugger
+    // Print the current sinister object as JSON for API testing
+    console.log('Sinister payload for API:', JSON.stringify(this.sinister, null, 2));
+    console.log(this.sinister);
     this.serviceSinister.Grabar(this.sinister).subscribe(
       (data) => {
-        console.log("Guardado correctamente" + data)
+        console.log(data);
+        this.notificationService.success("El Siniestro ha sido guardado");
         this.consultarSinisters();
       },
       error => {
-        console.log(error);
+        const errorMessage = error.error.ExceptionMessage || "Error desconocido, posiblemente falla de la API o BD";
+        this.notificationService.displayMessageError("Error al guardar el siniestro", errorMessage);
       }
     )
   }
+
   public actualizar() {
+    // Print the current sinister object as JSON for API testing
+    console.log('Sinister payload for API:', JSON.stringify(this.sinister, null, 2));
+    console.log(this.sinister);
     this.serviceSinister.Actualizar(this.sinister).subscribe(
       (data) => {
-        console.log("Actualizado correctamente" + data)
+        this.notificationService.success("El Siniestro ha sido actualizado");
         this.consultarSinisters();
       },
       error => {
-        console.log(error);
+        const errorMessage = error.error.ExceptionMessage || "Error desconocido, posiblemente falla de la API o BD";
+        this.notificationService.displayMessageError("Error al actualizar el siniestro", errorMessage);
       }
     )
   }
+
   public eliminar() {
     this.serviceSinister.Eliminar(this.sinister.id).subscribe(
       (data) => {
-        console.log("Eliminado correctamente" + data)
+        this.notificationService.success("El Siniestro ha sido eliminado");
         this.consultarSinisters();
       },
       error => {
-        console.log(error);
+        const errorMessage = error.error.ExceptionMessage || "Error desconocido, posiblemente falla de la API o BD";
+        this.notificationService.displayMessageError("Error al eliminar el siniestro", errorMessage);
       }
     )
   }
+
   public guardarStreets(event: Event, op: number) {
     this.pruebaService.guardarStreet(event, op, this.streets);
   }
@@ -229,8 +244,27 @@ tableConfig: TableConfig = {
         break;
       }
     }
-
   }
+  // pone el id de la colonia
+  public guardarDireccion(event: Event) {
+    // console.log(event + "y el valor es ");
+    for (let i = 0; i < this.settlements.length; i++) {
+      if (this.settlements[i].name == event) {
+        this.sinister.settlement = this.settlements[i].id;
+        break;
+      }
+    }
+  }
+  public guardarAdmin(event: Event) {
+    // console.log(event + "y el valor es ");
+    for (let i = 0; i < this.admins.length; i++) {
+      if (this.admins[i].name == event) {
+        this.sinister.admin = this.admins[i].id;
+        break;
+      }
+    }
+  }
+ 
   onDelete(object: Sinister) {
     this.eliminarDialog(object.id);
   }
@@ -251,7 +285,7 @@ tableConfig: TableConfig = {
       case TABLE_ACTION.EDIT:
         this.consultarSinister(tableAction.row.id);
         break;
-  
+
       case TABLE_ACTION.DELETE:
         this.onDelete(tableAction.row);
         break;
