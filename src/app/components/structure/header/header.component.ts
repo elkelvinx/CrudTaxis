@@ -56,7 +56,7 @@ export class HeaderComponent implements OnInit {
   openDialog(enterAnimationDuration: string, exitAnimationDuration: string, contentDialog: string): void {
     const dialogRef = this.dialog.open(DialogAnimationsExampleDialog, {
       width: '530px',
-      height: '180px',
+      height: 'auto',
       enterAnimationDuration,
       exitAnimationDuration,
       data: {

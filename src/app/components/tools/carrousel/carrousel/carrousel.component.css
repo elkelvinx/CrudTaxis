@@ -193,7 +193,7 @@ mat-icon:hover {
     display: flex; /* siempre visibles */
     width: 40px;
     height: 40px;
-        margin: 1rem 0;
+    margin: 1rem 0;
   }
   .carousel-wrapper {
     margin-top: 10%;
