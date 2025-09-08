@@ -51,8 +51,8 @@ La arquitectura está compuesta por:
 
 - [ ] Imagen de perfil por usuario.  
 - [ ] Personalización de la paleta de colores del sistema.  
-- [ ] Cambio de contraseña desde el perfil.  
-- [ ] Optimización de responsividad en dispositivos móviles.  
+- [ ] Crear una subpagina para mostrar a usuarios normales, donde solo puedan ver su informacion relacionada y no la de todos  
+- [ ] Mostrar las imagenes como se espera
 
 ---
 ## 📂 Módulos del sistema
@@ -63,7 +63,9 @@ El sistema está dividido en módulos, cada uno orientado a una parte clave de l
 - Muestra el **dashboard principal** con estadísticas gráficas en tiempo real:
   - Conductores activos por mes.
   - Siniestros registrados por periodo.
-  - Conductores con más siniestros.
+  - agradecimientos
+  - tecnologias usadas
+  - Grafica de puntos de crecimiento
 - Es la primera pantalla después del login exitoso.
 
 ---
@@ -158,13 +160,15 @@ Registro interno del sistema para trazabilidad:
 2. Configurar la cadena de conexión de la API en `web.config`.  
 3. Restaurar paquetes NuGet en el proyecto .NET.  
 4. En Angular, instalar dependencias con `npm install`.  
-5. Correr el frontend con `ng serve`.  
+5. Correr el frontend con `ng serve`.
 
 ---
 
 ## 📦 Despliegue en producción
 
-- **Frontend (Angular)**: desplegado en Azure Static Web Apps con integración CI/CD desde GitHub.  
+- **Frontend (Angular)**: desplegado en Azure Static Web Apps con integración CI/CD desde GitHub.
+-    Puede entrar al link de la pagina web en azure
+-     https://ashy-coast-0886de010.2.azurestaticapps.net 
 - **Backend (API .NET Framework)**: desplegado en Azure App Service.  
 - **Base de datos**: Azure SQL Database.  
 - **Archivos (PDFs/Imágenes)**: Firebase Storage (actual) o Azure Blob Storage (recomendado).  
@@ -172,8 +176,6 @@ Registro interno del sistema para trazabilidad:
 ---
 
 ## 📸 Capturas de pantalla
-
-*(Agregar aquí imágenes del dashboard, login, tablas y subida de documentos, ordenadas según los módulos explicados arriba)*
 
 ---
 
