@@ -70,8 +70,15 @@ export class SinistersComponent implements OnInit {
     this.consultarTypeSinister();
 
     this.consultarSinisters();
-    this.consultarSinister(0);
-  }
+    this.resetSinister();
+}
+
+resetSinister() {
+  this.sinister = new Sinister(); // ← usa constructor con defaults
+  this.sinister.resetProperties(); // ← por si quieres forzar reset
+  this.ActSave = true;
+}
+
   //BORRAR
   consultarSettleName() {
     this.servicioApp.consultarSettlementName('n').subscribe(
@@ -111,7 +118,7 @@ export class SinistersComponent implements OnInit {
       (data: any[]) => {
         this.drivers = data;
         this.driverName = this.drivers.map(driver => driver.name);
-        console.log(this.drivers);
+          // console.log(this.drivers);
       },
       error => {
         console.log(error);
@@ -123,7 +130,7 @@ export class SinistersComponent implements OnInit {
       (data: any[]) => {
         this.insurances = data;
         this.insuranceName = this.insurances.map(insurers => insurers.name);
-        console.log(this.insuranceName);
+        // console.log(this.insuranceName);
       },
       error => {
         console.log(error);
@@ -135,7 +142,7 @@ export class SinistersComponent implements OnInit {
       (data: any[]) => {
         this.typeSinister = data;
         this.typeSinisterName = this.typeSinister.map(typeSinister => typeSinister.name);
-        console.log(this.typeSinisterName);
+        // console.log(this.typeSinisterName);
       },
       error => {
         console.log(error);
@@ -148,8 +155,8 @@ export class SinistersComponent implements OnInit {
         this.unitIdList = data;
         this.idUnits = this.unitIdList.map(u => String(u.ecoNumber)); // 👈 convertir a string
         this.unitIdList = this.unitIdList.map(u => ({ id: u.id, name: String(u.ecoNumber) })); // 👈 convertir a string
-        console.log('econumbers:' + this.idUnits);
-        console.log('unitIdList:' + this.unitIdList);
+        // console.log('econumbers:' + this.idUnits);
+        // console.log('unitIdList:' + this.unitIdList);
       },
       error => {
         console.error(error);
@@ -161,27 +168,35 @@ export class SinistersComponent implements OnInit {
     this.consultarSinister(this.sinister.id);
   }
   formatearInput() {
-    this.sinister.resetProperties();
+    this.resetSinister();
   }
-  consultarSinister(idDriver: any) {
-    this.serviceSinister.consultarSinisterId(idDriver).subscribe(
-      (data: any) => {
-        this.sinister = data;
-        if (this.sinister.id != 0) {
-          this.ActSave = false;
-          this.sinister.dateEvent = new Date(this.sinister.dateEvent);
-          this.notificationService.successInfo("Siniestro cargado");
-        } else {
-          this.sinister.dateEvent = new Date();
-          this.ActSave = true;
-        }
-      },
-      error => {
-        const errorMessage = error.error.ExceptionMessage || "Error desconocido, posiblemente falla de la API o BD";
-        this.notificationService.displayMessageError("Error al cargar el siniestro", errorMessage);
+ consultarSinister(idDriver: any) {
+  debugger
+  this.serviceSinister.consultarSinisterId(idDriver).subscribe(    
+    (data: any) => {
+      debugger
+      // Mapear para ajustar tipos
+      this.sinister = {
+        ...new Sinister(),
+        ...data,
+        dateEvent: data.dateEvent ? new Date(data.dateEvent) : new Date(),
+        winOrLoose: data.winOrLoose ? 1 : 0 // 👈 si es boolean lo convierto a número
+      };
+
+      if (this.sinister.id != 0) {
+        this.ActSave = false;
+        this.notificationService.successInfo("Siniestro cargado");
+      } else {
+        this.ActSave = true;
       }
-    )
-  }
+    },
+    error => {
+      const errorMessage = error.error.ExceptionMessage || "Error desconocido, posiblemente falla de la API o BD";
+      this.notificationService.displayMessageError("Error al cargar el siniestro", errorMessage);
+    }
+  );
+}
+
   consultarSinisters() {
     this.serviceSinister.consultarSinister().subscribe(
       (data: any[]) => {
@@ -196,13 +211,14 @@ export class SinistersComponent implements OnInit {
 
   public grabar() {
     // Print the current sinister object as JSON for API testing
-    console.log('Sinister payload for API:', JSON.stringify(this.sinister, null, 2));
-    console.log(this.sinister);
+    // console.log('Sinister payload for API:', JSON.stringify(this.sinister, null, 2));
+    // console.log(this.sinister);
     this.serviceSinister.Grabar(this.sinister).subscribe(
       (data) => {
-        console.log(data);
+        // console.log(data);
         this.notificationService.success("El Siniestro ha sido guardado");
         this.consultarSinisters();
+        this.resetSinister();
       },
       error => {
         const errorMessage = error.error.ExceptionMessage || "Error desconocido, posiblemente falla de la API o BD";

@@ -67,7 +67,6 @@ export class carAutoCompleteComponent {
       this.brandModified = true;
     }
     else if (this.typeinput === 2) {
-      debugger
       this.changeModel();
       this.brandModified = false;
     }
@@ -77,18 +76,16 @@ export class carAutoCompleteComponent {
       debounceTime(200),
       startWith(''),
       map(value => {
-        debugger
-        console.log("Value Changes: ", value); // Agregar para depuración
+        // console.log("Value Changes: ", value); // Agregar para depuración
         return this._filter(value || '');
       }),
     );
     if (this.typeinput === 2) {
-      debugger
       this.filteredOptions = this.myControl.valueChanges.pipe(
         debounceTime(200),
         startWith(''),
         map(value => {
-          console.log("Value Changes: ", value); // Agregar para depuración
+          // console.log("Value Changes: ", value); // Agregar para depuració
           return this._filter2(value || '');
         }),
       );
@@ -127,12 +124,12 @@ export class carAutoCompleteComponent {
       // debugger
     }
     else if (this.number.bool == false) {
-      debugger;
+      // debugger;
       // Filtrar el array de modelos para obtener solo los nombres de los modelos que coincidan con la marca seleccionada
       this.arrays2 = this.models
         .filter(model => model.idBrand === this.number.selectedBrandId)
         .map(filteredModel => filteredModel.name);
-      console.log(this.arrays2);
+      // console.log(this.arrays2);
       this.number.models = this.models;
       this.number.bool = true;
     }
@@ -143,7 +140,7 @@ export class carAutoCompleteComponent {
     for (let i = 0; i < this.brand.length; i++) {
       if (this.brand[i].name === this.myControl.value) {
         this.number.selectedBrandId = this.brand[i].id;
-        debugger
+        // debugger
       }
     }
     this.data.emit(this.myControl.value);
@@ -154,7 +151,7 @@ export class carAutoCompleteComponent {
     this.myControl.setValue(event.option.value);
     this.data.emit(this.myControl.value);
     this.changeBrand(); // O la función correspondiente
-    debugger
+    // debugger
   }
 }
 

@@ -19,44 +19,53 @@ export class CarrouselComponent {
     {
       title: 'Conductores',
       icon: 'person',
-      description: 'Gestiona los perfiles, documentos y permisos de cada conductor del sistema.'
+      description: 'Gestiona los perfiles, documentos y permisos de cada conductor del sistema.',
+      route: '/drivers'
     },
     {
       title: 'Permisionarios',
       icon: 'assignment_ind',
-      description: 'Administra concesiones, permisos y propietarios responsables del servicio.'
+      description: 'Administra concesiones, permisos y propietarios responsables del servicio.',
+      route: '/permission'
     },
     {
       title: 'Unidades',
       icon: 'local_taxi',
-      description: 'Consulta y edita placas, modelos, colores y pólizas de los taxis registrados.'
+      description: 'Consulta y edita placas, modelos, colores y pólizas de los taxis registrados.',
+      route: '/units'
     },
     {
       title: 'Siniestros',
       icon: 'car_crash',
-      description: 'Control y seguimiento de los accidentes o incidentes reportados por conductores.'
+      description: 'Control y seguimiento de los accidentes o incidentes reportados por conductores.',
+      route: '/sinisters'
     },
     {
       title: 'Administradores',
       icon: 'supervisor_account',
-      description: 'Usuarios especiales con privilegios para gestionar todo el sistema.'
+      description: 'Usuarios especiales con privilegios para gestionar todo el sistema.',
+      route: '/admins'
     },
     {
       title: 'PDF / Documentos',
       icon: 'picture_as_pdf',
-      description: 'Subida y administración de licencias, seguros, reportes y más documentos.'
+      description: 'Subida y administración de licencias, seguros, reportes y más documentos.',
+      route: '/documents'
     },
     {
       title: 'Historial y Logs',
       icon: 'history',
-      description: 'Revisa quién modificó qué, errores técnicos y cambios críticos en el sistema.'
+      description: 'Revisa quién modificó qué, errores técnicos y cambios críticos en el sistema.',
+      route: '/logs'
     },
     {
       title: 'Extras Admin',
       icon: 'local_library',
-      description: 'Herramientas avanzadas para ajustar usuarios, roles, calles y colonias.'
+      description: 'Herramientas avanzadas para ajustar usuarios, roles, calles y colonias.',
+      route: '/extraData'
     }
   ];
+
 
 
   constructor(private breakpointObserver: BreakpointObserver) { }
@@ -86,7 +95,7 @@ export class CarrouselComponent {
         } else {
           this.visibleCards = 3;
         }
-       
+
       });
   }
 

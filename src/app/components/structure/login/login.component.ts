@@ -39,8 +39,8 @@ public grabar(user: userLogIn) {
       if(this.JWT.IsSuccess){
         this.authService.setToken(this.JWT.Token);
         this.redirrecionar();
-        this.notificationService.alert(this.user.name+" y su contraseña es: "+ this.user.password, 'Datos de el LogIn y el jwt', () => {
-          this.notificationService.success("Lo notificare!");
+        this.notificationService.alert("Bienvenido "+this.user.name+" Disfrute su estadia", 'Datos de el LogIn y el jwt', () => {
+          this.notificationService.success("El usuario "+this.user.name+" ha iniciado sesión.");
       });
       }
     },
