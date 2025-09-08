@@ -25,7 +25,8 @@ export class LoginComponent {
   }
   openDemoDialog() {
     const dialogRef = this.dialog.open(DemoDialogComponent, {
-      width: '700px',
+      width: window.innerWidth < 600 ? '90vw' : '500px',
+      maxHeight: '90vh',
       disableClose: false
     });
 
