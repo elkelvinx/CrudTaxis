@@ -176,7 +176,12 @@ Registro interno del sistema para trazabilidad:
 ---
 
 ## 📸 Capturas de pantalla
-
+![screenshot](extra/estructure/LogIn.png)
+Aqui se puede observar el orden y manejo interno de los datos para poder llevar a cabo correctamente el logIn
+![screenshot](extra/estructure/Page_Design/Tabla Posibilidad.png)
+En esta imagen esta una funcion la cual se implementara a futuro para darle mas dinamismo a la pagina web
+![screenshot](extra/estructure/Page_Design/HomePage.png)
+This is the First version from our web page working and deployed in azure
 ---
 
 ## 📄 Licencia
