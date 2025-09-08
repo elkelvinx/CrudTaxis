@@ -129,6 +129,18 @@ export class ReadService {
       }
     );
   }
+
+    public consularUnits(): Observable<any[]> {
+    let controller = "Unit";
+    let Headers = new HttpHeaders().set("Accept", "aplication/json");
+    return this.Http.get<any[]>(
+      `${this.urlApi}${encodeURIComponent(controller)}`,
+      {
+        headers: Headers,
+        responseType: 'json'
+      }
+    );
+  }
   public consultarStatus(): Observable<any[]> {
     let id: string = "status";
     let controller = "DataArray";

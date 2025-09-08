@@ -12,19 +12,15 @@ export class SinisterService {
   constructor(
     private Http: HttpClient
   ) { }
-  public consultarSinisterId(id: number) {
-    let controller = "Sinister";
-    let params = new HttpParams().set("id", id);
-    let Headers = new HttpHeaders().set("Accept", "aplication/json");
-    return this.Http.get(
-      this.urlApi + controller,
-      {
-        headers: Headers,
-        params: params,
-        responseType: 'json'
-      }
-    )
-  }
+public consultarSinisterId(id: number) {
+  let controller = "Sinister";
+  let headers = new HttpHeaders().set("Accept", "application/json"); // corregí "aplication"
+  return this.Http.get(
+    `${this.urlApi}${controller}/${id}`, // 👈 id como segmento de ruta
+    { headers: headers, responseType: 'json' }
+  );
+}
+
 
   public consultarSinister(): Observable<any[]> {
     let Headers = new HttpHeaders().set("Accept", "aplication/json");

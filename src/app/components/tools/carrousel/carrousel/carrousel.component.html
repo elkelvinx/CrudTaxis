@@ -1,26 +1,35 @@
 <!DOCTYPE html>
 <!-- Componente Carrusel de los modulos de el CMS para el home -->
-  <div class="carousel-wrapper">
-    <button mat-icon-button class="nav-button" (click)="prev()" [disabled]="currentIndex === 0">
-      <mat-icon>chevron_left</mat-icon>
-    </button>
+<div class="carousel-wrapper">
+  <button
+    mat-icon-button
+    class="nav-button"
+    (click)="prev()"
+    [disabled]="currentIndex === 0"
+  >
+    <mat-icon>chevron_left</mat-icon>
+  </button>
 
-    <div class="carousel-track">
-      <mat-card *ngFor="let slide of visibleSlides" class="carousel-card mat-elevation-z8">
-        <div class="image-container">
-          <mat-icon class="icon">{{slide.icon}}</mat-icon>
-        </div>
-        <mat-card-header>
-          <mat-card-title>{{slide.title}}</mat-card-title>
-        </mat-card-header>
-        <mat-card-content>
-          <p class="description">{{slide.description}}</p>
-        </mat-card-content>
-      </mat-card>
-    </div>
-
-    <button mat-icon-button class="nav-button" (click)="next()">
-      <mat-icon>chevron_right</mat-icon>
-    </button>
+  <div class="carousel-track">
+    <mat-card
+      *ngFor="let slide of visibleSlides"
+      class="carousel-card mat-elevation-z8"
+      [routerLink]="[slide.route]"
+      style="cursor: pointer"
+    >
+      <div class="image-container">
+        <mat-icon class="icon">{{ slide.icon }}</mat-icon>
+      </div>
+      <mat-card-header>
+        <mat-card-title>{{ slide.title }}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p class="description">{{ slide.description }}</p>
+      </mat-card-content>
+    </mat-card>
   </div>
 
+  <button mat-icon-button class="nav-button" (click)="next()">
+    <mat-icon>chevron_right</mat-icon>
+  </button>
+</div>

@@ -182,6 +182,21 @@ form.principalForm {
   .permissions_Sliders_Section {
     flex-direction: column;
     align-items: center;
+    padding-left: 40px;
   }
-  
+  .content-dialogUser{
+  padding-bottom: 65px!important;
+  padding-right: 10px!important;
+  height: 40px!important;
+}
+}
+.content-dialogUser {
+  padding-bottom: 40px;
+  padding-left: 30px;
+  padding-right: 0%;
+  height: 20px;
+  overflow: hidden;
+}
+.title-dialogUser {
+  margin: 0px;
 }

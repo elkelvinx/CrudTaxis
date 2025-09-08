@@ -125,13 +125,14 @@
   }
 
   .actions app-yes-no-dialog,
-  .actions button {
-    min-width: 100%;
+  .actions button{
+    height: 3rem!important;
+    min-width: 100%!important; /* Botones ocupan todo el ancho */
+    width: 100%!important;
   }
+
 }
-button.text-button-greenFinal.mdc-button.mdc-button--raised.mat-mdc-raised-button.mat-primary.mat-mdc-button-base {
-  height: auto!important;
-}
+
 mat-icon.mat-icon.notranslate.button-search.material-icons.mat-ligature-font.mat-icon-no-color{
   border: none;
 }

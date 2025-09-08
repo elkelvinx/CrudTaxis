@@ -1,13 +1,11 @@
-html{
+html {
   --mat-menu-item-label-text-color: white;
-  --mat-menu-item-icon-color: #89f795bf!important;
+  --mat-menu-item-icon-color: #89f795bf !important;
   --mat-menu-item-hover-state-layer-color: rgba(255, 255, 255, 0.08);
   --mat-menu-item-focus-state-layer-color: rgba(255, 255, 255, 0.08);
   --mat-menu-container-color: #424242;
 }
 header {
-  /*Modificado de 80 a 50*/
-  /*height 50px o 8%*/
   width: 100%;
   height: 50px;
   background: #1b1e18d6;
@@ -18,6 +16,8 @@ header {
   z-index: 200;
   /* margin-left: 70px; */
   justify-content: space-between;
+    transition: all 300ms cubic-bezier(0.785, 0.135, 0.15, 0.86);
+
 }
 .icon__menu {
   width: 250px;
@@ -29,13 +29,14 @@ header {
   align-items: center;
   justify-content: space-evenly;
 }
-.mat-mdc-menu-item .mat-icon{
+.mat-mdc-menu-item .mat-icon {
   margin-left: 4px;
 }
 .image-container {
   display: flex;
   align-items: center;
   margin-right: 8%;
+  width: calc(fit-content + 40px);
 }
 .username {
   white-space: nowrap; /* Evita que el texto se divida en varias líneas */
@@ -52,48 +53,46 @@ header {
   object-fit: cover;
   margin-right: 7px;
 }
-.Buttons__LogOut{
-  margin-right: 6.9%;
-  font-family: Roboto, sans-serif, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+.Buttons__LogOut {
+  margin-right: 7.9%;
+  font-family: Roboto, sans-serif, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   display: flex;
-  width: 7.7%;
+  width: fit-content + 4rem;
   align-items: center;
   justify-content: space-between;
 }
-.button_menu{
+.button_menu {
   width: 200px;
   height: 27%;
 }
 /* *menu */
-.mat-mdc-menu-content{
+.mat-mdc-menu-content {
   border-radius: 16px;
   width: 196px;
   background-color: green;
 }
-div#mat-menu-panel-0{
+div#mat-menu-panel-0 {
   border-radius: 16px;
   width: 196px;
 }
-.Buttons__LogOut .mat-icon{
+.Buttons__LogOut .mat-icon {
   font-size: 25px;
   height: 25px;
-  width: 25px;
-    --mat-icon-hover-color: red;
+  min-width: 35px; /* 25px + 10px extra */
+  width: auto;
+  padding: 0 5px;
+  transition: all 0.3s ease;
+  --mat-icon-hover-color: red;
 }
-.text-button-greenFinal{
-  --mat-outlined-button-state-layer-color: #ea1111!important;
-width: fit-content;
+.text-button-greenFinal {
+  --mat-outlined-button-state-layer-color: #ea1111 !important;
+  width: fit-content;
 }
 .menu__side {
-  /*Modificado de 80 a 70*/
-  /*Modificado de 20 a 18 BORDER RIGHT
-      1___ 1b1e18d6
-      2___ 14191447
-      2.2__2e3b2e21
-      */
   width: 70px;
   height: 100%;
-  /* background: #8b0101be; */
   background: #202220;
   position: fixed;
   top: 0;
@@ -103,14 +102,10 @@ width: fit-content;
   z-index: 300;
   overflow: hidden;
   overflow-y: scroll;
-  /* border-right: 18px solid #7c0404be; */
   border-right: 14px solid #2e3b2e21;
   transition: all 300ms cubic-bezier(0.785, 0.135, 0.15, 0.86);
 }
 
-.header{
-  transition: all 300ms cubic-bezier(0.785, 0.135, 0.15, 0.86);
-}
 .options__menu a:hover {
   color: #ccf070;
 }
@@ -145,17 +140,18 @@ a.selected {
   top: 10%;
   left: -30px;
 }
-.mat-icon{
-  border: 1px solid #ccc0!important;
+.mat-icon {
+  border: 1px solid #ccc0 !important;
   margin-left: -9px;
   scale: 1.14;
   width: 26px;
-  box-shadow: none!important;
+  box-shadow: none !important;
 }
-.collapsible:before, .collapsible:before {
+.collapsible:before,
+.collapsible:before {
   content: "";
 }
-.logo{
+.logo {
   margin-top: 7px;
   scale: 1.2 !important;
 }
@@ -164,7 +160,7 @@ a.selected {
 .body_move {
   margin-left: 250px;
 }
-.body{
+.body {
   transition: margin-left 300ms cubic-bezier(0.785, 0.135, 0.15, 0.86);
 }
 @media screen and (max-width: 760px) {
@@ -172,11 +168,18 @@ a.selected {
     margin-left: 0px;
   }
 
-  .menu__side_move {
-    width: 80px;
-    left: -80px;
+  .header i {
+    margin-right: 40px;
+    margin-left: 10px;
   }
-  .icon__menu::after{
-   margin-left:245px!important;
+  .button__menu::after {
+    margin-left: 20% !important;
+  }
+}
+/* para telefonos chicos */
+@media screen and (max-width: 500px) {
+  .Buttons__LogOut {
+    margin-right: 2rem;
+    width: 6rem;
   }
 }

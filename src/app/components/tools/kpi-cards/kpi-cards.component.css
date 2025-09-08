@@ -80,7 +80,7 @@
 
 @media (max-width: 575px) {
   .kpis-row {
-    align-items: flex-end;
+    align-items: center;
     flex-direction: column;
   }
   .kpi-card {                                 

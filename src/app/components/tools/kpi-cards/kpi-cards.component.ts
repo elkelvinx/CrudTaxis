@@ -21,6 +21,7 @@ export class KpiCardsComponent {
       drivers: this.homeService.getDriversKpi(),
       sinisters: this.homeService.getSinistersKpi()
     }).subscribe(({ drivers, sinisters }) => {
+      debugger
       this.driversKpi = drivers;
       this.sinistersKpi = sinisters;
 

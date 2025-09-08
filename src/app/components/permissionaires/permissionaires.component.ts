@@ -8,6 +8,8 @@ import { permissionaire } from '../../models/permissionaire'
 import { TableAction } from '../tools/table/models/table-actions';
 import { ReadService } from '../../services/crudDataArray/extra-Read.service';
 import { TableColumnsStructure } from '../../models/permissionaire';
+import { NotificationService } from "../tools/info-dialog/notification.service";
+
 
 @Component({
   selector: 'app-permissionaires',
@@ -36,6 +38,7 @@ export class PermissionairesComponent {
     private datePipe: DatePipe,
     private servicioPermission: ServicesPermissionaireService,
     private servicioApp: ReadService,
+    public notificationService: NotificationService
   ) { }
 
   ngOnInit(): void {
@@ -70,6 +73,8 @@ export class PermissionairesComponent {
         this.listPermissionaire = data;
       },
       error => {
+        const errorMessage = error.error.ExceptionMessage || "Error Relacionado a la BD";
+        this.notificationService.displayMessageError("Error al guardar el registro", errorMessage);
         console.log(error);
 
       }
@@ -79,10 +84,13 @@ export class PermissionairesComponent {
     this.servicioPermission.Grabar(this.permissionaire).subscribe(
       (data) => {
         debugger;
-        console.log("Guardado correctamente")
+        this.notificationService.success("Permisionario guardado");
         this.consultarPermissions();
       },
       error => {
+        const errorMessage = error.error.ExceptionMessage || "Error Relacionado a la BD";
+        this.notificationService.displayMessageError("Error al guardar el registro", errorMessage);
+
         console.log(error);
       }
     )
@@ -91,7 +99,7 @@ export class PermissionairesComponent {
     this.servicioPermission.Actualizar(this.permissionaire).subscribe(
       (data) => {
         debugger;
-        console.log("Actualizado correctamente")
+        this.notificationService.success("Permisionario actualizado");
         this.consultarPermissions();
       },
       error => {
@@ -104,8 +112,7 @@ export class PermissionairesComponent {
     this.servicioPermission.Eliminar(this.permissionaire.id).subscribe(
       (data) => {
         debugger;
-        console.log("Eliminado correctamente")
-        console.log(data)
+        this.notificationService.success("Permisionario Eliminado");
         this.consultarPermissions();
       },
       error => {
@@ -117,7 +124,7 @@ export class PermissionairesComponent {
     debugger;
     this.servicioPermission.Eliminar(id).subscribe(
       (data) => {
-        console.log("Eliminado correctamente")
+        this.notificationService.success("Permisionario Eliminado");
         this.consultarPermissions();
       },
       error => {
@@ -134,6 +141,7 @@ export class PermissionairesComponent {
   onTableAction(tableAction: TableAction) {
     switch (tableAction.action) {
       case TABLE_ACTION.EDIT:
+        this.notificationService.successInfo("Permisionario Cargado");
         this.consultarPermission(tableAction.row.id);
         break;
 

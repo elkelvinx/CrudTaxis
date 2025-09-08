@@ -1,8 +1,9 @@
+<!DOCTYPE html>
 <div class="backgroundPage">
   <div class="principal">
     <!-- Logo -->
     <img
-      src="../../../../assets/images/descarga.png"
+      src="../../../../assets/images/Logo.png"
       alt="logo"
       class="logoLogin"
     />
@@ -22,6 +23,7 @@
           required
           pattern="[a-zA-Z0-9 ñÑ]*"
           #nameInput="ngModel"
+          autocomplete="username"
         />
       </mat-form-field>
       <div
@@ -48,6 +50,7 @@
           required
           pattern="[a-zA-Z0-9 ñÑ]*"
           #passwordInput="ngModel"
+          autocomplete="current-password"
         />
       </mat-form-field>
       <div
@@ -72,7 +75,7 @@
           type="button"
           (click)="openDemoDialog()"
         >
-          🎬 Ver demos
+          🔑 Credenciales
         </button>
       </div>
       

@@ -1,265 +1,172 @@
-<!DOCTYPE html>
-<!--FINAL-->
-<div class="ContainerDivs">
-  <div class="CardSerch">
-    <div class="headerCard">
-      Unidades automovilisticas
-      <mat-icon (click)="consultarUnit(0)" class="button-search"
-        >add_circle_outline</mat-icon
-      >
-    </div>
-    <div class="bodyCard">
-      <div class="renglon2">
-        <app-auto-complete
-          className="brand"
-          [text]="'Numero'"
-          [info]="units.ecoNumber"
-          (data)="units.ecoNumber = $event"
-          style="width: 23%"
-          #inputname
-        ></app-auto-complete>
-        <car-autoComplete
-          className="brand"
-          [text]="'Marca de la unidad'"
-          [info]="units.brandName"
-          [brand]="brands"
-          [arrays]="brandsName"
-          [typeinput]="1"
-          (data)="changeSelection($event, 'brand')"
-          *ngIf="brands.length > 0"
-          style="width: 30.2%"
-        ></car-autoComplete>
-        <!-- [arrays]="modelsName"  -->
-        <car-autoComplete
-          className="brand"
-          [text]="'Modelo de la unidad'"
-          [info]="units.modelName"
-          [modelsInput]="modelsName"
-          [brandSelected]="units.idBrand"
-          [typeinput]="2"
-          (data)="changeSelection($event, 'model')"
-          *ngIf="models.length > 0"
-          style="width: 41.2%"
-          
-        ></car-autoComplete>
-      </div>
-      <div class="renglon1">
-        <app-auto-complete
-          className="brand"
-          [text]="'año del modelo'"
-          [info]="units.yearModel"
-          (data)="units.yearModel = $event"
-          style="width: 23%"
-          #inputname
-        ></app-auto-complete>
-
-        <app-auto-complete
-          className="brand"
-          [text]="'color de la unidad'"
-          [info]="units.color"
-          (data)="units.color = $event"
-          style="width: 30%"
-          #inputname
-        ></app-auto-complete>
-        <app-auto-complete
-          className="brand"
-          [text]="'placas'"
-          [info]="units.plate"
-          (data)="units.plate = $event"
-          style="width: 41.5%"
-          #inputname
-        ></app-auto-complete>
-      </div>
-      <div
-        class="renglon3"
-        style="
-          display: flex;
-          flex-direction: row;
-          gap: 10px;
-          align-items: center;
-          justify-content: flex-start;
-          margin-left: 1%;
-          width: 100%;
-          flex-wrap: wrap;
-        "
-      >
-        <app-auto-complete
-          className="brand"
-          [text]="'Serie de la unidad'"
-          [info]="units.serie"
-          (data)="units.serie = $event"
-          #inputname
-          style="width: 54.5%"
-        ></app-auto-complete>
-        <app-auto-complete
-          className="brand"
-          [text]="'clave del Motor'"
-          [info]="units.motor"
-          (data)="units.motor = $event"
-          style="width: 41.2%"
-          #inputname
-        ></app-auto-complete>
-      </div>
-      <div
-        class="renglon2"
-        style="
-          display: flex;
-          flex-direction: row;
-          gap: 10px;
-          align-items: center;
-          justify-content: flex-start;
-          margin-left: 1%;
-          width: 100%;
-          flex-wrap: wrap;
-        "
-      >
-        <app-auto-complete
-          className="brand"
-          [text]="'administrador'"
-          [info]="units.adminName"
-          [arrays]="adminsName"
-          (data)="changeSelection($event, 'admin')"
-          style="width: 97%"
-        ></app-auto-complete>
-      </div>
-      <div
-        class="renglon2"
-        style="
-          display: flex;
-          flex-direction: row;
-          gap: 10px;
-          align-items: center;
-          justify-content: flex-start;
-          margin-left: 1%;
-          width: 100%;
-          flex-wrap: wrap;
-        "
-      >
-        <app-datepicker-date
-          [isDisabled]="false"
-          [actualDate]="units.expInsurance"
-          (date)="units.expInsurance = $event"
-          [text]="'Vencimiento de seguro'"
-          style="width: 97%"
-        ></app-datepicker-date>
-      </div>
-      <div class="renglon1">
-        <app-datepicker-date
-          [actualDate]="units.registerDate"
-          [text]="'Fecha de registro'"
-          style="width: 48%"
-        ></app-datepicker-date>
-        <br />
-        <app-datepicker-date
-          [actualDate]="units.lastModDate"
-          [text]="'Ultima modificacion'"
-          style="width: 46.5%"
-        ></app-datepicker-date>
-      </div>
-    </div>
-    <div
-      class="footerCard"
-      style="
-        align-self: flex-end;
-        width: 100%;
-        height: 60px;
-        margin-top: auto;
-        margin-bottom: 2%;
-      "
-    >
-      <br />
-      <mat-divider
-        style="margin-left: 1%; width: 98%; margin-top: -5.2%"
-      ></mat-divider>
-      <mat-card-actions
-        align="start"
-        style="
-          display: flex;
-          flex-direction: row;
-          flex-wrap: wrap;
-          justify-content: flex-start;
-          align-items: center;
-          margin-top: 40px;
-          margin-left: 4%;
-        "
-      >
-        <app-yes-no-dialog
-          (data)="onDelete(units)"
-          [text]="'Desea borrar el registro de la unidad'"
-          [name]="units.ecoNumber + '?'"
-          [IconButton]="false"
-        ></app-yes-no-dialog>
-        <br />
-      </mat-card-actions>
-
-      <mat-card-actions align="end" class="buttons-actionDelete">
-        <!-- <button
-          mat-button
-          (click)="grabar()"
-          *ngIf="ActSave"
-          color="primary"
-          class="text-button-green"
-          style="position: absolute; margin-top: -51px; margin-left: 30%"
-        >
-          Guardar
-        </button> -->
-        <button
-          mat-raised-button
-          (click)="grabar()"
-          *ngIf="ActSave"
-          color="primary"
-          class="text-button-greenFinal"
-          style="
-            position: absolute;
-            margin-top: -2.7%;
-            margin-left: 25.7%;
-            width: 10%;
-            height: 46px;
-            --mat-protected-button-ripple-color: rgb(7 101 37) !important;
-          "
-        >
-          Guardar
-        </button>
-        <button
-          mat-raised-button
-          color="primary"
-          (click)="actualizar()"
-          *ngIf="!ActSave"
-          class="text-button-greenFinal"
-          style="
-           position: absolute;
-            margin-top: -2.7%;
-            margin-left: 25.7%;
-            width: 10%;
-            height: 46px;
-            --mat-protected-button-ripple-color: rgb(7 101 37) !important;
-          "
-        >
-          Actualizar
-        </button>
-        <br />
-        <br />
-      </mat-card-actions>
-    </div>
-  </div>
-  <div
-    class="div-table"
-    style="
-      background-color: rgba(0, 0, 0, 0.179);
-      width: 56%;
-      height: 800px;
-      max-height: 800px;
-      border-radius: 12px;
-    "
-  >
-    <div class="tabla-dataPRUEBA">
-      <app-table
-        [data]="listUnits"
-        [columns]="tableColumns"
-        [config]="tableConfig"
-        (select)="onSelect($event)"
-        (action)="onTableAction($event)"
-      ></app-table>
-    </div>
-  </div>
+<main>
+  <div class="ContainerDivs">
+    <!-- Card formulario -->
+    <div class="CardSerch">
+<div>
+        <div class="headerCard">
+          Unidades Automovilísticas
+          <mat-icon (click)="consultarUnit(0)" class="button-search">
+            add_circle_outline
+          </mat-icon>
+        </div>
+  
+        <div class="bodyCard">
+          <!-- Renglón 1 -->
+          <div class="renglon">
+            <app-auto-complete
+              class="input-small"
+              [text]="'Número económico'"
+              [info]="units.ecoNumber"
+              (data)="units.ecoNumber = $event">
+            </app-auto-complete>
+  
+            <car-autoComplete
+              class="input-third"
+              [text]="'Marca'"
+              [info]="units.brandName"
+              [brand]="brands"
+              [arrays]="brandsName"
+              [typeinput]="1"
+              (data)="changeSelection($event, 'brand')"
+              *ngIf="brands.length > 0">
+            </car-autoComplete>
+  
+            <car-autoComplete
+              class="input-third"
+              [text]="'Modelo'"
+              [info]="units.modelName"
+              [modelsInput]="modelsName"
+              [brandSelected]="units.idBrand"
+              [typeinput]="2"
+              (data)="changeSelection($event, 'model')"
+              *ngIf="models.length > 0">
+            </car-autoComplete>
+          </div>
+  
+          <!-- Renglón 2 -->
+          <div class="renglon">
+            <app-auto-complete
+              class="input-small"
+              [text]="'Año modelo'"
+              [info]="units.yearModel"
+              (data)="units.yearModel = $event">
+            </app-auto-complete>
+  
+            <app-auto-complete
+              class="input-third"
+              [text]="'Color'"
+              [info]="units.color"
+              (data)="units.color = $event">
+            </app-auto-complete>
+  
+            <app-auto-complete
+              class="input-third"
+              [text]="'Placas'"
+              [info]="units.plate"
+              (data)="units.plate = $event">
+            </app-auto-complete>
+          </div>
+  
+          <!-- Renglón 3 -->
+          <div class="renglon">
+            <app-auto-complete
+              class="input-half"
+              [text]="'Serie'"
+              [info]="units.serie"
+              (data)="units.serie = $event">
+            </app-auto-complete>
+  
+            <app-auto-complete
+              class="input-half"
+              [text]="'Motor'"
+              [info]="units.motor"
+              (data)="units.motor = $event">
+            </app-auto-complete>
+          </div>
+  
+          <!-- Renglón 4 -->
+          <div class="renglon">
+            <app-auto-complete
+              class="input-full"
+              [text]="'Administrador'"
+              [info]="units.adminName"
+              [arrays]="adminsName"
+              (data)="changeSelection($event, 'admin')">
+            </app-auto-complete>
+          </div>
+  
+          <!-- Renglón 5 -->
+          <div class="renglon">
+            <app-datepicker-date
+              [isDisabled]="false"
+              [actualDate]="units.expInsurance"
+              (date)="units.expInsurance = $event"
+              [text]="'Vencimiento de seguro'"
+              class="input-full">
+            </app-datepicker-date>
+          </div>
+  
+          <!-- Renglón 6 -->
+          <div class="renglon">
+            <app-datepicker-date
+              [actualDate]="units.registerDate"
+              [text]="'Fecha de registro'"
+              class="input-half">
+            </app-datepicker-date>
+  
+            <app-datepicker-date
+              [actualDate]="units.lastModDate"
+              [text]="'Última modificación'"
+              class="input-half">
+            </app-datepicker-date>
+          </div>
+        </div>
+  
 </div>
+      <!-- Footer -->
+      <div class="footerCard">
+        <mat-divider></mat-divider>
+        <mat-card-actions class="actions">
+          <button
+            mat-raised-button
+            (click)="grabar()"
+            *ngIf="ActSave"
+            color="primary"
+            class="text-button-greenFinal">
+            Guardar
+          </button>
+
+          <button
+            mat-raised-button
+            color="primary"
+            (click)="actualizar()"
+            *ngIf="!ActSave"
+            class="text-button-greenFinal">
+            Actualizar
+          </button>
+
+          <app-yes-no-dialog
+            variant="danger"
+            (data)="onDelete(units)"
+            [text]="'¿Desea borrar la unidad?'"
+            [name]="units.ecoNumber || 'sin número'"
+            [IconButton]="false">
+          </app-yes-no-dialog>
+        </mat-card-actions>
+      </div>
+    </div>
+
+    <!-- Tabla -->
+    <div class="div-table">
+      <div class="tabla-dataPRUEBA">
+        <app-table
+          [data]="listUnits"
+          [columns]="tableColumns"
+          [config]="tableConfig"
+          (select)="onSelect($event)"
+          (action)="onTableAction($event)">
+        </app-table>
+      </div>
+    </div>
+  </div>
+</main>

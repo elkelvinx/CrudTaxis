@@ -14,42 +14,50 @@ import { DemoDialogComponent } from '../../tools/demo-dialog/demo-dialog.compone
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
-public user= new userLogIn();
-public JWT= new userResponse();
-constructor(private router: Router,private notificationService: NotificationService, private logInservice:LogInService,private authService:AuthService,private dialog: MatDialog) { }
-logIn(){
-  this.grabar(this.user);
-}
-redirrecionar(){
-  this.router.navigate(['/home']);
-}
-openDemoDialog() {
-  this.dialog.open(DemoDialogComponent, {
-    width: '500px',
-    disableClose: false
-  });
-}
-public grabar(user: userLogIn) {
-  debugger
-  this.logInservice.LogIn(user).subscribe(
-    (data: any) => {
-      this.JWT = data;
-      this.notificationService.success("Inicio de sesion exitoso");
-      debugger
-      if(this.JWT.IsSuccess){
-        this.authService.setToken(this.JWT.Token);
-        this.redirrecionar();
-        this.notificationService.alert(this.user.name+" y su contraseña es: "+ this.user.password, 'Datos de el LogIn y el jwt', () => {
-          this.notificationService.success("Lo notificare!");
-      });
+  public user = new userLogIn();
+  public JWT = new userResponse();
+  constructor(private router: Router, private notificationService: NotificationService, private logInservice: LogInService, private authService: AuthService, private dialog: MatDialog) { }
+  logIn() {
+    this.grabar(this.user);
+  }
+  redirrecionar() {
+    this.router.navigate(['/home']);
+  }
+  openDemoDialog() {
+    const dialogRef = this.dialog.open(DemoDialogComponent, {
+      width: '700px',
+      disableClose: false
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        // 👇 Autocompletar inputs del login
+        this.user.name = result.username;
+        this.user.password = result.password;
       }
-    },
-    error => {
-      debugger
-     // const errorMessage = error.error.ExceptionMessage || error.Message|| "Error desconocido"; // Accede al mensaje de error
-      console.log(error);
-      this.notificationService.displayMessageError("Error interno al Logearse"," "+error.error);
-    }
-  )
-}
+    });
+  }
+  public grabar(user: userLogIn) {
+    debugger
+    this.logInservice.LogIn(user).subscribe(
+      (data: any) => {
+        this.JWT = data;
+        this.notificationService.success("Inicio de sesion exitoso");
+        debugger
+        if (this.JWT.IsSuccess) {
+          this.authService.setToken(this.JWT.Token);
+          this.redirrecionar();
+          this.notificationService.alert("Esperamos pueda encontrar la informacion que busca y podamos ayudarlo en lo que podamos", "Bienvenido " + this.user.name + " Disfrute su estadia", () => {
+            this.notificationService.success("El usuario " + this.user.name + " ha iniciado sesión.");
+          });
+        }
+      },
+      error => {
+        debugger
+        // const errorMessage = error.error.ExceptionMessage || error.Message|| "Error desconocido"; // Accede al mensaje de error
+        console.log(error);
+        this.notificationService.displayMessageError("Error interno al Logearse", " " + error.error);
+      }
+    )
+  }
 }

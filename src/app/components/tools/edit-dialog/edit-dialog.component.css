@@ -193,8 +193,8 @@ form.principalForm {
   justify-content: space-between;
   flex-wrap: wrap;
   margin-bottom: 1.5%;
-  margin-top: -2%;
-  margin-left: 2%;
+  margin-top: 0.5%;
+  margin-right: 2%;
 }
 .permission_slider {
   width: 30%;
@@ -284,13 +284,17 @@ form.principalForm {
 /* En pantallas chicas, los botones se apilan */
 @media screen and (max-width: 600px) {
   .actions-section {
+    min-width: fit-content;
     flex-direction: column;
-    align-items: center;
+    align-items: normal;
     flex-wrap: wrap;
+    gap: 20px;
+    width: 85%;
   }
 
   .actions-section button {
-    width: 80% !important; /* que ocupen casi todo el ancho */
+    height: 3rem !important;
+    width: 100% !important; /* que ocupen casi todo el ancho */
     margin-left: 1%;
   }
   .state_slideBloqued {
@@ -299,14 +303,13 @@ form.principalForm {
     height: 50px;
     margin-left: -27.7%;
   }
+  .state_section {
+    margin-left: -8%;
+  }
   .permissions_Sliders_Section {
-    margin-bottom: 1%;
-    width: 97%;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    flex-wrap: wrap;
-    column-gap: 17vw;
+    flex-direction: column;
+    padding-left: 40px;
+    margin-left: 0%;
   }
   .permission_slider {
     margin-left: 8px;
@@ -314,4 +317,14 @@ form.principalForm {
 }
 h1#mat-mdc-dialog-title-1 {
   margin-bottom: -1.3%;
+}
+.content-dialogUser {
+  padding-bottom: 60px;
+  padding-left: 30px;
+  padding-right: 0%;
+  height: 20px;
+  overflow: hidden;
+}
+.title-dialogUser {
+  margin: 0px;
 }

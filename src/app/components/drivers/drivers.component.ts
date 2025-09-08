@@ -9,6 +9,7 @@ import { TableConfig } from '../tools/table/models/table-config';
 import { TABLE_ACTION } from '../tools/table/enums/action.enum';
 import { TableAction } from '../tools/table/models/table-actions';
 import { NotificationService } from "../tools/info-dialog/notification.service";
+
 @Component({
   selector: 'app-drivers',
   templateUrl: './drivers.component.html',
@@ -91,6 +92,8 @@ export class DriversComponent implements OnInit {
         this.settlementName = this.settlements.map(settlement => settlement.name);
       },
       error => {
+        const errorMessage = error.error.ExceptionMessage || "Error Relacionado a la BD";
+        this.notificationService.displayMessageError("Error al buscar colonias", errorMessage);
         console.log(error);
       }
     )
@@ -116,7 +119,7 @@ export class DriversComponent implements OnInit {
           // this.isLoaded2 = true;
         }
         else {
-          console.log('que pendejo falla admin')
+          this.notificationService.displayMessageError("Error al buscar los admins");
         }
       },
       error => {

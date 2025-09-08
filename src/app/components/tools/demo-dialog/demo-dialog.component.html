@@ -1,8 +1,8 @@
+<!DOCTYPE html>
 <h2 mat-dialog-title>Demo del sistema</h2>
 
 <mat-dialog-content class="demo-dialog-content">
   <mat-tab-group>
-    
     <!-- Tab Español -->
     <mat-tab label="🎥 Español">
       <div class="tab-section">
@@ -14,7 +14,7 @@
         </mat-dialog-content>
       </div>
     </mat-tab>
-    
+
     <!-- Tab Inglés -->
     <mat-tab label="🎥 English">
       <div class="tab-section">
@@ -26,13 +26,81 @@
         </mat-dialog-content>
       </div>
     </mat-tab>
-    
+
     <!-- Tab Credenciales -->
     <mat-tab label="🔑 Credenciales">
       <div class="tab-section">
-        <h3>Credenciales de prueba</h3>
-        <p><b>Admin:</b> adminemo.com / 12345</p>
-        <p><b>User:</b> userdemo.com / 12345</p>
+        <div class="cred-list">
+          <div class="cred-item">
+            <div class="cred-left">
+              <span class="cred-label">Admin:</span>
+              <span class="cred-value">Raymundo / UAdeO</span>
+            </div>
+            <button
+              mat-stroked-button
+              color="primary"
+              (click)="selectCredentials('Raymundo', 'UAdeO')"
+            >
+              Usar
+            </button>
+          </div>
+
+          <div class="cred-item">
+            <div class="cred-left">
+              <span class="cred-label">Admin:</span>
+              <span class="cred-value">Jaime / UAdeO</span>
+            </div>
+            <button
+              mat-stroked-button
+              color="primary"
+              (click)="selectCredentials('Jaime', 'UAdeO')"
+            >
+              Usar
+            </button>
+          </div>
+
+          <div class="cred-item">
+            <div class="cred-left">
+              <span class="cred-label">Admin:</span>
+              <span class="cred-value">pabloEscalante / paqueteexpress</span>
+            </div>
+            <button
+              mat-stroked-button
+              color="primary"
+              (click)="selectCredentials('pabloEscalante', 'paqueteexpress')"
+            >
+              Usar
+            </button>
+          </div>
+
+          <div class="cred-item">
+            <div class="cred-left">
+              <span class="cred-label">Admin:</span>
+              <span class="cred-value">antonioRuelas / paqueteexpress</span>
+            </div>
+            <button
+              mat-stroked-button
+              color="primary"
+              (click)="selectCredentials('antonioRuelas', 'paqueteexpress')"
+            >
+              Usar
+            </button>
+          </div>
+
+          <div class="cred-item">
+            <div class="cred-left">
+              <span class="cred-label"><i>User:</i></span>
+              <span class="cred-value">Leticia / UAdeO</span>
+            </div>
+            <button
+              mat-stroked-button
+              color="accent"
+              (click)="selectCredentials('Leticia', 'UAdeO')"
+            >
+              Usar
+            </button>
+          </div>
+        </div>
       </div>
     </mat-tab>
   </mat-tab-group>

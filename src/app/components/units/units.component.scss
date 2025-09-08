@@ -1,201 +1,150 @@
-@use "sass:map";
-@use "@angular/material" as mat;
-@import "../../../custom.scss";
-
-td.mat-cell {
-  color: var(--errorTabla);
-}
-.tabla-data {
-  width: fit-content;
-  background-color: #0d9e12 !important;
-}
-.example-card {
-  max-width: 4600px;
-  width: 39.5%;
-  // 700px
-  height: fit-content;
-  background-color: var(--backCards);
-  border-radius: 9px;
-}
-
-.mat-icon:hover {
-  color: #1bea00ad;
-  transform: scale(1.1);
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-}
-.mat-icon {
-  transition: transform 0.2s ease;
-  box-shadow: none;
-  border: none;
-  border-radius: 35px;
-  color: white;
-  margin-right: 4%;
-  font-size: 129% !important;
-}
-
-.mat-icon:active {
-  transform: scale(1.5);
-  color: #d5f600;
-}
-
-.principal-card {
-  display: flex;
-  gap: 1600000px;
-  width: fit-content;
-  height: fit-content;
-  background-color: rgba(80, 255, 22, 0.983);
-  border-radius: 9px;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  align-content: stretch;
-  justify-content: space-evenly;
-  align-items: flex-start;
-}
-.table-card {
-  max-width: 1000px;
-  width: 800px;
-  height: fit-content;
-  background-color: rgb(146, 150, 57);
-  border-radius: 9px;
-  position: relative;
-}
-.header-card {
-  background-color: var(--backCards);
-  color: white !important;
-  border-radius: 9px;
-  margin-bottom: 5px !important;
-}
-.text {
-  font-size: 20px !important;
-  font-weight: 500 !important;
-  color: rgb(250, 250, 250) !important;
-  margin-right: 10px;
-}
-* {
-  font-size: 20px !important;
-  font-weight: 500 !important;
-  color: rgb(1, 1, 1);
-}
-.buttons-actionDelete {
-  margin-top: -63px;
-}
-
-.example-label {
-  display: table-cell;
-  font-size: 14px;
-  margin-left: 8px;
-  min-width: 120px;
-}
-
-.example-button-row {
-  display: table-cell;
-  max-width: 600px;
-}
-
-.example-button-row .mat-mdc-button-base {
-  margin: 8px 8px 8px 0;
-}
-
-.example-flex-container {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-}
-
-.example-button-container {
-  display: flex;
-  justify-content: center;
-  width: 120px;
-}
-/// esto es para poder darle estilo a los autocomplete de manera personalizada
-.renglon1 {
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-  align-items: center;
-  justify-content: flex-start;
-  margin-left: 1%;
-  // margin-bottom: 10px;
-  width: 100%;
-  flex-wrap: wrap;
-}
-@media (min-width: 100px) and (max-width: 1260px) {
-  .CardSerch {
-    background-color: rgb(57, 46, 31) !important;
-    height: 90% !important;
-    width: 95% !important;
-  }
-  .text-button-red {
-    margin-left: 23% !important;
-  }
-  .mat-icon:hover {
-    transform: scale(1.2);
-  }
-  .mat-icon:active {
-    transform: scale(1.4);
-  }
-  .mat-icon {
-    transform: scale(0.9);
-    padding: 0%;
-    margin-right: 1%;
-  }
-}
-
-.mdc-data-table__table {
-  color: var(--errorTabla) !important;
-}
-td.mat-cell {
-  background-color: #0b2645a6;
-  color: var(--errorTabla);
-}
+// ! Drivers CSS
+/* === LAYOUT PRINCIPAL === */
 .ContainerDivs {
   background-color: rgba(182, 174, 174, 0.079);
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-content: flex-start;
-  justify-content: space-between;
-  align-items: stretch;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
   border-radius: 15px;
-  height: 810px;
   width: 99%;
   margin-top: -5px;
+  gap: 2rem;
+  height: fit-content;
 }
+
 .CardSerch {
-  width: 42%;
-  height: 800px;
+  width: 45%;
   background-color: var(--backCards);
   border-radius: 20px;
   display: flex;
   flex-direction: column;
-  flex-wrap: nowrap;
-  padding-left: 0.5%;
-  padding-right: 0.5%;
-}
-.headerCard {
-  color: rgba(255, 255, 255, 0.7);
-  font-family: Roboto, sans-serif;
-  letter-spacing: 2px;
-  padding-left: 4%;
-  padding-right: 3%;
-  padding-top: 3%;
-  padding-bottom: 2%;
-  display: flex;
+  padding: 0.5rem;
   justify-content: space-between;
 }
-.bodyCard {
-  width: 100%;
-  height: 20px;
-  height: 100%;
-}
-.renglon2 {
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-  align-items: center;
-  justify-content: flex-start;
-  margin-left: 1%;
-  width: 100%;
-  flex-wrap: wrap;
 
+.headerCard {
+  color: rgba(255, 255, 255, 0.7);
+  letter-spacing: 2px;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.bodyCard {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+}
+mat-icon {
+  border: none;
+  box-shadow: none !important;
+  border-radius: 0;
+}
+/* === Renglones === */
+.renglon {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  width: 100%;
+  justify-content: flex-start;
+}
+
+/* === Inputs responsivos === */
+.input-full {
+  flex: 1 1 100%;
+}
+
+.input-half {
+  flex: 1 1 48%;
+  min-width: 220px;
+}
+
+.input-third {
+  flex: 1 1 30%;
+  min-width: 180px;
+}
+
+.input-small {
+  flex: 1 1 17%;
+  min-width: 120px;
+}
+
+/* === Footer === */
+.footerCard {
+  margin-top: auto;
+  padding: 1rem 0;
+}
+
+.footerCard mat-divider {
+  margin: 0 1% 1rem;
+}
+
+.actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  margin-top: 1rem;
+}
+
+/* === Tabla === */
+.div-table {
+  background-color: rgba(0, 0, 0, 0.179);
+  width: 52%;
+  height: 800px;
+  max-height: 800px;
+  border-radius: 12px;
+}
+
+.tabla-dataPRUEBA {
+  position: relative;
+  width: 100%;
+  margin-top: 0.5rem;
+}
+
+/* === FOOTER === */
+.footerCard {
+  margin-top: -1rem;
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  flex-direction: row-reverse;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+.actions app-yes-no-dialog,
+.actions button {
+  min-width: 120px;
+  height: 2.8rem !important;
+}
+
+/* === Media queries para móviles === */
+@media (max-width: 1024px) {
+  .CardSerch,
+  .div-table {
+    width: 100%;
+  }
+
+  .input-half,
+  .input-third,
+  .input-small {
+    flex: 1 1 100%;
+  }
+  .actions {
+    justify-content: center;
+    margin-left: 0%;
+    gap: 1.5rem;
+    margin-right: 0%;
+  }
+  .actions app-yes-no-dialog,
+  .actions button {
+    min-width: 100%;
+  }
 }
