@@ -33,7 +33,7 @@ export class LoginComponent {
   }
   openDemoDialog() {
     const dialogRef = this.dialog.open(DemoDialogComponent, {
-      width: window.innerWidth < 600 ? '90vw' : '500px',
+      width: window.innerWidth < 700 ? '90vw' : '700px',
       maxHeight: '90vh',
       disableClose: false
     });

@@ -42,14 +42,14 @@
 .cred-left {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 0rem;
   min-width: 0; /* para que flex:1 funcione en child */
 }
 
 /* Etiqueta (Admin:, User:) con ancho fijo para que columnas queden alineadas */
 .cred-label {
   font-weight: 700;
-  min-width: 110px; /* ajusta este número si quieres más/menos separación */
+  min-width: 90px; /* ajusta este número si quieres más/menos separación */
   flex: 0 0 110px;
   text-align: left;
   color: #f1f1f1;
@@ -85,6 +85,8 @@
   .tab-section {
     flex-direction: column;
     align-items: stretch;
+    padding: 0rem;
+    padding-right: 0.5rem;
   }
 
   .cred-list {
@@ -105,6 +107,20 @@
     max-height: 40vh; /* que el video no tape todo */
     border-radius: 8px;
   }
+   .size-img mat-dialog-content.mat-mdc-dialog-content.mdc-dialog__content {
+    padding: 0;
+    padding-right: 12px;
+    background-color: red;
+}
+.cred-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  min-width: 0; /* para que flex:1 funcione en child */
+}
+.cred-value{
+  width: fit-content;
+}
 }
 
 /* ===== Móviles chicos (≤420px) ===== */
@@ -119,6 +135,7 @@
   .cred-value {
     white-space: normal;
     font-size: 14px;
+    width: fit-content;
   }
 }
 
