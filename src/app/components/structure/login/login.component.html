@@ -43,7 +43,7 @@
         <mat-label>Contraseña</mat-label>
         <input
           matInput
-          type="password"
+          [type]="hide ? 'password' : 'text'"
           name="password"
           [(ngModel)]="user.password"
           placeholder="Ej.123"
@@ -52,7 +52,18 @@
           #passwordInput="ngModel"
           autocomplete="current-password"
         />
+        <button
+          mat-icon-button
+          matSuffix
+          (click)="hide = !hide"
+          [attr.aria-label]="'Mostrar contraseña'"
+          [attr.aria-pressed]="!hide"
+          type="button"
+        >
+          <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+        </button>
       </mat-form-field>
+      
       <div
         class="text-danger"
         *ngIf="

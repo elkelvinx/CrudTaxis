@@ -16,7 +16,15 @@ import { DemoDialogComponent } from '../../tools/demo-dialog/demo-dialog.compone
 export class LoginComponent {
   public user = new userLogIn();
   public JWT = new userResponse();
-  constructor(private router: Router, private notificationService: NotificationService, private logInservice: LogInService, private authService: AuthService, private dialog: MatDialog) { }
+  hide = true; // 👈 por defecto oculta la contraseña
+
+  constructor(
+    private router: Router,
+    private notificationService: NotificationService,
+    private logInservice: LogInService,
+    private authService: AuthService,
+    private dialog: MatDialog
+  ) {}
   logIn() {
     this.grabar(this.user);
   }

@@ -149,3 +149,7 @@ a {
 .login-demo {
   width: 100%;
 }
+mat-icon{
+  border: none;
+  box-shadow: 0px 0px 0px rgba(0, 0, 0, 0) !important;
+}
