@@ -187,4 +187,11 @@ This is the First version from our web page working and deployed in azure
 ---
 
 ## 📄 Licencia
-MIT
+
+All Rights Reserved
+
+This software and its source code are the exclusive property of Kevin Antonio Ibarra Mondaca.
+
+No part of this software may be copied, modified, distributed, or used in any form without explicit written permission from the author.
+
+Unauthorized use, reproduction, or distribution of this software is strictly prohibited.
